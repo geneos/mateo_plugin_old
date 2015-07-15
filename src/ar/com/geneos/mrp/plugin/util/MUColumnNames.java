@@ -28,6 +28,11 @@ public class MUColumnNames {
 	public static final String COLUMNNAME_M_Locator_ID = "M_Locator_ID";
 	public static final String COLUMNNAME_Processed = "Processed";
 	public static final String COLUMNNAME_LowLevel = "LowLevel";
+	public static final String COLUMNNAME_QtyOnHand = "QtyOnHand";
+	public static final String COLUMNNAME_PO_PriceList_ID = "PO_PriceList_ID";
+	public static final Object COLUMNNAME_IsBOM = "IsBOM";
+	public static final Object COLUMNNAME_IsPurchased = "IsPurchased";
+	public static final Object COLUMNNAME_M_Product_Category_ID = "M_Product_Category_ID";
 	
 
 

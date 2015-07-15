@@ -73,6 +73,8 @@ public class MPPMRP extends LP_PP_MRP {
 	 */
 	private static final long serialVersionUID = 6831223361306903297L;
 
+	public static final String COLUMNNAME_PP_MRP_ID = "PP_MRP_ID";
+
 	private static CLogger s_log = CLogger.getCLogger(MPPMRP.class);
 
 	public static int getM_Warehouse_ID(int PP_MRP_ID, String trxName) {
