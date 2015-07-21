@@ -31,6 +31,7 @@ import org.openXpertya.process.SvrProcess;
 
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
 import ar.com.geneos.mrp.plugin.util.MUMPrintFormat;
+import ar.com.geneos.mrp.plugin.util.MUMTable;
 
 
 /**
@@ -155,7 +156,7 @@ public class CompletePrintOrder extends SvrProcess {
 	private ReportEngine getReportEngine(String formatName, String tableName)
 	{
 		// Get Format & Data
-		int format_id= MUMPrintFormat.getPrintFormatID(formatName, MTable.getTable_ID(tableName), getAD_Client_ID());
+		int format_id= MUMPrintFormat.getPrintFormatID(formatName, MUMTable.getTable_ID(tableName), getAD_Client_ID());
 				
 		MPrintFormat format = MPrintFormat.get(getCtx(), format_id, true);
 		if (format == null)
@@ -167,7 +168,7 @@ public class CompletePrintOrder extends SvrProcess {
 		MQuery query = new MQuery(tableName);
 		query.addRestriction("PP_Order_ID", MQuery.EQUAL, p_PP_Order_ID);
 		// Engine
-		PrintInfo info = new PrintInfo(tableName,  MTable.getTable_ID(tableName), p_PP_Order_ID);
+		PrintInfo info = new PrintInfo(tableName,  MUMTable.getTable_ID(tableName), p_PP_Order_ID);
 		ReportEngine re = new ReportEngine(getCtx(), format, query, info);
 		return re;
 	}
