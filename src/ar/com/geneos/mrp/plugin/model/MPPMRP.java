@@ -122,7 +122,7 @@ public class MPPMRP extends LP_PP_MRP {
 
 			// Validate BOM
 			if (bom == null && pp != null) {
-				bom = new MPPProductBOM(ol.getCtx(), pp.getPP_Product_Bom_ID(), ol.get_TrxName());
+				bom = new MPPProductBOM(ol.getCtx(), pp.getPP_Product_BOM_ID(), ol.get_TrxName());
 				if (bom != null && !MPPProductBOM.BOMTYPE_Make_To_Order.equals(bom.getBOMType()) && !MPPProductBOM.BOMTYPE_Make_To_Kit.equals(bom.getBOMType())) {
 					// throw new
 					// AdempiereException("@NotFound@ @PP_ProductBOM_ID@");
@@ -151,7 +151,7 @@ public class MPPMRP extends LP_PP_MRP {
 				pp.setAD_Org_ID(ol.getAD_Org_ID());
 				pp.setM_Product_ID(product.getM_Product_ID());
 				pp.setPlanner_ID(new MOrder(ol.getCtx(), ol.getC_Order_ID(), ol.get_TrxName()).getSalesRep_ID());
-				pp.setPP_Product_Bom_ID(bom.getPP_Product_Bom_ID());
+				pp.setPP_Product_BOM_ID(bom.getPP_Product_BOM_ID());
 				pp.setAD_Workflow_ID(workflow.getAD_Workflow_ID());
 				pp.setM_Warehouse_ID(ol.getM_Warehouse_ID());
 				pp.setS_Resource_ID(plant_id);
@@ -240,7 +240,7 @@ public class MPPMRP extends LP_PP_MRP {
 			order.setM_Warehouse_ID(pp.getM_Warehouse_ID());
 			order.setM_Product_ID(pp.getM_Product_ID());
 			order.setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
-			order.setPP_Product_BOM_ID(pp.getPP_Product_Bom_ID());
+			order.setPP_Product_BOM_ID(pp.getPP_Product_BOM_ID());
 			order.setAD_Workflow_ID(pp.getAD_Workflow_ID());
 			order.setPlanner_ID(pp.getPlanner_ID());
 			order.setLine(10);
@@ -300,20 +300,20 @@ public class MPPMRP extends LP_PP_MRP {
 
 		s_sourceColumnNames.put(MPPOrder.Table_Name, new String[] { "AD_Org_ID", MPPOrder.COLUMNNAME_M_Product_ID, MPPOrder.COLUMNNAME_C_UOM_ID,
 				MPPOrder.COLUMNNAME_DatePromised, MPPOrder.COLUMNNAME_QtyOrdered, MPPOrder.COLUMNNAME_DateStartSchedule,
-				MPPOrder.COLUMNNAME_DateFinishSchedule, MPPOrder.COLUMNNAME_QtyDelivered, MPPOrder.COLUMNNAME_PP_Product_Bom_ID,
+				MPPOrder.COLUMNNAME_DateFinishSchedule, MPPOrder.COLUMNNAME_QtyDelivered, MPPOrder.COLUMNNAME_PP_Product_BOM_ID,
 				MPPOrder.COLUMNNAME_AD_Workflow_ID, MPPOrder.COLUMNNAME_DocStatus, });
 		s_sourceColumnNames.put(MPPOrderBOMLine.Table_Name, new String[] { MPPOrderBOMLine.COLUMNNAME_M_Product_ID, MPPOrderBOMLine.COLUMNNAME_C_UOM_ID,
 				MPPOrderBOMLine.COLUMNNAME_M_Warehouse_ID, MPPOrderBOMLine.COLUMNNAME_QtyEntered, MPPOrderBOMLine.COLUMNNAME_QtyDelivered,
-				MPPOrderBOMLine.COLUMNNAME_qtyrequired, });
+				MPPOrderBOMLine.COLUMNNAME_QtyRequired, });
 		// MRP net change
 		s_sourceColumnNames.put(MPPProductPlanning.Table_Name, new String[] { MPPProductPlanning.COLUMNNAME_M_Product_ID,
 				MPPProductPlanning.COLUMNNAME_S_Resource_ID, MUColumnNames.COLUMNNAME_IsActive, MPPProductPlanning.COLUMNNAME_Planner_ID,
-				MPPProductPlanning.COLUMNNAME_PP_Product_Bom_ID, MPPProductPlanning.COLUMNNAME_IsPhantom, MPPProductPlanning.COLUMNNAME_AD_Workflow_ID,
+				MPPProductPlanning.COLUMNNAME_PP_Product_BOM_ID, MPPProductPlanning.COLUMNNAME_IsPhantom, MPPProductPlanning.COLUMNNAME_AD_Workflow_ID,
 				MPPProductPlanning.COLUMNNAME_DD_Networkdistribution_ID, MPPProductPlanning.COLUMNNAME_IsMPS, MPPProductPlanning.COLUMNNAME_IsCreatePlan,
 				MPPProductPlanning.COLUMNNAME_TimeFence, MPPProductPlanning.COLUMNNAME_DeliveryTime_Promised, MPPProductPlanning.COLUMNNAME_TransfertTime,
 				MPPProductPlanning.COLUMNNAME_Order_Policy, MPPProductPlanning.COLUMNNAME_Order_Period, MPPProductPlanning.COLUMNNAME_Order_Qty,
 				MPPProductPlanning.COLUMNNAME_Order_Min, MPPProductPlanning.COLUMNNAME_Order_Max, MPPProductPlanning.COLUMNNAME_Order_Pack,
-				MPPProductPlanning.COLUMNNAME_safetystock, MPPProductPlanning.COLUMNNAME_Yield, });
+				MPPProductPlanning.COLUMNNAME_SafetyStock, MPPProductPlanning.COLUMNNAME_Yield, });
 		// MRP net change
 		s_sourceColumnNames.put(MProductPO.Table_Name, new String[] { MUMProduct.COLUMNNAME_IsCurrentVendor, MUMProduct.COLUMNNAME_DeliveryTime_Promised,
 				MUColumnNames.COLUMNNAME_IsActive, MUMProduct.COLUMNNAME_Order_Min, MUMProduct.COLUMNNAME_Order_Pack, });

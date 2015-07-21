@@ -92,7 +92,7 @@ public class MPPOrderBOM extends LP_PP_Order_BOM
 	
 	public MPPOrderBOMLine[] getLines()
 	{
-		String whereClause = MPPOrderBOMLine.COLUMNNAME_PP_Order_Bom_ID+"=?";
+		String whereClause = MPPOrderBOMLine.COLUMNNAME_PP_Order_BOM_ID+"=?";
 		List<MPPOrderBOMLine> list = new Query(getCtx(), MPPOrderBOMLine.Table_Name, whereClause, get_TrxName())
 									.setParameters(new Object[]{getID()})
 									.list();

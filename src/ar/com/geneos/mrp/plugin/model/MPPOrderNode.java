@@ -191,7 +191,7 @@ public class MPPOrderNode extends LP_PP_Order_Node
 		// Cambio de wfNode.getLimit() a wfNode.getDurationLimit()
 		// Migración Libero
 		// @autor: pepo
-		setlimit(wfNode.getDurationLimit());
+		setlimit_time(wfNode.getDurationLimit());
 		setName(wfNode.getName());
 		setPriority(wfNode.getPriority());
 		setSplitElement(wfNode.getSplitElement()); // X
@@ -338,7 +338,7 @@ public class MPPOrderNode extends LP_PP_Order_Node
 	 */
 	public long getLimitMS ()
 	{
-		long limit = super.getlimit ();
+		long limit = super.getlimit_time ();
 		if (limit == 0)
 			return 0;
 		if (m_durationBaseMS == -1)
@@ -485,7 +485,7 @@ public class MPPOrderNode extends LP_PP_Order_Node
 		setEntityType (ENTITYTYPE_UserMaintained);	// U
 		setIsCentrallyMaintained (true);	// Y
 		setJoinElement (JOINELEMENT_XOR);	// X
-		setlimit (0);
+		setlimit_time (0);
 		setSplitElement (SPLITELEMENT_XOR);	// X
 		setWaitingTime (0);
 		setXPosition (0);

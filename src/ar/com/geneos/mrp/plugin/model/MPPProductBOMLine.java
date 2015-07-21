@@ -76,7 +76,7 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	 */
 	public static MPPProductBOMLine[] getBOMLines(MProduct product) 
 	{		
-		final String whereClause = MPPProductBOMLine.COLUMNNAME_PP_Product_Bom_ID 
+		final String whereClause = MPPProductBOMLine.COLUMNNAME_PP_Product_BOM_ID 
 							+ " IN ( SELECT PP_PRODUCT_BOM_ID FROM PP_PRODUCT_BOM WHERE M_PRODUCT_ID = " + product.getM_Product_ID() + ")";
 		List <MPPProductBOMLine> list = new Query(product.getCtx(), MPPProductBOMLine.Table_Name, whereClause, product.get_TrxName())
 								.setClient_ID()
@@ -106,7 +106,7 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 		super(bom.getCtx(), 0, bom.get_TrxName());
 		if (bom.getID() <= 0)
 			throw new IllegalArgumentException("Header not saved");
-		setPP_Product_Bom_ID(bom.getPP_Product_Bom_ID()); //	parent
+		setPP_Product_BOM_ID(bom.getPP_Product_BOM_ID()); //	parent
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	{
 		if(m_bom == null)
 		{	
-			m_bom = new MPPProductBOM (getCtx(), this.getPP_Product_Bom_ID(), get_TrxName());
+			m_bom = new MPPProductBOM (getCtx(), this.getPP_Product_BOM_ID(), get_TrxName());
 		}
 		return m_bom;
 	}
@@ -172,8 +172,8 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 		if (getLine() <= 0)
 		{
 			final String sql = "SELECT COALESCE(MAX("+COLUMNNAME_Line+"),0) + 10 FROM "+Table_Name
-								+" WHERE "+COLUMNNAME_PP_Product_Bom_ID+"=?";
-			int line = DB.getSQLValueEx(get_TrxName(), sql, getPP_Product_Bom_ID());
+								+" WHERE "+COLUMNNAME_PP_Product_BOM_ID+"=?";
+			int line = DB.getSQLValueEx(get_TrxName(), sql, getPP_Product_BOM_ID());
 			setLine(line);
 		}
 		
@@ -275,7 +275,7 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	 */
 	public BigDecimal getCostAllocationPerc(boolean fallback)
 	{
-		BigDecimal allocationPercent = super.getcostallocationperc();
+		BigDecimal allocationPercent = super.getCostAllocationPerc();
 		if (allocationPercent.signum() != 0)
 			return allocationPercent;
 		//

@@ -227,7 +227,7 @@ public class MPPProductPlanning extends LP_PP_Product_Planning
 	//@Override
 	public MPPProductBOM getPP_Product_BOM()
 	{
-		return MPPProductBOM.get(getCtx(), getPP_Product_Bom_ID());
+		return MPPProductBOM.get(getCtx(), getPP_Product_BOM_ID());
 	}
 	
 	//@Override
@@ -271,14 +271,14 @@ public class MPPProductPlanning extends LP_PP_Product_Planning
 		log.info("           Create Plan: " + isCreatePlan());
 		log.info("              Resource: " + getS_Resource_ID());
 		log.info("          M_Product_ID: " + getM_Product_ID()); 
-		log.info("                   BOM: " + getPP_Product_Bom_ID());
+		log.info("                   BOM: " + getPP_Product_BOM_ID());
 		log.info("              Workflow: " + getAD_Workflow_ID());
 		log.info("  Network Distribution: " + getDD_Networkdistribution_ID());
 		log.info("Delivery Time Promised: " + getDeliveryTime_Promised());
 		log.info("         TransfertTime: " + getTransfertTime ());
 		log.info("         Order Min/Max: " + getOrder_Min() + " / " + getOrder_Max());
 		log.info("            Order Pack: " + getOrder_Pack());
-		log.info("          Safety Stock: " + getsafetystock());
+		log.info("          Safety Stock: " + getSafetyStock());
 		log.info("          Order Period: " + getOrder_Period());
 		log.info("          Order Policy: " + getOrder_Policy());
 		log.info("             Warehouse: " + getM_Warehouse_ID());

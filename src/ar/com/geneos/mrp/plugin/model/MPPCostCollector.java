@@ -928,7 +928,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	}
 
 	public boolean isFloorStock() {
-		final String whereClause = MPPOrderBOMLine.COLUMNNAME_PP_Order_Bomline_ID + "=?" + " AND " + MPPOrderBOMLine.COLUMNNAME_IssueMethod + "=?";
+		final String whereClause = MPPOrderBOMLine.COLUMNNAME_PP_Order_BOMLine_ID + "=?" + " AND " + MPPOrderBOMLine.COLUMNNAME_IssueMethod + "=?";
 		boolean isFloorStock = new Query(getCtx(), MPPOrderBOMLine.Table_Name, whereClause, get_TrxName()).setOnlyActiveRecords(true)
 				.setParameters(new Object[] { getPP_Order_Bomline_ID(), MPPOrderBOMLine.ISSUEMETHOD_FloorStock }).match();
 		return isFloorStock;

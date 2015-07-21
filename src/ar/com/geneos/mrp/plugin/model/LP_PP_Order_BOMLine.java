@@ -23,10 +23,10 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		/**
 		 * if (PP_Order_BOMLine_ID == 0) { setC_UOM_ID (0); setIsCritical
 		 * (false); setLine (0); setM_Product_ID (0); setM_Warehouse_ID (0);
-		 * setPP_Order_Bom_ID (0); setPP_Order_Bomline_ID (0); setPP_Order_ID
+		 * setPP_Order_BOM_ID (0); setPP_Order_BOMLine_ID (0); setPP_Order_ID
 		 * (0); setQtyBatch (Env.ZERO); setQtyBOM (Env.ZERO); setQtyDelivered
 		 * (Env.ZERO); setQtyPost (Env.ZERO); setQtyReject (Env.ZERO);
-		 * setqtyrequired (Env.ZERO); setQtyReserved (Env.ZERO); setQtyScrap
+		 * setQtyRequired (Env.ZERO); setQtyReserved (Env.ZERO); setQtyScrap
 		 * (Env.ZERO); setValidFrom (new Timestamp(System.currentTimeMillis()));
 		 * }
 		 */
@@ -57,6 +57,7 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return sb.toString();
 	}
 
+	public static final int AD_USER_ID_AD_Reference_ID = MReference.getReferenceID("AD_User - Internal");
 	/**
 	 * Set User/Contact. User within the system - Internal or Business Partner
 	 * Contact
@@ -112,10 +113,36 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return (String) get_Value("BackflushGroup");
 	}
 
+	public static final int COMPONENTTYPE_AD_Reference_ID = MReference.getReferenceID("PP_ComponentType");
+	/** By-Product = BY */
+	public static final String COMPONENTTYPE_By_Product = "BY";
+	/** Component = CO */
+	public static final String COMPONENTTYPE_Component = "CO";
+	/** Co-Product = CP */
+	public static final String COMPONENTTYPE_Co_Product = "CP";
+	/** Option = OP */
+	public static final String COMPONENTTYPE_Option = "OP";
+	/** Phantom = PH */
+	public static final String COMPONENTTYPE_Phantom = "PH";
+	/** Packing = PK */
+	public static final String COMPONENTTYPE_Packing = "PK";
+	/** Planning = PL */
+	public static final String COMPONENTTYPE_Planning = "PL";
+	/** Tools = TL */
+	public static final String COMPONENTTYPE_Tools = "TL";
+	/** Variant = VA */
+	public static final String COMPONENTTYPE_Variant = "VA";
 	/** Set Component Type */
 	public static final String COLUMNNAME_ComponentType = "ComponentType";
 
 	public void setComponentType(String ComponentType) {
+		if (ComponentType == null || ComponentType.equals("BY") || ComponentType.equals("CO") || ComponentType.equals("CP") || ComponentType.equals("OP")
+				|| ComponentType.equals("PH") || ComponentType.equals("PK") || ComponentType.equals("PL") || ComponentType.equals("TL")
+				|| ComponentType.equals("VA"))
+			;
+		else
+			throw new IllegalArgumentException(
+					"ComponentType Invalid value - Reference = COMPONENTTYPE_AD_Reference_ID - BY - CO - CP - OP - PH - PK - PL - TL - VA");
 		if (ComponentType != null && ComponentType.length() > 2) {
 			log.warning("Length > 2 - truncated");
 			ComponentType = ComponentType.substring(0, 2);
@@ -128,16 +155,16 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return (String) get_Value("ComponentType");
 	}
 
-	/** Set costallocationperc */
-	public static final String COLUMNNAME_costallocationperc = "costallocationperc";
+	/** Set CostAllocationPerc */
+	public static final String COLUMNNAME_CostAllocationPerc = "CostAllocationPerc";
 
-	public void setcostallocationperc(BigDecimal costallocationperc) {
-		set_Value("costallocationperc", costallocationperc);
+	public void setCostAllocationPerc(BigDecimal CostAllocationPerc) {
+		set_Value("CostAllocationPerc", CostAllocationPerc);
 	}
 
-	/** Get costallocationperc */
-	public BigDecimal getcostallocationperc() {
-		BigDecimal bd = (BigDecimal) get_Value("costallocationperc");
+	/** Get CostAllocationPerc */
+	public BigDecimal getCostAllocationPerc() {
+		BigDecimal bd = (BigDecimal) get_Value("CostAllocationPerc");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
@@ -198,20 +225,20 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return (String) get_Value("Description");
 	}
 
-	/** Set feature */
-	public static final String COLUMNNAME_feature = "feature";
+	/** Set Feature */
+	public static final String COLUMNNAME_Feature = "Feature";
 
-	public void setfeature(String feature) {
-		if (feature != null && feature.length() > 30) {
+	public void setFeature(String Feature) {
+		if (Feature != null && Feature.length() > 30) {
 			log.warning("Length > 30 - truncated");
-			feature = feature.substring(0, 30);
+			Feature = Feature.substring(0, 30);
 		}
-		set_Value("feature", feature);
+		set_Value("Feature", Feature);
 	}
 
-	/** Get feature */
-	public String getfeature() {
-		return (String) get_Value("feature");
+	/** Get Feature */
+	public String getFeature() {
+		return (String) get_Value("Feature");
 	}
 
 	/** Set Forecast */
@@ -285,22 +312,31 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return false;
 	}
 
+	public static final int ISSUEMETHOD_AD_Reference_ID = MReference.getReferenceID("PP_Product_BOM IssueMethod");
+	/** Issue = 0 */
+	public static final String ISSUEMETHOD_Issue = "0";
+	/** Backflush = 1 */
+	public static final String ISSUEMETHOD_Backflush = "1";
+	/** Floor Stock = 3 */
+	public static final String ISSUEMETHOD_FloorStock = "3";
 	/** Set IssueMethod */
 	public static final String COLUMNNAME_IssueMethod = "IssueMethod";
 
-	public void setIssueMethod(boolean IssueMethod) {
-		set_Value("IssueMethod", new Boolean(IssueMethod));
+	public void setIssueMethod(String IssueMethod) {
+		if (IssueMethod == null || IssueMethod.equals("0") || IssueMethod.equals("1") || IssueMethod.equals("3"))
+			;
+		else
+			throw new IllegalArgumentException("IssueMethod Invalid value - Reference = ISSUEMETHOD_AD_Reference_ID - 0 - 1 - 3");
+		if (IssueMethod != null && IssueMethod.length() > 1) {
+			log.warning("Length > 1 - truncated");
+			IssueMethod = IssueMethod.substring(0, 1);
+		}
+		set_Value("IssueMethod", IssueMethod);
 	}
 
 	/** Get IssueMethod */
-	public boolean issueMethod() {
-		Object oo = get_Value("IssueMethod");
-		if (oo != null) {
-			if (oo instanceof Boolean)
-				return ((Boolean) oo).booleanValue();
-			return "Y".equals(oo);
-		}
-		return false;
+	public String getIssueMethod() {
+		return (String) get_Value("IssueMethod");
 	}
 
 	/**
@@ -449,31 +485,31 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
-	/** Set PP_Order_Bom_ID */
-	public static final String COLUMNNAME_PP_Order_Bom_ID = "PP_Order_Bom_ID";
+	/** Set PP_Order_BOM_ID */
+	public static final String COLUMNNAME_PP_Order_BOM_ID = "PP_Order_BOM_ID";
 
-	public void setPP_Order_BOM_ID(int PP_Order_Bom_ID) {
-		set_Value("PP_Order_Bom_ID", new Integer(PP_Order_Bom_ID));
+	public void setPP_Order_BOM_ID(int PP_Order_BOM_ID) {
+		set_Value("PP_Order_BOM_ID", new Integer(PP_Order_BOM_ID));
 	}
 
-	/** Get PP_Order_Bom_ID */
+	/** Get PP_Order_BOM_ID */
 	public int getPP_Order_BOM_ID() {
-		Integer ii = (Integer) get_Value("PP_Order_Bom_ID");
+		Integer ii = (Integer) get_Value("PP_Order_BOM_ID");
 		if (ii == null)
 			return 0;
 		return ii.intValue();
 	}
 
-	/** Set PP_Order_Bomline_ID */
-	public static final String COLUMNNAME_PP_Order_Bomline_ID = "PP_Order_Bomline_ID";
+	/** Set PP_Order_BOMLine_ID */
+	public static final String COLUMNNAME_PP_Order_BOMLine_ID = "PP_Order_BOMLine_ID";
 
-	public void setPP_Order_BOMLine_ID(int PP_Order_Bomline_ID) {
-		set_ValueNoCheck("PP_Order_Bomline_ID", new Integer(PP_Order_Bomline_ID));
+	public void setPP_Order_BOMLine_ID(int PP_Order_BOMLine_ID) {
+		set_ValueNoCheck("PP_Order_BOMLine_ID", new Integer(PP_Order_BOMLine_ID));
 	}
 
-	/** Get PP_Order_Bomline_ID */
+	/** Get PP_Order_BOMLine_ID */
 	public int getPP_Order_BOMLine_ID() {
-		Integer ii = (Integer) get_Value("PP_Order_Bomline_ID");
+		Integer ii = (Integer) get_Value("PP_Order_BOMLine_ID");
 		if (ii == null)
 			return 0;
 		return ii.intValue();
@@ -606,18 +642,18 @@ public class LP_PP_Order_BOMLine extends org.openXpertya.model.PO {
 		return bd;
 	}
 
-	/** Set qtyrequired */
-	public static final String COLUMNNAME_qtyrequired = "qtyrequired";
+	/** Set QtyRequired */
+	public static final String COLUMNNAME_QtyRequired = "QtyRequired";
 
-	public void setQtyRequired(BigDecimal qtyrequired) {
-		if (qtyrequired == null)
-			throw new IllegalArgumentException("qtyrequired is mandatory");
-		set_Value("qtyrequired", qtyrequired);
+	public void setQtyRequired(BigDecimal QtyRequired) {
+		if (QtyRequired == null)
+			throw new IllegalArgumentException("QtyRequired is mandatory");
+		set_Value("QtyRequired", QtyRequired);
 	}
 
-	/** Get qtyrequired */
+	/** Get QtyRequired */
 	public BigDecimal getQtyRequired() {
-		BigDecimal bd = (BigDecimal) get_Value("qtyrequired");
+		BigDecimal bd = (BigDecimal) get_Value("QtyRequired");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;

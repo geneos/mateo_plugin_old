@@ -67,10 +67,10 @@ public class CalloutBOM extends CalloutPluginEngine
 		final int M_Product_ID = (Integer)value;
 		if (M_Product_ID <= 0)
 			return state;
-		int Product_bomLine_ID = (Integer) mTab.getField("pp_product_bomline_id").getValue();
+		int Product_bomLine_ID = (Integer) mTab.getField(MPPProductBOMLine.COLUMNNAME_PP_Product_BOMLine_ID).getValue();
 		
 		MPPProductBOMLine bomLine = new MPPProductBOMLine(Env.getCtx(),Product_bomLine_ID,null);
-		MPPProductBOM bom = new MPPProductBOM(Env.getCtx(),bomLine.getPP_Product_Bom_ID(),null);
+		MPPProductBOM bom = new MPPProductBOM(Env.getCtx(),bomLine.getPP_Product_BOM_ID(),null);
 
 		if( bom == null ) //Adempiere-272 changes
 		{

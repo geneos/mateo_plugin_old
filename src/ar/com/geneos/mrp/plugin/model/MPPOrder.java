@@ -1565,7 +1565,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 				KeyNamePair id = null;
 
-				if (MPPOrderBOMLine.ISSUEMETHOD_Backflush.equals(line.issueMethod())) {
+				if (MPPOrderBOMLine.ISSUEMETHOD_Backflush.equals(line.getIssueMethod())) {
 					id = new KeyNamePair(line.getID(), "Y");
 				} else
 					id = new KeyNamePair(line.getID(), "N");

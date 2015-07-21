@@ -139,9 +139,9 @@ public class MPPProductBOM extends LP_PP_Product_BOM
 		if (ad_org_id > 0 )
 		{	
 			MPPProductPlanning pp = MPPProductPlanning.get(ctx, product.getAD_Client_ID(),ad_org_id, product.getM_Product_ID(), trxName);
-			if(pp != null && pp.getPP_Product_Bom_ID() > 0)
+			if(pp != null && pp.getPP_Product_BOM_ID() > 0)
 			{
-				bom = new MPPProductBOM(ctx, pp.getPP_Product_Bom_ID(),trxName);
+				bom = new MPPProductBOM(ctx, pp.getPP_Product_BOM_ID(),trxName);
 			}
 		}	
 		if (bom == null)
@@ -219,9 +219,9 @@ public class MPPProductBOM extends LP_PP_Product_BOM
 	{
 		if (this.m_lines == null || reload)
 		{
-			final String whereClause = MPPProductBOMLine.COLUMNNAME_PP_Product_Bom_ID+"=?";
+			final String whereClause = MPPProductBOMLine.COLUMNNAME_PP_Product_BOM_ID+"=?";
 			this.m_lines = new Query(getCtx(), MPPProductBOMLine.Table_Name, whereClause, get_TrxName())
-											.setParameters(new Object[]{getPP_Product_Bom_ID()})
+											.setParameters(new Object[]{getPP_Product_BOM_ID()})
 											.setClient_ID()
 											.setOnlyActiveRecords(true)
 											.setOrderBy(MPPProductBOMLine.COLUMNNAME_Line)

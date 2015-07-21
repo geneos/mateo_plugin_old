@@ -120,7 +120,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		setC_UOM_ID(bomLine.getC_UOM_ID());
 		setForecast(bomLine.getForecast());
 		setIsCritical(bomLine.isCritical());
-		setIssueMethod(bomLine.issueMethod());
+		setIssueMethod(bomLine.getIssueMethod());
 		setLeadTimeOffset(bomLine.getLeadTimeOffset());
 		setM_AttributeSetInstance_ID(bomLine.getM_AttributeSetInstance_ID());
 		setM_Product_ID(bomLine.getM_Product_ID());
@@ -180,7 +180,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 			setQtyRequired(Env.ZERO);
 		}
 
-		if (newRecord || is_ValueChanged(COLUMNNAME_C_UOM_ID) || is_ValueChanged(COLUMNNAME_QtyEntered) || is_ValueChanged(COLUMNNAME_qtyrequired)) {
+		if (newRecord || is_ValueChanged(COLUMNNAME_C_UOM_ID) || is_ValueChanged(COLUMNNAME_QtyEntered) || is_ValueChanged(COLUMNNAME_QtyRequired)) {
 			if (getQtyRequired().compareTo(getQtyDelivered()) < 0)
 				throw new IllegalStateException("@QtyRequired@ < @QtyDelivered@");
 
@@ -189,7 +189,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 			setQtyRequired(getQtyRequired().setScale(precision, RoundingMode.UP));
 		}
 
-		if (is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_qtyrequired)) {
+		if (is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyRequired)) {
 			reserveStock();
 		}
 

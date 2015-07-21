@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.openXpertya.model.MOrderLine;
 import org.openXpertya.model.MReference;
 import org.openXpertya.model.M_Table;
 import org.openXpertya.model.POInfo;
@@ -30,10 +29,10 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		 * Timestamp(System.currentTimeMillis())); setDatePromised (new
 		 * Timestamp(System.currentTimeMillis())); setDateStartSchedule (new
 		 * Timestamp(System.currentTimeMillis())); setDocAction (null);
-		 * setDocStatus (null); setDocumentNo (null); setIsApproved (false);
-		 * setIsPrinted (false); setIsSelected (false); setIsSOTrx (false);
-		 * setLine (0); setM_Product_ID (0); setM_Warehouse_ID (0);
-		 * setPP_Order_ID (0); setPP_Product_Bom_ID (0); setPriorityRule (null);
+		 * setDocStatus (null); // DR setDocumentNo (null); setIsApproved
+		 * (false); setIsPrinted (false); setIsSelected (false); setIsSOTrx
+		 * (false); setLine (0); setM_Product_ID (0); setM_Warehouse_ID (0);
+		 * setPP_Order_ID (0); setPP_Product_BOM_ID (0); setPriorityRule (null);
 		 * setProcessed (false); setQtyDelivered (Env.ZERO); setQtyOrdered
 		 * (Env.ZERO); setQtyReject (Env.ZERO); setQtyScrap (Env.ZERO);
 		 * setS_Resource_ID (0); setYield (Env.ZERO); }
@@ -165,6 +164,7 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
+	public static final int C_DOCTYPE_ID_AD_Reference_ID = MReference.getReferenceID("C_DocType MFG");
 	/**
 	 * Set Document Type. Document type or rules
 	 */
@@ -187,6 +187,7 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
+	public static final int C_DOCTYPETARGET_ID_AD_Reference_ID = MReference.getReferenceID("C_DocType MFG");
 	/**
 	 * Set Target Document Type. Target document type for conversing documents
 	 */
@@ -211,21 +212,19 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 	 */
 	public static final String COLUMNNAME_CopyFrom = "CopyFrom";
 
-	public void setCopyFrom(boolean CopyFrom) {
-		set_Value("CopyFrom", new Boolean(CopyFrom));
+	public void setCopyFrom(String CopyFrom) {
+		if (CopyFrom != null && CopyFrom.length() > 1) {
+			log.warning("Length > 1 - truncated");
+			CopyFrom = CopyFrom.substring(0, 1);
+		}
+		set_Value("CopyFrom", CopyFrom);
 	}
 
 	/**
 	 * Get Copy From. Copy From Record
 	 */
-	public boolean isCopyFrom() {
-		Object oo = get_Value("CopyFrom");
-		if (oo != null) {
-			if (oo instanceof Boolean)
-				return ((Boolean) oo).booleanValue();
-			return "Y".equals(oo);
-		}
-		return false;
+	public String getCopyFrom() {
+		return (String) get_Value("CopyFrom");
 	}
 
 	/**
@@ -445,12 +444,48 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return (String) get_Value("Description");
 	}
 
+	public static final int DOCACTION_AD_Reference_ID = MReference.getReferenceID("_Document Action");
+	/** Approve = AP */
+	public static final String DOCACTION_Approve = "AP";
+	/** Close = CL */
+	public static final String DOCACTION_Close = "CL";
+	/** Prepare = PR */
+	public static final String DOCACTION_Prepare = "PR";
+	/** Invalidate = IN */
+	public static final String DOCACTION_Invalidate = "IN";
+	/** Complete = CO */
+	public static final String DOCACTION_Complete = "CO";
+	/** <None> = -- */
+	public static final String DOCACTION_None = "--";
+	/** Reverse - Correct = RC */
+	public static final String DOCACTION_Reverse_Correct = "RC";
+	/** Reject = RJ */
+	public static final String DOCACTION_Reject = "RJ";
+	/** Reverse - Accrual = RA */
+	public static final String DOCACTION_Reverse_Accrual = "RA";
+	/** Wait Complete = WC */
+	public static final String DOCACTION_WaitComplete = "WC";
+	/** Unlock = XL */
+	public static final String DOCACTION_Unlock = "XL";
+	/** Re-activate = RE */
+	public static final String DOCACTION_Re_Activate = "RE";
+	/** Post = PO */
+	public static final String DOCACTION_Post = "PO";
+	/** Void = VO */
+	public static final String DOCACTION_Void = "VO";
 	/**
 	 * Set Document Action. The targeted status of the document
 	 */
 	public static final String COLUMNNAME_DocAction = "DocAction";
 
 	public void setDocAction(String DocAction) {
+		if (DocAction.equals("AP") || DocAction.equals("CL") || DocAction.equals("PR") || DocAction.equals("IN") || DocAction.equals("CO")
+				|| DocAction.equals("--") || DocAction.equals("RC") || DocAction.equals("RJ") || DocAction.equals("RA") || DocAction.equals("WC")
+				|| DocAction.equals("XL") || DocAction.equals("RE") || DocAction.equals("PO") || DocAction.equals("VO"))
+			;
+		else
+			throw new IllegalArgumentException(
+					"DocAction Invalid value - Reference = DOCACTION_AD_Reference_ID - AP - CL - PR - IN - CO - -- - RC - RJ - RA - WC - XL - RE - PO - VO");
 		if (DocAction == null)
 			throw new IllegalArgumentException("DocAction is mandatory");
 		if (DocAction.length() > 2) {
@@ -733,6 +768,7 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
+	public static final int M_PRODUCT_ID_AD_Reference_ID = MReference.getReferenceID("M_Product BOM (stocked)");
 	/**
 	 * Set Product. Product, Service, Item
 	 */
@@ -791,6 +827,7 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return (String) get_Value("OrderType");
 	}
 
+	public static final int PLANNER_ID_AD_Reference_ID = MReference.getReferenceID("AD_User - Internal");
 	/**
 	 * Set Planner . ID of the person responsible of planning the product.
 	 */
@@ -850,16 +887,16 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
-	/** Set PP_Product_Bom_ID */
-	public static final String COLUMNNAME_PP_Product_Bom_ID = "PP_Product_Bom_ID";
+	/** Set PP_Product_BOM_ID */
+	public static final String COLUMNNAME_PP_Product_BOM_ID = "PP_Product_BOM_ID";
 
-	public void setPP_Product_BOM_ID(int PP_Product_Bom_ID) {
-		set_Value("PP_Product_Bom_ID", new Integer(PP_Product_Bom_ID));
+	public void setPP_Product_BOM_ID(int PP_Product_BOM_ID) {
+		set_Value("PP_Product_BOM_ID", new Integer(PP_Product_BOM_ID));
 	}
 
-	/** Get PP_Product_Bom_ID */
+	/** Get PP_Product_BOM_ID */
 	public int getPP_Product_BOM_ID() {
-		Integer ii = (Integer) get_Value("PP_Product_Bom_ID");
+		Integer ii = (Integer) get_Value("PP_Product_BOM_ID");
 		if (ii == null)
 			return 0;
 		return ii.intValue();
@@ -924,16 +961,16 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return false;
 	}
 
-	/** Set processedon */
-	public static final String COLUMNNAME_processedon = "processedon";
+	/** Set ProcessedOn */
+	public static final String COLUMNNAME_ProcessedOn = "ProcessedOn";
 
-	public void setprocessedon(BigDecimal processedon) {
-		set_Value("processedon", processedon);
+	public void setProcessedOn(BigDecimal ProcessedOn) {
+		set_Value("ProcessedOn", ProcessedOn);
 	}
 
-	/** Get processedon */
-	public BigDecimal getprocessedon() {
-		BigDecimal bd = (BigDecimal) get_Value("processedon");
+	/** Get ProcessedOn */
+	public BigDecimal getProcessedOn() {
+		BigDecimal bd = (BigDecimal) get_Value("ProcessedOn");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
@@ -1141,6 +1178,7 @@ public class LP_PP_Order extends org.openXpertya.model.PO {
 		return (String) get_Value("SerNo");
 	}
 
+	public static final int S_RESOURCE_ID_AD_Reference_ID = MReference.getReferenceID("S_Resource_Manufacturing");
 	/**
 	 * Set Resource. Resource
 	 */

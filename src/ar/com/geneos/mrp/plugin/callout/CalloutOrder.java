@@ -175,9 +175,9 @@ public class CalloutOrder extends CalloutPluginEngine {
 		MPPProductPlanning pp = getPP_Product_Planning(ctx, order);
 
 		mTab.setValue("AD_Workflow_ID", pp.getAD_Workflow_ID()); // order.setAD_Workflow_ID(pp.getAD_Workflow_ID());
-		mTab.setValue("PP_Product_BOM_ID", pp.getPP_Product_Bom_ID()); // order.setPP_Product_BOM_ID(pp.getPP_Product_Bom_ID());
+		mTab.setValue("PP_Product_BOM_ID", pp.getPP_Product_BOM_ID()); // order.setPP_Product_BOM_ID(pp.getPP_Product_Bom_ID());
 
-		if (pp.getPP_Product_Bom_ID() > 0) {
+		if (pp.getPP_Product_BOM_ID() > 0) {
 			MPPProductBOM bom = pp.getPP_Product_BOM();
 			mTab.setValue("C_UOM_ID", bom.getC_UOM_ID()); // order.setC_UOM_ID(bom.getC_UOM_ID());
 		}
@@ -233,10 +233,10 @@ public class CalloutOrder extends CalloutPluginEngine {
 		if (pp.getAD_Workflow_ID() <= 0) {
 			pp.setAD_Workflow_ID(MUMWorkflow.getWorkflowSearchKey(product));
 		}
-		if (pp.getPP_Product_Bom_ID() <= 0) {
+		if (pp.getPP_Product_BOM_ID() <= 0) {
 			MPPProductBOM bom = MPPProductBOM.getDefault(product, null);
 			if (bom != null) {
-				pp.setPP_Product_Bom_ID(bom.getPP_Product_Bom_ID());
+				pp.setPP_Product_BOM_ID(bom.getPP_Product_BOM_ID());
 			}
 		}
 		//

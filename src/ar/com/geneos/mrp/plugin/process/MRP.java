@@ -38,10 +38,8 @@ import org.openXpertya.model.MNote;
 import org.openXpertya.model.MOrg;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MProductPO;
-import org.openXpertya.model.MRequisition;
 import org.openXpertya.model.MRequisitionLine;
 import org.openXpertya.model.MResource;
-import org.openXpertya.model.MStorage;
 import org.openXpertya.model.MWarehouse;
 import org.openXpertya.model.PO;
 import org.openXpertya.model.POResultSet;
@@ -60,7 +58,6 @@ import org.openXpertya.util.Util;
 
 import ar.com.geneos.mrp.plugin.model.LP_M_Requisition;
 import ar.com.geneos.mrp.plugin.model.MPPMRP;
-import ar.com.geneos.mrp.plugin.model.MPPMRPDetail;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
 import ar.com.geneos.mrp.plugin.model.MPPProductBOM;
 import ar.com.geneos.mrp.plugin.model.MPPProductPlanning;
@@ -124,10 +121,10 @@ public class MRP extends SvrProcess {
 	private int count_Msg = 0;
 	// Cache
 	/**
-	 * Libero to Libertya migration
-	 * Distribution order not implemented
+	 * Libero to Libertya migration Distribution order not implemented
 	 */
-	//private static CCache<String, Integer> dd_order_id_cache = new CCache<String, Integer>(MDDOrder.COLUMNNAME_DD_Order_ID, 50);
+	// private static CCache<String, Integer> dd_order_id_cache = new
+	// CCache<String, Integer>(MDDOrder.COLUMNNAME_DD_Order_ID, 50);
 	private static CCache<Integer, MBPartner> partner_cache = new CCache<Integer, MBPartner>(MBPartner.Table_Name, 50);
 
 	protected void prepare() {
@@ -296,11 +293,9 @@ public class MRP extends SvrProcess {
 
 	protected String doIt() throws Exception {
 		parameters = new ArrayList<Object>();
-		
-		
-		//dd_order_id_cache.clear();
-		
-		
+
+		// dd_order_id_cache.clear();
+
 		partner_cache.clear();
 
 		StringBuffer whereClause = new StringBuffer(MUColumnNames.COLUMNNAME_ManufacturingResourceType + "=? AND AD_Client_ID=?");
@@ -370,7 +365,7 @@ public class MRP extends SvrProcess {
 					count_MR = 0;
 					count_DO = 0;
 					count_Msg = 0;
-					addLog (0, null, null, resultMsg.toString());
+					addLog(0, null, null, resultMsg.toString());
 				}
 				// resultMsg.append("<br>finish MRP to Organization "
 				// +org.getName());
@@ -740,9 +735,9 @@ public class MRP extends SvrProcess {
 		// Quantity Project On hand 100
 		// Safety Stock 150
 		// 150 > 100 The Quantity Project On hand is now 50
-		if (m_product_planning.getsafetystock().signum() > 0 && m_product_planning.getsafetystock().compareTo(QtyProjectOnHand) > 0) {
+		if (m_product_planning.getSafetyStock().signum() > 0 && m_product_planning.getSafetyStock().compareTo(QtyProjectOnHand) > 0) {
 			String comment = Msg.translate(getCtx(), MUColumnNames.COLUMNNAME_QtyOnHand) + " : " + QtyProjectOnHand + "\n"
-					+ Msg.translate(getCtx(), MPPProductPlanning.COLUMNNAME_safetystock) + " : " + m_product_planning.getsafetystock();
+					+ Msg.translate(getCtx(), MPPProductPlanning.COLUMNNAME_SafetyStock) + " : " + m_product_planning.getSafetyStock();
 			createMRPNote("MRP-001", AD_Org_ID, 0, product, null, QtyProjectOnHand, comment, trxName);
 		}
 		log.info("QtyOnHand :" + QtyProjectOnHand);
@@ -760,10 +755,10 @@ public class MRP extends SvrProcess {
 
 		pp2.setAD_Org_ID(pp.getAD_Org_ID());
 
-		pp2.setisrequireddrp(isSynchronize());
+		pp2.setIsRequiredDRP(isSynchronize());
 		//
-		if (pp2.getPP_Product_Bom_ID() <= 0 && product.isBOM()) {
-			pp2.setPP_Product_Bom_ID(MPPProductBOM.getBOMSearchKey(product));
+		if (pp2.getPP_Product_BOM_ID() <= 0 && product.isBOM()) {
+			pp2.setPP_Product_BOM_ID(MPPProductBOM.getBOMSearchKey(product));
 		}
 		if (pp2.getAD_Workflow_ID() <= 0 && product.isBOM()) {
 			pp2.setAD_Workflow_ID(MUMWorkflow.getWorkflowSearchKey(product));
@@ -968,16 +963,16 @@ public class MRP extends SvrProcess {
 	protected void createSupply(int AD_Org_ID, int PP_MRP_ID, MProduct product, BigDecimal QtyPlanned, Timestamp DemandDateStartSchedule, String trxName)
 			throws RuntimeException, SQLException {
 		// Distribution Order
-		
+
 		/**
-		 * Libero to Libertya migration
-		 * Distribution order not implemented
+		 * Libero to Libertya migration Distribution order not implemented
 		 */
 		/*
-		if (isSynchronize() && m_product_planning.getDD_Networkdistribution_ID() > 0) {
-			createDDOrder(AD_Org_ID, PP_MRP_ID, product, QtyPlanned, DemandDateStartSchedule, trxName);
-		}
-		*/
+		 * if (isSynchronize() &&
+		 * m_product_planning.getDD_Networkdistribution_ID() > 0) {
+		 * createDDOrder(AD_Org_ID, PP_MRP_ID, product, QtyPlanned,
+		 * DemandDateStartSchedule, trxName); }
+		 */
 		// Requisition
 		if (product.isPurchased()) // then create M_Requisition
 		{
@@ -1009,30 +1004,24 @@ public class MRP extends SvrProcess {
 
 				if (supply.getValue().signum() > 0) {
 					/**
-					 * Libero to Libertya migration
-					 * Para que sirve el MRP Detail?
+					 * Libero to Libertya migration Para que sirve el MRP
+					 * Detail?
 					 */
 					/*
-					MPPMRPDetail detail = new MPPMRPDetail(getCtx(), 0, trxName);
-					detail.setMRP_Demand_ID(demand.getKey());
-					detail.setMRP_Supply_ID(supply.getKey());
-					if (supply.getValue().compareTo(demand.getValue()) >= 0) {
-						detail.setQty(demand.getValue());
-						detail.saveEx();
-						supply.setValue(supply.getValue().subtract(demand.getValue()));
-						iteratorDemands.remove();
-						if (supply.getValue().signum() == 0) {
-							iteratorSupplies.remove();
-							break;
-						}
-					} else {
-						detail.setQty(supply.getValue());
-						detail.saveEx();
-						demand.setValue(demand.getValue().subtract(supply.getValue()));
-						iteratorSupplies.remove();
-						break;
-					}
-					*/
+					 * MPPMRPDetail detail = new MPPMRPDetail(getCtx(), 0,
+					 * trxName); detail.setMRP_Demand_ID(demand.getKey());
+					 * detail.setMRP_Supply_ID(supply.getKey()); if
+					 * (supply.getValue().compareTo(demand.getValue()) >= 0) {
+					 * detail.setQty(demand.getValue()); detail.saveEx();
+					 * supply.
+					 * setValue(supply.getValue().subtract(demand.getValue()));
+					 * iteratorDemands.remove(); if (supply.getValue().signum()
+					 * == 0) { iteratorSupplies.remove(); break; } } else {
+					 * detail.setQty(supply.getValue()); detail.saveEx();
+					 * demand.
+					 * setValue(demand.getValue().subtract(supply.getValue()));
+					 * iteratorSupplies.remove(); break; }
+					 */
 
 				}
 			}
@@ -1058,159 +1047,137 @@ public class MRP extends SvrProcess {
 	}
 
 	/**
-	 * Libero to Libertya migration
-	 * Distribution Order not implemented
+	 * Libero to Libertya migration Distribution Order not implemented
 	 */
 	/*
-	protected void createDDOrder(int AD_Org_ID, int PP_MRP_ID, MProduct product, BigDecimal QtyPlanned, Timestamp DemandDateStartSchedule, String trxName)
-			throws RuntimeException, SQLException {
-		// TODO vpj-cd I need to create logic for DRP-040 Shipment Due Action
-		// Notice
-		// Indicates that a shipment for a Order Distribution is due.
-		// Action should be taken at the source warehouse to ensure that the
-		// order is received on time.
-
-		// TODO vpj-cd I need to create logic for DRP-050 Shipment Pas Due
-		// Action Notice
-		// Indicates that a shipment for a Order Distribution is past due. You
-		// should either delay the orders created the requirement for the
-		// product
-		// or expedite them when the product does arrive.
-
-		// Setting DRP Change net Update out the model validator
-		MPPMRP.setIsRequired(m_product_planning, MPPProductPlanning.COLUMNNAME_isrequireddrp, false, trxName);
-
-		if (m_product_planning.getDD_Networkdistribution_ID() == 0) {
-			// Indicates that the Product Planning Data for this product does
-			// not specify a valid network distribution.
-			createMRPNote("DRP-060", AD_Org_ID, PP_MRP_ID, product, (String) null, null, null, trxName);
-		}
-
-		// TODO: Create functionality for Valid form and Valid To for an Network
-		// Distribution
-		
-		
-		MDDNetworkDistribution network = MDDNetworkDistribution.get(getCtx(), m_product_planning.getDD_Networkdistribution_ID());
-		MDDNetworkDistributionLine[] network_lines = network.getLines(m_product_planning.getM_Warehouse_ID());
-		int M_Shipper_ID = 0;
-		MDDOrder order = null;
-		Integer DD_Order_ID = 0;
-
-		for (MDDNetworkDistributionLine network_line : network_lines) {
-			// get supply source warehouse and locator
-			MWarehouse source = MWarehouse.get(getCtx(), network_line.getM_WarehouseSource_ID());
-			MLocator locator = source.getDefaultLocator();
-
-			// get supply target warehouse and locator
-			MWarehouse target = MWarehouse.get(getCtx(), network_line.getM_Warehouse_ID());
-			MLocator locator_to = target.getDefaultLocator();
-			// get the transfer time
-			BigDecimal transferTime = network_line.getTransferTime();
-			if (transferTime.compareTo(Env.ZERO) <= 0) {
-				transferTime = m_product_planning.getTransferTime();
-			}
-
-			if (locator == null || locator_to == null) {
-				String comment = Msg.translate(getCtx(), MDDNetworkDistributionLine.COLUMNNAME_M_WarehouseSource_ID) + " : " + source.getName();
-				createMRPNote("DRP-001", AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName);
-				continue;
-			}
-			// get the warehouse in transit
-			MWarehouse[] wsts = MWarehouse.getInTransitForOrg(getCtx(), source.getAD_Org_ID());
-
-			if (wsts == null || wsts.length == 0) {
-				String comment = Msg.translate(getCtx(), MOrg.COLUMNNAME_Name) + " : " + MOrg.get(getCtx(), AD_Org_ID).getName();
-				createMRPNote("DRP-010", AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName);
-				continue;
-			}
-
-			if (network_line.getM_Shipper_ID() == 0) {
-				String comment = Msg.translate(getCtx(), MDDNetworkDistribution.COLUMNNAME_Name) + " : " + network.getName();
-				createMRPNote("DRP-030", AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName);
-				continue;
-			}
-
-			if (M_Shipper_ID != network_line.getM_Shipper_ID()) {
-
-				// Org Must be linked to BPartner
-				MOrg org = MOrg.get(getCtx(), locator.getAD_Org_ID());
-				int C_BPartner_ID = org.getLinkedC_BPartner_ID(trxName);
-				if (C_BPartner_ID == 0) {
-					String comment = Msg.translate(getCtx(), MOrg.COLUMNNAME_Name) + " : " + MOrg.get(getCtx(), AD_Org_ID).getName();
-					createMRPNote("DRP-020", AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName);
-					continue;
-				}
-
-				MBPartner bp = getBPartner(C_BPartner_ID);
-				// Try found some order with Shipper , Business Partner and Doc
-				// Status = Draft
-				// Consolidate the demand in a single order for each Shipper ,
-				// Business Partner , DemandDateStartSchedule
-				DD_Order_ID = getDDOrder_ID(AD_Org_ID, wsts[0].get_ID(), network_line.getM_Shipper_ID(), bp.getC_BPartner_ID(),
-						TimeUtil.getDay(DemandDateStartSchedule.getTime()), trxName);
-				if (DD_Order_ID <= 0) {
-					order = new MDDOrder(getCtx(), 0, trxName);
-					order.setAD_Org_ID(target.getAD_Org_ID());
-					order.addDescription("Generated by MRP");
-					order.setC_BPartner_ID(C_BPartner_ID);
-					order.setAD_User_ID(bp.getPrimaryAD_User_ID());
-					order.setC_DocType_ID(docTypeDO_ID);
-					order.setM_Warehouse_ID(wsts[0].get_ID());
-					order.setDocAction(MDDOrder.DOCACTION_Complete);
-					order.setDateOrdered(TimeUtil.addDays(DemandDateStartSchedule, (m_product_planning.getDeliveryTime_Promised().add(transferTime)).negate()
-							.intValueExact()));
-					order.setDatePromised(DemandDateStartSchedule);
-					order.setM_Shipper_ID(network_line.getM_Shipper_ID());
-					order.setIsInDispute(false);
-					order.setIsInTransit(false);
-					order.setSalesRep_ID(m_product_planning.getPlanner_ID());
-					order.saveEx();
-					DD_Order_ID = order.get_ID();
-					String key = order.getAD_Org_ID() + "#" + order.getM_Warehouse_ID() + "#" + network_line.getM_Shipper_ID() + "#" + C_BPartner_ID + "#"
-							+ TimeUtil.getDay(DemandDateStartSchedule.getTime()) + "DR";
-					dd_order_id_cache.put(key, DD_Order_ID);
-				} else {
-					order = new MDDOrder(getCtx(), DD_Order_ID, trxName);
-				}
-
-				M_Shipper_ID = network_line.getM_Shipper_ID();
-
-			}
-
-			BigDecimal QtyOrdered = QtyPlanned.multiply(network_line.getPercent()).divide(Env.ONEHUNDRED);
-
-			MDDOrderLine oline = new MDDOrderLine(getCtx(), 0, trxName);
-			oline.setDD_Order_ID(order.getDD_Order_ID());
-			oline.setAD_Org_ID(target.getAD_Org_ID());
-			oline.setM_Locator_ID(locator.getM_Locator_ID());
-			oline.setM_LocatorTo_ID(locator_to.getM_Locator_ID());
-			oline.setM_Product_ID(m_product_planning.getM_Product_ID());
-			oline.setDateOrdered(order.getDateOrdered());
-			oline.setDatePromised(DemandDateStartSchedule);
-			oline.setQtyEntered(QtyOrdered);
-			oline.setQtyOrdered(QtyOrdered);
-			oline.setTargetQty(MPPMRP.getQtyReserved(getCtx(), target.getM_Warehouse_ID(), m_product_planning.getM_Product_ID(), DemandDateStartSchedule,
-					trxName));
-			oline.setIsInvoiced(false);
-			oline.saveEx();
-			// Set Correct Dates for Plan
-			final String whereClause = MPPMRP.COLUMNNAME_DD_OrderLine_ID + "=?";
-			List<MPPMRP> mrpList = new Query(getCtx(), MPPMRP.Table_Name, whereClause, trxName).setParameters(new Object[] { oline.getDD_OrderLine_ID() })
-					.list();
-			for (MPPMRP mrp : mrpList) {
-				mrp.setDateOrdered(getToday());
-				mrp.setDateOrdered(mrp.getDD_Order().getDateOrdered());
-				mrp.setDateStartSchedule(mrp.getDateOrdered());
-				mrp.setDatePromised(DemandDateStartSchedule);
-				mrp.setDateFinishSchedule(DemandDateStartSchedule);
-				mrp.saveEx();
-				if (MPPMRP.TYPEMRP_Supply.equals(mrp.getTypeMRP()))
-					supplies.put(mrp.get_ID(), mrp.getQty());
-			}
-			count_DO += 1;
-		}
-	}
-	*/
+	 * protected void createDDOrder(int AD_Org_ID, int PP_MRP_ID, MProduct
+	 * product, BigDecimal QtyPlanned, Timestamp DemandDateStartSchedule, String
+	 * trxName) throws RuntimeException, SQLException { // TODO vpj-cd I need to
+	 * create logic for DRP-040 Shipment Due Action // Notice // Indicates that
+	 * a shipment for a Order Distribution is due. // Action should be taken at
+	 * the source warehouse to ensure that the // order is received on time.
+	 * 
+	 * // TODO vpj-cd I need to create logic for DRP-050 Shipment Pas Due //
+	 * Action Notice // Indicates that a shipment for a Order Distribution is
+	 * past due. You // should either delay the orders created the requirement
+	 * for the // product // or expedite them when the product does arrive.
+	 * 
+	 * // Setting DRP Change net Update out the model validator
+	 * MPPMRP.setIsRequired(m_product_planning,
+	 * MPPProductPlanning.COLUMNNAME_isrequireddrp, false, trxName);
+	 * 
+	 * if (m_product_planning.getDD_Networkdistribution_ID() == 0) { //
+	 * Indicates that the Product Planning Data for this product does // not
+	 * specify a valid network distribution. createMRPNote("DRP-060", AD_Org_ID,
+	 * PP_MRP_ID, product, (String) null, null, null, trxName); }
+	 * 
+	 * // TODO: Create functionality for Valid form and Valid To for an Network
+	 * // Distribution
+	 * 
+	 * 
+	 * MDDNetworkDistribution network = MDDNetworkDistribution.get(getCtx(),
+	 * m_product_planning.getDD_Networkdistribution_ID());
+	 * MDDNetworkDistributionLine[] network_lines =
+	 * network.getLines(m_product_planning.getM_Warehouse_ID()); int
+	 * M_Shipper_ID = 0; MDDOrder order = null; Integer DD_Order_ID = 0;
+	 * 
+	 * for (MDDNetworkDistributionLine network_line : network_lines) { // get
+	 * supply source warehouse and locator MWarehouse source =
+	 * MWarehouse.get(getCtx(), network_line.getM_WarehouseSource_ID());
+	 * MLocator locator = source.getDefaultLocator();
+	 * 
+	 * // get supply target warehouse and locator MWarehouse target =
+	 * MWarehouse.get(getCtx(), network_line.getM_Warehouse_ID()); MLocator
+	 * locator_to = target.getDefaultLocator(); // get the transfer time
+	 * BigDecimal transferTime = network_line.getTransferTime(); if
+	 * (transferTime.compareTo(Env.ZERO) <= 0) { transferTime =
+	 * m_product_planning.getTransferTime(); }
+	 * 
+	 * if (locator == null || locator_to == null) { String comment =
+	 * Msg.translate(getCtx(),
+	 * MDDNetworkDistributionLine.COLUMNNAME_M_WarehouseSource_ID) + " : " +
+	 * source.getName(); createMRPNote("DRP-001", AD_Org_ID, PP_MRP_ID, product,
+	 * null, null, comment, trxName); continue; } // get the warehouse in
+	 * transit MWarehouse[] wsts = MWarehouse.getInTransitForOrg(getCtx(),
+	 * source.getAD_Org_ID());
+	 * 
+	 * if (wsts == null || wsts.length == 0) { String comment =
+	 * Msg.translate(getCtx(), MOrg.COLUMNNAME_Name) + " : " +
+	 * MOrg.get(getCtx(), AD_Org_ID).getName(); createMRPNote("DRP-010",
+	 * AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName); continue; }
+	 * 
+	 * if (network_line.getM_Shipper_ID() == 0) { String comment =
+	 * Msg.translate(getCtx(), MDDNetworkDistribution.COLUMNNAME_Name) + " : " +
+	 * network.getName(); createMRPNote("DRP-030", AD_Org_ID, PP_MRP_ID,
+	 * product, null, null, comment, trxName); continue; }
+	 * 
+	 * if (M_Shipper_ID != network_line.getM_Shipper_ID()) {
+	 * 
+	 * // Org Must be linked to BPartner MOrg org = MOrg.get(getCtx(),
+	 * locator.getAD_Org_ID()); int C_BPartner_ID =
+	 * org.getLinkedC_BPartner_ID(trxName); if (C_BPartner_ID == 0) { String
+	 * comment = Msg.translate(getCtx(), MOrg.COLUMNNAME_Name) + " : " +
+	 * MOrg.get(getCtx(), AD_Org_ID).getName(); createMRPNote("DRP-020",
+	 * AD_Org_ID, PP_MRP_ID, product, null, null, comment, trxName); continue; }
+	 * 
+	 * MBPartner bp = getBPartner(C_BPartner_ID); // Try found some order with
+	 * Shipper , Business Partner and Doc // Status = Draft // Consolidate the
+	 * demand in a single order for each Shipper , // Business Partner ,
+	 * DemandDateStartSchedule DD_Order_ID = getDDOrder_ID(AD_Org_ID,
+	 * wsts[0].get_ID(), network_line.getM_Shipper_ID(), bp.getC_BPartner_ID(),
+	 * TimeUtil.getDay(DemandDateStartSchedule.getTime()), trxName); if
+	 * (DD_Order_ID <= 0) { order = new MDDOrder(getCtx(), 0, trxName);
+	 * order.setAD_Org_ID(target.getAD_Org_ID());
+	 * order.addDescription("Generated by MRP");
+	 * order.setC_BPartner_ID(C_BPartner_ID);
+	 * order.setAD_User_ID(bp.getPrimaryAD_User_ID());
+	 * order.setC_DocType_ID(docTypeDO_ID);
+	 * order.setM_Warehouse_ID(wsts[0].get_ID());
+	 * order.setDocAction(MDDOrder.DOCACTION_Complete);
+	 * order.setDateOrdered(TimeUtil.addDays(DemandDateStartSchedule,
+	 * (m_product_planning
+	 * .getDeliveryTime_Promised().add(transferTime)).negate()
+	 * .intValueExact())); order.setDatePromised(DemandDateStartSchedule);
+	 * order.setM_Shipper_ID(network_line.getM_Shipper_ID());
+	 * order.setIsInDispute(false); order.setIsInTransit(false);
+	 * order.setSalesRep_ID(m_product_planning.getPlanner_ID()); order.saveEx();
+	 * DD_Order_ID = order.get_ID(); String key = order.getAD_Org_ID() + "#" +
+	 * order.getM_Warehouse_ID() + "#" + network_line.getM_Shipper_ID() + "#" +
+	 * C_BPartner_ID + "#" + TimeUtil.getDay(DemandDateStartSchedule.getTime())
+	 * + "DR"; dd_order_id_cache.put(key, DD_Order_ID); } else { order = new
+	 * MDDOrder(getCtx(), DD_Order_ID, trxName); }
+	 * 
+	 * M_Shipper_ID = network_line.getM_Shipper_ID();
+	 * 
+	 * }
+	 * 
+	 * BigDecimal QtyOrdered =
+	 * QtyPlanned.multiply(network_line.getPercent()).divide(Env.ONEHUNDRED);
+	 * 
+	 * MDDOrderLine oline = new MDDOrderLine(getCtx(), 0, trxName);
+	 * oline.setDD_Order_ID(order.getDD_Order_ID());
+	 * oline.setAD_Org_ID(target.getAD_Org_ID());
+	 * oline.setM_Locator_ID(locator.getM_Locator_ID());
+	 * oline.setM_LocatorTo_ID(locator_to.getM_Locator_ID());
+	 * oline.setM_Product_ID(m_product_planning.getM_Product_ID());
+	 * oline.setDateOrdered(order.getDateOrdered());
+	 * oline.setDatePromised(DemandDateStartSchedule);
+	 * oline.setQtyEntered(QtyOrdered); oline.setQtyOrdered(QtyOrdered);
+	 * oline.setTargetQty(MPPMRP.getQtyReserved(getCtx(),
+	 * target.getM_Warehouse_ID(), m_product_planning.getM_Product_ID(),
+	 * DemandDateStartSchedule, trxName)); oline.setIsInvoiced(false);
+	 * oline.saveEx(); // Set Correct Dates for Plan final String whereClause =
+	 * MPPMRP.COLUMNNAME_DD_OrderLine_ID + "=?"; List<MPPMRP> mrpList = new
+	 * Query(getCtx(), MPPMRP.Table_Name, whereClause,
+	 * trxName).setParameters(new Object[] { oline.getDD_OrderLine_ID() })
+	 * .list(); for (MPPMRP mrp : mrpList) { mrp.setDateOrdered(getToday());
+	 * mrp.setDateOrdered(mrp.getDD_Order().getDateOrdered());
+	 * mrp.setDateStartSchedule(mrp.getDateOrdered());
+	 * mrp.setDatePromised(DemandDateStartSchedule);
+	 * mrp.setDateFinishSchedule(DemandDateStartSchedule); mrp.saveEx(); if
+	 * (MPPMRP.TYPEMRP_Supply.equals(mrp.getTypeMRP()))
+	 * supplies.put(mrp.get_ID(), mrp.getQty()); } count_DO += 1; } }
+	 */
 
 	protected void createRequisition(int AD_Org_ID, int PP_MRP_ID, MProduct product, BigDecimal QtyPlanned, Timestamp DemandDateStartSchedule, String trxName)
 			throws RuntimeException, SQLException {
@@ -1266,8 +1233,8 @@ public class MRP extends SvrProcess {
 
 	protected void createPPOrder(int AD_Org_ID, int PP_MRP_ID, MProduct product, BigDecimal QtyPlanned, Timestamp DemandDateStartSchedule, String trxName)
 			throws RuntimeException, SQLException {
-		log.info("PP_Product_BOM_ID:" + m_product_planning.getPP_Product_Bom_ID() + ", AD_Workflow_ID:" + m_product_planning.getAD_Workflow_ID());
-		if (m_product_planning.getPP_Product_Bom_ID() == 0 || m_product_planning.getAD_Workflow_ID() == 0) {
+		log.info("PP_Product_BOM_ID:" + m_product_planning.getPP_Product_BOM_ID() + ", AD_Workflow_ID:" + m_product_planning.getAD_Workflow_ID());
+		if (m_product_planning.getPP_Product_BOM_ID() == 0 || m_product_planning.getAD_Workflow_ID() == 0) {
 			throw new RuntimeException("@FillMandatory@ @PP_Product_BOM_ID@, @AD_Workflow_ID@ ( @M_Product_ID@=" + product.getValue() + ")");
 		}
 		int duration = MPPMRP.getDurationDays(QtyPlanned, m_product_planning);
@@ -1290,7 +1257,7 @@ public class MRP extends SvrProcess {
 		order.setM_Warehouse_ID(m_product_planning.getM_Warehouse_ID());
 		order.setM_Product_ID(m_product_planning.getM_Product_ID());
 		order.setM_AttributeSetInstance_ID(0);
-		order.setPP_Product_BOM_ID(m_product_planning.getPP_Product_Bom_ID());
+		order.setPP_Product_BOM_ID(m_product_planning.getPP_Product_BOM_ID());
 		order.setAD_Workflow_ID(m_product_planning.getAD_Workflow_ID());
 		order.setPlanner_ID(m_product_planning.getPlanner_ID());
 		order.setDateOrdered(getToday());
@@ -1413,23 +1380,21 @@ public class MRP extends SvrProcess {
 	}
 
 	/**
-	 * Libero to Libertya migration
-	 * Distribution Order not implemented
+	 * Libero to Libertya migration Distribution Order not implemented
 	 */
 	/*
-	private int getDDOrder_ID(int AD_Org_ID, int M_Warehouse_ID, int M_Shipper_ID, int C_BPartner_ID, Timestamp DatePromised, String trxName) {
-		String key = AD_Org_ID + "#" + M_Warehouse_ID + "#" + M_Shipper_ID + "#" + C_BPartner_ID + "#" + DatePromised + "DR";
-		Integer order_id = dd_order_id_cache.get(key.toString());
-		if (order_id == null) {
-			String sql = "SELECT DD_Order_ID FROM DD_Order WHERE AD_Org_ID=? AND M_Warehouse_ID=? AND M_Shipper_ID = ? AND C_BPartner_ID=? AND TRUNC(DatePromised)=? AND DocStatus=?";
-			order_id = DB.getSQLValueEx(trxName, sql, new Object[] { AD_Org_ID, M_Warehouse_ID, M_Shipper_ID, C_BPartner_ID, DatePromised,
-					MDDOrder.DOCSTATUS_Drafted });
-			if (order_id > 0)
-				dd_order_id_cache.put(key, order_id);
-		}
-		return order_id;
-	}
-	*/
+	 * private int getDDOrder_ID(int AD_Org_ID, int M_Warehouse_ID, int
+	 * M_Shipper_ID, int C_BPartner_ID, Timestamp DatePromised, String trxName)
+	 * { String key = AD_Org_ID + "#" + M_Warehouse_ID + "#" + M_Shipper_ID +
+	 * "#" + C_BPartner_ID + "#" + DatePromised + "DR"; Integer order_id =
+	 * dd_order_id_cache.get(key.toString()); if (order_id == null) { String sql
+	 * =
+	 * "SELECT DD_Order_ID FROM DD_Order WHERE AD_Org_ID=? AND M_Warehouse_ID=? AND M_Shipper_ID = ? AND C_BPartner_ID=? AND TRUNC(DatePromised)=? AND DocStatus=?"
+	 * ; order_id = DB.getSQLValueEx(trxName, sql, new Object[] { AD_Org_ID,
+	 * M_Warehouse_ID, M_Shipper_ID, C_BPartner_ID, DatePromised,
+	 * MDDOrder.DOCSTATUS_Drafted }); if (order_id > 0)
+	 * dd_order_id_cache.put(key, order_id); } return order_id; }
+	 */
 
 	private MBPartner getBPartner(int C_BPartner_ID) {
 		MBPartner partner = partner_cache.get(C_BPartner_ID);
@@ -1571,11 +1536,11 @@ public class MRP extends SvrProcess {
 	 * @return
 	 */
 	private String getBOMType(String trxName) {
-		if (m_product_planning == null || m_product_planning.getPP_Product_Bom_ID() == 0)
+		if (m_product_planning == null || m_product_planning.getPP_Product_BOM_ID() == 0)
 			return null;
 
 		String BOMType = DB.getSQLValueString(trxName, "SELECT BOMType FROM PP_Product_BOM WHERE PP_Product_BOM_ID = ?",
-				m_product_planning.getPP_Product_Bom_ID());
+				m_product_planning.getPP_Product_BOM_ID());
 		return BOMType;
 	}
 
@@ -1631,7 +1596,7 @@ public class MRP extends SvrProcess {
 				parameters.add(isMRP());
 			}
 			if (isDRP() != null) {
-				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_isrequireddrp).append("=?");
+				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsRequiredDRP).append("=?");
 				parameters.add(isDRP());
 			}
 			if (isMfg() != null) {
