@@ -40,7 +40,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-
 import org.compiere.plaf.CompiereColor;
 import org.compiere.swing.CButton;
 import org.compiere.swing.CLabel;
