@@ -12,7 +12,7 @@ import org.openXpertya.util.Env;
  */
 public class RoutingServiceFactory
 {
-	public static final String DEFAULT_ServiceName = "org.eevolution.model.impl.DefaultRoutingServiceImpl";
+	public static final String DEFAULT_ServiceName = "ar.com.geneos.mrp.plugin.model.impl.DefaultRoutingServiceImpl";
 
 	public static RoutingServiceFactory s_instance = null;
 	private static final HashMap<Integer, String> s_serviceClassnames = new HashMap<Integer, String>(5);

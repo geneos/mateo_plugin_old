@@ -402,7 +402,13 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 		// Order Stock
 		if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrder.COLUMNNAME_QtyOrdered)) {
-			orderStock();
+			try {
+				orderStock();
+			} catch (Exception e) {
+				log.saveError("SaveError", e);
+				e.printStackTrace();
+				return false;
+			}
 		}
 
 		updateQtyBatchs(getCtx(), this, false);
@@ -420,23 +426,28 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			return true;
 		}
 
-		if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && !isDelivered()) {
-			deleteWorkflowAndBOM();
+		try {
+
+			if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && !isDelivered()) {
+				deleteWorkflowAndBOM();
+				explotion();
+			}
+			if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && isDelivered()) {
+				// FIXME:Create Message for Translation
+				log.saveError("Error", Msg.getMsg(getCtx(), "ChangeQuatityNotDraftOrInProcess"));
+				return false;
+			}
+
+			if (!newRecord) {
+				return success;
+			}
+
 			explotion();
+		} catch (Exception e) {
+			log.saveError("SaveError", e);
+			e.printStackTrace();
+			return false;
 		}
-		if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && isDelivered()) {
-			throw new RuntimeException("Cannot Change Quantity, Only is allow with Draft or In Process Status"); // TODO:
-																													// Create
-																													// Message
-																													// for
-																													// Translation
-		}
-
-		if (!newRecord) {
-			return success;
-		}
-
-		explotion();
 		return true;
 	} // beforeSave
 
@@ -453,7 +464,13 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		// Un-Order Stock
 		if (MPPOrder.DOCSTATUS_InProgress.equals(getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getDocStatus())) {
 			setQtyOrdered(Env.ZERO);
-			orderStock();
+			try {
+				orderStock(); 
+			} catch (Exception e) {
+				log.saveError("SaveError", e);
+				e.printStackTrace();
+				return false;
+			}
 		}
 
 		return true;
@@ -543,9 +560,18 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		 * if (MDocType.DOCBASETYPE_QualityOrder.equals(docBaseType)) { ; //
 		 * nothing } // ManufacturingOrder, MaintenanceOrder else {
 		 */
-		reserveStock(lines);
-		orderStock();
-		// }
+		if (!reserveStock(lines)) { // Clear Reservations{
+			m_processMsg = "Error doing reservations";
+			return DocAction.STATUS_Invalid;
+		}
+		
+		try {
+			orderStock(); 
+		} catch (Exception e) {
+			log.saveError("SaveError", e);
+			e.printStackTrace();
+			return DocAction.STATUS_Invalid;
+		}
 
 		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_PREPARE);
 		if (m_processMsg != null)
@@ -573,13 +599,13 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		if (ACTION_Close.equals(getDocAction())) {
 			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), getM_AttributeSetInstance_ID(),
 					Env.ZERO, Env.ZERO, ordered, get_TrxName())) {
-				throw new RuntimeException();
+				throw new RuntimeException("MPPOrder.orderStock -> MStorage: Update storage Fail");
 			}
 		} else {
 			// Update Storage
 			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), getM_AttributeSetInstance_ID(),
 					Env.ZERO, Env.ZERO, ordered, get_TrxName())) {
-				throw new RuntimeException();
+				throw new RuntimeException("MPPOrder.orderStock -> MStorage: Update storage Fail");
 			}
 		}
 
@@ -593,12 +619,14 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	 *            order lines (ordered by M_Product_ID for deadlock prevention)
 	 * @return true if (un) reserved
 	 */
-	private void reserveStock(MPPOrderBOMLine[] lines) {
+	private boolean reserveStock(MPPOrderBOMLine[] lines) {
 		// Always check and (un) Reserve Inventory
 		for (MPPOrderBOMLine line : lines) {
 			line.reserveStock();
-			line.save();
+			if (!line.save())
+				return false;
 		}
+		return true;
 	} // reserveStock
 
 	public boolean approveIt() {
@@ -738,8 +766,19 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			save();
 		}
 
-		orderStock(); // Clear Ordered Quantities
-		reserveStock(getLines()); // Clear Reservations
+		try {
+			orderStock(); // Clear Ordered Quantities
+		} catch (Exception e) {
+			log.saveError("SaveError", e);
+			e.printStackTrace();
+			return false;
+		}
+		
+		if (!reserveStock(getLines())) { // Clear Reservations{
+			m_processMsg = "Error Clearing reservations";
+			return false;
+		}
+		
 
 		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_VOID);
 		if (m_processMsg != null)
@@ -767,8 +806,8 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		}
 
 		if (!isDelivered()) {
-			throw new RuntimeException("Cannot close this document because do not exist transactions"); // TODO:
-																										// Create
+			m_processMsg = "Cannot close this document because do not exist transactions"; // TODO:
+			return false;																							// Create
 																										// Message
 																										// for
 																										// Translation
@@ -795,9 +834,18 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			setQtyOrdered(getQtyDelivered());
 			save();
 		}
+		try {
+			orderStock(); // Clear Ordered Quantities
+		} catch (Exception e) {
+			log.saveError("SaveError", e);
+			e.printStackTrace();
+			return false;
+		}
 
-		orderStock(); // Clear Ordered Quantities
-		reserveStock(getLines()); // Clear Reservations
+		if (!reserveStock(getLines())) { // Clear Reservations{
+			m_processMsg = "Error Clearing reservations";
+			return false;
+		}
 
 		setDocStatus(DOCSTATUS_Closed);
 		// setProcessed(true);

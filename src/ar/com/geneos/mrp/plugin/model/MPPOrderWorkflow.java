@@ -60,7 +60,6 @@ public class MPPOrderWorkflow extends LP_PP_Order_Workflow {
 	public static final String ACCESSLEVEL_SystemPlusClient = "6";
 	/** Client only = 2 */
 	public static final String ACCESSLEVEL_ClientOnly = "2";
-	private static final String ENTITYTYPE_UserMaintained = null;
 
 	/**
 	 * Get Workflow from Cache

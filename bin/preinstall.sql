@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------
 ---------- Nuevas Tablas y/o Vistas 
 ----------------------------------------------------------------------
-
 CREATE TABLE PP_Product_BOM(
 
 value character varying(80) NOT NULL ,
@@ -193,6 +192,7 @@ CONSTRAINT mwarehouse_ppproductplanning FOREIGN KEY (m_warehouse_id) REFERENCES 
 CONSTRAINT planner_ppproductplanning FOREIGN KEY (planner_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT ppproductbom_ppproductplanning FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT sresource_ppproductplanning FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
 
 CREATE TABLE PP_Order(
 

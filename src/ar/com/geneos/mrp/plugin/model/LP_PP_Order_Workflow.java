@@ -361,6 +361,8 @@ public class LP_PP_Order_Workflow extends org.openXpertya.model.PO {
 	public static final String COLUMNNAME_EntityType = "EntityType";
 
 	public void setEntityType(String EntityType) {
+		if (EntityType == null)
+			throw new IllegalArgumentException("EntityType is mandatory");
 		if (EntityType.equals("A") || EntityType.equals("C") || EntityType.equals("D") || EntityType.equals("U") || EntityType.equals("CUST"))
 			;
 		else

@@ -13,5 +13,10 @@ public class MUMResource {
 		LP_M_Resource aux = new LP_M_Resource(plant.getCtx(),plant.getID(),plant.get_TrxName());
 		return aux.getPlanningHorizon();
 	}
+	
+	public static int getC_UOM_ID(MResource plant)
+	{
+		return plant.getProduct().getC_UOM_ID();
+	}
 
 }
