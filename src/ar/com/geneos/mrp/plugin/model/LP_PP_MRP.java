@@ -577,16 +577,16 @@ public class LP_PP_MRP extends org.openXpertya.model.PO {
 		return ii.intValue();
 	}
 
-	/** Set PP_Mrp_ID */
-	public static final String COLUMNNAME_PP_Mrp_ID = "PP_Mrp_ID";
+	/** Set PP_MRP_ID */
+	public static final String COLUMNNAME_PP_Mrp_ID = "PP_MRP_ID";
 
-	public void setPP_Mrp_ID(int PP_Mrp_ID) {
-		set_ValueNoCheck("PP_Mrp_ID", new Integer(PP_Mrp_ID));
+	public void setPP_MRP_ID(int PP_Mrp_ID) {
+		set_ValueNoCheck("PP_MRP_ID", new Integer(PP_Mrp_ID));
 	}
 
-	/** Get PP_Mrp_ID */
-	public int getPP_Mrp_ID() {
-		Integer ii = (Integer) get_Value("PP_Mrp_ID");
+	/** Get PP_MRP_ID */
+	public int getPP_MRP_ID() {
+		Integer ii = (Integer) get_Value("PP_MRP_ID");
 		if (ii == null)
 			return 0;
 		return ii.intValue();

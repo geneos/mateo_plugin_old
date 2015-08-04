@@ -65,17 +65,17 @@ public class CalloutBOM extends CalloutEngine {
 		if (M_Product_ID <= 0)
 			return "";
 
-		int Product_bomLine_ID = (Integer) mTab.getField(MPPProductBOMLine.COLUMNNAME_PP_Product_BOMLine_ID).getValue();
+		int Product_bom_ID = (Integer) mTab.getField(MPPProductBOMLine.COLUMNNAME_PP_Product_BOM_ID).getValue();
 
-		MPPProductBOMLine bomLine = new MPPProductBOMLine(Env.getCtx(), Product_bomLine_ID, null);
-		MPPProductBOM bom = new MPPProductBOM(Env.getCtx(), bomLine.getPP_Product_BOM_ID(), null);
-
+		//MPPProductBOMLine bomLine = new MPPProductBOMLine(Env.getCtx(), Product_bomLine_ID, null);
+		MPPProductBOM bom = new MPPProductBOM(Env.getCtx(), Product_bom_ID, null);
+/*
 		if (bom == null) // Adempiere-272 changes
 		{
 			throw new RuntimeException("Please save header record first.");
 
 		}
-
+*/
 		if (bom.getM_Product_ID() == M_Product_ID) {
 			throw new RuntimeException("@ValidComponent@ - Error Parent not be Component");
 
@@ -152,8 +152,8 @@ public class CalloutBOM extends CalloutEngine {
 			return "";
 
 		MProduct product = MProduct.get(ctx, M_Product_ID);
-		int product_bom_ID = (Integer) mTab.getField("PP_Product_BOM_ID").getValue();
-		MPPProductBOM bom = new MPPProductBOM(Env.getCtx(), product_bom_ID, null);// GridTabWrapper.create(mTab,
+		//int product_bom_ID = (Integer) mTab.getField("PP_Product_BOM_ID").getValue();
+		//MPPProductBOM bom = new MPPProductBOM(Env.getCtx(), product_bom_ID, null);// GridTabWrapper.create(mTab,
 																					// I_PP_Product_BOM.class);
 
 		mTab.setValue("Value", product.getValue()); // bom.setValue(product.getValue());

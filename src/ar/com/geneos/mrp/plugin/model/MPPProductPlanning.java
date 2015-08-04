@@ -22,6 +22,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 
+
 //import org.adempiere.exceptions.AdempiereException;
 import org.openXpertya.model.MOrgInfo;
 import org.openXpertya.model.MResource;
@@ -160,12 +161,21 @@ public class MPPProductPlanning extends LP_PP_Product_Planning
 											int M_Warehouse_ID, int S_Resource_ID, int M_Product_ID,
 											String trxName)
 	{          
-		final String whereClause = "AD_Client_ID=? AND M_Product_ID=?"
-								+ " AND (AD_Org_ID IN (0,?) OR AD_Org_ID IS NULL)"
-								+ " AND (M_Warehouse_ID IN (0,?) OR M_Warehouse_ID IS NULL)"
-								+ " AND (S_Resource_ID IN (0,?) OR S_Resource_ID IS NULL)";
+		final String whereClause = "AD_Client_ID="+Env.getAD_Client_ID(ctx)+" AND M_Product_ID="+M_Product_ID
+								+ " AND (AD_Org_ID IN (0,"+AD_Org_ID+") OR AD_Org_ID IS NULL)"
+								+ " AND (M_Warehouse_ID IN (0,"+M_Warehouse_ID+") OR M_Warehouse_ID IS NULL)"
+								+ " AND (S_Resource_ID IN (0,"+S_Resource_ID+") OR S_Resource_ID IS NULL)";
+		
+		LP_PP_Product_Planning aux = new Query(ctx, Table_Name, whereClause, null)
+		//.setParameters(Env.getAD_Client_ID(ctx), M_Product_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID)
+		//.setOnlyActiveRecords(true)
+		//.setOrderBy("COALESCE(AD_Org_ID, 0) DESC"
+						//+", COALESCE(M_Warehouse_ID, 0) DESC"
+						//+", COALESCE(S_Resource_ID, 0) DESC")
+		.first();
+		
 		return new Query(ctx, Table_Name, whereClause, trxName)
-				.setParameters(Env.getAD_Client_ID(ctx), M_Product_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID)
+				//.setParameters(Env.getAD_Client_ID(ctx), M_Product_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID)
 				.setOnlyActiveRecords(true)
 				.setOrderBy("COALESCE(AD_Org_ID, 0) DESC"
 								+", COALESCE(M_Warehouse_ID, 0) DESC"
@@ -222,6 +232,14 @@ public class MPPProductPlanning extends LP_PP_Product_Planning
 		}
 		//
 		return true;
+	}
+	
+	@Override
+	protected boolean afterSave(boolean newRecord, boolean success){
+		if(!success)
+			return false;
+		MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
+	return true;
 	}
 	
 	//@Override

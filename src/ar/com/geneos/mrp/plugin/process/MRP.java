@@ -38,6 +38,7 @@ import org.openXpertya.model.MNote;
 import org.openXpertya.model.MOrg;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MProductPO;
+import org.openXpertya.model.MRequisition;
 import org.openXpertya.model.MRequisitionLine;
 import org.openXpertya.model.MResource;
 import org.openXpertya.model.MWarehouse;
@@ -47,6 +48,7 @@ import org.openXpertya.model.Query;
 import org.openXpertya.process.ProcessInfoParameter;
 import org.openXpertya.process.SvrProcess;
 import org.openXpertya.util.CCache;
+import org.openXpertya.util.CLogger;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.DBException;
 import org.openXpertya.util.Env;
@@ -55,7 +57,9 @@ import org.openXpertya.util.TimeUtil;
 import org.openXpertya.util.Trx;
 import org.openXpertya.util.TrxRunnable;
 import org.openXpertya.util.Util;
+import org.openXpertya.util.ValueNamePair;
 
+import ar.com.geneos.mrp.plugin.exception.MRPCreateSupplyException;
 import ar.com.geneos.mrp.plugin.model.LP_M_Requisition;
 import ar.com.geneos.mrp.plugin.model.MPPMRP;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
@@ -189,6 +193,7 @@ public class MRP extends SvrProcess {
 			p_IsSynchronize = true;
 			p_IsDRP = true;
 		}
+		EXECUTION_MODE = MRP_Regenerative;
 
 	} // prepare
 
@@ -358,7 +363,12 @@ public class MRP extends SvrProcess {
 					resultMsg.append("<b>, @S_Resource_ID@: </b>" + plant.getName());
 					resultMsg.append("<hr>");
 					resultMsg.append("<br><b>@PP_Order_ID@:</b> " + count_MO);
-					resultMsg.append("<br><b>@DD_Order_ID@:</b> " + count_DO);
+					/**
+					 * Libero to Libertya Migration Distribution Order not
+					 * implemented
+					 */
+					// resultMsg.append("<br><b>@DD_Order_ID@:</b> " +
+					// count_DO);
 					resultMsg.append("<br><b>@M_Requisition_ID@:</b> " + count_MR);
 					resultMsg.append("<br><b>@AD_Note_ID@:</b> " + count_Msg);
 					count_MO = 0;
@@ -381,7 +391,7 @@ public class MRP extends SvrProcess {
 		whereClause.append("EXISTS (SELECT 1 FROM PP_MRP mrp ").append(" INNER JOIN M_Product p ON (p.M_Product_ID=mrp.M_Product_ID) ")
 				.append(" LEFT JOIN PP_Product_Planning pp ON (pp.M_Product_ID = mrp.M_Product_ID AND mrp.M_Warehouse_ID = pp.M_Warehouse_ID) ")
 				.append(" WHERE ").append(where).append(" AND ");
-		whereClause.append(getSQLWhere(tableName, AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, M_Product_ID, null, typeMRP, Planning_Horizon));
+		whereClause.append(getSQLWhere(tableName, AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, M_Product_ID, null, typeMRP, Planning_Horizon, true));
 		whereClause.append(")");
 		return whereClause.toString();
 	}
@@ -419,7 +429,8 @@ public class MRP extends SvrProcess {
 		myParameters = new ArrayList(parameters);
 		sql = new StringBuilder();
 		sql.append("DELETE FROM PP_MRP WHERE ").append(whereClause.toString()).append(" AND ").append(MPPMRP.COLUMNNAME_OrderType)
-				.append("=" + MPPMRP.ORDERTYPE_ManufacturingOrder).append(" AND ").append(MPPMRP.COLUMNNAME_DocStatus).append("=" + MPPMRP.DOCSTATUS_Closed);
+				.append("='" + MPPMRP.ORDERTYPE_ManufacturingOrder).append("' AND ").append(MPPMRP.COLUMNNAME_DocStatus)
+				.append("='" + MPPMRP.DOCSTATUS_Closed + "'");
 		myParameters.add(MPPMRP.ORDERTYPE_ManufacturingOrder);
 		myParameters.add(MPPMRP.DOCSTATUS_Closed);
 		DB.executeUpdateEx(sql.toString(), trxName);
@@ -429,6 +440,7 @@ public class MRP extends SvrProcess {
 		String where = getDeleteSQLWhere(MPPOrder.Table_Name, "mrp." + MPPMRP.COLUMNNAME_PP_Order_ID + " = " + MPPMRP.COLUMNNAME_PP_Order_ID + " AND mrp."
 				+ MPPMRP.COLUMNNAME_PP_Order_Bomline_ID + " IS NULL ", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, M_Product_ID, null)
 				+ " AND DocStatus=?";
+		parameters = new ArrayList<Object>();
 		myParameters = new ArrayList(parameters);
 		myParameters.add(MPPMRP.DOCSTATUS_Drafted);
 		deletePO(MPPOrder.Table_Name, where, trxName, myParameters.toArray());
@@ -439,10 +451,12 @@ public class MRP extends SvrProcess {
 		// " AND M_Warehouse_ID="+M_Warehouse_ID;
 		whereClause = new StringBuilder(getDeleteSQLWhere(MPPMRP.Table_Name, "mrp." + MPPMRP.COLUMNNAME_PP_MRP_ID + " = " + MPPMRP.COLUMNNAME_PP_MRP_ID,
 				AD_Client_ID, AD_Org_ID, M_Warehouse_ID, null, M_Product_ID, null));
+		parameters = new ArrayList<Object>();
 		myParameters = new ArrayList(parameters);
 		sql = new StringBuilder();
 		sql.append("DELETE FROM PP_MRP WHERE ").append(whereClause.toString()).append(" AND ").append(MPPMRP.COLUMNNAME_OrderType)
-				.append("=" + MPPMRP.ORDERTYPE_PurchaseOrder).append(" AND ").append(MPPMRP.COLUMNNAME_DocStatus).append("=" + MPPMRP.DOCSTATUS_Closed);
+				.append("='" + MPPMRP.ORDERTYPE_PurchaseOrder).append("' AND ").append(MPPMRP.COLUMNNAME_DocStatus)
+				.append("='" + MPPMRP.DOCSTATUS_Closed + "'");
 		myParameters.add(MPPMRP.ORDERTYPE_PurchaseOrder);
 		myParameters.add(MPPMRP.DOCSTATUS_Closed);
 		DB.executeUpdateEx(sql.toString(), trxName);
@@ -451,6 +465,7 @@ public class MRP extends SvrProcess {
 				"mrp." + MPPMRP.COLUMNNAME_M_RequisitionLine_ID + " = " + MPPMRP.COLUMNNAME_M_RequisitionLine_ID, AD_Client_ID, AD_Org_ID, M_Warehouse_ID,
 				null, M_Product_ID, null)
 				+ " AND EXISTS (SELECT 1 FROM M_Requisition r WHERE r.M_Requisition_ID = M_Requisition_ID AND DocStatus = ?)";
+		parameters = new ArrayList<Object>();
 		myParameters = new ArrayList(parameters);
 		myParameters.add(MPPMRP.DOCSTATUS_Drafted);
 		deletePO(MRequisitionLine.Table_Name, where, trxName, myParameters.toArray());
@@ -483,9 +498,15 @@ public class MRP extends SvrProcess {
 		sql = new StringBuilder();
 		sql.append("UPDATE PP_MRP SET IsAvailable ='Y' WHERE ").append(whereClause.toString());
 		DB.executeUpdateEx(sql.toString(), trxName);
+		/**
+		 * Libero to Libertya Migration Para que sirve MRP Detail?
+		 */
 		// Remove MRP Detail
-		sql = new StringBuilder("DELETE FROM PP_MRP_Detail WHERE NOT EXISTS (SELECT 1 FROM PP_MRP WHERE PP_MRP_ID=PP_MRP_Detail.MRP_Supply_ID)");
-		DB.executeUpdateEx(sql.toString(), trxName);
+		/*
+		 * sql = new StringBuilder(
+		 * "DELETE FROM PP_MRP_Detail WHERE NOT EXISTS (SELECT 1 FROM PP_MRP WHERE PP_MRP_ID=PP_MRP_Detail.MRP_Supply_ID)"
+		 * ); DB.executeUpdateEx(sql.toString(), trxName);
+		 */
 
 	}
 
@@ -533,8 +554,8 @@ public class MRP extends SvrProcess {
 								.append(",mrp.TypeMRP, mrp.OrderType, mrp.DateOrdered, mrp.M_Warehouse_ID")
 								.append(",mrp.PP_MRP_ID, mrp.DateStartSchedule, mrp.DateFinishSchedule")
 								.append(" FROM RV_PP_MRP mrp WHERE 1=1 ")
-								.append(getSQLWhere("mrp", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, null, null, level, MPPMRP.TYPEMRP_Demand, Planning_Horizon))
-								.append(" ORDER BY  mrp.M_Product_ID , mrp.DatePromised");
+								.append(getSQLWhere("mrp", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, null, null, level, MPPMRP.TYPEMRP_Demand, Planning_Horizon,
+										false)).append(" ORDER BY  mrp.M_Product_ID , mrp.DatePromised");
 
 						pstmt = DB.prepareStatement(sql.toString(), trxName);
 						DB.setParameters(pstmt, parameters);
@@ -642,7 +663,7 @@ public class MRP extends SvrProcess {
 									log.info("Accumulation   QtyGrossReqs:" + QtyGrossReqs);
 									log.info("DatePromised:" + DatePromised);
 									log.info("DatePromisedTo:" + DatePromisedTo);
-									Trx.get(trxName, true).commit(true);
+									Trx.get(trxName, false).commit(true);
 									continue;
 								}
 							}
@@ -652,7 +673,7 @@ public class MRP extends SvrProcess {
 								QtyGrossReqs = QtyGrossReqs.add(Qty);
 								BeforeDateStartSchedule = DatePromised;
 								calculatePlan(AD_Client_ID, AD_Org_ID, M_Warehouse_ID, PP_MRP_ID, product, BeforeDateStartSchedule, trxName);
-								Trx.get(trxName, true).commit(true);
+								Trx.get(trxName, false).commit(true);
 								continue;
 							}
 
@@ -674,7 +695,7 @@ public class MRP extends SvrProcess {
 							getNetRequirements(AD_Client_ID, AD_Org_ID, M_Warehouse_ID, product, null, trxName);
 						}
 						createMRPPegging(trxName);
-						Trx.get(trxName, true).commit(true);
+						Trx.get(trxName, false).commit(true);
 						DB.close(rs, pstmt);
 					} // end for
 				} // try
@@ -936,10 +957,11 @@ public class MRP extends SvrProcess {
 				log.info("Is Purchased: " + product.isPurchased() + " Is BOM: " + product.isBOM());
 				try {
 					createSupply(AD_Org_ID, PP_MRP_ID, product, QtyPlanned, DemandDateStartSchedule, trxName);
-				} catch (Exception e) {
+				} catch (MRPCreateSupplyException e) {
 					// on - Cannot Create Document
 					// Indicates that there was an error during document
 					// creation
+					e.printStackTrace();
 					createMRPNote("MRP-160", AD_Org_ID, PP_MRP_ID, product, QtyPlanned, DemandDateStartSchedule, e, trxName);
 				}
 			} // end for oqf
@@ -1187,12 +1209,21 @@ public class MRP extends SvrProcess {
 		// Get PriceList from BPartner/Group - teo_sarca, FR [ 2829476 ]
 		int M_PriceList_ID = -1;
 		if (m_product_planning.getC_BPartner_ID() > 0) {
-			final String sql = "SELECT COALESCE(bp." + MUColumnNames.COLUMNNAME_PO_PriceList_ID + ",bpg." + MUColumnNames.COLUMNNAME_PO_PriceList_ID + ")"
-					+ " FROM C_BPartner bp" + " INNER JOIN C_BP_Group bpg ON (bpg.C_BP_Group_ID=bp.C_BP_Group_ID)" + " WHERE bp.C_BPartner_ID=?";
+			int asd = m_product_planning.getC_BPartner_ID();
+			/**
+			 * Libero to Libertya CBGroupPartner doesnt have Price List final
+			 * String sql = "SELECT COALESCE(bp." +
+			 * MUColumnNames.COLUMNNAME_PO_PriceList_ID + ",bpg." +
+			 * MUColumnNames.COLUMNNAME_PO_PriceList_ID + ")" +
+			 * " FROM C_BPartner bp" +
+			 * " INNER JOIN C_BP_Group bpg ON (bpg.C_BP_Group_ID=bp.C_BP_Group_ID)"
+			 * + " WHERE bp.C_BPartner_ID=?";
+			 */
+			final String sql = "SELECT bp." + MUColumnNames.COLUMNNAME_PO_PriceList_ID + " FROM C_BPartner bp" + " WHERE bp.C_BPartner_ID=?";
 			M_PriceList_ID = DB.getSQLValueEx(trxName, sql, m_product_planning.getC_BPartner_ID());
 		}
 
-		LP_M_Requisition req = new LP_M_Requisition(getCtx(), 0, trxName);
+		MRequisition req = new MRequisition(getCtx(), 0, trxName);
 		req.setAD_Org_ID(AD_Org_ID);
 		req.setAD_User_ID(m_product_planning.getPlanner_ID());
 		req.setDateDoc(TimeUtil.addDays(DemandDateStartSchedule, 0 - duration));
@@ -1212,7 +1243,8 @@ public class MRP extends SvrProcess {
 		reqline.setPrice();
 		reqline.setPriceActual(Env.ZERO);
 		reqline.setQty(QtyPlanned);
-		reqline.save();
+		saveEx(reqline);
+		// reqline.save();
 
 		// Set Correct Dates for Plan
 		final String whereClause = MPPMRP.COLUMNNAME_M_Requisition_ID + "=?";
@@ -1223,7 +1255,8 @@ public class MRP extends SvrProcess {
 			mrp.setDatePromised(req.getDateRequired());
 			mrp.setDateStartSchedule(req.getDateDoc());
 			mrp.setDateFinishSchedule(DemandDateStartSchedule);
-			mrp.save();
+			saveEx(mrp);
+			// mrp.save();
 			if (MPPMRP.TYPEMRP_Supply.equals(mrp.getTypeMRP()))
 				supplies.put(mrp.getID(), mrp.getQty());
 
@@ -1271,12 +1304,24 @@ public class MRP extends SvrProcess {
 		order.setScheduleType(MPPMRP.TYPEMRP_Demand);
 		order.setPriorityRule(MPPOrder.PRIORITYRULE_Medium);
 		order.setDocAction(MPPOrder.ACTION_Complete);
-		order.save();
-
+		saveEx(order);
+		// order.save();
 		MPPMRP mrp = getSupply(MPPOrder.COLUMNNAME_PP_Order_ID, order.getID(), null, null, trxName);
 		supplies.put(mrp.getID(), mrp.getQty());
 
 		count_MO += 1;
+	}
+
+	private void saveEx(PO po) throws MRPCreateSupplyException {
+		if (!po.save()) {
+			String msg = null;
+			ValueNamePair err = CLogger.retrieveError();
+			if (err != null)
+				msg = err.getName();
+			if (msg == null || msg.length() == 0)
+				msg = "SaveError";
+			throw new MRPCreateSupplyException(msg);
+		}
 	}
 
 	private void deletePO(String tableName, String whereClause, String trxName, Object... params) throws SQLException {
@@ -1331,7 +1376,7 @@ public class MRP extends SvrProcess {
 		}
 
 		if (M_Warehouse_ID > 0) {
-			String warehouseName = DB.getSQLValueString(trxName, "SELECT Name FROM M_Warehouse  WHERE M_Warehouse_ID=? ",
+			String warehouseName = DB.getSQLValueString(trxName, "SELECT Name FROM M_Warehouse  WHERE M_Warehouse_ID= ?",
 					MPPMRP.getM_Warehouse_ID(PP_MRP_ID, trxName));
 			message += "\n" + Msg.translate(getCtx(), MPPMRP.COLUMNNAME_M_Warehouse_ID) + " : " + warehouseName;
 		}
@@ -1377,32 +1422,6 @@ public class MRP extends SvrProcess {
 		String documentNo = null;
 		String comment = e.getLocalizedMessage();
 		createMRPNote(code, AD_Org_ID, PP_MRP_ID, product, documentNo, qty, comment, trxName);
-	}
-
-	/**
-	 * Libero to Libertya migration Distribution Order not implemented
-	 */
-	/*
-	 * private int getDDOrder_ID(int AD_Org_ID, int M_Warehouse_ID, int
-	 * M_Shipper_ID, int C_BPartner_ID, Timestamp DatePromised, String trxName)
-	 * { String key = AD_Org_ID + "#" + M_Warehouse_ID + "#" + M_Shipper_ID +
-	 * "#" + C_BPartner_ID + "#" + DatePromised + "DR"; Integer order_id =
-	 * dd_order_id_cache.get(key.toString()); if (order_id == null) { String sql
-	 * =
-	 * "SELECT DD_Order_ID FROM DD_Order WHERE AD_Org_ID=? AND M_Warehouse_ID=? AND M_Shipper_ID = ? AND C_BPartner_ID=? AND TRUNC(DatePromised)=? AND DocStatus=?"
-	 * ; order_id = DB.getSQLValueEx(trxName, sql, new Object[] { AD_Org_ID,
-	 * M_Warehouse_ID, M_Shipper_ID, C_BPartner_ID, DatePromised,
-	 * MDDOrder.DOCSTATUS_Drafted }); if (order_id > 0)
-	 * dd_order_id_cache.put(key, order_id); } return order_id; }
-	 */
-
-	private MBPartner getBPartner(int C_BPartner_ID) {
-		MBPartner partner = partner_cache.get(C_BPartner_ID);
-		if (partner == null) {
-			partner = new MBPartner(getCtx(), C_BPartner_ID, null);
-			partner_cache.put(C_BPartner_ID, partner);
-		}
-		return partner;
 	}
 
 	/**
@@ -1545,95 +1564,172 @@ public class MRP extends SvrProcess {
 	}
 
 	private String getSQLWhere(String tableName, Integer AD_Client_ID, Integer AD_Org_ID, Integer M_Warehouse_ID, Integer S_Resource_ID, Integer M_Product_ID,
-			Integer LowLevel, String typeMRP, Timestamp DatePromised) {
+			Integer LowLevel, String typeMRP, Timestamp DatePromised, boolean parameterInString) {
 		StringBuilder whereClause = new StringBuilder();
 		parameters = new ArrayList<Object>();
 		// General Parameters
 		// Get Demand records
 		if (M_Product_ID != null) {
-			whereClause.append(tableName).append(".").append(MPPMRP.COLUMNNAME_M_Product_ID).append("=? ");
+			whereClause.append(tableName).append(".").append(MPPMRP.COLUMNNAME_M_Product_ID);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + M_Product_ID);
 			parameters.add(M_Product_ID);
+
 		}
 		if (typeMRP != null) {
-			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_TypeMRP).append("=?");
+			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_TypeMRP);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("='" + typeMRP + "'");
 			parameters.add(typeMRP);
 		}
 		// Set Planning Dimensions
 		if (AD_Client_ID != null && AD_Client_ID > 0) {
-			whereClause.append(" AND ").append("mrp.").append(MUColumnNames.COLUMNNAME_AD_Client_ID).append("=? ");
+			whereClause.append(" AND ").append("mrp.").append(MUColumnNames.COLUMNNAME_AD_Client_ID);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + AD_Client_ID);
 			parameters.add(AD_Client_ID);
 		}
 		if (AD_Org_ID != null && AD_Org_ID > 0) {
-			whereClause.append(" AND ").append("mrp.").append(MUColumnNames.COLUMNNAME_AD_Org_ID).append("=? ");
+			whereClause.append(" AND ").append("mrp.").append(MUColumnNames.COLUMNNAME_AD_Org_ID);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + AD_Org_ID);
 			parameters.add(AD_Org_ID);
 		}
 		if (M_Warehouse_ID != null && M_Warehouse_ID > 0) {
-			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_M_Warehouse_ID).append("=? ");
+			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_M_Warehouse_ID);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + M_Warehouse_ID);
 			parameters.add(M_Warehouse_ID);
 		}
 		if (S_Resource_ID != null && S_Resource_ID > 0) {
-			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_S_Resource_ID).append("=? ");
+			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_S_Resource_ID);
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + S_Resource_ID);
 			parameters.add(S_Resource_ID);
 		}
 		// Set MRP Horizontal
 		if (DatePromised != null) {
-			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_DatePromised).append("<=? ");
+			whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_DatePromised);
+			if (!parameterInString)
+				whereClause.append("<=? ");
+			else
+				whereClause.append("<='" + DatePromised + "'");
 			parameters.add(DatePromised);
 		}
 		// Set Maximum Low Level
 		if (LowLevel != null) {
-			whereClause.append(" AND ").append("COALESCE(LowLevel,0)=? ");
+			whereClause.append(" AND ").append("COALESCE(LowLevel,0)");
+			if (!parameterInString)
+				whereClause.append("=? ");
+			else
+				whereClause.append("=" + LowLevel);
 			parameters.add(LowLevel);
 		}
 
 		if (EXECUTION_MODE == MRP_Selective) {
 			if (isMPS() != null) {
-				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsMPS).append("=?");
+				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsMPS);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isMPS() + "'");
 				parameters.add(isMPS());
 			}
 			if (isMRP() != null) {
-				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsRequiredMRP).append("=?");
+				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsRequiredMRP);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isMRP() + "'");
 				parameters.add(isMRP());
 			}
 			if (isDRP() != null) {
-				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsRequiredDRP).append("=?");
+				whereClause.append(" AND ").append(MPPProductPlanning.COLUMNNAME_IsRequiredDRP);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isDRP() + "'");
 				parameters.add(isDRP());
 			}
 			if (isMfg() != null) {
-				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_IsBOM).append("=?");
+				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_IsBOM);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isMfg() + "'");
 				parameters.add(isMfg());
 			}
 			if (isPur() != null) {
-				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_IsPurchased).append("=?");
+				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_IsPurchased);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isPur() + "'");
 				parameters.add(isPur());
 			}
 			if (isLowLevel() != null) {
 				// Calculate Low Levels
 			}
 			if (getPlanner_ID() != null && getPlanner_ID() > 0) {
-				whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_Planner_ID).append("=?");
+				whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_Planner_ID);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("=" + getPlanner_ID());
 				parameters.add(getPlanner_ID());
 			}
 			if (getC_BPartner_ID() != null && getC_BPartner_ID() > 0) {
-				whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_C_BPartner_ID).append("=?");
+				whereClause.append(" AND ").append("mrp.").append(MPPMRP.COLUMNNAME_C_BPartner_ID);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("=" + getC_BPartner_ID());
 				parameters.add(getC_BPartner_ID());
 			}
 			if (getM_Product_ID() != null && getM_Product_ID() > 0) {
-				whereClause.append(" AND ").append(tableName).append(".").append(MPPMRP.COLUMNNAME_M_Product_ID).append("=?");
+				whereClause.append(" AND ").append(tableName).append(".").append(MPPMRP.COLUMNNAME_M_Product_ID);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("=" + getM_Product_ID());
 				parameters.add(getM_Product_ID());
 			}
 			if (getM_Product_Category_ID() != null && getM_Product_Category_ID() > 0) {
-				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_M_Product_Category_ID).append("=?");
+				whereClause.append(" AND ").append(MUColumnNames.COLUMNNAME_M_Product_Category_ID);
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("=" + getM_Product_Category_ID());
 				parameters.add(getM_Product_Category_ID());
 			}
 		}
 		if (EXECUTION_MODE == MRP_Net_Change) {
 			if (isMRP() != null) {
-				whereClause.append(" AND ").append("IsRequiredMRP").append("=?");
+				whereClause.append(" AND ").append("IsRequiredMRP");
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isMRP() + "'");
 				parameters.add(isMRP());
 			}
 			if (isDRP() != null && isSynchronize()) {
-				whereClause.append(" AND ").append("IsRequiredDRP").append("=?");
+				whereClause.append(" AND ").append("IsRequiredDRP");
+				if (!parameterInString)
+					whereClause.append("=? ");
+				else
+					whereClause.append("='" + isDRP() + "'");
 				parameters.add(isDRP());
 			}
 		}

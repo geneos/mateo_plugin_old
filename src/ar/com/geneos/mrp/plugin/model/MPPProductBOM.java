@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.openXpertya.model.*;
+import org.openXpertya.model.MProduct;
 import org.openXpertya.util.CCache;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;

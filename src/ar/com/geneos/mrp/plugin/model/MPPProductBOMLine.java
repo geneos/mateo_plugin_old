@@ -30,6 +30,7 @@ import java.util.Properties;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.openXpertya.model.*;
+import org.openXpertya.model.MProduct;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 

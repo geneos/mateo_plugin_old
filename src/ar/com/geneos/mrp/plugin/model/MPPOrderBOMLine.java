@@ -201,6 +201,14 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		if (!success)
 			return false;
 		explodePhantom();
+		/**
+		 * Libero to Libertya Migration Force ModelValidator
+		 */
+		if (newRecord)
+			MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_NEW, log);
+		else
+			MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
+
 		return true;
 	}
 
@@ -211,6 +219,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 			setQtyRequired(Env.ZERO);
 			reserveStock();
 		}
+		MRPValidator.modelChange(this, ModelValidator.TYPE_BEFORE_DELETE, log);
 		return true;
 	}
 

@@ -33,6 +33,10 @@ public class MUColumnNames {
 	public static final Object COLUMNNAME_IsBOM = "IsBOM";
 	public static final Object COLUMNNAME_IsPurchased = "IsPurchased";
 	public static final Object COLUMNNAME_M_Product_Category_ID = "M_Product_Category_ID";
+	public static final String COLUMNNAME_M_Requisition_ID = "M_Requisition_ID";
+	public static final String COLUMNNAME_Line = "Line";
+	public static final String COLUMNNAME_DocumentNo = "DocumentNos";
+	public static final String COLUMNNAME_M_InOut_ID = "M_InOut_ID";
 	
 
 

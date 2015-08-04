@@ -40,12 +40,50 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+
 import org.compiere.plaf.CompiereColor;
 import org.compiere.swing.CButton;
 import org.compiere.swing.CLabel;
 import org.compiere.swing.CPanel;
 import org.compiere.swing.CTextField;
 import org.compiere.swing.CTextPane;
+import org.openXpertya.apps.ADialog;
+import org.openXpertya.apps.ConfirmPanel;
+import org.openXpertya.apps.StatusBar;
+import org.openXpertya.apps.form.FormFrame;
+import org.openXpertya.apps.form.FormPanel;
+import org.openXpertya.grid.ed.VComboBox;
+import org.openXpertya.grid.ed.VDate;
+import org.openXpertya.grid.ed.VLocator;
+import org.openXpertya.grid.ed.VLookup;
+import org.openXpertya.grid.ed.VNumber;
+import org.openXpertya.grid.ed.VPAttribute;
+import org.openXpertya.minigrid.IMiniTable;
+import org.openXpertya.minigrid.MiniTable;
+import org.openXpertya.model.MLocatorLookup;
+import org.openXpertya.model.MLookup;
+import org.openXpertya.model.MLookupFactory;
+import org.openXpertya.model.MPAttributeLookup;
+import org.openXpertya.model.MProduct;
+import org.openXpertya.model.MTab;
+import org.openXpertya.model.MWindow;
+import org.openXpertya.model.M_Column;
+import org.openXpertya.model.M_Tab;
+import org.openXpertya.model.M_Window;
+import org.openXpertya.process.ProcessInfo;
+import org.openXpertya.util.ASyncProcess;
+import org.openXpertya.util.CLogger;
+import org.openXpertya.util.DisplayType;
+import org.openXpertya.util.Env;
+import org.openXpertya.util.KeyNamePair;
+import org.openXpertya.util.Language;
+import org.openXpertya.util.Msg;
+import org.openXpertya.util.Trx;
+import org.openXpertya.util.TrxRunnable;
+
+import ar.com.geneos.mrp.plugin.model.MPPOrder;
+import ar.com.geneos.mrp.plugin.util.MUMTab;
+import ar.com.geneos.mrp.plugin.util.MUMWindow;
 
 /**
  * 
@@ -53,12 +91,10 @@ import org.compiere.swing.CTextPane;
  * @author Teo Sarca, http://www.arhipac.ro
  */
 
-public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
-		ActionListener, VetoableChangeListener, ChangeListener,
-		ListSelectionListener, TableModelListener, ASyncProcess {
-	
-	private CPanel panel = new CPanel();
+public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, ActionListener, VetoableChangeListener, ChangeListener, ListSelectionListener,
+		TableModelListener, ASyncProcess {
 
+	private CPanel panel = new CPanel();
 
 	/** Window No */
 	private int m_WindowNo = 0;
@@ -79,59 +115,44 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 	private javax.swing.JTabbedPane TabsReceiptsIssue = new JTabbedPane();
 	private VPAttribute attribute = null;
 	private CLabel attributeLabel = new CLabel();
-	private VNumber orderedQtyField = new VNumber("QtyOrdered", false, false,
-			false, DisplayType.Quantity, "QtyOrdered");
+	private VNumber orderedQtyField = new VNumber("QtyOrdered", false, false, false, DisplayType.Quantity, "QtyOrdered");
 	private CLabel orderedQtyLabel = new CLabel();
-	private VNumber deliveredQtyField = new VNumber("QtyDelivered", false,
-			false, false, DisplayType.Quantity, "QtyDelivered");
+	private VNumber deliveredQtyField = new VNumber("QtyDelivered", false, false, false, DisplayType.Quantity, "QtyDelivered");
 	private CLabel deliveredQtyLabel = new CLabel();
-	private VNumber openQtyField = new VNumber("QtyOpen", false, false, false,
-			DisplayType.Quantity, "QtyOpen");
+	private VNumber openQtyField = new VNumber("QtyOpen", false, false, false, DisplayType.Quantity, "QtyOpen");
 	private CLabel openQtyLabel = new CLabel();
-	private VNumber toDeliverQty = new VNumber("QtyToDeliver", true, false,
-			true, DisplayType.Quantity, "QtyToDeliver");
+	private VNumber toDeliverQty = new VNumber("QtyToDeliver", true, false, true, DisplayType.Quantity, "QtyToDeliver");
 	private CLabel toDeliverQtyLabel = new CLabel();
 	private javax.swing.JScrollPane issueScrollPane = new JScrollPane();
 	private MiniTable issue = new MiniTable();
-	private VDate movementDateField = new VDate("MovementDate", true, false,
-			true, DisplayType.Date, "MovementDate");
+	private VDate movementDateField = new VDate("MovementDate", true, false, true, DisplayType.Date, "MovementDate");
 	private CLabel movementDateLabel = new CLabel();
 	private VLookup orderField = null;
 	private CLabel orderLabel = new CLabel();
-	private VNumber rejectQty = new VNumber("Qtyreject", false, false, true,
-			DisplayType.Quantity, "QtyReject");
+	private VNumber rejectQty = new VNumber("Qtyreject", false, false, true, DisplayType.Quantity, "QtyReject");
 	private CLabel rejectQtyLabel = new CLabel();
 	private VLookup resourceField = null;
 	private CLabel resourceLabel = new CLabel();
 	private VLookup warehouseField = null;
 	private CLabel warehouseLabel = new CLabel();
-	private VNumber scrapQtyField = new VNumber("Qtyscrap", false, false, true,
-			DisplayType.Quantity, "Qtyscrap");
+	private VNumber scrapQtyField = new VNumber("Qtyscrap", false, false, true, DisplayType.Quantity, "Qtyscrap");
 	private CLabel scrapQtyLabel = new CLabel();
-	private CLabel backflushGroupLabel = new CLabel(Msg.translate(Env.getCtx(),
-			"BackflushGroup"));
+	private CLabel backflushGroupLabel = new CLabel(Msg.translate(Env.getCtx(), "BackflushGroup"));
 	private CTextField backflushGroup = new CTextField(10);
-	private CLabel productLabel = new CLabel(Msg.translate(Env.getCtx(),
-			"M_Product_ID"));
+	private CLabel productLabel = new CLabel(Msg.translate(Env.getCtx(), "M_Product_ID"));
 	private VLookup productField = null;
-	private CLabel uomLabel = new CLabel(
-			Msg.translate(Env.getCtx(), "C_UOM_ID"));
+	private CLabel uomLabel = new CLabel(Msg.translate(Env.getCtx(), "C_UOM_ID"));
 	private VLookup uomField = null;
-	private CLabel uomorderLabel = new CLabel(Msg.translate(Env.getCtx(),
-			"Altert UOM"));
+	private CLabel uomorderLabel = new CLabel(Msg.translate(Env.getCtx(), "Altert UOM"));
 	private VLookup uomorderField = null;
-	private CLabel locatorLabel = new CLabel(Msg.translate(Env.getCtx(),
-			"M_Locator_ID"));
+	private CLabel locatorLabel = new CLabel(Msg.translate(Env.getCtx(), "M_Locator_ID"));
 	private VLocator locatorField = null;
-	private CLabel labelcombo = new CLabel(Msg.translate(Env.getCtx(),
-			"DeliveryRule"));
+	private CLabel labelcombo = new CLabel(Msg.translate(Env.getCtx(), "DeliveryRule"));
 	private VComboBox pickcombo = new VComboBox();
 	private CLabel QtyBatchsLabel = new CLabel();
-	private VNumber qtyBatchsField = new VNumber("QtyBatchs", false, false,
-			false, DisplayType.Quantity, "QtyBatchs");
+	private VNumber qtyBatchsField = new VNumber("QtyBatchs", false, false, false, DisplayType.Quantity, "QtyBatchs");
 	private CLabel QtyBatchSizeLabel = new CLabel();
-	private VNumber qtyBatchSizeField = new VNumber("QtyBatchSize", false,
-			false, false, DisplayType.Quantity, "QtyBatchSize");
+	private VNumber qtyBatchSizeField = new VNumber("QtyBatchSize", false, false, false, DisplayType.Quantity, "QtyBatchSize");
 	private CTextPane info = new CTextPane();
 
 	/**
@@ -173,74 +194,58 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 		Properties ctx = Env.getCtx();
 
 		Language language = Language.getLoginLanguage(); // Base Language
-		MLookup orderL = MLookupFactory.get(ctx, m_WindowNo, MColumn
-				.getColumn_ID(MPPOrder.Table_Name,
-						MPPOrder.COLUMNNAME_PP_Order_ID), DisplayType.Search,
-				language, "PP_Order_ID", 0, false, "PP_Order.DocStatus = '"
-						+ MPPOrder.DOCACTION_Complete + "'");
+		MLookup orderL = MLookupFactory.get(ctx, m_WindowNo, M_Column.getColumnID(null, MPPOrder.Table_Name, MPPOrder.COLUMNNAME_PP_Order_ID), DisplayType.Search,
+				language, "PP_Order_ID", 0, false, "PP_Order.DocStatus = '" + MPPOrder.DOCACTION_Complete + "'");
 
 		orderField = new VLookup("PP_Order_ID", false, false, true, orderL);
 		orderField.setBackground(AdempierePLAF.getInfoBackground());
 		orderField.addVetoableChangeListener(this);
 
-		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0, MColumn
-				.getColumn_ID(MPPOrder.Table_Name,
-						MPPOrder.COLUMNNAME_S_Resource_ID),
+		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0,M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_S_Resource_ID),
 				DisplayType.TableDir);
-		resourceField = new VLookup("S_Resource_ID", false, false, false,
-				resourceL);
+		resourceField = new VLookup("S_Resource_ID", false, false, false, resourceL);
 
-		MLookup warehouseL = MLookupFactory.get(ctx, m_WindowNo, 0, MColumn
-				.getColumn_ID(MPPOrder.Table_Name,
-						MPPOrder.COLUMNNAME_M_Warehouse_ID),
+		MLookup warehouseL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Warehouse_ID),
 				DisplayType.TableDir);
-		warehouseField = new VLookup("M_Warehouse_ID", false, false, false,
-				warehouseL);
+		warehouseField = new VLookup("M_Warehouse_ID", false, false, false, warehouseL);
 
-		MLookup productL = MLookupFactory
-				.get(ctx, m_WindowNo, 0, MColumn.getColumn_ID(
-						MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Product_ID),
-						DisplayType.TableDir);
-		productField = new VLookup("M_Product_ID", false, false, false,
-				productL);
+		MLookup productL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Product_ID),
+				DisplayType.TableDir);
+		productField = new VLookup("M_Product_ID", false, false, false, productL);
 
-		MLookup uomL = MLookupFactory.get(ctx, m_WindowNo, 0,
-				MColumn.getColumn_ID(MPPOrder.Table_Name,
-						MPPOrder.COLUMNNAME_C_UOM_ID), DisplayType.TableDir);
+		MLookup uomL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID), DisplayType.TableDir);
 		uomField = new VLookup("C_UOM_ID", false, false, false, uomL);
 
-		MLookup uomorderL = MLookupFactory.get(ctx, m_WindowNo, 0,
-				MColumn.getColumn_ID(MPPOrder.Table_Name,
-						MPPOrder.COLUMNNAME_C_UOM_ID), DisplayType.TableDir);
+		MLookup uomorderL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID),
+				DisplayType.TableDir);
 		uomorderField = new VLookup("C_UOM_ID", false, false, false, uomorderL);
 
 		MLocatorLookup locatorL = new MLocatorLookup(ctx, m_WindowNo);
-		locatorField = new VLocator("M_Locator_ID", true, false, true,
-				locatorL, m_WindowNo);
+		locatorField = new VLocator("M_Locator_ID", true, false, true, locatorL, m_WindowNo);
 
 		MPAttributeLookup attributeL = new MPAttributeLookup(ctx, m_WindowNo);
-		attribute = new VPAttribute(false, false, true, m_WindowNo, attributeL, false);
+		
+		/**
+		 * Libero to Libertya migration
+		 * Missing arg from Libero (boolean searchOnly)
+		 */
+		attribute = new VPAttribute(false, false, true, m_WindowNo, attributeL);
+		
 		attribute.setValue(0);
 		// Tab, Window
-		int m_Window = MWindow.getWindow_ID("Manufacturing Order");
-		GridFieldVO vo = GridFieldVO.createStdField(ctx, m_WindowNo, 0,
-				m_Window, MTab.getTab_ID(m_Window, "Order"), false, false,
-				false);
+		int m_Window = MUMWindow.getWindow_ID("Manufacturing Order");
+		GridFieldVO vo = GridFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, MUMTab.getTab_ID(m_Window, "Order"), false, false, false);
 		// M_AttributeSetInstance_ID
-		vo.AD_Column_ID = MColumn.getColumn_ID(MPPOrder.Table_Name,
-				MPPOrder.COLUMNNAME_M_AttributeSetInstance_ID);
+		vo.AD_Column_ID = M_Column.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_AttributeSetInstance_ID);
 		GridField field = new GridField(vo);
 		attribute.setField(field);
 		// 4Layers - Further init
 		scrapQtyField.setValue(Env.ZERO);
 		rejectQty.setValue(Env.ZERO);
 		// 4Layers - end
-		pickcombo.addItem(new KeyNamePair(1, Msg.translate(Env.getCtx(),
-				"IsBackflush")));
-		pickcombo.addItem(new KeyNamePair(2, Msg.translate(Env.getCtx(),
-				"OnlyIssue")));
-		pickcombo.addItem(new KeyNamePair(3, Msg.translate(Env.getCtx(),
-				"OnlyReceipt")));
+		pickcombo.addItem(new KeyNamePair(1, Msg.translate(Env.getCtx(), "IsBackflush")));
+		pickcombo.addItem(new KeyNamePair(2, Msg.translate(Env.getCtx(), "OnlyIssue")));
+		pickcombo.addItem(new KeyNamePair(3, Msg.translate(Env.getCtx(), "OnlyReceipt")));
 		pickcombo.addActionListener(this);
 		Process.addActionListener(this);
 		toDeliverQty.addActionListener(this);
@@ -278,146 +283,103 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 		northPanel.setLayout(new java.awt.GridBagLayout());
 		orderLabel.setText(Msg.translate(Env.getCtx(), "PP_Order_ID"));
 
-		northPanel.add(orderLabel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5,
-						5, 5, 5), 0, 0));
-		northPanel.add(orderField, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel
+				.add(orderLabel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(orderField, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5),
+				0, 0));
 		resourceLabel.setText(Msg.translate(Env.getCtx(), "S_Resource_ID"));
-		northPanel.add(resourceLabel, new GridBagConstraints(2, 1, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(resourceField, new GridBagConstraints(3, 1, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(resourceLabel, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(resourceField, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
 		warehouseLabel.setText(Msg.translate(Env.getCtx(), "M_Warehouse_ID"));
-		northPanel.add(warehouseLabel, new GridBagConstraints(4, 1, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(warehouseField, new GridBagConstraints(5, 1, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(warehouseLabel, new GridBagConstraints(4, 1, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(warehouseLabel, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(warehouseField, new GridBagConstraints(5, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
+		northPanel.add(warehouseLabel, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
 
 		// Product
 
-		northPanel.add(productLabel, new GridBagConstraints(0, 2, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(productLabel, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(productField, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(productField, new GridBagConstraints(1, 2, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(uomLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5,
-						5, 5, 5), 0, 0));
-		northPanel.add(uomField, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(uomorderLabel, new GridBagConstraints(4, 2, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(uomorderField, new GridBagConstraints(5, 2, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(uomLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(uomField, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(uomorderLabel, new GridBagConstraints(4, 2, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(uomorderField, new GridBagConstraints(5, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
 		orderedQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyOrdered"));
-		northPanel.add(orderedQtyLabel, new GridBagConstraints(0, 3, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(orderedQtyField, new GridBagConstraints(1, 3, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(orderedQtyLabel, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(orderedQtyField, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5,
+				5, 5), 0, 0));
 		deliveredQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyDelivered"));
-		northPanel.add(deliveredQtyLabel, new GridBagConstraints(2, 3, 1, 1,
-				0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(deliveredQtyLabel, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(deliveredQtyField, new GridBagConstraints(3, 3, 1, 1,
-				0.0, 0.0, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(deliveredQtyField, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5,
+				5, 5), 0, 0));
 		openQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyOpen"));
-		northPanel.add(openQtyLabel, new GridBagConstraints(4, 3, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(openQtyField, new GridBagConstraints(5, 3, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
+		northPanel.add(openQtyLabel, new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(openQtyField, new GridBagConstraints(5, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
 				new Insets(5, 5, 5, 5), 0, 0));
 		QtyBatchsLabel.setText(Msg.translate(Env.getCtx(), "QtyBatchs"));
-		northPanel.add(QtyBatchsLabel, new GridBagConstraints(2, 4, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(qtyBatchsField, new GridBagConstraints(3, 4, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(QtyBatchsLabel, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(qtyBatchsField, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
 		QtyBatchSizeLabel.setText(Msg.translate(Env.getCtx(), "QtyBatchSize"));
-		northPanel.add(QtyBatchSizeLabel, new GridBagConstraints(4, 4, 1, 1,
-				0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(QtyBatchSizeLabel, new GridBagConstraints(4, 4, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(qtyBatchSizeField, new GridBagConstraints(5, 4, 1, 1,
-				0.0, 0.0, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(labelcombo, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5,
-						5, 5, 5), 0, 0));
-		northPanel.add(pickcombo, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(qtyBatchSizeField, new GridBagConstraints(5, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5,
+				5, 5), 0, 0));
+		northPanel
+				.add(labelcombo, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(pickcombo, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5),
+				0, 0));
 		toDeliverQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyToDeliver"));
-		northPanel.add(toDeliverQtyLabel, new GridBagConstraints(0, 6, 1, 1,
-				0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(toDeliverQtyLabel, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(toDeliverQty, new GridBagConstraints(1, 6, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
+		northPanel.add(toDeliverQty, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
 				new Insets(5, 5, 5, 5), 0, 0));
 		scrapQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyScrap"));
-		northPanel.add(scrapQtyLabel, new GridBagConstraints(2, 6, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(scrapQtyField, new GridBagConstraints(3, 6, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(scrapQtyLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(scrapQtyField, new GridBagConstraints(3, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
 		rejectQtyLabel.setText(Msg.translate(Env.getCtx(), "QtyReject"));
-		northPanel.add(rejectQtyLabel, new GridBagConstraints(4, 6, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(rejectQty, new GridBagConstraints(5, 6, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(rejectQtyLabel, new GridBagConstraints(4, 6, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(rejectQty, new GridBagConstraints(5, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5),
+				0, 0));
 		movementDateLabel.setText(Msg.translate(Env.getCtx(), "MovementDate"));
-		northPanel.add(movementDateLabel, new GridBagConstraints(0, 7, 1, 1,
-				0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(movementDateLabel, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(movementDateField, new GridBagConstraints(1, 7, 1, 1,
-				0.0, 0.0, GridBagConstraints.WEST,
-				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+		northPanel.add(movementDateField, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5,
+				5, 5), 0, 0));
 		locatorLabel.setText(Msg.translate(Env.getCtx(), "M_Locator_ID"));
-		northPanel.add(locatorLabel, new GridBagConstraints(2, 7, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+		northPanel.add(locatorLabel, new GridBagConstraints(2, 7, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0,
+				0));
+		northPanel.add(locatorField, new GridBagConstraints(3, 7, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
 				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(locatorField, new GridBagConstraints(3, 7, 1, 1, 0.0,
-				0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		attributeLabel.setText(Msg.translate(Env.getCtx(),
-				"M_AttributeSetInstance_ID"));
-		northPanel.add(attributeLabel, new GridBagConstraints(4, 7, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(attribute, new GridBagConstraints(5, 7, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(backflushGroupLabel, new GridBagConstraints(2, 5, 1, 1,
-				0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-				new Insets(5, 5, 5, 5), 0, 0));
-		northPanel.add(backflushGroup, new GridBagConstraints(3, 5, 1, 1, 0.0,
-				0.0, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		attributeLabel.setText(Msg.translate(Env.getCtx(), "M_AttributeSetInstance_ID"));
+		northPanel.add(attributeLabel, new GridBagConstraints(4, 7, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(attribute, new GridBagConstraints(5, 7, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5),
+				0, 0));
+		northPanel.add(backflushGroupLabel, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5,
+				5), 0, 0));
+		northPanel.add(backflushGroup, new GridBagConstraints(3, 5, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5,
+				5), 0, 0));
 
 		ReceiptIssueOrder.add(northPanel, java.awt.BorderLayout.NORTH);
-		TabsReceiptsIssue.add(ReceiptIssueOrder,
-				Msg.translate(Env.getCtx(), "IsShipConfirm"));
-		TabsReceiptsIssue
-				.add(Generate, Msg.translate(Env.getCtx(), "Generate"));
+		TabsReceiptsIssue.add(ReceiptIssueOrder, Msg.translate(Env.getCtx(), "IsShipConfirm"));
+		TabsReceiptsIssue.add(Generate, Msg.translate(Env.getCtx(), "Generate"));
 		Generate.setLayout(new BorderLayout());
 		Generate.add(info, BorderLayout.CENTER);
 		Generate.setEnabled(false);
@@ -460,16 +422,12 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 
 		if (e.getSource().equals(Process)) {
 			if (getMovementDate() == null) {
-				JOptionPane.showMessageDialog(null,
-						Msg.getMsg(Env.getCtx(), "NoDate"), "Info",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoDate"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
 
 			if ((isOnlyReceipt() || isBackflush()) && getM_Locator_ID() <= 0) {
-				JOptionPane.showMessageDialog(null,
-						Msg.getMsg(Env.getCtx(), "NoLocator"), "Info",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoLocator"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
 
@@ -481,9 +439,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 			if (ADialog.ask(m_WindowNo, panel, "Update")) {
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				final boolean isCloseDocument = ADialog.ask(m_WindowNo, panel,
-						Msg.parseTranslation(Env.getCtx(),
-								"@IsCloseDocument@ : "
-										+ getPP_Order().getDocumentNo()));
+						Msg.parseTranslation(Env.getCtx(), "@IsCloseDocument@ : " + getPP_Order().getDocumentNo()));
 
 				if (cmd_process(isCloseDocument, issue)) {
 					dispose();
@@ -494,8 +450,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 			TabsReceiptsIssue.setSelectedIndex(0);
 		}
 
-		if (e.getSource().equals(toDeliverQty)
-				|| e.getSource().equals(scrapQtyField)) {
+		if (e.getSource().equals(toDeliverQty) || e.getSource().equals(scrapQtyField)) {
 			if (getPP_Order_ID() > 0 && isBackflush()) {
 				executeQuery();
 			}
@@ -563,8 +518,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 		m_frame = null;
 	}
 
-	public void vetoableChange(PropertyChangeEvent e)
-			throws PropertyVetoException {
+	public void vetoableChange(PropertyChangeEvent e) throws PropertyVetoException {
 		String name = e.getPropertyName();
 		Object value = e.getNewValue();
 		log.fine("VOrderReceip.vetoableChange - " + name + "=" + value);
@@ -584,17 +538,14 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 				// m_PP_order.getQtyOrdered().subtract(m_PP_order.getQtyDelivered());
 				setQtyBatchs(pp_order.getQtyBatchs());
 				setQtyBatchSize(pp_order.getQtyBatchSize());
-				setOpenQty(pp_order.getQtyOrdered().subtract(
-						pp_order.getQtyDelivered()));
+				setOpenQty(pp_order.getQtyOrdered().subtract(pp_order.getQtyDelivered()));
 				setToDeliverQty(getOpenQty());
 				setM_Product_ID(pp_order.getM_Product_ID());
-				MProduct m_product = MProduct.get(Env.getCtx(),
-						pp_order.getM_Product_ID());
+				MProduct m_product = MProduct.get(Env.getCtx(), pp_order.getM_Product_ID());
 				setC_UOM_ID(m_product.getC_UOM_ID());
 				setOrder_UOM_ID(pp_order.getC_UOM_ID());
 				// Default ASI defined from the Parent BOM Order
-				setM_AttributeSetInstance_ID(pp_order.getMPPOrderBOM()
-						.getM_AttributeSetInstance_ID());
+				setM_AttributeSetInstance_ID(pp_order.getMPPOrderBOM().getM_AttributeSetInstance_ID());
 				pickcombo.setSelectedIndex(0); // default to first entry -
 												// isBackflush
 			}
@@ -609,8 +560,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 	@Override
 	public void showMessage(String message, boolean error) {
 		if (!error)
-			JOptionPane.showMessageDialog(null, message, "Info",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, message, "Info", JOptionPane.INFORMATION_MESSAGE);
 		else
 			ADialog.error(m_WindowNo, panel, "Error", message);
 	}
@@ -621,11 +571,8 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 
 	private void generateSummaryTable() {
 
-		info.setText(generateSummaryTable(issue, productField.getDisplay(),
-				uomField.getDisplay(), attribute.getDisplay(),
-				toDeliverQty.getDisplay(), deliveredQtyField.getDisplay(),
-				scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(),
-				isOnlyReceipt()));
+		info.setText(generateSummaryTable(issue, productField.getDisplay(), uomField.getDisplay(), attribute.getDisplay(), toDeliverQty.getDisplay(),
+				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt()));
 
 	} // generateInvoices_complete
 
@@ -760,7 +707,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 			m_PP_order = null;
 			return null;
 		}
-		if (m_PP_order == null || m_PP_order.get_ID() != id) {
+		if (m_PP_order == null || m_PP_order.getID() != id) {
 
 			m_PP_order = new MPPOrder(Env.getCtx(), id, null);
 		}
@@ -816,14 +763,9 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 	public void valueChanged(ListSelectionEvent e) {
 	}
 
-	public void executeASync(org.compiere.process.ProcessInfo processInfo) {
-	}
 
 	public boolean isUILocked() {
 		return true;
-	}
-
-	public void lockUI(org.compiere.process.ProcessInfo processInfo) {
 	}
 
 	public void stateChanged(ChangeEvent e) {
@@ -832,11 +774,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 	public void tableChanged(TableModelEvent e) {
 	}
 
-	public void unlockUI(org.compiere.process.ProcessInfo processInfo) {
-	}
-
-	public boolean cmd_process(final boolean isCloseDocument,
-			final IMiniTable issue) {
+	public boolean cmd_process(final boolean isCloseDocument, final MiniTable issue) {
 
 		if (isOnlyReceipt() || isBackflush()) {
 			if (getM_Locator_ID() <= 0) {
@@ -852,21 +790,17 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 		try {
 			Trx.run(new TrxRunnable() {
 				public void run(String trxName) {
-					MPPOrder order = new MPPOrder(Env.getCtx(),
-							getPP_Order_ID(), trxName);
+					MPPOrder order = new MPPOrder(Env.getCtx(), getPP_Order_ID(), trxName);
 					if (isBackflush() || isOnlyIssue()) {
 						createIssue(order, issue);
 					}
 					if (isOnlyReceipt() || isBackflush()) {
-						MPPOrder.createReceipt(order, getMovementDate(),
-								getDeliveredQty(), getToDeliverQty(),
-								getScrapQty(), getRejectQty(),
-								getM_Locator_ID(),
-								getM_AttributeSetInstance_ID());
+						MPPOrder.createReceipt(order, getMovementDate(), getDeliveredQty(), getToDeliverQty(), getScrapQty(), getRejectQty(),
+								getM_Locator_ID(), getM_AttributeSetInstance_ID());
 						if (isCloseDocument) {
 							order.setDateFinish(getMovementDate());
 							order.closeIt();
-							order.saveEx();
+							order.save();
 						}
 					}
 				}
@@ -880,5 +814,23 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel,
 		}
 
 		return true;
+	}
+
+	@Override
+	public void lockUI(ProcessInfo pi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unlockUI(ProcessInfo pi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeASync(ProcessInfo pi) {
+		// TODO Auto-generated method stub
+		
 	}
 }

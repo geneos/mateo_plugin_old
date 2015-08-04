@@ -33,25 +33,6 @@ CONSTRAINT mattributesetinstance_ppproduc FOREIGN KEY (m_attributesetinstance_id
 CONSTRAINT mchangenotice_ppproductbom FOREIGN KEY (m_changenotice_id) REFERENCES m_changenotice (m_changenotice_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT mproduct_ppproductbom FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
-CREATE TABLE PP_Product_BOM_Trl(
-
-ad_client_id integer NOT NULL ,
-ad_language character varying(6) NOT NULL ,
-ad_org_id integer NOT NULL ,
-created timestamp without time zone NOT NULL DEFAULT now() ,
-createdby numeric(10) NOT NULL ,
-description character varying(255) ,
-help character varying(2000) ,
-isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
-istranslated character(1) NOT NULL ,
-name character varying(60) NOT NULL ,
-pp_product_bom_id integer NOT NULL ,
-updated timestamp without time zone NOT NULL DEFAULT now() ,
-updatedby numeric(10) NOT NULL ,
-CONSTRAINT pp_product_bom_trl_pkey PRIMARY KEY (ad_language,pp_product_bom_id) ,
-CONSTRAINT adlangu_ppproductbomtrl FOREIGN KEY (ad_language) REFERENCES ad_language (ad_language) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT ppproductbom_ppproductbomtrl FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
 CREATE TABLE PP_Product_BOMLine(
 
 feature character varying(30) ,
@@ -91,108 +72,6 @@ CONSTRAINT mattributesetinstance_ppprodbl FOREIGN KEY (m_attributesetinstance_id
 CONSTRAINT mchangenotice_ppproductbomline FOREIGN KEY (m_changenotice_id) REFERENCES m_changenotice (m_changenotice_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT mproduct_ppproductbomline FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT ppproductbom_ppproductbomline FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
-CREATE TABLE PP_Product_BOMLine_Trl(
-
-ad_client_id integer NOT NULL ,
-ad_language character varying(6) NOT NULL ,
-ad_org_id integer NOT NULL ,
-created timestamp without time zone NOT NULL DEFAULT now() ,
-createdby numeric(10) NOT NULL ,
-description character varying(255) ,
-help character varying(2000) ,
-isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
-istranslated character(1) NOT NULL ,
-pp_product_bomline_id integer NOT NULL ,
-updated timestamp without time zone NOT NULL DEFAULT now() ,
-updatedby numeric(10) NOT NULL ,
-CONSTRAINT pp_product_bomline_trl_pkey PRIMARY KEY (ad_language,pp_product_bomline_id) ,
-CONSTRAINT adlangu_ppproductbomlinetrl FOREIGN KEY (ad_language) REFERENCES ad_language (ad_language) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT ppproductbomline_ppproductboml FOREIGN KEY (pp_product_bomline_id) REFERENCES pp_product_bomline (pp_product_bomline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
-CREATE TABLE PP_WF_Node_Product(
-
-entitytype character varying(40) NOT NULL DEFAULT 'U'::character varying ,
-configurationlevel character(1) DEFAULT 'S'::bpchar ,
-ad_wf_node_id integer NOT NULL ,
-created timestamp without time zone NOT NULL ,
-createdby numeric(10) NOT NULL ,
-isactive character(1) NOT NULL ,
-m_product_id integer NOT NULL ,
-pp_wf_node_product_id integer NOT NULL ,
-qty numeric ,
-seqno numeric(10) ,
-updated timestamp without time zone NOT NULL ,
-ad_client_id integer NOT NULL ,
-updatedby numeric(10) NOT NULL ,
-ad_org_id integer NOT NULL ,
-issubcontracting character(1) DEFAULT 'N'::bpchar ,
-yield numeric(10) ,
-CONSTRAINT pp_wf_node_product_pkey PRIMARY KEY (pp_wf_node_product_id) ,
-CONSTRAINT adwfnode_ppwfnodeproduct FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT entityt_ppwfnodeproduct FOREIGN KEY (entitytype) REFERENCES ad_entitytype (entitytype) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT mproduct_ppwfnodeproduct FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
-CREATE TABLE PP_WF_Node_Asset(
-
-pp_wf_node_asset_id integer NOT NULL ,
-ad_client_id integer NOT NULL ,
-ad_org_id integer NOT NULL ,
-created timestamp without time zone NOT NULL ,
-createdby numeric(10) NOT NULL ,
-updated timestamp without time zone NOT NULL ,
-updatedby numeric(10) NOT NULL ,
-isactive character(1) NOT NULL ,
-ad_wf_node_id integer NOT NULL ,
-a_asset_id integer NOT NULL ,
-seqno numeric(10) NOT NULL ,
-CONSTRAINT pp_wf_node_asset_pkey PRIMARY KEY (pp_wf_node_asset_id) ,
-CONSTRAINT aasset_ppwfnodeasset FOREIGN KEY (a_asset_id) REFERENCES a_asset (a_asset_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT adwfnode_ppwfnodeasset FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
-CREATE TABLE PP_Product_Planning(
-
-ad_client_id integer NOT NULL ,
-ad_org_id integer NOT NULL DEFAULT 0 ,
-ad_workflow_id integer ,
-created timestamp without time zone NOT NULL ,
-createdby numeric(10) NOT NULL ,
-deliverytime_promised numeric ,
-isactive character(1) NOT NULL ,
-iscreateplan character(1) NOT NULL DEFAULT 'Y'::bpchar ,
-isissue character(1) NOT NULL DEFAULT 'Y'::bpchar ,
-ismps character(1) ,
-isphantom character(1) NOT NULL ,
-isrequiredmrp character(1) NOT NULL ,
-m_product_id integer NOT NULL ,
-m_warehouse_id integer ,
-order_max numeric ,
-order_min numeric ,
-order_pack numeric ,
-order_period numeric ,
-order_policy character varying(3) ,
-order_qty numeric ,
-pp_product_bom_id integer ,
-pp_product_planning_id integer NOT NULL ,
-planner_id integer ,
-s_resource_id integer ,
-timefence numeric ,
-transferttime numeric ,
-updated timestamp without time zone NOT NULL ,
-updatedby numeric(10) NOT NULL ,
-workingtime numeric ,
-yield numeric(10) DEFAULT 100 ,
-dd_networkdistribution_id integer ,
-safetystock numeric ,
-isrequireddrp character(1) NOT NULL DEFAULT 'N'::bpchar ,
-CONSTRAINT pp_product_planning_pkey PRIMARY KEY (pp_product_planning_id) ,
-CONSTRAINT adworkflow_ppproductplanning FOREIGN KEY (ad_workflow_id) REFERENCES ad_workflow (ad_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT mproduct_ppproductplanning FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT mwarehouse_ppproductplanning FOREIGN KEY (m_warehouse_id) REFERENCES m_warehouse (m_warehouse_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT planner_ppproductplanning FOREIGN KEY (planner_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT ppproductbom_ppproductplanning FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT sresource_ppproductplanning FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
-
 
 CREATE TABLE PP_Order(
 
@@ -424,9 +303,9 @@ CONSTRAINT adwfnode_pporderworkflow FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf
 CONSTRAINT adwfresponsible_pporderworkflo FOREIGN KEY (ad_wf_responsible_id) REFERENCES ad_wf_responsible (ad_wf_responsible_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT adworkflow_pporderworkflow FOREIGN KEY (ad_workflow_id) REFERENCES ad_workflow (ad_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT adworkflowprocessor_pporderwor FOREIGN KEY (ad_workflowprocessor_id) REFERENCES ad_workflowprocessor (ad_workflowprocessor_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT entityt_pporderworkflow FOREIGN KEY (entitytype) REFERENCES ad_entitytype (entitytype) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporder_pporderworkflow FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT sresource_pporderworkflow FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
 
 CREATE TABLE PP_Order_Node(
 
@@ -511,7 +390,6 @@ CONSTRAINT adwfresponsible_ppordernode FOREIGN KEY (ad_wf_responsible_id) REFERE
 CONSTRAINT adwindow_ppordernode FOREIGN KEY (ad_window_id) REFERENCES ad_window (ad_window_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT adworkflow_ppordernode FOREIGN KEY (ad_workflow_id) REFERENCES ad_workflow (ad_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT cbpartner_ppordernode FOREIGN KEY (c_bpartner_id) REFERENCES c_bpartner (c_bpartner_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT entityt_ppordernode FOREIGN KEY (entitytype) REFERENCES ad_entitytype (entitytype) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporder_ppordernode FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporderworkflow_ppordernode FOREIGN KEY (pp_order_workflow_id) REFERENCES pp_order_workflow (pp_order_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT sresource_ppordernode FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
@@ -541,25 +419,6 @@ CONSTRAINT ppordernode_ppordernodeproduct FOREIGN KEY (pp_order_node_id) REFEREN
 CONSTRAINT pporder_ppordernodeproduct FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporderworkflow_ppordernodepro FOREIGN KEY (pp_order_workflow_id) REFERENCES pp_order_workflow (pp_order_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
-CREATE TABLE PP_Order_Node_Asset(
-
-ad_client_id integer NOT NULL ,
-ad_org_id integer NOT NULL ,
-a_asset_id integer NOT NULL ,
-created timestamp without time zone NOT NULL ,
-createdby numeric(10) NOT NULL ,
-isactive character(1) NOT NULL ,
-pp_order_id integer NOT NULL ,
-pp_order_node_asset_id integer NOT NULL ,
-pp_order_node_id integer NOT NULL ,
-pp_order_workflow_id integer NOT NULL ,
-updated timestamp without time zone NOT NULL ,
-updatedby numeric(10) NOT NULL ,
-CONSTRAINT pp_order_node_asset_pkey PRIMARY KEY (pp_order_node_asset_id) ,
-CONSTRAINT aasset_ppordernodeasset FOREIGN KEY (a_asset_id) REFERENCES a_asset (a_asset_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT ppordernode_ppordernodeasset FOREIGN KEY (pp_order_node_id) REFERENCES pp_order_node (pp_order_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT pporder_ppordernodeasset FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
-CONSTRAINT pporderworkflow_ppordernodeass FOREIGN KEY (pp_order_workflow_id) REFERENCES pp_order_workflow (pp_order_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
 CREATE TABLE PP_Order_NodeNext(
 
@@ -589,11 +448,291 @@ CONSTRAINT ppordernext_ppordernodenext FOREIGN KEY (pp_order_next_id) REFERENCES
 CONSTRAINT ppordernode_ppordernodenext FOREIGN KEY (pp_order_node_id) REFERENCES pp_order_node (pp_order_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporder_ppordernodenext FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
+CREATE TABLE PP_Order_Node_Asset(
+
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL ,
+a_asset_id integer NOT NULL ,
+created timestamp without time zone NOT NULL ,
+createdby numeric(10) NOT NULL ,
+isactive character(1) NOT NULL ,
+pp_order_id integer NOT NULL ,
+pp_order_node_asset_id integer NOT NULL ,
+pp_order_node_id integer NOT NULL ,
+pp_order_workflow_id integer NOT NULL ,
+updated timestamp without time zone NOT NULL ,
+updatedby numeric(10) NOT NULL ,
+CONSTRAINT pp_order_node_asset_pkey PRIMARY KEY (pp_order_node_asset_id) ,
+CONSTRAINT aasset_ppordernodeasset FOREIGN KEY (a_asset_id) REFERENCES a_asset (a_asset_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppordernode_ppordernodeasset FOREIGN KEY (pp_order_node_id) REFERENCES pp_order_node (pp_order_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporder_ppordernodeasset FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporderworkflow_ppordernodeass FOREIGN KEY (pp_order_workflow_id) REFERENCES pp_order_workflow (pp_order_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE PP_Product_BOM_Trl(
+
+ad_client_id integer NOT NULL ,
+ad_language character varying(6) NOT NULL ,
+ad_org_id integer NOT NULL ,
+created timestamp without time zone NOT NULL DEFAULT now() ,
+createdby numeric(10) NOT NULL ,
+description character varying(255) ,
+help character varying(2000) ,
+isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+istranslated character(1) NOT NULL ,
+name character varying(60) NOT NULL ,
+pp_product_bom_id integer NOT NULL ,
+updated timestamp without time zone NOT NULL DEFAULT now() ,
+updatedby numeric(10) NOT NULL ,
+CONSTRAINT pp_product_bom_trl_pkey PRIMARY KEY (ad_language,pp_product_bom_id) ,
+CONSTRAINT adlangu_ppproductbomtrl FOREIGN KEY (ad_language) REFERENCES ad_language (ad_language) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppproductbom_ppproductbomtrl FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE PP_Product_BOMLine_Trl(
+
+ad_client_id integer NOT NULL ,
+ad_language character varying(6) NOT NULL ,
+ad_org_id integer NOT NULL ,
+created timestamp without time zone NOT NULL DEFAULT now() ,
+createdby numeric(10) NOT NULL ,
+description character varying(255) ,
+help character varying(2000) ,
+isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+istranslated character(1) NOT NULL ,
+pp_product_bomline_id integer NOT NULL ,
+updated timestamp without time zone NOT NULL DEFAULT now() ,
+updatedby numeric(10) NOT NULL ,
+CONSTRAINT pp_product_bomline_trl_pkey PRIMARY KEY (ad_language,pp_product_bomline_id) ,
+CONSTRAINT adlangu_ppproductbomlinetrl FOREIGN KEY (ad_language) REFERENCES ad_language (ad_language) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppproductbomline_ppproductboml FOREIGN KEY (pp_product_bomline_id) REFERENCES pp_product_bomline (pp_product_bomline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+
+CREATE TABLE PP_Product_Planning(
+
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL DEFAULT 0 ,
+ad_workflow_id integer ,
+created timestamp without time zone NOT NULL ,
+createdby numeric(10) NOT NULL ,
+deliverytime_promised numeric ,
+isactive character(1) NOT NULL ,
+iscreateplan character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+isissue character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+ismps character(1) ,
+isphantom character(1) NOT NULL ,
+isrequiredmrp character(1) NOT NULL ,
+m_product_id integer NOT NULL ,
+m_warehouse_id integer ,
+order_max numeric ,
+order_min numeric ,
+order_pack numeric ,
+order_period numeric ,
+order_policy character varying(3) ,
+order_qty numeric ,
+pp_product_bom_id integer ,
+pp_product_planning_id integer NOT NULL ,
+planner_id integer ,
+s_resource_id integer ,
+timefence numeric ,
+transferttime numeric ,
+updated timestamp without time zone NOT NULL ,
+updatedby numeric(10) NOT NULL ,
+workingtime numeric ,
+yield numeric(10) DEFAULT 100 ,
+dd_networkdistribution_id integer ,
+safetystock numeric ,
+isrequireddrp character(1) NOT NULL DEFAULT 'N'::bpchar ,
+ad_componentobjectuid character varying(100) ,
+CONSTRAINT pp_product_planning_pkey PRIMARY KEY (pp_product_planning_id) ,
+CONSTRAINT adworkflow_ppproductplanning FOREIGN KEY (ad_workflow_id) REFERENCES ad_workflow (ad_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_ppproductplanning FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mwarehouse_ppproductplanning FOREIGN KEY (m_warehouse_id) REFERENCES m_warehouse (m_warehouse_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT planner_ppproductplanning FOREIGN KEY (planner_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppproductbom_ppproductplanning FOREIGN KEY (pp_product_bom_id) REFERENCES pp_product_bom (pp_product_bom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT sresource_ppproductplanning FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE PP_WF_Node_Product(
+
+entitytype character varying(40) NOT NULL DEFAULT 'U'::character varying ,
+configurationlevel character(1) DEFAULT 'S'::bpchar ,
+ad_wf_node_id integer NOT NULL ,
+created timestamp without time zone NOT NULL ,
+createdby numeric(10) NOT NULL ,
+isactive character(1) NOT NULL ,
+m_product_id integer NOT NULL ,
+pp_wf_node_product_id integer NOT NULL ,
+qty numeric ,
+seqno numeric(10) ,
+updated timestamp without time zone NOT NULL ,
+ad_client_id integer NOT NULL ,
+updatedby numeric(10) NOT NULL ,
+ad_org_id integer NOT NULL ,
+issubcontracting character(1) DEFAULT 'N'::bpchar ,
+yield numeric(10) ,
+CONSTRAINT pp_wf_node_product_pkey PRIMARY KEY (pp_wf_node_product_id) ,
+CONSTRAINT adwfnode_ppwfnodeproduct FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT entityt_ppwfnodeproduct FOREIGN KEY (entitytype) REFERENCES ad_entitytype (entitytype) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_ppwfnodeproduct FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE PP_WF_Node_Asset(
+
+pp_wf_node_asset_id integer NOT NULL ,
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL ,
+created timestamp without time zone NOT NULL ,
+createdby numeric(10) NOT NULL ,
+updated timestamp without time zone NOT NULL ,
+updatedby numeric(10) NOT NULL ,
+isactive character(1) NOT NULL ,
+ad_wf_node_id integer NOT NULL ,
+a_asset_id integer NOT NULL ,
+seqno numeric(10) NOT NULL ,
+CONSTRAINT pp_wf_node_asset_pkey PRIMARY KEY (pp_wf_node_asset_id) ,
+CONSTRAINT aasset_ppwfnodeasset FOREIGN KEY (a_asset_id) REFERENCES a_asset (a_asset_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT adwfnode_ppwfnodeasset FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE PP_MRP(
+
+name character varying(120) ,
+ad_org_id integer NOT NULL ,
+c_bpartner_id integer ,
+c_orderline_id integer ,
+c_order_id integer ,
+created timestamp without time zone NOT NULL ,
+createdby integer NOT NULL ,
+dateconfirm timestamp without time zone ,
+datefinishschedule timestamp without time zone ,
+dateordered timestamp without time zone NOT NULL ,
+datepromised timestamp without time zone NOT NULL ,
+datesimulation timestamp without time zone ,
+datestart timestamp without time zone ,
+datestartschedule timestamp without time zone ,
+description character varying(1020) ,
+docstatus character varying(2) ,
+isactive character(1) NOT NULL ,
+isavailable character(1) ,
+m_forecastline_id integer ,
+m_forecast_id integer ,
+m_product_id integer ,
+m_requisitionline_id integer ,
+m_requisition_id integer ,
+m_warehouse_id integer NOT NULL ,
+pp_mrp_id integer NOT NULL ,
+pp_order_bomline_id integer ,
+pp_order_id integer ,
+planner_id integer ,
+priority character varying(10) ,
+qty numeric ,
+s_resource_id integer ,
+ordertype character varying(3) ,
+typemrp character(1) ,
+updated timestamp without time zone NOT NULL ,
+updatedby numeric(10) NOT NULL ,
+value character varying(80) NOT NULL ,
+ad_client_id integer NOT NULL ,
+version numeric ,
+c_project_id integer DEFAULT NULL::numeric ,
+c_projectphase_id integer DEFAULT NULL::numeric ,
+c_projecttask_id integer DEFAULT NULL::numeric ,
+CONSTRAINT pp_mrp_pkey PRIMARY KEY (pp_mrp_id) ,
+CONSTRAINT cbpartner_ppmrp FOREIGN KEY (c_bpartner_id) REFERENCES c_bpartner (c_bpartner_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT corderline_ppmrp FOREIGN KEY (c_orderline_id) REFERENCES c_orderline (c_orderline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT corder_ppmrp FOREIGN KEY (c_order_id) REFERENCES c_order (c_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cprojectphase_ppmrp FOREIGN KEY (c_projectphase_id) REFERENCES c_projectphase (c_projectphase_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cproject_ppmrp FOREIGN KEY (c_project_id) REFERENCES c_project (c_project_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cprojecttask_ppmrp FOREIGN KEY (c_projecttask_id) REFERENCES c_projecttask (c_projecttask_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mforecastline_ppmrp FOREIGN KEY (m_forecastline_id) REFERENCES m_forecastline (m_forecastline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mforecast_ppmrp FOREIGN KEY (m_forecast_id) REFERENCES m_forecast (m_forecast_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_ppmrp FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mrequisitionline_ppmrp FOREIGN KEY (m_requisitionline_id) REFERENCES m_requisitionline (m_requisitionline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mrequisition_ppmrp FOREIGN KEY (m_requisition_id) REFERENCES m_requisition (m_requisition_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mwarehouse_ppmrp FOREIGN KEY (m_warehouse_id) REFERENCES m_warehouse (m_warehouse_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT planner_ppmrp FOREIGN KEY (planner_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporderbomline_ppmrp FOREIGN KEY (pp_order_bomline_id) REFERENCES pp_order_bomline (pp_order_bomline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporder_ppmrp FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT sresource_ppmrp FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+---- FUNCTION NECESARIA PARA LA VISTA ---------
+
+CREATE OR REPLACE FUNCTION libertya.documentno(p_pp_mrp_id numeric)
+  RETURNS character varying AS
+$BODY$
+DECLARE
+	v_DocumentNo libertya.PP_MRP.Value%TYPE := '';
+BEGIN
+	-- If NO id return empty string
+	IF p_PP_MRP_ID <= 0 THEN
+		RETURN '';
+	END IF;
+	SELECT --ordertype, m_forecast_id, c_order_id, dd_order_id, pp_order_id, m_requisition_id,
+	CASE
+			WHEN trim(mrp.ordertype) = 'FTC' THEN (SELECT f.Name FROM libertya.M_Forecast f WHERE f.M_Forecast_ID=mrp.M_Forecast_ID)
+			WHEN trim(mrp.ordertype) = 'POO' THEN (SELECT co.DocumentNo  FROM libertya.C_Order co WHERE co.C_Order_ID=mrp.C_Order_ID)
+			WHEN trim(mrp.ordertype) = 'SOO' THEN (SELECT co.DocumentNo  FROM libertya.C_Order co WHERE co.C_Order_ID=mrp.C_Order_ID)
+			WHEN trim(mrp.ordertype) = 'MOP' THEN (SELECT po.DocumentNo FROM libertya.PP_Order po WHERE po.PP_Order_ID=mrp.PP_Order_ID)
+			WHEN trim(mrp.ordertype) = 'POR' THEN (SELECT r.DocumentNo  FROM libertya.M_Requisition r WHERE r.M_Requisition_ID=mrp.M_Requisition_ID)
+			
+	END INTO v_DocumentNo
+	FROM libertya.pp_mrp mrp
+	WHERE mrp.pp_mrp_id = p_PP_MRP_ID;
+	RETURN v_DocumentNo;
+END;	
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION libertya.documentno(numeric)
+  OWNER TO libertya;
+
+-------------
+
+CREATE VIEW RV_PP_MRP AS
+SELECT mrp.pp_mrp_id, mrp.ad_client_id, mrp.ad_org_id, mrp.created, mrp.createdby, mrp.isactive, mrp.isavailable, mrp.updated, mrp.updatedby, pp.ismps, pp.isrequiredmrp, pp.isrequireddrp, p.isbom, p.ispurchased, p.m_product_category_id, p.m_attributesetinstance_id, mrp.name, mrp.description, mrp.c_order_id, mrp.c_orderline_id, mrp.dateordered, mrp.dateconfirm, mrp.datepromised, mrp.datestartschedule, mrp.datefinishschedule, mrp.datestart, mrp.datesimulation, mrp.docstatus, mrp.m_forecast_id, mrp.m_forecastline_id, mrp.value, mrp.m_product_id, mrp.m_requisition_id, mrp.m_requisitionline_id, mrp.m_warehouse_id, mrp.pp_order_id, mrp.pp_order_bomline_id, mrp.qty, mrp.s_resource_id, mrp.planner_id, mrp.priority, mrp.ordertype, mrp.typemrp, p.lowlevel, mrp.c_bpartner_id, mrp.version, documentno((mrp.pp_mrp_id)::numeric) AS documentno, mrp.c_project_id, mrp.c_projectphase_id, mrp.c_projecttask_id FROM ((pp_mrp mrp JOIN m_product p ON ((mrp.m_product_id = p.m_product_id))) LEFT JOIN pp_product_planning pp ON (((pp.m_product_id = mrp.m_product_id) AND (mrp.m_warehouse_id = pp.m_warehouse_id)))) WHERE (mrp.qty <> (0)::numeric) UNION SELECT 0 AS pp_mrp_id, pp.ad_client_id, pp.ad_org_id, pp.created, pp.createdby, pp.isactive, 'Y'::bpchar AS isavailable, pp.updated, pp.updatedby, pp.ismps, pp.isrequiredmrp, pp.isrequireddrp, p.isbom, p.ispurchased, p.m_product_category_id, p.m_attributesetinstance_id, NULL::character varying AS name, NULL::character varying AS description, NULL::numeric AS c_order_id, NULL::numeric AS c_orderline_id, now() AS dateordered, now() AS dateconfirm, now() AS datepromised, now() AS datestartschedule, now() AS datefinishschedule, now() AS datestart, now() AS datesimulation, 'CO'::character varying AS docstatus, NULL::numeric AS m_forecast_id, NULL::numeric AS m_forecastline_id, NULL::character varying AS value, pp.m_product_id, NULL::numeric AS m_requisition_id, NULL::numeric AS m_requisitionline_id, pp.m_warehouse_id, NULL::numeric AS pp_order_id, NULL::numeric AS pp_order_bomline_id, (pp.safetystock - bomqtyonhand((pp.m_product_id)::numeric, (pp.m_warehouse_id)::numeric, (0)::numeric)) AS qty, pp.s_resource_id, NULL::numeric AS planner_id, NULL::character varying AS priority, 'STK'::character varying AS ordertype, 'D'::bpchar AS typemrp, p.lowlevel, NULL::numeric AS c_bpartner_id, NULL::numeric AS version, 'Safety Strock'::character varying AS documentno, NULL::numeric AS c_project_id, NULL::numeric AS c_projectphase_id, NULL::numeric AS c_projecttask_id FROM (pp_product_planning pp JOIN m_product p ON ((pp.m_product_id = p.m_product_id))) WHERE (bomqtyonhand((pp.m_product_id)::numeric, (pp.m_warehouse_id)::numeric, (0)::numeric) < pp.safetystock);
+
+CREATE TABLE PP_Order_Cost(
+
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL ,
+ad_workflow_id integer ,
+c_acctschema_id integer NOT NULL ,
+costingmethod character(1) DEFAULT 'x'::bpchar ,
+created timestamp without time zone NOT NULL ,
+createdby integer NOT NULL ,
+cumulatedamt numeric ,
+cumulatedamtpost numeric ,
+cumulatedqty numeric ,
+cumulatedqtypost numeric ,
+currentcostprice numeric ,
+currentcostpricell numeric ,
+currentqty numeric ,
+isactive character(1) NOT NULL ,
+m_attributesetinstance_id integer ,
+m_costelement_id integer ,
+m_costtype_id integer NOT NULL ,
+m_product_id integer NOT NULL ,
+pp_order_cost_id integer NOT NULL ,
+pp_order_id integer NOT NULL ,
+updated timestamp without time zone NOT NULL ,
+updatedby integer NOT NULL ,
+CONSTRAINT pp_order_cost_pkey PRIMARY KEY (pp_order_cost_id) ,
+CONSTRAINT adworkflow_ppordercost FOREIGN KEY (ad_workflow_id) REFERENCES ad_workflow (ad_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cacctschema_ppordercost FOREIGN KEY (c_acctschema_id) REFERENCES c_acctschema (c_acctschema_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mattributesetinstance_pporderc FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mcostelement_ppordercost FOREIGN KEY (m_costelement_id) REFERENCES m_costelement (m_costelement_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mcosttype_ppordercost FOREIGN KEY (m_costtype_id) REFERENCES m_costtype (m_costtype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_ppordercost FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporder_ppordercost FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
 ----------------------------------------------------------------------
 ---------- Nuevas columnas en tablas y/o vistas 
 ----------------------------------------------------------------------
 
+ALTER TABLE M_RequisitionLine ADD COLUMN C_BPartner_ID integer;
+ALTER TABLE M_Requisition ADD COLUMN C_DocType_ID integer;
 ALTER TABLE M_ForecastLine ADD COLUMN DatePromised timestamp without time zone;
+ALTER TABLE M_RequisitionLine ADD COLUMN C_UOM_ID integer;
+ALTER TABLE M_RequisitionLine ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_RequisitionLine ADD COLUMN C_Charge_ID integer;
+ALTER TABLE M_Requisition ADD COLUMN DateDoc timestamp without time zone;
+ALTER TABLE S_Resource ADD COLUMN PlanningHorizon numeric(10);
 ALTER TABLE M_ForecastLine ADD COLUMN M_Warehouse_ID integer;
 ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
 ----------------------------------------------------------------------
@@ -601,3 +740,64 @@ ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
 ----------------------------------------------------------------------
 
 ALTER TABLE M_ForecastLine ALTER COLUMN DatePromised TYPE timestamp without time zone;
+ALTER TABLE S_Resource ALTER COLUMN PlanningHorizon TYPE numeric(10);
+
+
+----------------------------------------------------------------------
+---------- Funciones (Agregar manualmente) ---------------------------
+----------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION libertya.nextid(IN p_ad_sequence_id integer, IN p_system character varying, OUT o_nextid integer)
+  RETURNS integer AS
+$BODY$
+BEGIN
+    IF (p_System = 'Y') THEN
+	RAISE NOTICE 'system';
+        SELECT CurrentNextSys
+            INTO o_NextID
+        FROM libertya.AD_Sequence
+        WHERE AD_Sequence_ID=p_AD_Sequence_ID;
+        --
+        UPDATE libertya.AD_Sequence
+          SET CurrentNextSys = CurrentNextSys + IncrementNo
+        WHERE AD_Sequence_ID=p_AD_Sequence_ID;
+    ELSE
+        SELECT CurrentNext
+            INTO o_NextID
+        FROM libertya.AD_Sequence
+        WHERE AD_Sequence_ID=p_AD_Sequence_ID;
+        --
+        UPDATE libertya.AD_Sequence
+          SET CurrentNext = CurrentNext + IncrementNo
+        WHERE AD_Sequence_ID=p_AD_Sequence_ID;
+    END IF;
+    --
+EXCEPTION
+    WHEN  OTHERS THEN
+    	RAISE NOTICE '%',SQLERRM;
+END;
+
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION libertya.nextid(integer, character varying)
+  OWNER TO libertya;
+
+---
+
+CREATE OR REPLACE FUNCTION libertya.nextidfunc(p_ad_sequence_id integer, p_system character varying)
+  RETURNS integer AS
+$BODY$
+DECLARE
+          o_NextIDFunc INTEGER;
+	  dummy INTEGER;
+BEGIN
+    o_NextIDFunc := nextid(p_AD_Sequence_ID, p_System);
+    RETURN o_NextIDFunc;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION libertya.nextidfunc(integer, character varying)
+  OWNER TO libertya;
+

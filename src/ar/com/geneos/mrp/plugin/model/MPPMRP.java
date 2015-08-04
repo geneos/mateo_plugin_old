@@ -374,8 +374,9 @@ public class MPPMRP extends LP_PP_MRP {
 		ArrayList<Object> parameters = new ArrayList<Object>();
 		parameters.add(isRequiredMRP);
 		parameters.add(po.getAD_Client_ID());
-
-		sql.append("UPDATE PP_Product_Planning SET ").append(type).append("=" + isRequiredMRP).append(" WHERE ").append(MUColumnNames.COLUMNNAME_AD_Client_ID)
+		
+		char boolVal  = isRequiredMRP ? 'Y' : 'N';
+		sql.append("UPDATE PP_Product_Planning SET ").append(type).append("='" +boolVal+"'").append(" WHERE ").append(MUColumnNames.COLUMNNAME_AD_Client_ID)
 				.append("=" + po.getAD_Client_ID() + " AND ");
 
 		if (po.getAD_Org_ID() > 0) {

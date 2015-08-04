@@ -443,6 +443,15 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			}
 
 			explotion();
+
+			/**
+			 * Libero to Libertya Migration Force ModelValidator
+			 */
+			if (newRecord)
+				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_NEW, log);
+			else
+				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
+
 		} catch (Exception e) {
 			log.saveError("SaveError", e);
 			e.printStackTrace();
@@ -465,13 +474,15 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		if (MPPOrder.DOCSTATUS_InProgress.equals(getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getDocStatus())) {
 			setQtyOrdered(Env.ZERO);
 			try {
-				orderStock(); 
+				orderStock();
 			} catch (Exception e) {
 				log.saveError("SaveError", e);
 				e.printStackTrace();
 				return false;
 			}
 		}
+
+		MRPValidator.modelChange(this, ModelValidator.TYPE_BEFORE_DELETE, log);
 
 		return true;
 	} // beforeDelete
@@ -564,9 +575,9 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			m_processMsg = "Error doing reservations";
 			return DocAction.STATUS_Invalid;
 		}
-		
+
 		try {
-			orderStock(); 
+			orderStock();
 		} catch (Exception e) {
 			log.saveError("SaveError", e);
 			e.printStackTrace();
@@ -773,12 +784,11 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 		if (!reserveStock(getLines())) { // Clear Reservations{
 			m_processMsg = "Error Clearing reservations";
 			return false;
 		}
-		
 
 		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_VOID);
 		if (m_processMsg != null)
@@ -807,10 +817,10 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 		if (!isDelivered()) {
 			m_processMsg = "Cannot close this document because do not exist transactions"; // TODO:
-			return false;																							// Create
-																										// Message
-																										// for
-																										// Translation
+			return false; // Create
+			// Message
+			// for
+			// Translation
 		}
 
 		createVariances();
