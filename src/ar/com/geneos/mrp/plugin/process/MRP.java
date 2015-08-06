@@ -438,7 +438,7 @@ public class MRP extends SvrProcess {
 		// Delete Manufacturing Order with Draft Status
 		// "DocStatus='DR' AND AD_Client_ID=? AND AD_Org_ID=? AND M_Warehouse_ID=? AND S_Resource_ID=?";
 		String where = getDeleteSQLWhere(MPPOrder.Table_Name, "mrp." + MPPMRP.COLUMNNAME_PP_Order_ID + " = " + MPPMRP.COLUMNNAME_PP_Order_ID + " AND mrp."
-				+ MPPMRP.COLUMNNAME_PP_Order_Bomline_ID + " IS NULL ", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, M_Product_ID, null)
+				+ MPPMRP.COLUMNNAME_PP_Order_BOMLine_ID + " IS NULL ", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, M_Product_ID, null)
 				+ " AND DocStatus=?";
 		parameters = new ArrayList<Object>();
 		myParameters = new ArrayList(parameters);

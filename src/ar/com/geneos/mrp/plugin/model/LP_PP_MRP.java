@@ -593,18 +593,18 @@ public class LP_PP_MRP extends org.openXpertya.model.PO {
 	}
 
 	/** Set PP_Order_Bomline_ID */
-	public static final String COLUMNNAME_PP_Order_Bomline_ID = "PP_Order_Bomline_ID";
+	public static final String COLUMNNAME_PP_Order_BOMLine_ID = "PP_Order_BOMLine_ID";
 
 	public void setPP_Order_Bomline_ID(int PP_Order_Bomline_ID) {
 		if (PP_Order_Bomline_ID <= 0)
-			set_Value("PP_Order_Bomline_ID", null);
+			set_Value("PP_Order_BOMLine_ID", null);
 		else
-			set_Value("PP_Order_Bomline_ID", new Integer(PP_Order_Bomline_ID));
+			set_Value("PP_Order_BOMLine_ID", new Integer(PP_Order_Bomline_ID));
 	}
 
 	/** Get PP_Order_Bomline_ID */
 	public int getPP_Order_Bomline_ID() {
-		Integer ii = (Integer) get_Value("PP_Order_Bomline_ID");
+		Integer ii = (Integer) get_Value("PP_Order_BOMLine_ID");
 		if (ii == null)
 			return 0;
 		return ii.intValue();
