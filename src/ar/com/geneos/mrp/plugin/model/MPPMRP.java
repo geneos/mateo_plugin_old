@@ -358,11 +358,13 @@ public class MPPMRP extends LP_PP_MRP {
 
 	public static void setIsRequired(PO po, String type, boolean isRequiredMRP, String trxName) {
 
-		int M_Product_ID = (Integer) po.get_Value(MPPProductPlanning.COLUMNNAME_M_Product_ID);
-		int M_Warehouse_ID = (Integer) po.get_Value(MPPProductPlanning.COLUMNNAME_M_Warehouse_ID);
+		int M_Product_ID = po.get_Value(MPPProductPlanning.COLUMNNAME_M_Product_ID) != null ? (Integer) po
+				.get_Value(MPPProductPlanning.COLUMNNAME_M_Product_ID) : 0;
+		int M_Warehouse_ID = po.get_Value(MPPProductPlanning.COLUMNNAME_M_Warehouse_ID) != null ? (Integer) po
+				.get_Value(MPPProductPlanning.COLUMNNAME_M_Warehouse_ID) : 0;
 
 		if (M_Warehouse_ID <= 0) {
-			int M_Locator_ID = (Integer) po.get_Value(MUColumnNames.COLUMNNAME_M_Locator_ID);
+			int M_Locator_ID = po.get_Value(MUColumnNames.COLUMNNAME_M_Locator_ID) != null ? (Integer) po.get_Value(MUColumnNames.COLUMNNAME_M_Locator_ID) : 0;
 			if (M_Locator_ID > 0)
 				M_Warehouse_ID = DB.getSQLValue(trxName, "SELECT M_Warehouse_ID FROM M_Locator WHERE M_Locator_ID=?", M_Locator_ID);
 		}
@@ -374,9 +376,9 @@ public class MPPMRP extends LP_PP_MRP {
 		ArrayList<Object> parameters = new ArrayList<Object>();
 		parameters.add(isRequiredMRP);
 		parameters.add(po.getAD_Client_ID());
-		
-		char boolVal  = isRequiredMRP ? 'Y' : 'N';
-		sql.append("UPDATE PP_Product_Planning SET ").append(type).append("='" +boolVal+"'").append(" WHERE ").append(MUColumnNames.COLUMNNAME_AD_Client_ID)
+
+		char boolVal = isRequiredMRP ? 'Y' : 'N';
+		sql.append("UPDATE PP_Product_Planning SET ").append(type).append("='" + boolVal + "'").append(" WHERE ").append(MUColumnNames.COLUMNNAME_AD_Client_ID)
 				.append("=" + po.getAD_Client_ID() + " AND ");
 
 		if (po.getAD_Org_ID() > 0) {

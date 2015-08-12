@@ -7,13 +7,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MTransaction;
 import org.openXpertya.util.CLogger;
 import org.openXpertya.util.Env;
 
 import ar.com.geneos.mrp.plugin.model.IDocumentLine;
-import ar.com.geneos.mrp.plugin.model.MCost;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 

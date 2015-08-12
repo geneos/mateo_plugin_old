@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import org.openXpertya.model.MAccount;
 import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MConversionRate;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MUOMConversion;
 import org.openXpertya.util.CLogger;
@@ -19,7 +20,6 @@ import org.openXpertya.util.Env;
 
 import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
 import ar.com.geneos.mrp.plugin.model.LP_M_CostType;
-import ar.com.geneos.mrp.plugin.model.MCost;
 
 /**
  * Product Cost Model. Summarizes Info in MCost

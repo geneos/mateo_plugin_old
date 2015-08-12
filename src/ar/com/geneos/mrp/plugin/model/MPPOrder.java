@@ -30,6 +30,7 @@ import java.util.logging.Level;
 
 import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MClient;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MDocType;
 import org.openXpertya.model.MLocator;
 import org.openXpertya.model.MOrder;
@@ -401,7 +402,9 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		}
 
 		// Order Stock
-		if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrder.COLUMNNAME_QtyOrdered)) {
+		// Solo actualizo si la orden esta en proceso o en estado completo
+		if ((MPPOrder.DOCSTATUS_InProgress.equals(getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getDocStatus()))
+				&& (is_ValueChanged(MPPOrder.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrder.COLUMNNAME_QtyOrdered))) {
 			try {
 				orderStock();
 			} catch (Exception e) {
@@ -732,15 +735,15 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	} // completeIt
 
 	/**
-	 * Check if the Quantity from all BOM Lines is available (QtyOnHand >=
-	 * QtyRequired)
+	 * Check if the Quantity from all Critical BOM Lines is available Not exist
+	 * a line where QtyRequired > QtyAvailable
 	 * 
 	 * @return true if entire Qty is available for this Order
 	 */
 	public boolean isAvailable() {
-		String whereClause = "QtyOnHand >= QtyRequired AND PP_Order_ID=?";
+		String whereClause = "QtyRequired >= QtyAvailable AND iscritical = 'Y' AND PP_Order_ID=?";
 		boolean available = new Query(getCtx(), "RV_PP_Order_Storage", whereClause, get_TrxName()).setParameters(new Object[] { getID() }).match();
-		return available;
+		return !available;
 	}
 
 	public boolean voidIt() {
@@ -1208,7 +1211,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 						order.getS_Resource_ID(), // S_Resource_ID
 						PP_OrderBOMLine_ID, // PP_Order_BOMLine_ID
 						0, // PP_Order_Node_ID
-						MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID,
+						MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
 						CostCollectorType, // Production "-"
 						movementdate, // MovementDate
 						qtyIssue, qtyScrap, qtyReject, // qty,scrap,reject

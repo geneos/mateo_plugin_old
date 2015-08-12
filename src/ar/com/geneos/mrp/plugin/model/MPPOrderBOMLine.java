@@ -189,7 +189,10 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 			setQtyRequired(getQtyRequired().setScale(precision, RoundingMode.UP));
 		}
 
-		if (is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyRequired)) {
+		// Solo actualizo reservados si el documento esta en proceso o completo.
+
+		if ((MPPOrder.DOCSTATUS_InProgress.equals(getParent().getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getParent().getDocStatus()))
+				&& (is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrderBOMLine.COLUMNNAME_QtyRequired))) {
 			reserveStock();
 		}
 
@@ -529,8 +532,8 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		BigDecimal reserved = difference;
 		int M_Locator_ID = getM_Locator_ID(reserved);
 		// Update Storage
-		if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), getM_AttributeSetInstance_ID(),
-				Env.ZERO, reserved, Env.ZERO, get_TrxName())) {
+		if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), 0, Env.ZERO, reserved, Env.ZERO,
+				get_TrxName())) {
 			throw new IllegalStateException();
 		}
 		// update line

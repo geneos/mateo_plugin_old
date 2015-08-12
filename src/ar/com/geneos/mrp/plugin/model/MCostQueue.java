@@ -10,6 +10,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MCostElement;
 import org.openXpertya.model.MCostType;
 import org.openXpertya.model.MProduct;

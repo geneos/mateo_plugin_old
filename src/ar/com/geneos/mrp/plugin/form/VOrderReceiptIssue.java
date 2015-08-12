@@ -60,6 +60,8 @@ import org.openXpertya.grid.ed.VNumber;
 import org.openXpertya.grid.ed.VPAttribute;
 import org.openXpertya.minigrid.IMiniTable;
 import org.openXpertya.minigrid.MiniTable;
+import org.openXpertya.model.MField;
+import org.openXpertya.model.MFieldVO;
 import org.openXpertya.model.MLocatorLookup;
 import org.openXpertya.model.MLookup;
 import org.openXpertya.model.MLookupFactory;
@@ -82,6 +84,7 @@ import org.openXpertya.util.Trx;
 import org.openXpertya.util.TrxRunnable;
 
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
+import ar.com.geneos.mrp.plugin.util.MUMColumn;
 import ar.com.geneos.mrp.plugin.util.MUMTab;
 import ar.com.geneos.mrp.plugin.util.MUMWindow;
 
@@ -198,25 +201,25 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				language, "PP_Order_ID", 0, false, "PP_Order.DocStatus = '" + MPPOrder.DOCACTION_Complete + "'");
 
 		orderField = new VLookup("PP_Order_ID", false, false, true, orderL);
-		orderField.setBackground(AdempierePLAF.getInfoBackground());
+		//orderField.setBackground(AdempierePLAF.getInfoBackground());
 		orderField.addVetoableChangeListener(this);
 
-		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0,M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_S_Resource_ID),
+		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0,MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_S_Resource_ID),
 				DisplayType.TableDir);
 		resourceField = new VLookup("S_Resource_ID", false, false, false, resourceL);
 
-		MLookup warehouseL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Warehouse_ID),
+		MLookup warehouseL = MLookupFactory.get(ctx, m_WindowNo, 0, MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Warehouse_ID),
 				DisplayType.TableDir);
 		warehouseField = new VLookup("M_Warehouse_ID", false, false, false, warehouseL);
 
-		MLookup productL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Product_ID),
+		MLookup productL = MLookupFactory.get(ctx, m_WindowNo, 0, MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_Product_ID),
 				DisplayType.TableDir);
 		productField = new VLookup("M_Product_ID", false, false, false, productL);
 
-		MLookup uomL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID), DisplayType.TableDir);
+		MLookup uomL = MLookupFactory.get(ctx, m_WindowNo, 0, MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID), DisplayType.TableDir);
 		uomField = new VLookup("C_UOM_ID", false, false, false, uomL);
 
-		MLookup uomorderL = MLookupFactory.get(ctx, m_WindowNo, 0, M_Column.getColumnID(null,MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID),
+		MLookup uomorderL = MLookupFactory.get(ctx, m_WindowNo, 0, MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_C_UOM_ID),
 				DisplayType.TableDir);
 		uomorderField = new VLookup("C_UOM_ID", false, false, false, uomorderL);
 
@@ -234,10 +237,11 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		attribute.setValue(0);
 		// Tab, Window
 		int m_Window = MUMWindow.getWindow_ID("Manufacturing Order");
-		GridFieldVO vo = GridFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, MUMTab.getTab_ID(m_Window, "Order"), false, false, false);
+											 //(ctx , m_WindowNo , 1000031 , 1000013, false, false, false);
+		MFieldVO vo = MFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, /*MUMTab.getTab_ID(m_Window, "Order"),*/ false, false, false);
 		// M_AttributeSetInstance_ID
-		vo.AD_Column_ID = M_Column.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_AttributeSetInstance_ID);
-		GridField field = new GridField(vo);
+		vo.AD_Column_ID = MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_AttributeSetInstance_ID);
+		MField field = new MField(vo);
 		attribute.setField(field);
 		// 4Layers - Further init
 		scrapQtyField.setValue(Env.ZERO);
@@ -383,7 +387,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		Generate.setLayout(new BorderLayout());
 		Generate.add(info, BorderLayout.CENTER);
 		Generate.setEnabled(false);
-		info.setBackground(AdempierePLAF.getFieldBackground_Inactive());
+		//info.setBackground(AdempierePLAF.getFieldBackground_Inactive());
 		info.setEditable(false);
 		TabsReceiptsIssue.addChangeListener(this);
 		panel.add(TabsReceiptsIssue, java.awt.BorderLayout.CENTER);

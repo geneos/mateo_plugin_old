@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MCostElement;
 import org.openXpertya.model.MCostType;
 import org.openXpertya.model.MDocType;
@@ -28,7 +29,6 @@ import ar.com.geneos.mrp.plugin.model.LP_M_InOutLine;
 import ar.com.geneos.mrp.plugin.model.LP_C_LandedCostAllocation;
 import ar.com.geneos.mrp.plugin.model.LP_M_MatchInv;
 import ar.com.geneos.mrp.plugin.model.LP_M_MatchPO;
-import ar.com.geneos.mrp.plugin.model.MCost;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;

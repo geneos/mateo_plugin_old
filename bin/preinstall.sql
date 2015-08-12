@@ -721,6 +721,170 @@ CONSTRAINT mcosttype_ppordercost FOREIGN KEY (m_costtype_id) REFERENCES m_costty
 CONSTRAINT mproduct_ppordercost FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT pporder_ppordercost FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
+CREATE TABLE PP_Cost_Collector(
+
+m_product_id integer NOT NULL ,
+ad_orgtrx_id integer ,
+ad_org_id integer NOT NULL ,
+ad_user_id integer ,
+c_activity_id integer ,
+c_campaign_id integer ,
+c_doctypetarget_id integer NOT NULL ,
+c_doctype_id integer NOT NULL ,
+c_project_id integer ,
+c_uom_id integer ,
+created timestamp without time zone NOT NULL ,
+createdby integer NOT NULL ,
+dateacct timestamp without time zone NOT NULL ,
+description character varying(255) ,
+docaction character(2) DEFAULT 'CO'::bpchar ,
+docstatus character(2) DEFAULT 'DR'::bpchar ,
+durationreal numeric ,
+isactive character(1) NOT NULL ,
+isbatchtime character(1) DEFAULT 'N'::bpchar ,
+m_attributesetinstance_id integer ,
+m_locator_id integer NOT NULL ,
+m_warehouse_id integer NOT NULL ,
+movementdate timestamp without time zone NOT NULL ,
+movementqty numeric NOT NULL DEFAULT 0 ,
+pp_cost_collector_id integer NOT NULL ,
+pp_order_bomline_id integer ,
+pp_order_id integer NOT NULL ,
+pp_order_node_id integer ,
+pp_order_workflow_id integer ,
+posted character(1) NOT NULL ,
+processed character(1) NOT NULL ,
+processing character(1) ,
+qtyreject numeric DEFAULT 0 ,
+s_resource_id integer NOT NULL ,
+scrappedqty numeric DEFAULT 0 ,
+setuptimereal numeric DEFAULT 0 ,
+updated timestamp without time zone NOT NULL ,
+updatedby integer NOT NULL ,
+user1_id integer ,
+ad_client_id integer NOT NULL ,
+user2_id integer ,
+reversal_id integer ,
+costcollectortype character varying(3) NOT NULL ,
+issubcontracting character(1) ,
+documentno character varying(30) NOT NULL ,
+processedon numeric ,
+CONSTRAINT pp_cost_collector_pkey PRIMARY KEY (pp_cost_collector_id) ,
+CONSTRAINT adorgtrx_ppcostcollector FOREIGN KEY (ad_orgtrx_id) REFERENCES ad_org (ad_org_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT aduser_ppcostcollector FOREIGN KEY (ad_user_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cactivity_ppcostcollector FOREIGN KEY (c_activity_id) REFERENCES c_activity (c_activity_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ccampaign_ppcostcollector FOREIGN KEY (c_campaign_id) REFERENCES c_campaign (c_campaign_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cdoctype_ppcostcollector FOREIGN KEY (c_doctype_id) REFERENCES c_doctype (c_doctype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cdoctypetarget_ppcostcollector FOREIGN KEY (c_doctypetarget_id) REFERENCES c_doctype (c_doctype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cproject_ppcostcollector FOREIGN KEY (c_project_id) REFERENCES c_project (c_project_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cuom_ppcostcollector FOREIGN KEY (c_uom_id) REFERENCES c_uom (c_uom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mattributesetinstance_ppcostco FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mlocator_ppcostcollector FOREIGN KEY (m_locator_id) REFERENCES m_locator (m_locator_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_ppcostcollector FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mwarehouse_ppcostcollector FOREIGN KEY (m_warehouse_id) REFERENCES m_warehouse (m_warehouse_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporderbomline_ppcostcollector FOREIGN KEY (pp_order_bomline_id) REFERENCES pp_order_bomline (pp_order_bomline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppordernode_ppcostcollector FOREIGN KEY (pp_order_node_id) REFERENCES pp_order_node (pp_order_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporder_ppcostcollector FOREIGN KEY (pp_order_id) REFERENCES pp_order (pp_order_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT pporderworkflow_ppcostcollecto FOREIGN KEY (pp_order_workflow_id) REFERENCES pp_order_workflow (pp_order_workflow_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT reversal_ppcostcollector FOREIGN KEY (reversal_id) REFERENCES pp_cost_collector (pp_cost_collector_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT sresource_ppcostcollector FOREIGN KEY (s_resource_id) REFERENCES s_resource (s_resource_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT user1_ppcostcollector FOREIGN KEY (user1_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT user2_ppcostcollector FOREIGN KEY (user2_id) REFERENCES ad_user (ad_user_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE M_Costdetail(
+
+m_costdetail_id integer NOT NULL ,
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL ,
+c_acctschema_id integer NOT NULL ,
+m_product_id integer NOT NULL ,
+m_attributesetinstance_id integer NOT NULL ,
+isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+created timestamp without time zone NOT NULL DEFAULT now() ,
+createdby integer NOT NULL ,
+updated timestamp without time zone NOT NULL DEFAULT now() ,
+updatedby integer NOT NULL ,
+m_costelement_id integer ,
+c_orderline_id integer ,
+m_inoutline_id integer ,
+c_invoiceline_id integer ,
+m_movementline_id integer ,
+m_inventoryline_id integer ,
+m_productionline_id integer ,
+c_projectissue_id integer ,
+issotrx character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+amt numeric NOT NULL DEFAULT 0 ,
+qty numeric NOT NULL DEFAULT 0 ,
+deltaamt numeric DEFAULT 0 ,
+deltaqty numeric DEFAULT 0 ,
+description character varying(255) ,
+processed character(1) NOT NULL DEFAULT 'N'::bpchar ,
+pp_cost_collector_id integer ,
+currentcostprice numeric ,
+currentqty numeric ,
+cumulatedamt numeric ,
+cumulatedqty numeric ,
+m_costtype_id integer DEFAULT NULL::numeric ,
+dateacct timestamp without time zone ,
+m_transaction_id integer DEFAULT NULL::numeric ,
+costingmethod character(1) ,
+c_landedcostallocation_id integer DEFAULT NULL::numeric ,
+currentcostpricell numeric ,
+costadjustment numeric ,
+costadjustmentdate timestamp without time zone ,
+costamt numeric ,
+isreversal character(1) DEFAULT 'N'::bpchar ,
+processing character(1) DEFAULT 'N'::bpchar ,
+amtll numeric ,
+costadjustmentll numeric ,
+costadjustmentdatell timestamp without time zone ,
+costamtll numeric ,
+cumulatedamtll numeric ,
+seqno integer DEFAULT NULL::numeric ,
+m_warehouse_id integer ,
+CONSTRAINT m_costdetail_pkey PRIMARY KEY (m_costdetail_id) ,
+CONSTRAINT adclient_mcostdetail FOREIGN KEY (ad_client_id) REFERENCES ad_client (ad_client_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT adorg_mcostdetail FOREIGN KEY (ad_org_id) REFERENCES ad_org (ad_org_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cacctschema_mcostdetail FOREIGN KEY (c_acctschema_id) REFERENCES c_acctschema (c_acctschema_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT corderline_mcostdetail FOREIGN KEY (c_orderline_id) REFERENCES c_orderline (c_orderline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT cprojectissue_mcostdetail FOREIGN KEY (c_projectissue_id) REFERENCES c_projectissue (c_projectissue_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT masi_mcostdetail FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mcostelement_mcostdetail FOREIGN KEY (m_costelement_id) REFERENCES m_costelement (m_costelement_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mcosttype_mcostdetail FOREIGN KEY (m_costtype_id) REFERENCES m_costtype (m_costtype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT minoutline_mcostdetail FOREIGN KEY (m_inoutline_id) REFERENCES m_inoutline (m_inoutline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT minventoryline_mcostdetail FOREIGN KEY (m_inventoryline_id) REFERENCES m_inventoryline (m_inventoryline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT minvoiceline_mcostdetail FOREIGN KEY (c_invoiceline_id) REFERENCES c_invoiceline (c_invoiceline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mmovementline_mcostdetail FOREIGN KEY (m_movementline_id) REFERENCES m_movementline (m_movementline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproductionline_mcostdetail FOREIGN KEY (m_productionline_id) REFERENCES m_productionline (m_productionline_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mproduct_mcostdetail FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT mwarehouse_mcostdetail FOREIGN KEY (m_warehouse_id) REFERENCES m_warehouse (m_warehouse_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
+CONSTRAINT ppcostcollector_mcostdetail FOREIGN KEY (pp_cost_collector_id) REFERENCES pp_cost_collector (pp_cost_collector_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
+CREATE TABLE M_Costqueue(
+
+m_costqueue_id integer NOT NULL ,
+ad_client_id integer NOT NULL ,
+ad_org_id integer NOT NULL ,
+isactive character(1) NOT NULL DEFAULT 'Y'::bpchar ,
+created timestamp without time zone NOT NULL DEFAULT now() ,
+createdby integer NOT NULL ,
+updated timestamp without time zone NOT NULL DEFAULT now() ,
+updatedby integer NOT NULL ,
+m_costtype_id integer NOT NULL ,
+c_acctschema_id integer NOT NULL ,
+m_product_id integer NOT NULL ,
+m_attributesetinstance_id integer NOT NULL ,
+m_costelement_id integer NOT NULL ,
+currentcostprice numeric NOT NULL DEFAULT 0 ,
+currentqty numeric NOT NULL DEFAULT 0 ,
+dateacct timestamp without time zone ,
+CONSTRAINT m_costqueue_pkey PRIMARY KEY (m_costqueue_id) ,
+CONSTRAINT cacctschema_mcostqueue FOREIGN KEY (c_acctschema_id) REFERENCES c_acctschema (c_acctschema_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
+CONSTRAINT masi_mcostqueue FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
+CONSTRAINT mcostelement_mcostqueue FOREIGN KEY (m_costelement_id) REFERENCES m_costelement (m_costelement_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
+CONSTRAINT mcosttype_mcostqueue FOREIGN KEY (m_costtype_id) REFERENCES m_costtype (m_costtype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
+CONSTRAINT mproduct_mcostqueue FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
+
 ----------------------------------------------------------------------
 ---------- Nuevas columnas en tablas y/o vistas 
 ----------------------------------------------------------------------
@@ -735,12 +899,40 @@ ALTER TABLE M_Requisition ADD COLUMN DateDoc timestamp without time zone;
 ALTER TABLE S_Resource ADD COLUMN PlanningHorizon numeric(10);
 ALTER TABLE M_ForecastLine ADD COLUMN M_Warehouse_ID integer;
 ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
+ALTER TABLE M_Cost ADD COLUMN CumulatedAmt numeric;
+ALTER TABLE M_Cost ADD COLUMN CumulatedQty numeric;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_InOutLine_ID integer;
+ALTER TABLE M_CostElement ADD COLUMN IsDefault character(1);
+ALTER TABLE M_Cost ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_Cost ADD COLUMN CurrentCostPriceLL numeric;
+ALTER TABLE C_AcctSchema ADD COLUMN costinglevel character(1);
+ALTER TABLE M_Product_Category_Acct ADD COLUMN costinglevel character(1);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_CostElement_ID integer;
+ALTER TABLE M_Cost ADD COLUMN iscostfrozen character(1);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN IsActive character(1);
+ALTER TABLE M_Cost ADD COLUMN Percent numeric(10);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN base numeric;
+ALTER TABLE M_Cost ADD COLUMN cumulatedamtll numeric;
+ALTER TABLE C_AcctSchema ADD COLUMN isexplicitcostadjustment character(1);
+ALTER TABLE M_Cost ADD COLUMN CurrentQty numeric;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_MatchPO ADD COLUMN Description character varying(255);
+ALTER TABLE M_Cost ADD COLUMN M_Warehouse_ID integer;
+ALTER TABLE M_Cost ADD COLUMN futurecostpricell numeric;
+ALTER TABLE M_CostType ADD COLUMN CostingMethod character(1);
+ALTER TABLE C_OrderLine ADD COLUMN PP_Cost_Collector_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN C_Landedcostallocation_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN C_InvoiceLine_ID integer;
+ALTER TABLE M_MatchPO ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_Transaction ADD COLUMN PP_Cost_Collector_ID integer;
+
 ----------------------------------------------------------------------
 ---------- Modificación de tablas y/o vistas
 ----------------------------------------------------------------------
 
 ALTER TABLE M_ForecastLine ALTER COLUMN DatePromised TYPE timestamp without time zone;
 ALTER TABLE S_Resource ALTER COLUMN PlanningHorizon TYPE numeric(10);
+ALTER TABLE M_CostType ALTER COLUMN CostingMethod TYPE character(1);
 
 
 ----------------------------------------------------------------------

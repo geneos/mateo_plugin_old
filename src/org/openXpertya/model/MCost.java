@@ -1,4 +1,4 @@
-package ar.com.geneos.mrp.plugin.model;
+package org.openXpertya.model;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -29,6 +29,11 @@ import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
 import org.openXpertya.util.Trx;
 
+import ar.com.geneos.mrp.plugin.model.IDocumentLine;
+import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
+import ar.com.geneos.mrp.plugin.model.LP_M_Cost;
+import ar.com.geneos.mrp.plugin.model.LP_M_CostType;
+import ar.com.geneos.mrp.plugin.model.MCostQueue;
 import ar.com.geneos.mrp.plugin.tool.engine.CostComponent;
 import ar.com.geneos.mrp.plugin.tool.engine.CostDimension;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;

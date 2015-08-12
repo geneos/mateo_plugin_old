@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MCostElement;
 import org.openXpertya.model.MCostType;
 import org.openXpertya.model.MProduct;
@@ -19,7 +20,6 @@ import org.openXpertya.util.Env;
 import ar.com.geneos.mrp.plugin.model.IDocumentLine;
 import ar.com.geneos.mrp.plugin.model.LP_M_CostElement;
 import ar.com.geneos.mrp.plugin.model.LP_M_Transaction;
-import ar.com.geneos.mrp.plugin.model.MCost;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.model.MCostQueue;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;

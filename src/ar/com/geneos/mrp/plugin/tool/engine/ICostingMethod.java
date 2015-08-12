@@ -19,10 +19,10 @@ package ar.com.geneos.mrp.plugin.tool.engine;
 import java.math.BigDecimal;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MTransaction;
 
 import ar.com.geneos.mrp.plugin.model.IDocumentLine;
-import ar.com.geneos.mrp.plugin.model.MCost;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 
 /**

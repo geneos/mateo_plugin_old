@@ -26,6 +26,7 @@ import java.util.Properties;
 
 import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MClient;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MCostElement;
 import org.openXpertya.model.MCostType;
 import org.openXpertya.model.MDocType;
@@ -72,7 +73,6 @@ import ar.com.geneos.mrp.plugin.model.LP_M_MovementLine;
 import ar.com.geneos.mrp.plugin.model.LP_M_Transaction;
 import ar.com.geneos.mrp.plugin.model.LP_PP_Cost_Collector;
 import ar.com.geneos.mrp.plugin.model.LP_PP_Order;
-import ar.com.geneos.mrp.plugin.model.MCost;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
