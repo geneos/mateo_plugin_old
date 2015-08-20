@@ -417,7 +417,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 	 * @return recorded Qty Usage Variance so far
 	 */
 	public BigDecimal getQtyVariance() {
-		final String whereClause = LP_PP_Cost_Collector.COLUMNNAME_PP_Order_Bomline_ID + "=?" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_PP_Order_ID + "=?"
+		final String whereClause = LP_PP_Cost_Collector.COLUMNNAME_PP_Order_BOMLine_ID + "=?" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_PP_Order_ID + "=?"
 				+ " AND " + LP_PP_Cost_Collector.COLUMNNAME_DocStatus + " IN (?,?)" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_costcollectortype + "=?";
 		BigDecimal qtyUsageVariance = new Query(getCtx(), LP_PP_Cost_Collector.Table_Name, whereClause, get_TrxName()).setParameters(
 				new Object[] { getPP_Order_BOMLine_ID(), getPP_Order_ID(), MPPCostCollector.STATUS_Completed, MPPCostCollector.STATUS_Closed,
@@ -430,7 +430,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 	 * @return recorded Qty Method Change Variance so far
 	 */
 	public BigDecimal getQtyMethodChangeVariance() {
-		final String whereClause = LP_PP_Cost_Collector.COLUMNNAME_PP_Order_Bomline_ID + "=?" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_PP_Order_ID + "=?"
+		final String whereClause = LP_PP_Cost_Collector.COLUMNNAME_PP_Order_BOMLine_ID + "=?" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_PP_Order_ID + "=?"
 				+ " AND " + LP_PP_Cost_Collector.COLUMNNAME_DocStatus + " IN (?,?)" + " AND " + LP_PP_Cost_Collector.COLUMNNAME_costcollectortype + "=?";
 		BigDecimal qtyMethodChangeVariance = new Query(getCtx(), LP_PP_Cost_Collector.Table_Name, whereClause, get_TrxName()).setParameters(
 				new Object[] { getPP_Order_BOMLine_ID(), getPP_Order_ID(), MPPCostCollector.STATUS_Completed, MPPCostCollector.STATUS_Closed,

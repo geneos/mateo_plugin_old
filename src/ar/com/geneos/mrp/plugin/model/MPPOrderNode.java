@@ -512,8 +512,8 @@ public class MPPOrderNode extends LP_PP_Order_Node
 		final String sql = "SELECT MAX("+MPPCostCollector.COLUMNNAME_MovementDate+")"
 					+" FROM "+MPPCostCollector.Table_Name
 					+" WHERE "+MPPCostCollector.COLUMNNAME_PP_Order_Node_ID+"="+getID()
-						+" AND "+MPPCostCollector.COLUMNNAME_DocStatus+" IN ("+DOCSTATUS_InProgress+","+DOCSTATUS_Completed+","+DOCSTATUS_Closed+")"
-						+" AND "+MPPCostCollector.COLUMNNAME_costcollectortype+"="+MPPCostCollector.COSTCOLLECTORTYPE_ActivityControl;
+						+" AND "+MPPCostCollector.COLUMNNAME_DocStatus+" IN ('"+DOCSTATUS_InProgress+"','"+DOCSTATUS_Completed+"','"+DOCSTATUS_Closed+"')"
+						+" AND "+MPPCostCollector.COLUMNNAME_costcollectortype+"='"+MPPCostCollector.COSTCOLLECTORTYPE_ActivityControl+"'";
 		;
 		
 		Timestamp dateFinish = DB.getSQLValueTimestamp(get_TrxName(), sql);

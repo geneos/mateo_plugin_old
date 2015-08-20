@@ -288,7 +288,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		super.setProcessed(processed);
 		if (getID() == 0)
 			return;
-		final String sql = "UPDATE PP_Cost_Collector SET Processed='" + processed + "' WHERE PP_Cost_Collector_ID=" + getID();
+		char value = processed ? 'Y' : 'N';
+		final String sql = "UPDATE PP_Cost_Collector SET Processed='" + value + "' WHERE PP_Cost_Collector_ID=" + getID();
 		int noLine = 0;
 		try {
 			noLine = DB.executeUpdateEx(sql, get_TrxName());
@@ -352,7 +353,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 
 		MDocType dt = MDocType.get(getCtx(), getC_DocTypeTarget_ID());
 
-		if (MPeriod.isOpen(getCtx(), getDateAcct(), dt.getDocBaseType())) {
+		if (!MPeriod.isOpen(getCtx(), getDateAcct(), dt.getDocBaseType())) {
 			throw new IllegalStateException("Period Close Exception " + dt.getDocBaseType() + " - " + getDateAcct());
 		}
 
@@ -685,7 +686,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		//
 		if (isIssue()) {
 			if (getPP_Order_Bomline_ID() <= 0) {
-				throw new IllegalStateException("Fill Mandatory Exception" + COLUMNNAME_PP_Order_Bomline_ID);
+				throw new IllegalStateException("Fill Mandatory Exception" + COLUMNNAME_PP_Order_BOMLine_ID);
 			}
 			// If no UOM, use the UOM from BOMLine
 			if (getC_UOM_ID() <= 0) {

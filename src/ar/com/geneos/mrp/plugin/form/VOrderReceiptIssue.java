@@ -84,6 +84,7 @@ import org.openXpertya.util.Trx;
 import org.openXpertya.util.TrxRunnable;
 
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
+import ar.com.geneos.mrp.plugin.util.MUColumnNames;
 import ar.com.geneos.mrp.plugin.util.MUMColumn;
 import ar.com.geneos.mrp.plugin.util.MUMTab;
 import ar.com.geneos.mrp.plugin.util.MUMWindow;
@@ -150,7 +151,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	private VLookup uomorderField = null;
 	private CLabel locatorLabel = new CLabel(Msg.translate(Env.getCtx(), "M_Locator_ID"));
 	private VLocator locatorField = null;
-	private CLabel labelcombo = new CLabel(Msg.translate(Env.getCtx(), "DeliveryRule"));
+	private CLabel labelcombo = new CLabel(Msg.translate(Env.getCtx(), "PPDeliveryRule"));
 	private VComboBox pickcombo = new VComboBox();
 	private CLabel QtyBatchsLabel = new CLabel();
 	private VNumber qtyBatchsField = new VNumber("QtyBatchs", false, false, false, DisplayType.Quantity, "QtyBatchs");
@@ -232,11 +233,11 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		 * Libero to Libertya migration
 		 * Missing arg from Libero (boolean searchOnly)
 		 */
-		attribute = new VPAttribute(false, false, true, m_WindowNo, attributeL);
+		attribute = new VPAttribute(false, false, true, m_WindowNo, attributeL, 0, MUColumnNames.COLUMNNAME_M_AttributeSetInstance_ID);
 		
 		attribute.setValue(0);
 		// Tab, Window
-		int m_Window = MUMWindow.getWindow_ID("Manufacturing Order");
+		int m_Window = MUMWindow.getWindow_ID("Orden de Manufactura");
 											 //(ctx , m_WindowNo , 1000031 , 1000013, false, false, false);
 		MFieldVO vo = MFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, /*MUMTab.getTab_ID(m_Window, "Order"),*/ false, false, false);
 		// M_AttributeSetInstance_ID

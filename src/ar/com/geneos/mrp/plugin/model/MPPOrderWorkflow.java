@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
+
 //import org.adempiere.exceptions.AdempiereException;
 import org.openXpertya.model.MClient;
 import org.openXpertya.model.MDocType;
@@ -628,7 +629,7 @@ public class MPPOrderWorkflow extends LP_PP_Order_Workflow {
 						node.getS_Resource_ID(), // S_Resource_ID
 						0, // PP_Order_BOMLine_ID
 						node.getID(), // PP_Order_Node_ID
-						MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID,
+						MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
 						MPPCostCollector.COSTCOLLECTORTYPE_ActivityControl, // Activity
 																			// Control
 						movementDate, // MovementDate

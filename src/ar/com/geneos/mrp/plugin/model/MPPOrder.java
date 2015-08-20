@@ -367,7 +367,8 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		// Update DB:
 		if (getID() <= 0)
 			return;
-		final String sql = "UPDATE PP_Order SET Processed='" + processed + "' WHERE PP_Order_ID=?";
+		char value = processed ? 'Y' : 'N';
+		final String sql = "UPDATE PP_Order SET Processed='" + value + "' WHERE PP_Order_ID="+getID();
 		DB.executeUpdate(sql, get_TrxName());
 	} // setProcessed
 
@@ -403,8 +404,10 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 		// Order Stock
 		// Solo actualizo si la orden esta en proceso o en estado completo
-		if ((MPPOrder.DOCSTATUS_InProgress.equals(getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getDocStatus()))
-				&& (is_ValueChanged(MPPOrder.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrder.COLUMNNAME_QtyOrdered))) {
+		if ( (MPPOrder.DOCSTATUS_InProgress.equals(getDocStatus()) || MPPOrder.DOCSTATUS_Completed.equals(getDocStatus()) )
+				&& 
+			( is_ValueChanged(MPPOrder.COLUMNNAME_QtyDelivered) || is_ValueChanged(MPPOrder.COLUMNNAME_QtyOrdered) ) ) {
+			
 			try {
 				orderStock();
 			} catch (Exception e) {
@@ -611,13 +614,13 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		// Necessary to clear order quantities when called from closeIt -
 		// 4Layers
 		if (ACTION_Close.equals(getDocAction())) {
-			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), getM_AttributeSetInstance_ID(),
+			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), 0, //Reserved and Ordered always on AttributeSetInstance 0
 					Env.ZERO, Env.ZERO, ordered, get_TrxName())) {
 				throw new RuntimeException("MPPOrder.orderStock -> MStorage: Update storage Fail");
 			}
 		} else {
 			// Update Storage
-			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), getM_AttributeSetInstance_ID(),
+			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), 0, //Reserved and Ordered on AttributeSetInstance 0
 					Env.ZERO, Env.ZERO, ordered, get_TrxName())) {
 				throw new RuntimeException("MPPOrder.orderStock -> MStorage: Update storage Fail");
 			}
@@ -1147,7 +1150,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					order.getS_Resource_ID(), // S_Resource_ID
 					0, // PP_Order_BOMLine_ID
 					0, // PP_Order_Node_ID
-					MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID
+					MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID
 					MPPCostCollector.COSTCOLLECTORTYPE_MaterialReceipt, // Production
 																		// "+"
 					movementDate, // MovementDate
@@ -1236,7 +1239,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					order.getS_Resource_ID(), // S_Resource_ID
 					PP_OrderBOMLine_ID, // PP_Order_BOMLine_ID
 					0, // PP_Order_Node_ID
-					MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID,
+					MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
 					MPPCostCollector.COSTCOLLECTORTYPE_ComponentIssue, // Production
 																		// "-"
 					movementdate, // MovementDate
@@ -1376,7 +1379,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				if (activity.isSubcontracting() || activity.getID() == getMPPOrderWorkflow().getPP_Order_Node_ID()) {
 					MPPCostCollector cc = MPPCostCollector.createCollector(this, getM_Product_ID(), getM_Locator_ID(), getM_AttributeSetInstance_ID(),
 							getS_Resource_ID(), 0, activity.getPP_Order_Node_ID(),
-							MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(),
+							MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(),
 							MPPCostCollector.COSTCOLLECTORTYPE_ActivityControl, getUpdated(), activity.getQtyToDeliver(), Env.ZERO, Env.ZERO, 0, Env.ZERO);
 				}
 			}
@@ -1504,7 +1507,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		//
 		MPPCostCollector.createCollector(order, line.getM_Product_ID(), M_Locator_ID, line.getM_AttributeSetInstance_ID(), order.getS_Resource_ID(),
 				line.getPP_Order_BOMLine_ID(), 0, // PP_Order_Node_ID,
-				MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID,
+				MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
 				MPPCostCollector.COSTCOLLECTORTYPE_UsegeVariance, movementDate, qtyUsageVariance, // Qty
 				Env.ZERO, // scrap,
 				Env.ZERO, // reject,
@@ -1553,7 +1556,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		//
 		MPPCostCollector cc = MPPCostCollector.createCollector(order, line.getM_Product_ID(), M_Locator_ID, line.getM_AttributeSetInstance_ID(),
 				order.getS_Resource_ID(), line.getPP_Order_BOMLine_ID(), 0, // PP_Order_Node_ID,
-				MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID,
+				MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
 				MPPCostCollector.COSTCOLLECTORTYPE_MethodChangeVariance, movementDate, qtyMethodChangeVariance, // Qty
 				Env.ZERO, // scrap,
 				Env.ZERO, // reject,
@@ -1590,7 +1593,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		//
 		MPPCostCollector.createCollector(order, order.getM_Product_ID(), order.getM_Locator_ID(), order.getM_AttributeSetInstance_ID(),
 				node.getS_Resource_ID(), 0, // PP_Order_BOMLine_ID
-				node.getPP_Order_Node_ID(), MDocType.getDocType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector, null).getID(), // C_DocType_ID
+				node.getPP_Order_Node_ID(), MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID
 				MPPCostCollector.COSTCOLLECTORTYPE_UsegeVariance, movementDate, qtyOpen, // Qty
 				Env.ZERO, // scrap,
 				Env.ZERO, // reject,

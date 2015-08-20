@@ -26,8 +26,10 @@ import org.openXpertya.model.MAttributeSetInstance;
 import org.openXpertya.model.MClient;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MStorage;
+import org.openXpertya.model.MTable;
 import org.openXpertya.model.MTransaction;
 import org.openXpertya.model.MWarehouse;
+import org.openXpertya.model.M_Table;
 import org.openXpertya.model.PO;
 import org.openXpertya.model.Query;
 import org.openXpertya.util.CLogger;
@@ -230,17 +232,14 @@ public class StorageEngine {
 		final String tableName = getTableNameMA(model);
 		final String trxName = model.get_TrxName();
 
-		// IInventoryAllocation ma = (IInventoryAllocation)MTable.get(ctx,
-		// tableName).getPO(0, trxName);
+		IInventoryAllocation ma = (IInventoryAllocation)M_Table.get(ctx,
+		tableName).getPO(0, trxName);
 
 		/*
 		 * Migración Libero Verificar
 		 * 
 		 * @autor pepo
 		 */
-
-		MAttributeSetInstance masi = new MAttributeSetInstance(ctx, M_AttributeSetInstance_ID, trxName);
-		IInventoryAllocation ma = (IInventoryAllocation) masi;
 
 		ma.setAD_Org_ID(model.getAD_Org_ID());
 		setReferenceLine_ID((PO) ma, model);
