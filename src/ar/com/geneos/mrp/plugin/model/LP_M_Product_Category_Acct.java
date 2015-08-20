@@ -43,22 +43,22 @@ public class LP_M_Product_Category_Acct extends org.openXpertya.model.MProductCa
 	/** Warehouse = W */
 	public static final String COSTINGLEVEL_Warehouse = "W";
 	/** Set costinglevel */
-	public static final String COLUMNNAME_costinglevel = "costinglevel";
+	public static final String COLUMNNAME_CostingLevel = "CostingLevel";
 
-	public void setCostingLevel(String costinglevel) {
-		if (costinglevel == null || costinglevel.equals("B") || costinglevel.equals("C") || costinglevel.equals("O") || costinglevel.equals("W"))
+	public void setCostingLevel(String CostingLevel) {
+		if (CostingLevel == null || CostingLevel.equals("B") || CostingLevel.equals("C") || CostingLevel.equals("O") || CostingLevel.equals("W"))
 			;
 		else
 			throw new IllegalArgumentException("costinglevel Invalid value - Reference = COSTINGLEVEL_AD_Reference_ID - B - C - O - W");
-		if (costinglevel != null && costinglevel.length() > 1) {
+		if (CostingLevel != null && CostingLevel.length() > 1) {
 			log.warning("Length > 1 - truncated");
-			costinglevel = costinglevel.substring(0, 1);
+			CostingLevel = CostingLevel.substring(0, 1);
 		}
-		set_Value("costinglevel", costinglevel);
+		set_Value("CostingLevel", CostingLevel);
 	}
 
 	/** Get costinglevel */
 	public String getCostingLevel() {
-		return (String) get_Value("costinglevel");
+		return (String) get_Value("CostingLevel");
 	}
 }

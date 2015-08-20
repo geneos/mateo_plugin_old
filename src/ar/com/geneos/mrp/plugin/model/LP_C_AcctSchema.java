@@ -44,37 +44,37 @@ public class LP_C_AcctSchema extends org.openXpertya.model.MAcctSchema {
 	/** Warehouse = W */
 	public static final String COSTINGLEVEL_Warehouse = "W";
 	/** Set costinglevel */
-	public static final String COLUMNNAME_costinglevel = "costinglevel";
+	public static final String COLUMNNAME_CostingLevel = "CostingLevel";
 
-	public void setCostingLevel(String costinglevel) {
-		if (costinglevel.equals("B") || costinglevel.equals("C") || costinglevel.equals("O") || costinglevel.equals("W"))
+	public void setCostingLevel(String CostingLevel) {
+		if (CostingLevel.equals("B") || CostingLevel.equals("C") || CostingLevel.equals("O") || CostingLevel.equals("W"))
 			;
 		else
 			throw new IllegalArgumentException("costinglevel Invalid value - Reference = COSTINGLEVEL_AD_Reference_ID - B - C - O - W");
-		if (costinglevel == null)
+		if (CostingLevel == null)
 			throw new IllegalArgumentException("costinglevel is mandatory");
-		if (costinglevel.length() > 1) {
+		if (CostingLevel.length() > 1) {
 			log.warning("Length > 1 - truncated");
-			costinglevel = costinglevel.substring(0, 1);
+			CostingLevel = CostingLevel.substring(0, 1);
 		}
-		set_Value("costinglevel", costinglevel);
+		set_Value("CostingLevel", CostingLevel);
 	}
 
 	/** Get costinglevel */
 	public String getCostingLevel() {
-		return (String) get_Value("costinglevel");
+		return (String) get_Value("CostingLevel");
 	}
 
 	/** Set isexplicitcostadjustment */
-	public static final String COLUMNNAME_isexplicitcostadjustment = "isexplicitcostadjustment";
+	public static final String COLUMNNAME_IsExplicitCostAdjustment = "IsExplicitCostAdjustment";
 
-	public void setIsExplicitCostAdjustment(boolean isexplicitcostadjustment) {
-		set_Value("isexplicitcostadjustment", new Boolean(isexplicitcostadjustment));
+	public void setIsExplicitCostAdjustment(boolean IsExplicitCostAdjustment) {
+		set_Value("IsExplicitCostAdjustment", new Boolean(IsExplicitCostAdjustment));
 	}
 
 	/** Get isexplicitcostadjustment */
 	public boolean isExplicitCostAdjustment() {
-		Object oo = get_Value("isexplicitcostadjustment");
+		Object oo = get_Value("IsExplicitCostAdjustment");
 		if (oo != null) {
 			if (oo instanceof Boolean)
 				return ((Boolean) oo).booleanValue();

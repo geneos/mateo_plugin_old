@@ -744,7 +744,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	 * @return true if entire Qty is available for this Order
 	 */
 	public boolean isAvailable() {
-		String whereClause = "QtyRequired >= QtyAvailable AND iscritical = 'Y' AND PP_Order_ID=?";
+		String whereClause = "QtyRequired > QtyAvailable AND iscritical = 'Y' AND PP_Order_ID=?";
 		boolean available = new Query(getCtx(), "RV_PP_Order_Storage", whereClause, get_TrxName()).setParameters(new Object[] { getID() }).match();
 		return !available;
 	}

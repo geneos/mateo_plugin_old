@@ -36,107 +36,107 @@ public class LP_M_Cost extends org.openXpertya.model.X_M_Cost {
 	}
 
 	/** Set cumulatedamt */
-	public static final String COLUMNNAME_cumulatedamt = "cumulatedamt";
+	public static final String COLUMNNAME_CumulatedAmt = "CumulatedAmt";
 
 	public void setCumulatedAmt(BigDecimal cumulatedamt) {
-		set_Value("cumulatedamt", cumulatedamt);
+		set_Value("CumulatedAmt", cumulatedamt);
 	}
 
 	/** Get cumulatedamt */
 	public BigDecimal getCumulatedAmt() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedamt");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedAmt");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set cumulatedamtll */
-	public static final String COLUMNNAME_cumulatedamtll = "cumulatedamtll";
+	public static final String COLUMNNAME_CumulatedAmtLL = "CumulatedAmtLL";
 
-	public void setCumulatedAmtLL(BigDecimal cumulatedamtll) {
-		set_Value("cumulatedamtll", cumulatedamtll);
+	public void setCumulatedAmtLL(BigDecimal CumulatedAmtLL) {
+		set_Value("CumulatedAmtLL", CumulatedAmtLL);
 	}
 
 	/** Get cumulatedamtll */
 	public BigDecimal getCumulatedAmtLL() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedamtll");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedAmtLL");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set cumulatedqty */
-	public static final String COLUMNNAME_cumulatedqty = "cumulatedqty";
+	public static final String COLUMNNAME_CumulatedQty = "CumulatedQty";
 
 	public void setCumulatedQty(BigDecimal cumulatedqty) {
-		set_Value("cumulatedqty", cumulatedqty);
+		set_Value("CumulatedQty", cumulatedqty);
 	}
 
 	/** Get cumulatedqty */
 	public BigDecimal getCumulatedQty() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedqty");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedQty");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set currentcostpricell */
-	public static final String COLUMNNAME_currentcostpricell = "currentcostpricell";
+	public static final String COLUMNNAME_CurrentCostPriceLL = "CurrentCostPriceLL";
 
-	public void setCurrentCostPriceLL(BigDecimal currentcostpricell) {
-		set_Value("currentcostpricell", currentcostpricell);
+	public void setCurrentCostPriceLL(BigDecimal CurrentCostPriceLL) {
+		set_Value("CurrentCostPriceLL", CurrentCostPriceLL);
 	}
 
 	/** Get currentcostpricell */
 	public BigDecimal getCurrentCostPriceLL() {
-		BigDecimal bd = (BigDecimal) get_Value("currentcostpricell");
+		BigDecimal bd = (BigDecimal) get_Value("CurrentCostPriceLL");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set currentqty */
-	public static final String COLUMNNAME_currentqty = "currentqty";
+	public static final String COLUMNNAME_CurrentQty = "CurrentQty";
 
 	public void setCurrentQty(BigDecimal currentqty) {
 		if (currentqty == null)
 			throw new IllegalArgumentException("currentqty is mandatory");
-		set_Value("currentqty", currentqty);
+		set_Value("CurrentQty", currentqty);
 	}
 
 	/** Get currentqty */
 	public BigDecimal getCurrentQty() {
-		BigDecimal bd = (BigDecimal) get_Value("currentqty");
+		BigDecimal bd = (BigDecimal) get_Value("CurrentQty");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set futurecostpricell */
-	public static final String COLUMNNAME_futurecostpricell = "futurecostpricell";
+	public static final String COLUMNNAME_FutureCostPriceLL = "FutureCostPriceLL";
 
-	public void setFutureCostPriceLL(BigDecimal futurecostpricell) {
-		set_Value("futurecostpricell", futurecostpricell);
+	public void setFutureCostPriceLL(BigDecimal FutureCostPriceLL) {
+		set_Value("FutureCostPriceLL", FutureCostPriceLL);
 	}
 
 	/** Get futurecostpricell */
 	public BigDecimal getFutureCostPriceLL() {
-		BigDecimal bd = (BigDecimal) get_Value("futurecostpricell");
+		BigDecimal bd = (BigDecimal) get_Value("FutureCostPriceLL");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set iscostfrozen */
-	public static final String COLUMNNAME_iscostfrozen = "iscostfrozen";
+	public static final String COLUMNNAME_IsCostFrozen = "IsCostFrozen";
 
-	public void setIsCostFrozen(boolean iscostfrozen) {
-		set_Value("iscostfrozen", new Boolean(iscostfrozen));
+	public void setIsCostFrozen(boolean IsCostFrozen) {
+		set_Value("IsCostFrozen", new Boolean(IsCostFrozen));
 	}
 
 	/** Get iscostfrozen */
 	public boolean isCostFrozen() {
-		Object oo = get_Value("iscostfrozen");
+		Object oo = get_Value("IsCostFrozen");
 		if (oo != null) {
 			if (oo instanceof Boolean)
 				return ((Boolean) oo).booleanValue();
