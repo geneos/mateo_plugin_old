@@ -885,47 +885,103 @@ CONSTRAINT mcostelement_mcostqueue FOREIGN KEY (m_costelement_id) REFERENCES m_c
 CONSTRAINT mcosttype_mcostqueue FOREIGN KEY (m_costtype_id) REFERENCES m_costtype (m_costtype_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
 CONSTRAINT mproduct_mcostqueue FOREIGN KEY (m_product_id) REFERENCES m_product (m_product_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
 
+CREATE OR REPLACE VIEW libertya.rv_pp_order_storage AS 
+ SELECT obl.ad_client_id, obl.ad_org_id, obl.createdby, obl.updatedby, obl.updated, obl.created, obl.isactive, obl.pp_order_bom_id, obl.pp_order_bomline_id, obl.pp_order_id, obl.iscritical, obl.m_product_id, ( SELECT p.name
+           FROM libertya.m_product p
+          WHERE p.m_product_id = o.m_product_id) AS name, obl.c_uom_id, s.qtyonhand, round(obl.qtyrequired, 4) AS qtyrequired, 
+        CASE
+            WHEN o.qtybatchs = 0::numeric THEN 1::numeric
+            ELSE round(obl.qtyrequired / o.qtybatchs, 4)
+        END AS qtybatchsize, round(libertya.bomqtyreserved(obl.m_product_id::numeric, obl.m_warehouse_id::numeric, 0::numeric), 4) AS qtyreserved, round(libertya.bomqtyavailable(obl.m_product_id::numeric, obl.m_warehouse_id::numeric, 0::numeric), 4) AS qtyavailable, obl.m_warehouse_id, obl.qtybom, obl.isqtypercentage, round(obl.qtybatch, 4) AS qtybatch, obl.m_attributesetinstance_id, l.m_locator_id, l.x, l.y, l.z
+   FROM libertya.pp_order_bomline obl
+   JOIN libertya.pp_order o ON o.pp_order_id = obl.pp_order_id
+   LEFT JOIN libertya.m_storage s ON s.m_product_id = obl.m_product_id AND s.qtyonhand <> 0::numeric AND obl.m_warehouse_id = (( SELECT ld.m_warehouse_id
+   FROM libertya.m_locator ld
+  WHERE s.m_locator_id = ld.m_locator_id))
+   LEFT JOIN libertya.m_locator l ON l.m_locator_id = s.m_locator_id
+  ORDER BY obl.m_product_id;
+
+ALTER TABLE libertya.rv_pp_order_storage
+  OWNER TO libertya;
+
+CREATE TABLE libertya.pp_cost_collectorma
+(
+  ad_client_id integer NOT NULL,
+  ad_org_id integer NOT NULL,
+  created timestamp without time zone NOT NULL,
+  createdby integer NOT NULL,
+  isactive character(1) NOT NULL,
+  m_attributesetinstance_id integer NOT NULL,
+  movementqty numeric NOT NULL,
+  pp_cost_collectorma_id integer NOT NULL,
+  pp_cost_collector_id integer NOT NULL,
+  updated timestamp without time zone NOT NULL,
+  updatedby integer NOT NULL,
+  CONSTRAINT pp_cost_collectorma_pkey PRIMARY KEY (pp_cost_collectorma_id),
+  CONSTRAINT mattributesetinstance_ppcostma FOREIGN KEY (m_attributesetinstance_id)
+      REFERENCES libertya.m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED,
+  CONSTRAINT ppcostcollector_ppccma FOREIGN KEY (pp_cost_collector_id)
+      REFERENCES libertya.pp_cost_collector (pp_cost_collector_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED,
+  CONSTRAINT pp_ccma_isactive_check CHECK (isactive = ANY (ARRAY['Y'::bpchar, 'N'::bpchar])),
+  CONSTRAINT pp_cost_collectorma_isactive_check CHECK (isactive = ANY (ARRAY['Y'::bpchar, 'N'::bpchar]))
+);
+
+ALTER TABLE libertya.pp_cost_collectorma
+  OWNER TO libertya;
+
 ----------------------------------------------------------------------
 ---------- Nuevas columnas en tablas y/o vistas 
 ----------------------------------------------------------------------
 
+ALTER TABLE M_Product_Category_Acct ADD COLUMN CostingLevel character(1);
 ALTER TABLE M_RequisitionLine ADD COLUMN C_BPartner_ID integer;
-ALTER TABLE M_Requisition ADD COLUMN C_DocType_ID integer;
 ALTER TABLE M_ForecastLine ADD COLUMN DatePromised timestamp without time zone;
 ALTER TABLE M_RequisitionLine ADD COLUMN C_UOM_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_MatchPO ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_Cost ADD COLUMN CurrentCostPriceLL numeric;
+ALTER TABLE M_Cost ADD COLUMN CurrentQty numeric;
+ALTER TABLE M_MatchPO ADD COLUMN Description character varying(255);
+ALTER TABLE M_Requisition ADD COLUMN C_DocType_ID integer;
+ALTER TABLE M_ForecastLine ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN C_InvoiceLine_ID integer;
+ALTER TABLE M_Cost ADD COLUMN CumulatedAmtLL numeric;
 ALTER TABLE M_RequisitionLine ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_InOutLine_ID integer;
+ALTER TABLE M_Forecast ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE C_AcctSchema ADD COLUMN CostingLevel character(1);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN C_Landedcostallocation_ID integer;
 ALTER TABLE M_RequisitionLine ADD COLUMN C_Charge_ID integer;
+ALTER TABLE M_CostElement ADD COLUMN IsDefault character(1);
+ALTER TABLE M_Cost ADD COLUMN FutureCostPriceLL numeric;
 ALTER TABLE M_Requisition ADD COLUMN DateDoc timestamp without time zone;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN base numeric;
 ALTER TABLE S_Resource ADD COLUMN PlanningHorizon numeric(10);
 ALTER TABLE M_ForecastLine ADD COLUMN M_Warehouse_ID integer;
-ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
+ALTER TABLE M_Cost ADD COLUMN IsCostFrozen character(1);
 ALTER TABLE M_Cost ADD COLUMN CumulatedAmt numeric;
-ALTER TABLE M_Cost ADD COLUMN CumulatedQty numeric;
-ALTER TABLE C_LandedCostAllocation ADD COLUMN M_InOutLine_ID integer;
-ALTER TABLE M_CostElement ADD COLUMN IsDefault character(1);
-ALTER TABLE M_Cost ADD COLUMN M_AttributeSetInstance_ID integer;
-ALTER TABLE M_Cost ADD COLUMN CurrentCostPriceLL numeric;
-ALTER TABLE C_AcctSchema ADD COLUMN costinglevel character(1);
-ALTER TABLE M_Product_Category_Acct ADD COLUMN costinglevel character(1);
-ALTER TABLE C_LandedCostAllocation ADD COLUMN M_CostElement_ID integer;
-ALTER TABLE M_Cost ADD COLUMN iscostfrozen character(1);
-ALTER TABLE C_LandedCostAllocation ADD COLUMN IsActive character(1);
 ALTER TABLE M_Cost ADD COLUMN Percent numeric(10);
-ALTER TABLE C_LandedCostAllocation ADD COLUMN base numeric;
-ALTER TABLE M_Cost ADD COLUMN cumulatedamtll numeric;
-ALTER TABLE C_AcctSchema ADD COLUMN isexplicitcostadjustment character(1);
-ALTER TABLE M_Cost ADD COLUMN CurrentQty numeric;
-ALTER TABLE C_LandedCostAllocation ADD COLUMN M_AttributeSetInstance_ID integer;
-ALTER TABLE M_MatchPO ADD COLUMN Description character varying(255);
-ALTER TABLE M_Cost ADD COLUMN M_Warehouse_ID integer;
-ALTER TABLE M_Cost ADD COLUMN futurecostpricell numeric;
-ALTER TABLE M_CostType ADD COLUMN CostingMethod character(1);
+ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
+ALTER TABLE C_AcctSchema ADD COLUMN IsExplicitCostAdjustment character(1);
+ALTER TABLE M_Cost ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN IsActive character(1);
 ALTER TABLE C_OrderLine ADD COLUMN PP_Cost_Collector_ID integer;
-ALTER TABLE C_LandedCostAllocation ADD COLUMN C_Landedcostallocation_ID integer;
-ALTER TABLE C_LandedCostAllocation ADD COLUMN C_InvoiceLine_ID integer;
-ALTER TABLE M_MatchPO ADD COLUMN M_AttributeSetInstance_ID integer;
 ALTER TABLE M_Transaction ADD COLUMN PP_Cost_Collector_ID integer;
-
+ALTER TABLE M_Cost ADD COLUMN M_Warehouse_ID integer;
+ALTER TABLE C_LandedCostAllocation ADD COLUMN M_CostElement_ID integer;
+ALTER TABLE M_CostElement ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE M_CostType ADD COLUMN CostingMethod character(1);
+ALTER TABLE M_Cost ADD COLUMN CumulatedQty numeric;
+ALTER TABLE M_Cost ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE M_Costqueue ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE M_Costdetail ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE PP_Product_BOM ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE PP_Product_BOMLine ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE PP_WF_Node_Asset ADD COLUMN AD_ComponentObjectUID character varying(100);
+ALTER TABLE PP_WF_Node_Product ADD COLUMN AD_ComponentObjectUID character varying(100);
 ----------------------------------------------------------------------
 ---------- Modificación de tablas y/o vistas
 ----------------------------------------------------------------------
@@ -933,10 +989,13 @@ ALTER TABLE M_Transaction ADD COLUMN PP_Cost_Collector_ID integer;
 ALTER TABLE M_ForecastLine ALTER COLUMN DatePromised TYPE timestamp without time zone;
 ALTER TABLE S_Resource ALTER COLUMN PlanningHorizon TYPE numeric(10);
 ALTER TABLE M_CostType ALTER COLUMN CostingMethod TYPE character(1);
-
+ALTER TABLE M_Cost ALTER COLUMN M_AttributeSetInstance_ID DROP NOT NULL ;
+ALTER TABLE C_AcctSchema ALTER COLUMN CostingLevel TYPE character(1);
+ALTER TABLE M_Product_Category_Acct ALTER COLUMN CostingLevel TYPE character(1);;
+ALTER TABLE PP_Order_Cost ALTER COLUMN CostingMethod TYPE character(1);
 
 ----------------------------------------------------------------------
----------- Funciones (Agregar manualmente) ---------------------------
+---------- Funciones (Agregar manualmente al XML) --------------------
 ----------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION libertya.nextid(IN p_ad_sequence_id integer, IN p_system character varying, OUT o_nextid integer)
@@ -992,4 +1051,3 @@ $BODY$
   COST 100;
 ALTER FUNCTION libertya.nextidfunc(integer, character varying)
   OWNER TO libertya;
-
