@@ -316,31 +316,36 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 	}
 
 	public void setQtyOrdered(BigDecimal QtyOrdered) {
+		BigDecimal qty = explodeQty(QtyOrdered);
+		BigDecimal qtyrequired = qty;
+
+		if (isComponentType(COMPONENTTYPE_Component, COMPONENTTYPE_Phantom, COMPONENTTYPE_By_Product, COMPONENTTYPE_Co_Product)
+				&& (getM_Product().getC_UOM_ID() != getC_UOM_ID())) {
+			BigDecimal rate = MUOMConversion.getProductRateFrom(getCtx(), getM_Product_ID(), getC_UOM_ID());
+			qtyrequired = qty.multiply(rate);
+		}
+		setQtyRequired(qtyrequired);
+		setQtyEntered(qty);
+	}
+
+	public BigDecimal explodeQty(BigDecimal realQty) {
+
+		// Set Scrap of Component
+		BigDecimal qtyScrap = getScrap();
+		if (qtyScrap.signum() != 0)
+			qtyScrap = qtyScrap.divide(Env.ONEHUNDRED, 8, BigDecimal.ROUND_UP);
+
 		BigDecimal multiplier = getQtyMultiplier();
-		BigDecimal qty = QtyOrdered.multiply(multiplier).setScale(8, RoundingMode.UP);
+		BigDecimal qty = realQty.multiply(multiplier).setScale(8, RoundingMode.UP);
 
 		if (isComponentType(COMPONENTTYPE_Component, COMPONENTTYPE_Phantom, COMPONENTTYPE_By_Product, COMPONENTTYPE_Co_Product)) {
-			BigDecimal qtyrequired = qty;
-			if (getM_Product().getC_UOM_ID() != getC_UOM_ID()) {
-				BigDecimal rate = MUOMConversion.getProductRateFrom(getCtx(), getM_Product_ID(), getC_UOM_ID());
-				qtyrequired = qty.multiply(rate);
-			}
-			setQtyRequired(qtyrequired);
-			setQtyEntered(qty);
+			return qty.divide(Env.ONE.subtract(qtyScrap), 8, BigDecimal.ROUND_HALF_UP);
 		} else if (isComponentType(COMPONENTTYPE_Packing, COMPONENTTYPE_Tools)) {
-			setQtyRequired(multiplier);
-			setQtyEntered(multiplier);
+			return multiplier.divide(Env.ONE.subtract(qtyScrap), 8, BigDecimal.ROUND_HALF_UP);
 		} else {
 			throw new IllegalStateException("@NotSupported@ @ComponentType@ " + getComponentType());
 		}
-		//
-		// Set Scrap of Component
-		BigDecimal qtyScrap = getScrap();
-		if (qtyScrap.signum() != 0) {
-			qtyScrap = qtyScrap.divide(Env.ONEHUNDRED, 8, BigDecimal.ROUND_UP);
-			setQtyRequired(getQtyRequired().divide(Env.ONE.subtract(qtyScrap), 8, BigDecimal.ROUND_HALF_UP));
-			setQtyEntered(getQtyEntered().divide(Env.ONE.subtract(qtyScrap), 8, BigDecimal.ROUND_HALF_UP));
-		}
+
 	}
 
 	@Override
