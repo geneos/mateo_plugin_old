@@ -631,7 +631,7 @@
 </column>
 <column name="PlanningHorizon" type="11">
 <oldValue>null</oldValue>
-<newValue>0</newValue>
+<newValue>365</newValue>
 </column>
 <column name="QueuingTime" type="29">
 <oldValue>null</oldValue>
