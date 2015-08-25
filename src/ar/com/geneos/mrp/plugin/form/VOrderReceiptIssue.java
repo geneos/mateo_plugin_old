@@ -443,9 +443,11 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 
 			if (ADialog.ask(m_WindowNo, panel, "Update")) {
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				final boolean isCloseDocument = ADialog.ask(m_WindowNo, panel,
+				final boolean isCloseDocument = false;
+				/*Only close from Document
+				 * final boolean isCloseDocument = ADialog.ask(m_WindowNo, panel,
 						Msg.parseTranslation(Env.getCtx(), "@IsCloseDocument@ : " + getPP_Order().getDocumentNo()));
-
+				*/
 				if (cmd_process(isCloseDocument, issue)) {
 					dispose();
 					return;

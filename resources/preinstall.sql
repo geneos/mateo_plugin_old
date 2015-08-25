@@ -940,6 +940,7 @@ ALTER TABLE M_RequisitionLine ADD COLUMN C_BPartner_ID integer;
 ALTER TABLE M_ForecastLine ADD COLUMN DatePromised timestamp without time zone;
 ALTER TABLE M_RequisitionLine ADD COLUMN C_UOM_ID integer;
 ALTER TABLE C_LandedCostAllocation ADD COLUMN M_AttributeSetInstance_ID integer;
+ALTER TABLE M_Cost ADD COLUMN AD_ComponentObjectUID character varying(100);
 ALTER TABLE M_MatchPO ADD COLUMN M_AttributeSetInstance_ID integer;
 ALTER TABLE M_Cost ADD COLUMN CurrentCostPriceLL numeric;
 ALTER TABLE M_Cost ADD COLUMN CurrentQty numeric;
@@ -965,23 +966,18 @@ ALTER TABLE M_Cost ADD COLUMN CumulatedAmt numeric;
 ALTER TABLE M_Cost ADD COLUMN Percent numeric(10);
 ALTER TABLE M_ForecastLine ADD COLUMN SalesRep_ID integer;
 ALTER TABLE C_AcctSchema ADD COLUMN IsExplicitCostAdjustment character(1);
+ALTER TABLE M_Product_Category ADD COLUMN PP_Tolerance numeric(6,3);
 ALTER TABLE M_Cost ADD COLUMN M_AttributeSetInstance_ID integer;
 ALTER TABLE C_LandedCostAllocation ADD COLUMN IsActive character(1);
+ALTER TABLE C_LandedCostAllocation ADD COLUMN AD_ComponentObjectUID character varying(100);
 ALTER TABLE C_OrderLine ADD COLUMN PP_Cost_Collector_ID integer;
 ALTER TABLE M_Transaction ADD COLUMN PP_Cost_Collector_ID integer;
 ALTER TABLE M_Cost ADD COLUMN M_Warehouse_ID integer;
 ALTER TABLE C_LandedCostAllocation ADD COLUMN M_CostElement_ID integer;
 ALTER TABLE M_CostElement ADD COLUMN AD_ComponentObjectUID character varying(100);
 ALTER TABLE M_CostType ADD COLUMN CostingMethod character(1);
+ALTER TABLE M_Product ADD COLUMN PP_Tolerance numeric(6,3);
 ALTER TABLE M_Cost ADD COLUMN CumulatedQty numeric;
-ALTER TABLE M_Cost ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE M_Costqueue ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE C_LandedCostAllocation ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE M_Costdetail ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE PP_Product_BOM ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE PP_Product_BOMLine ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE PP_WF_Node_Asset ADD COLUMN AD_ComponentObjectUID character varying(100);
-ALTER TABLE PP_WF_Node_Product ADD COLUMN AD_ComponentObjectUID character varying(100);
 ----------------------------------------------------------------------
 ---------- Modificación de tablas y/o vistas
 ----------------------------------------------------------------------
@@ -991,7 +987,7 @@ ALTER TABLE S_Resource ALTER COLUMN PlanningHorizon TYPE numeric(10);
 ALTER TABLE M_CostType ALTER COLUMN CostingMethod TYPE character(1);
 ALTER TABLE M_Cost ALTER COLUMN M_AttributeSetInstance_ID DROP NOT NULL ;
 ALTER TABLE C_AcctSchema ALTER COLUMN CostingLevel TYPE character(1);
-ALTER TABLE M_Product_Category_Acct ALTER COLUMN CostingLevel TYPE character(1);;
+ALTER TABLE M_Product_Category_Acct ALTER COLUMN CostingLevel TYPE character(1);
 ALTER TABLE PP_Order_Cost ALTER COLUMN CostingMethod TYPE character(1);
 
 ----------------------------------------------------------------------

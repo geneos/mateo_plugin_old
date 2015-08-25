@@ -483,7 +483,9 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 				order.setQtyDelivered(order.getQtyDelivered().add(getMovementQty()));
 				order.setQtyScrap(order.getQtyScrap().add(getScrappedQty()));
 				order.setQtyReject(order.getQtyReject().add(getQtyReject()));
-				order.setQtyReserved(order.getQtyReserved().subtract(getMovementQty()));
+				
+				// QtyReserved Se actualiza en el afterSave -> orderStock de MPPOrder
+				//order.setQtyReserved(order.getQtyReserved().subtract(getMovementQty()));
 
 				//
 				// Update PP Order Dates

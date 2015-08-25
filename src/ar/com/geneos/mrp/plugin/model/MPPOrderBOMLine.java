@@ -522,7 +522,15 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		}
 		//
 		final BigDecimal target = getQtyRequired();
-		final BigDecimal difference = target.subtract(getQtyReserved()).subtract(getQtyDelivered());
+		BigDecimal difference = target.subtract(getQtyReserved()).subtract(getQtyDelivered());
+		
+		//Valido que la cantidad entregada reservada no quede negativa ni supere la cantidad original
+		if (getQtyReserved().add(difference).signum() == -1)
+			difference = getQtyReserved().negate();
+		
+		if (getQtyReserved().add(difference).compareTo(target) == 1)
+			difference = target.subtract(getQtyReserved());
+		
 		log.fine("Line=" + getLine() + " - Target=" + target + ",Difference=" + difference + " - Requiered=" + getQtyRequired() + ",Reserved="
 				+ getQtyReserved() + ",Delivered=" + getQtyDelivered());
 		if (difference.signum() == 0) {

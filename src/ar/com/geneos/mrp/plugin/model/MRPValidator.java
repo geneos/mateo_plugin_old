@@ -188,7 +188,8 @@ public class MRPValidator {
 			}
 			// Purchase Receipt
 			else {
-				for (MInOutLine line : inout.getLines()) {
+				MInOutLine[] lines = inout.getLines();
+				for (MInOutLine line : lines) {
 					final String whereClause = "C_OrderLine_ID=? AND PP_Cost_Collector_ID IS NOT NULL";
 					Collection<MOrderLine> olines = new Query(document.getCtx(), MOrderLine.Table_Name, whereClause, document.get_TrxName()).setParameters(
 							new Object[] { line.getC_OrderLine_ID() }).list();

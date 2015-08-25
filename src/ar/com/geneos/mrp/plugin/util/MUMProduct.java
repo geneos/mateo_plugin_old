@@ -1,5 +1,6 @@
 package ar.com.geneos.mrp.plugin.util;
 
+import java.math.BigDecimal;
 import java.util.Properties;
 
 import org.openXpertya.model.MAcctSchema;
@@ -14,6 +15,8 @@ import org.openXpertya.model.Query;
 import org.openXpertya.util.Env;
 
 import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
+import ar.com.geneos.mrp.plugin.model.LP_M_Product;
+import ar.com.geneos.mrp.plugin.model.LP_M_Product_Category;
 
 public class MUMProduct {
 
@@ -216,5 +219,27 @@ public class MUMProduct {
 			return M_AttributeSetInstance_ID;
 		else
 			return null;
+	}
+
+	public static BigDecimal getPP_Tolerance(MProduct mProduct) {
+		LP_M_Product auxProd = new LP_M_Product(mProduct.getCtx(),mProduct.getID(),mProduct.get_TrxName());
+		if (!auxProd.getPP_Tolerance().equals(Env.ZERO))
+			return auxProd.getPP_Tolerance();
+		LP_M_Product_Category auxCat = new LP_M_Product_Category(mProduct.getCtx(),mProduct.getM_Product_Category_ID(),mProduct.get_TrxName());
+		return auxCat.getPP_Tolerance();
+	}
+
+	public static String validateTolerance(int m_Product_ID, BigDecimal qtyReal, BigDecimal qtyExpected) {
+		String retValue = "";
+
+		BigDecimal tolerance = MUMProduct.getPP_Tolerance(MProduct.get(Env.getCtx(), m_Product_ID));
+		if (!tolerance.equals(Env.ZERO)) {
+			BigDecimal qtyUpperLimit = qtyExpected.multiply(Env.ONE.add(tolerance.divide(Env.ONEHUNDRED))).setScale(4, BigDecimal.ROUND_HALF_UP);
+			BigDecimal qtyLowerLimit = qtyExpected.multiply(Env.ONE.subtract(tolerance.divide(Env.ONEHUNDRED))).setScale(4, BigDecimal.ROUND_HALF_UP);
+			if (qtyReal.compareTo(qtyUpperLimit) == 1 || qtyReal.compareTo(qtyLowerLimit) == -1)
+				retValue+="@QtyDelivered@ debe estar entre "+qtyLowerLimit+" y "+qtyUpperLimit;
+		}
+		return retValue;
+		
 	}
 }

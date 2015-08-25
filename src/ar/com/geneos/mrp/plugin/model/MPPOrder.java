@@ -56,6 +56,8 @@ import org.openXpertya.wf.MWFNode;
 import org.openXpertya.wf.MWFNodeNext;
 import org.openXpertya.wf.MWorkflow;
 
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+
 import ar.com.geneos.mrp.plugin.exception.BOMExpiredException;
 import ar.com.geneos.mrp.plugin.exception.DocTypeNotFoundException;
 import ar.com.geneos.mrp.plugin.exception.RoutingExpiredException;
@@ -605,9 +607,27 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		}
 		BigDecimal target = getQtyOrdered();
 		BigDecimal difference = target.subtract(getQtyReserved()).subtract(getQtyDelivered());
+
 		if (difference.signum() == 0) {
 			return;
 		}
+		
+		/*
+		 * La cantidad reservada mantiene la cantidad que es necesaria recibir
+		 * Nunca puede ser negativa ni mayor a la cantidad ordenada 
+		 */
+		
+		//Ajuste para que el reservado no quede en negativo
+		if (getQtyReserved().add(difference).signum() == -1) {
+			difference = getQtyReserved().negate();
+		}
+		
+		//Ajuste para que el reservado no sea mayor que la cantidad ordenada
+		//Nunca deberia pasar ya que qtyDelivered debe ser mayor o igual que 0
+		if (getQtyReserved().add(difference).compareTo(target) == 1) {
+			difference = target.subtract(getQtyReserved());
+		}
+		
 		BigDecimal ordered = difference;
 
 		int M_Locator_ID = getM_Locator_ID(ordered);
@@ -828,6 +848,12 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			// for
 			// Translation
 		}
+		
+		String msgSatisfied = isSatisfied();
+		if (!msgSatisfied.isEmpty()) {
+			m_processMsg = msgSatisfied; 
+			return false; 
+		}
 
 		createVariances();
 
@@ -846,7 +872,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 		BigDecimal old = getQtyOrdered();
 		if (old.signum() != 0) {
-			addDescription(Msg.parseTranslation(getCtx(), "@closed@ @QtyOrdered@ : (" + old + ")"));
+			addDescription(Msg.parseTranslation(getCtx(), "@closed@ ( "+getUpdated()+" ), @QtyOrdered@ : (" + old + "), "+" @QtyDelivered@ : (" + getQtyDelivered() + ")"));
 			setQtyOrdered(getQtyDelivered());
 			save();
 		}
@@ -1298,6 +1324,27 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		return M_Locator_ID;
 	}
 
+	/**
+	 * @return Cadena vacia si la orden esta satisfecha
+	 * Mensaje de error si la cabecera o alguna de las lineas no satisfacen la tolerancia para el producto/categoria
+	 */
+	public String isSatisfied() {
+		String retValue = "";
+		
+		// Cabecera
+		String msgHeader = MUMProduct.validateTolerance(getM_Product_ID(),getQtyDelivered(), getQtyOrdered());
+		if (!msgHeader.isEmpty())
+			retValue+="Cabecera: "+msgHeader+"\n";
+		
+		// Lineas
+		for (MPPOrderBOMLine line : getLines()) {
+			String msgLine = MUMProduct.validateTolerance(line.getM_Product_ID(),line.getQtyDelivered(), line.explodeQty(getQtyDelivered()));
+			if (!msgLine.isEmpty())
+				retValue+="Linea "+line.getLine()+": "+msgLine+"\n";
+		}
+		return retValue;
+	}
+	
 	/**
 	 * @return true if work was delivered for this MO (i.e. Stock Issue, Stock
 	 *         Receipt, Activity Control Report)
