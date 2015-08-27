@@ -1,6 +1,5 @@
-package ar.com.geneos.mrp.plugin.model;
-
 /** Modelo Generado - NO CAMBIAR MANUALMENTE - Disytel */
+package ar.com.geneos.mrp.plugin.model;
 
 import org.openXpertya.model.*;
 import java.util.logging.Level;
@@ -14,17 +13,17 @@ import org.openXpertya.util.*;
  * 
  * @author Comunidad de Desarrollo Libertya* *Basado en Codigo Original
  *         Modificado, Revisado y Optimizado de:* * Jorg Janke
- * @version - 2015-04-29 14:39:08.664
+ * @version - 2015-08-26 17:26:53.014
  */
 public class LP_PP_Product_Planning extends org.openXpertya.model.PO {
 	/** Constructor estándar */
 	public LP_PP_Product_Planning(Properties ctx, int PP_Product_Planning_ID, String trxName) {
 		super(ctx, PP_Product_Planning_ID, trxName);
 		/**
-		 * if (PP_Product_Planning_ID == 0) { setIsCreatePlan (false);
-		 * setIsIssue (false); setIsPhantom (false); setIsRequiredDRP (false);
-		 * setIsRequiredMRP (false); setM_Product_ID (0);
-		 * setPP_Product_Planning_ID (0); }
+		 * if (PP_Product_Planning_ID == 0) { setisAlternative (false); // N
+		 * setIsCreatePlan (false); setIsIssue (false); setIsPhantom (false);
+		 * setIsRequiredDRP (false); setIsRequiredMRP (false); setM_Product_ID
+		 * (0); setPP_Product_Planning_ID (0); }
 		 */
 	}
 
@@ -51,6 +50,22 @@ public class LP_PP_Product_Planning extends org.openXpertya.model.PO {
 	public String toString() {
 		StringBuffer sb = new StringBuffer("LP_PP_Product_Planning[").append(getID()).append("]");
 		return sb.toString();
+	}
+
+	/** Set AD_ComponentObjectUID */
+	public static final String COLUMNNAME_AD_ComponentObjectUID = "AD_ComponentObjectUID";
+
+	public void setAD_ComponentObjectUID(String AD_ComponentObjectUID) {
+		if (AD_ComponentObjectUID != null && AD_ComponentObjectUID.length() > 100) {
+			log.warning("Length > 100 - truncated");
+			AD_ComponentObjectUID = AD_ComponentObjectUID.substring(0, 100);
+		}
+		set_Value("AD_ComponentObjectUID", AD_ComponentObjectUID);
+	}
+
+	/** Get AD_ComponentObjectUID */
+	public String getAD_ComponentObjectUID() {
+		return (String) get_Value("AD_ComponentObjectUID");
 	}
 
 	public static final int AD_WORKFLOW_ID_AD_Reference_ID = MReference.getReferenceID("AD_Workflow");
@@ -111,6 +126,24 @@ public class LP_PP_Product_Planning extends org.openXpertya.model.PO {
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
+	}
+
+	/** Set isAlternative */
+	public static final String COLUMNNAME_isAlternative = "isAlternative";
+
+	public void setisAlternative(boolean isAlternative) {
+		set_Value("isAlternative", new Boolean(isAlternative));
+	}
+
+	/** Get isAlternative */
+	public boolean isAlternative() {
+		Object oo = get_Value("isAlternative");
+		if (oo != null) {
+			if (oo instanceof Boolean)
+				return ((Boolean) oo).booleanValue();
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set Is Create Plan */

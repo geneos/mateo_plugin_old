@@ -464,10 +464,16 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 						false // IsSOTrx=false
 						);
 			} // stock movement
-
+			
+			
 			if (isIssue()) {
-				// Update PP Order Line
 				MPPOrderBOMLine obomline = getPP_Order_BOMLine();
+
+				// Chequeo que la cantidad entregada quede negativa
+				if (obomline.getQtyDelivered().add(getMovementQty()).signum() == -1)
+					throw new IllegalStateException("PPCostoCollector.completeIt: Cantidad entregada no puede quedar en negativo"+this);
+
+				// Update PP Order Line
 				obomline.setQtyDelivered(obomline.getQtyDelivered().add(getMovementQty()));
 				obomline.setQtyScrap(obomline.getQtyScrap().add(getScrappedQty()));
 				obomline.setQtyReject(obomline.getQtyReject().add(getQtyReject()));
@@ -478,8 +484,12 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 				log.fine("OrderLine -> Reserved=" + obomline.getQtyReserved() + ", Delivered=" + obomline.getQtyDelivered());
 			}
 			if (isReceipt()) {
-				// Update PP Order Qtys
 				final MPPOrder order = getPP_Order();
+				
+				if (order.getQtyDelivered().add(getMovementQty()).signum() == -1)
+					throw new IllegalStateException("PPCostoCollector.completeIt: Cantidad entregada no puede quedar en negativo"+this);
+
+				// Update PP Order Qtys
 				order.setQtyDelivered(order.getQtyDelivered().add(getMovementQty()));
 				order.setQtyScrap(order.getQtyScrap().add(getScrappedQty()));
 				order.setQtyReject(order.getQtyReject().add(getQtyReject()));

@@ -6697,11 +6697,11 @@
 </column>
 <column name="Created" type="16">
 <oldValue>null</oldValue>
-<newValue>2015-08-25 16:09:10.625081</newValue>
+<newValue>NOW()</newValue>
 </column>
 <column name="CreatedBy" type="18">
 <oldValue>null</oldValue>
-<newValue>1010717</newValue>
+<newValue>0</newValue>
 </column>
 <column name="IsActive" type="20">
 <oldValue>null</oldValue>
@@ -6717,11 +6717,11 @@
 </column>
 <column name="Updated" type="16">
 <oldValue>null</oldValue>
-<newValue>2015-08-25 16:09:10.625993</newValue>
+<newValue>NOW()</newValue>
 </column>
 <column name="UpdatedBy" type="18">
 <oldValue>null</oldValue>
-<newValue>1010717</newValue>
+<newValue>0</newValue>
 </column>
 </changegroup>
 <changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-1010114-463">
@@ -6761,11 +6761,11 @@
 </column>
 <column name="Created" type="16">
 <oldValue>null</oldValue>
-<newValue>2015-08-25 16:09:44.142041</newValue>
+<newValue>NOW()</newValue>
 </column>
 <column name="CreatedBy" type="18">
 <oldValue>null</oldValue>
-<newValue>1010717</newValue>
+<newValue>0</newValue>
 </column>
 <column name="IsActive" type="20">
 <oldValue>null</oldValue>
@@ -6777,11 +6777,11 @@
 </column>
 <column name="Updated" type="16">
 <oldValue>null</oldValue>
-<newValue>2015-08-25 16:09:44.142808</newValue>
+<newValue>NOW()</newValue>
 </column>
 <column name="UpdatedBy" type="18">
 <oldValue>null</oldValue>
-<newValue>1010717</newValue>
+<newValue>0</newValue>
 </column>
 </changegroup>
 </changelog>

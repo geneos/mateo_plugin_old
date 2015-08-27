@@ -63,6 +63,7 @@ import ar.com.geneos.mrp.plugin.exception.MRPCreateSupplyException;
 import ar.com.geneos.mrp.plugin.model.LP_M_Requisition;
 import ar.com.geneos.mrp.plugin.model.MPPMRP;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
+import ar.com.geneos.mrp.plugin.model.MPPOrderBOMLine;
 import ar.com.geneos.mrp.plugin.model.MPPProductBOM;
 import ar.com.geneos.mrp.plugin.model.MPPProductPlanning;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
@@ -793,7 +794,9 @@ public class MRP extends SvrProcess {
 		if (pp2.getS_Resource_ID() <= 0) {
 			pp2.setS_Resource_ID(S_Resource_ID);
 		}
-		if (pp2.getOrder_Policy() == null) {
+		
+		//Si el Producto es alternativo entonces la politica debe ser Lote por lote
+		if (pp2.getOrder_Policy() == null || pp.isAlternative()) {
 			pp2.setOrder_Policy(MPPProductPlanning.ORDER_POLICY_Lot_For_Lot);
 		}
 
@@ -1228,7 +1231,7 @@ public class MRP extends SvrProcess {
 		req.setAD_User_ID(m_product_planning.getPlanner_ID());
 		req.setDateDoc(TimeUtil.addDays(DemandDateStartSchedule, 0 - duration));
 		req.setDateRequired(DemandDateStartSchedule);
-		req.setDescription("Generate from MRP"); // TODO: add translation
+		req.setDescription("Generada por MRP"); // TODO: add translation
 		req.setM_Warehouse_ID(m_product_planning.getM_Warehouse_ID());
 		req.setC_DocType_ID(docTypeReq_ID);
 		if (M_PriceList_ID > 0)
@@ -1243,6 +1246,16 @@ public class MRP extends SvrProcess {
 		reqline.setPrice();
 		reqline.setPriceActual(Env.ZERO);
 		reqline.setQty(QtyPlanned);
+		
+		//Si el producto es Alternativo copio la descripcion de la bomline
+		if (m_product_planning.isAlternative()){
+			int PP_Order_BOMLine_ID = MPPMRP.getBOMLineID(getCtx(),PP_MRP_ID,get_TrxName());
+			if (PP_Order_BOMLine_ID != 0){
+				MPPOrderBOMLine oBomline = new MPPOrderBOMLine(getCtx(),PP_Order_BOMLine_ID,get_TrxName());
+				reqline.setDescription(oBomline.getDescription());
+			}
+		}
+		
 		saveEx(reqline);
 		// reqline.save();
 
@@ -1303,7 +1316,7 @@ public class MRP extends SvrProcess {
 		order.setYield(Env.ZERO);
 		order.setScheduleType(MPPMRP.TYPEMRP_Demand);
 		order.setPriorityRule(MPPOrder.PRIORITYRULE_Medium);
-		order.setDocAction(MPPOrder.ACTION_Complete);
+		order.setDocAction(MPPOrder.ACTION_None);
 		saveEx(order);
 		// order.save();
 		MPPMRP mrp = getSupply(MPPOrder.COLUMNNAME_PP_Order_ID, order.getID(), null, null, trxName);

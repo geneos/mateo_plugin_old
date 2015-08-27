@@ -758,14 +758,16 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	} // completeIt
 
 	/**
-	 * Check if the Quantity from all Critical BOM Lines is available Not exist
+	 * Check if the Quantity from all Critical BOM Lines is available. Not exist
 	 * a line where QtyRequired > QtyAvailable
 	 * 
 	 * @return true if entire Qty is available for this Order
 	 */
 	public boolean isAvailable() {
 		String whereClause = "QtyRequired > QtyAvailable AND iscritical = 'Y' AND PP_Order_ID=?";
-		boolean available = new Query(getCtx(), "RV_PP_Order_Storage", whereClause, get_TrxName()).setParameters(new Object[] { getID() }).match();
+		// Que no sean alternativos
+		whereClause += " AND M_Product_ID NOT IN (SELECT M_Product_ID from PP_Product_Planning where isAlternative='Y' AND M_Warehouse_ID=? AND S_Resource_ID =? AND AD_Org_ID=?)";
+		boolean available = new Query(getCtx(), "RV_PP_Order_Storage", whereClause, get_TrxName()).setParameters(new Object[] { getID(),getM_Warehouse_ID(),getS_Resource_ID(),getAD_Org_ID() }).match();
 		return !available;
 	}
 
@@ -1059,6 +1061,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	private void explotion() {
 		// Create BOM Head
 		final MPPProductBOM PP_Product_BOM = MPPProductBOM.get(getCtx(), getPP_Product_BOM_ID());
+		
 		// Product from Order should be same as product from BOM - teo_sarca [
 		// 2817870 ]
 		if (getM_Product_ID() != PP_Product_BOM.getM_Product_ID()) {
@@ -1338,6 +1341,11 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		
 		// Lineas
 		for (MPPOrderBOMLine line : getLines()) {
+			// Si el producto es alternativo no chequeo tolerancia
+			MPPProductPlanning prodPlanning = MPPProductPlanning.find(getCtx(), getAD_Org_ID(), getM_Warehouse_ID(),getS_Resource_ID() , line.getM_Product_ID(), get_TrxName());
+			if (prodPlanning.isAlternative())
+				continue;
+			
 			String msgLine = MUMProduct.validateTolerance(line.getM_Product_ID(),line.getQtyDelivered(), line.explodeQty(getQtyDelivered()));
 			if (!msgLine.isEmpty())
 				retValue+="Linea "+line.getLine()+": "+msgLine+"\n";

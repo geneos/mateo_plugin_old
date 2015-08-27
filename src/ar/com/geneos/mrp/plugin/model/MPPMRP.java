@@ -904,6 +904,17 @@ public class MPPMRP extends LP_PP_MRP {
 	}
 
 	/**
+	 * Get PP Order Bomline
+	 * 
+	 * @param PP_MRP_ID
+	 * @return
+	 */
+	public static int getBOMLineID(Properties ctx, int PP_MRP_ID, String trxName) {
+		final String sql = "SELECT COALESCE(pp_order_bomline_id,0) FROM PP_MRP" + " WHERE pp_mrp_id=?";
+		return MUDB.getSQLValue(trxName, sql, new Object[] { PP_MRP_ID});
+	}
+	
+	/**
 	 * Get Qty Onhand
 	 * 
 	 * @param AD_Client_ID

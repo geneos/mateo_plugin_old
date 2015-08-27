@@ -435,6 +435,11 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoLocator"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
+			
+			if ((isOnlyReceipt() || isBackflush()) && getM_AttributeSetInstance_ID() <= 0) {
+				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoMASI"), "Info", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 
 			// Switch Tabs
 			TabsReceiptsIssue.setSelectedIndex(1);

@@ -34,6 +34,8 @@ import org.openXpertya.model.Query;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 
+import ar.com.geneos.mrp.plugin.util.MUMProduct;
+
 /**
  * PP Order BOM Line Model.
  * 
@@ -128,6 +130,14 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		setValidFrom(bomLine.getValidFrom());
 		setValidTo(bomLine.getValidTo());
 		setBackflushGroup(bomLine.getBackflushGroup());
+		
+		// Si el producto es Alternativo y no fantasma entonces copio la descripcion (La descipcion es utilizada para cargar productos alternativos)
+		MProduct prod = MProduct.get(bomLine.getCtx(), bomLine.getM_Product_ID());
+		MPPOrder ppOrder = new MPPOrder(bomLine.getCtx(),PP_Order_ID,trxName);
+		MPPProductPlanning prodPlanning = MPPProductPlanning.find(ppOrder.getCtx(), ppOrder.getAD_Org_ID(), M_Warehouse_ID,ppOrder.getS_Resource_ID() , prod.getM_Product_ID(), trxName);
+		if (prodPlanning.isAlternative())
+			setDescription(bomLine.getDescription());
+		
 	}
 
 	/**
@@ -510,6 +520,12 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 	 * Reserve Inventory for this BOM Line
 	 */
 	protected void reserveStock() {
+		
+		// Si el producto es Alternativo entonces no realiza reservas
+		MPPProductPlanning prodPlanning = MPPProductPlanning.find(getCtx(), getParent().getAD_Org_ID(), getParent().getM_Warehouse_ID(),getParent().getS_Resource_ID() , getM_Product_ID(), get_TrxName());
+		if (prodPlanning.isAlternative())
+			return;
+		
 		final int header_M_Warehouse_ID = getParent().getM_Warehouse_ID();
 
 		// Check/set WH/Org
