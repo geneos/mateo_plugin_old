@@ -58,6 +58,8 @@ public class OrderReceiptIssue extends GenForm {
 	private boolean m_OnlyIssue = false;
 
 	protected boolean m_IsBackflush = false;
+	
+	protected boolean m_IsReturn = false;
 
 	protected Timestamp m_movementDate = null;
 
@@ -517,7 +519,7 @@ public class OrderReceiptIssue extends GenForm {
 
 				row++;
 
-				if (isOnlyIssue() || isBackflush()) {
+				if (isOnlyIssue() || isBackflush() || isReturn()) {
 					int warehouse_id = rs.getInt(13);
 					int product_id = rs.getInt(4);
 					row += lotes(row, id, warehouse_id, product_id,
@@ -537,7 +539,7 @@ public class OrderReceiptIssue extends GenForm {
 	public String generateSummaryTable(MiniTable issue, String productField,
 			String uomField, String attribute, String toDeliverQty,
 			String deliveredQtyField, String scrapQtyField,
-			boolean isBackflush, boolean isOnlyIssue, boolean isOnlyReceipt) {
+			boolean isBackflush, boolean isOnlyIssue, boolean isOnlyReceipt, boolean isReturn) {
 
 		StringBuffer iText = new StringBuffer();
 
@@ -562,7 +564,7 @@ public class OrderReceiptIssue extends GenForm {
 			iText.append(createHTMLTable(table));
 		}
 
-		if (isBackflush || isOnlyIssue) {
+		if (isBackflush || isOnlyIssue || isReturn) {
 			iText.append("<br /><br />");
 
 			ArrayList<String[]> table = new ArrayList<String[]>();
@@ -575,7 +577,9 @@ public class OrderReceiptIssue extends GenForm {
 					Msg.translate(Env.getCtx(), "QtyDelivered"), // 5
 					Msg.translate(Env.getCtx(), "QtyScrap") // 6
 			});
-
+			
+			// Chequeo cantidades Negativas para devolucion y cantidades positivas para salida de componentes
+			
 			// check available on hand
 			for (int i = 0; i < issue.getRowCount(); i++) {
 				IDColumn id = (IDColumn) issue.getValueAt(i, 0);
@@ -727,6 +731,10 @@ public class OrderReceiptIssue extends GenForm {
 	protected boolean isBackflush() {
 		return m_IsBackflush;
 	}
+	
+	protected boolean isReturn() {
+		return m_IsReturn;
+	}
 
 	/**
 	 * Determines whether the Delivery Rule is set to 'OnlyIssue'
@@ -862,6 +870,10 @@ public class OrderReceiptIssue extends GenForm {
 
 	protected void setIsBackflush(boolean IsBackflush) {
 		m_IsBackflush = IsBackflush;
+	}
+	
+	protected void setIsReturn(boolean IsReturn) {
+		m_IsReturn = IsReturn;
 	}
 
 	protected void setIsOnlyIssue(boolean onlyIssue) {

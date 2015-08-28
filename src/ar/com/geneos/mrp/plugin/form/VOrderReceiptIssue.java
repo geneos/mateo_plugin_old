@@ -251,6 +251,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		pickcombo.addItem(new KeyNamePair(1, Msg.translate(Env.getCtx(), "IsBackflush")));
 		pickcombo.addItem(new KeyNamePair(2, Msg.translate(Env.getCtx(), "OnlyIssue")));
 		pickcombo.addItem(new KeyNamePair(3, Msg.translate(Env.getCtx(), "OnlyReceipt")));
+		pickcombo.addItem(new KeyNamePair(4, Msg.translate(Env.getCtx(), "IsReturn")));
 		pickcombo.addActionListener(this);
 		Process.addActionListener(this);
 		toDeliverQty.addActionListener(this);
@@ -584,7 +585,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	private void generateSummaryTable() {
 
 		info.setText(generateSummaryTable(issue, productField.getDisplay(), uomField.getDisplay(), attribute.getDisplay(), toDeliverQty.getDisplay(),
-				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt()));
+				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt(),isReturn()));
 
 	} // generateInvoices_complete
 
@@ -618,6 +619,17 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	protected boolean isBackflush() {
 		super.setIsBackflush(pickcombo.getValue().equals(1));
 		return super.isBackflush();
+	}
+	
+	/**
+	 * Determines whether the Delivery Rule is set to 'IsReturn'
+	 * 
+	 * @return
+	 */
+
+	protected boolean isReturn() {
+		super.setIsReturn(pickcombo.getValue().equals(4));
+		return super.isReturn();
 	}
 
 	protected Timestamp getMovementDate() {
