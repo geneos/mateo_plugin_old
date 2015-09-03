@@ -27,6 +27,7 @@ ad_org_id integer NOT NULL ,
 bomtype character(1) DEFAULT 'A'::bpchar ,
 bomuse character(1) DEFAULT 'M'::bpchar ,
 c_uom_id integer ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT pp_product_bom_pkey PRIMARY KEY (pp_product_bom_id) ,
 CONSTRAINT cuom_ppproductbom FOREIGN KEY (c_uom_id) REFERENCES c_uom (c_uom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT mattributesetinstance_ppproduc FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
@@ -66,6 +67,7 @@ validfrom timestamp without time zone NOT NULL ,
 ad_client_id integer NOT NULL ,
 validto timestamp without time zone ,
 costallocationperc numeric DEFAULT 0 ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT pp_product_bomline_pkey PRIMARY KEY (pp_product_bomline_id) ,
 CONSTRAINT cuom_ppproductbomline FOREIGN KEY (c_uom_id) REFERENCES c_uom (c_uom_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT mattributesetinstance_ppprodbl FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
@@ -569,6 +571,7 @@ updatedby numeric(10) NOT NULL ,
 ad_org_id integer NOT NULL ,
 issubcontracting character(1) DEFAULT 'N'::bpchar ,
 yield numeric(10) ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT pp_wf_node_product_pkey PRIMARY KEY (pp_wf_node_product_id) ,
 CONSTRAINT adwfnode_ppwfnodeproduct FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT entityt_ppwfnodeproduct FOREIGN KEY (entitytype) REFERENCES ad_entitytype (entitytype) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
@@ -587,6 +590,7 @@ isactive character(1) NOT NULL ,
 ad_wf_node_id integer NOT NULL ,
 a_asset_id integer NOT NULL ,
 seqno numeric(10) NOT NULL ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT pp_wf_node_asset_pkey PRIMARY KEY (pp_wf_node_asset_id) ,
 CONSTRAINT aasset_ppwfnodeasset FOREIGN KEY (a_asset_id) REFERENCES a_asset (a_asset_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT adwfnode_ppwfnodeasset FOREIGN KEY (ad_wf_node_id) REFERENCES ad_wf_node (ad_wf_node_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  );
@@ -843,6 +847,7 @@ costamtll numeric ,
 cumulatedamtll numeric ,
 seqno integer DEFAULT NULL::numeric ,
 m_warehouse_id integer ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT m_costdetail_pkey PRIMARY KEY (m_costdetail_id) ,
 CONSTRAINT adclient_mcostdetail FOREIGN KEY (ad_client_id) REFERENCES ad_client (ad_client_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
 CONSTRAINT adorg_mcostdetail FOREIGN KEY (ad_org_id) REFERENCES ad_org (ad_org_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION  ,
@@ -879,6 +884,7 @@ m_costelement_id integer NOT NULL ,
 currentcostprice numeric NOT NULL DEFAULT 0 ,
 currentqty numeric NOT NULL DEFAULT 0 ,
 dateacct timestamp without time zone ,
+ad_componentobjectuid character varying(100),
 CONSTRAINT m_costqueue_pkey PRIMARY KEY (m_costqueue_id) ,
 CONSTRAINT cacctschema_mcostqueue FOREIGN KEY (c_acctschema_id) REFERENCES c_acctschema (c_acctschema_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
 CONSTRAINT masi_mcostqueue FOREIGN KEY (m_attributesetinstance_id) REFERENCES m_attributesetinstance (m_attributesetinstance_id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE CASCADE  ,
@@ -979,6 +985,9 @@ ALTER TABLE M_CostElement ADD COLUMN AD_ComponentObjectUID character varying(100
 ALTER TABLE M_CostType ADD COLUMN CostingMethod character(1);
 ALTER TABLE M_Product ADD COLUMN PP_Tolerance numeric(6,3);
 ALTER TABLE M_Cost ADD COLUMN CumulatedQty numeric;
+ALTER TABLE M_InOut ADD COLUMN ad_componentobjectuid character varying(100);
+ALTER TABLE M_InOutLine ADD COLUMN ad_componentobjectuid character varying(100);
+
 ----------------------------------------------------------------------
 ---------- Modificación de tablas y/o vistas
 ----------------------------------------------------------------------

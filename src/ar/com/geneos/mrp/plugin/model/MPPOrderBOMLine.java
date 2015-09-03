@@ -397,10 +397,15 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		if (!reload && m_qtyOnHand != null && m_qtyAvailable != null) {
 			return;
 		}
-		//
+		/*
 		final String sql = "SELECT " + " bomQtyAvailable(" + COLUMNNAME_M_Product_ID + ", " + COLUMNNAME_M_Warehouse_ID + ", 0)" + ",bomQtyOnHand("
 				+ COLUMNNAME_M_Product_ID + ", " + COLUMNNAME_M_Warehouse_ID + ", 0)" + " FROM " + Table_Name + " WHERE " + COLUMNNAME_PP_Order_BOMLine_ID
+				+ "=?";*/
+		
+		final String sql = "SELECT " + " qtyAvailableForBOMLine(" + COLUMNNAME_PP_Order_BOMLine_ID + ")" + ",bomQtyOnHand("
+				+ COLUMNNAME_M_Product_ID + ", " + COLUMNNAME_M_Warehouse_ID + ", 0)" + " FROM " + Table_Name + " WHERE " + COLUMNNAME_PP_Order_BOMLine_ID
 				+ "=?";
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -599,5 +604,30 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 	public String toString() {
 		return getClass().getSimpleName() + "[" + getID() + ", Product=" + getM_Product_ID() + ", ComponentType=" + getComponentType() + ",QtyBatch="
 				+ getQtyBatch() + ",QtyRequired=" + getQtyRequired() + ",QtyScrap=" + getQtyScrap() + "]";
+	}
+
+	public BigDecimal getQtyDelivered(int m_AttributeSetInstance_ID) {
+		BigDecimal retValue = BigDecimal.ZERO;
+		final String sql = "SELECT " + " qtyDeliveredForBOMLine(" + COLUMNNAME_PP_Order_BOMLine_ID + ","+m_AttributeSetInstance_ID+")" 
+				+ " FROM " + Table_Name + " WHERE " + COLUMNNAME_PP_Order_BOMLine_ID
+				+ "=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = DB.prepareStatement(sql, get_TrxName());
+			DB.setParameters(pstmt, new Object[] { getID() });
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				retValue = rs.getBigDecimal(1);
+			}
+		} catch (SQLException e) {
+			throw new IllegalStateException("Database exception " + e + " - " + sql);
+		} finally {
+			DB.close(rs, pstmt);
+			rs = null;
+			pstmt = null;
+		}
+		return retValue;
 	}
 }

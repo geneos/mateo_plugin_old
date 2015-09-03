@@ -129,6 +129,83 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			QtyBatchs = order.getQtyOrdered().divide(qtyBatchSize, 0, BigDecimal.ROUND_UP);
 		order.setQtyBatchs(QtyBatchs);
 	}
+	
+	/**
+	 * get if Component is Available
+	 * 
+	 * @param MPPOrdrt
+	 *            Manufacturing order
+	 * @param ArrayList
+	 *            Issues
+	 * @param minGuaranteeDate
+	 *            Guarantee Date
+	 * @throw exception when the qty available isn't enough (Acumulated by Product)
+	 */
+	public static void isQtyAvailableEx(MPPOrder order, ArrayList[][] issue, Timestamp minGuaranteeDate) {
+		int currM_Product_ID = 0;
+		MPPOrderBOMLine currOrderBOMLine = null;
+		BigDecimal acumToDeliver = Env.ZERO;
+		MProduct product = null;	
+		
+		for (int i = 0; i < issue.length; i++) {
+			
+			KeyNamePair key = (KeyNamePair) issue[i][0].get(0);
+			boolean isSelected = key.getName().equals("Y");
+			if (key == null || !isSelected) {
+				continue;
+			}
+
+			String value = (String) issue[i][0].get(2);
+			KeyNamePair productkey = (KeyNamePair) issue[i][0].get(3);
+			int M_Product_ID = productkey.getKey();
+			
+			//Seteo
+			if (currM_Product_ID == 0){
+				currM_Product_ID = M_Product_ID;
+				product = MProduct.get(order.getCtx(), currM_Product_ID);
+
+			}
+			//Acumulo
+			if (currM_Product_ID == M_Product_ID){
+				BigDecimal qtyToDeliver = (BigDecimal) issue[i][0].get(4);
+				BigDecimal qtyScrapComponent = (BigDecimal) issue[i][0].get(5);
+				acumToDeliver = acumToDeliver.add(qtyToDeliver).add(qtyScrapComponent);
+				//Obtengo BOMLine
+				if (product == null || !product.isStocked()) {
+					continue;
+				}
+
+				if (value == null && isSelected) {
+					currOrderBOMLine = MPPOrderBOMLine.forM_Product_ID(
+							Env.getCtx(), order.getID(), currM_Product_ID,
+							order.get_TrxName());
+				} else if (value != null && isSelected) {
+					int PP_Order_BOMLine_ID = (Integer) key.getKey();
+					if (PP_Order_BOMLine_ID > 0) {
+						currOrderBOMLine = new MPPOrderBOMLine(order.getCtx(), PP_Order_BOMLine_ID, order.get_TrxName());
+						
+					}
+				}
+			}
+			// Chequeo si me alcanza lo disponible para lo acumulado 
+			else {
+				BigDecimal qtyAvailable = currOrderBOMLine.getQtyAvailable();
+				if (qtyAvailable.subtract(acumToDeliver).signum() < 0)
+					throw new IllegalStateException("Cantidad surtida invalida para producto: "+product+"(Disponible: "+qtyAvailable+", Necesario: "+acumToDeliver+")");
+				//Reseteo
+				currM_Product_ID = M_Product_ID;
+				acumToDeliver = Env.ZERO;
+				product = MProduct.get(order.getCtx(), currM_Product_ID);
+			}
+		} // for each line
+		//Al finalizar si lo acumulado es <> de 0 chequeo
+		if (acumToDeliver.signum() != 0){
+			BigDecimal qtyAvailable = currOrderBOMLine.getQtyAvailable();
+			if (qtyAvailable.subtract(acumToDeliver).signum() < 0)
+				throw new IllegalStateException("Cantidad surtida invalida para producto: "+product+"(Disponible: "+qtyAvailable+", Necesario: "+acumToDeliver+")");
+		}
+
+	}
 
 	/**
 	 * get if Component is Available
@@ -171,7 +248,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				}
 
 				MStorage[] storages = MPPOrder.getStorages(order.getCtx(), M_Product_ID, order.getM_Warehouse_ID(), M_AttributeSetInstance_ID,
-						minGuaranteeDate, order.get_TrxName());
+						minGuaranteeDate,true, order.get_TrxName());
 
 				if (M_AttributeSetInstance_ID == 0) {
 					BigDecimal toIssue = qtyToDeliver.add(qtyScrapComponent);
@@ -205,7 +282,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		return isCompleteQtyDeliver;
 	}
 
-	public static MStorage[] getStorages(Properties ctx, int M_Product_ID, int M_Warehouse_ID, int M_ASI_ID, Timestamp minGuaranteeDate, String trxName) {
+	public static MStorage[] getStorages(Properties ctx, int M_Product_ID, int M_Warehouse_ID, int M_ASI_ID, Timestamp minGuaranteeDate,boolean positiveOnly, String trxName) {
 		MProduct product = MProduct.get(ctx, M_Product_ID);
 		if (product != null && product.isStocked()) {
 			// Validate if AttributeSet of product generated instance
@@ -1231,10 +1308,14 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			// create record for negative and positive transaction
 			if (qtyIssue.signum() != 0 || qtyScrap.signum() != 0 || qtyReject.signum() != 0) {
 				String CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_ComponentIssue;
-
+				
 				if (PP_orderbomLine.isComponentType(MPPOrderBOMLine.COMPONENTTYPE_Co_Product)) {
 					CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_MixVariance;
 				}
+				
+				if (qtyIssue.signum() == -1 )
+					CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_ComponentReturn;
+
 				//
 				MPPCostCollector.createCollector(order, // MPPOrder
 						PP_orderbomLine.getM_Product_ID(), // M_Product_ID
@@ -1277,12 +1358,87 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					);
 			return;
 		}
-
+		
 		//
 		if (toIssue.signum() != 0) {
 			// should not happen because we validate Qty On Hand on start of
 			// this process
-			throw new RuntimeException("Should not happen toIssue=" + toIssue);
+			throw new RuntimeException("Stock insuficiente para producto:"+PP_orderbomLine.getM_Product() + ". Faltan: "+ toIssue);
+		}
+	}
+	
+	/**
+	 * Create Return
+	 * 
+	 * @param PP_OrderBOMLine_ID
+	 * @param movementdate
+	 * @param qty
+	 * @param qtyScrap
+	 * @param qtyReject
+	 * @param storages
+	 * @param force
+	 *            Issue
+	 */
+	public static void createReturn(MPPOrder order, int PP_OrderBOMLine_ID, Timestamp movementdate, BigDecimal qty, BigDecimal qtyScrap, BigDecimal qtyReject,
+			MStorage[] storages, boolean forceReturn) {
+		if (qty.signum() == 0)
+			return;
+		MPPOrderBOMLine PP_orderbomLine = new MPPOrderBOMLine(order.getCtx(), PP_OrderBOMLine_ID, order.get_TrxName());
+		BigDecimal toReturn = qty;
+		for (int i = storages.length - 1 ; i >= 0 ; i-- ) {
+			MStorage storage = storages[i];
+
+			if (PP_orderbomLine.getQtyDelivered(storage.getM_AttributeSetInstance_ID()).signum() == 0)
+				continue;
+
+			BigDecimal qtyReturn = toReturn.max(PP_orderbomLine.getQtyDelivered(storage.getM_AttributeSetInstance_ID()).negate());
+			// log.fine("ToIssue: " + issue);
+			// create record for negative and positive transaction
+			if (toReturn.signum() != 0 || qtyScrap.signum() != 0 || qtyReject.signum() != 0) {
+				String CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_ComponentReturn;
+
+				//
+				MPPCostCollector.createCollector(order, // MPPOrder
+						PP_orderbomLine.getM_Product_ID(), // M_Product_ID
+						storage.getM_Locator_ID(), // M_Locator_ID
+						storage.getM_AttributeSetInstance_ID(), // M_AttributeSetInstance_ID
+						order.getS_Resource_ID(), // S_Resource_ID
+						PP_OrderBOMLine_ID, // PP_Order_BOMLine_ID
+						0, // PP_Order_Node_ID
+						MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
+						CostCollectorType, // Production "-"
+						movementdate, // MovementDate
+						qtyReturn, qtyScrap, qtyReject, // qty,scrap,reject
+						0, Env.ZERO // durationSetup,duration
+						);
+
+			}
+			toReturn = toReturn.subtract(qtyReturn);
+			if (toReturn.signum() == 0)
+				break;
+		}
+		if (forceReturn && toReturn.signum() != 0) {
+			MPPCostCollector.createCollector(order, // MPPOrder
+					PP_orderbomLine.getM_Product_ID(), // M_Product_ID
+					PP_orderbomLine.getM_Locator_ID(), // M_Locator_ID
+					PP_orderbomLine.getM_AttributeSetInstance_ID(), // M_AttributeSetInstance_ID
+					order.getS_Resource_ID(), // S_Resource_ID
+					PP_OrderBOMLine_ID, // PP_Order_BOMLine_ID
+					0, // PP_Order_Node_ID
+					MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
+					MPPCostCollector.COSTCOLLECTORTYPE_ComponentReturn, // Production
+																		// "-"
+					movementdate, // MovementDate
+					toReturn, Env.ZERO, Env.ZERO, // qty,scrap,reject
+					0, Env.ZERO // durationSetup,duration
+					);
+			return;
+		}
+		
+		//
+		if (toReturn.signum() != 0) {
+			// should not happen 
+			throw new RuntimeException("Cantidad entregada insuficiente para devolucion, producto:"+PP_orderbomLine.getM_Product() + ". Faltan: "+ toReturn);
 		}
 	}
 
@@ -1743,7 +1899,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					M_AttributeSetInstance_ID = orderBOMLine.getM_AttributeSetInstance_ID();
 				}
 
-				MStorage[] storages = MPPOrder.getStorages(getCtx(), M_Product_ID, getM_Warehouse_ID(), M_AttributeSetInstance_ID, today, get_TrxName());
+				MStorage[] storages = MPPOrder.getStorages(getCtx(), M_Product_ID, getM_Warehouse_ID(), M_AttributeSetInstance_ID, today,true, get_TrxName());
 
 				MPPOrder.createIssue(this, key.getKey(), today, qtyToDeliver, qtyScrapComponent, Env.ZERO, storages, forceIssue);
 			}

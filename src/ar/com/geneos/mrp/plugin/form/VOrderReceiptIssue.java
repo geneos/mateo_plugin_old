@@ -28,6 +28,7 @@ import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -58,6 +59,7 @@ import org.openXpertya.grid.ed.VLocator;
 import org.openXpertya.grid.ed.VLookup;
 import org.openXpertya.grid.ed.VNumber;
 import org.openXpertya.grid.ed.VPAttribute;
+import org.openXpertya.minigrid.IDColumn;
 import org.openXpertya.minigrid.IMiniTable;
 import org.openXpertya.minigrid.MiniTable;
 import org.openXpertya.model.MField;
@@ -441,7 +443,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoMASI"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-
+			
 			// Switch Tabs
 			TabsReceiptsIssue.setSelectedIndex(1);
 
@@ -477,7 +479,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				attribute.setVisible(true);
 				attributeLabel.setVisible(true);
 				issue.setVisible(false);
-			} else if (isOnlyIssue()) {
+			} else if (isOnlyIssue() || isReturn()) {
 				disableToDeliver();
 				locatorLabel.setVisible(false);
 				locatorField.setVisible(false);
@@ -811,11 +813,12 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		if (getPP_Order() == null || getMovementDate() == null) {
 			return false;
 		}
+
 		try {
 			Trx.run(new TrxRunnable() {
 				public void run(String trxName) {
 					MPPOrder order = new MPPOrder(Env.getCtx(), getPP_Order_ID(), trxName);
-					if (isBackflush() || isOnlyIssue()) {
+					if (isBackflush() || isOnlyIssue() || isReturn()) {
 						createIssue(order, issue);
 					}
 					if (isOnlyReceipt() || isBackflush()) {

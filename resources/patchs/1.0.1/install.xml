@@ -1,0 +1,3317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changelog>
+<changegroup operation="I" tableName="AD_Reference" uid="MRP-AD_Reference-1010279">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Reference-1010279</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010279</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>PP_CostCollectorType Transaction Manufacturing Management</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="ValidationType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Reference_Trl" uid="MRP-AD_Reference_Trl-es_ES-1010279">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Reference_Trl-es_ES-1010279</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>PP_CostCollectorType Transaction Manufacturing Management</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Reference_Trl" uid="MRP-AD_Reference_Trl-es_AR-1010279">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Reference_Trl-es_AR-1010279</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>PP_CostCollectorType Transaction Manufacturing Management</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Reference_Trl" uid="MRP-AD_Reference_Trl-es_MX-1010279">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Reference_Trl-es_MX-1010279</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>PP_CostCollectorType Transaction Manufacturing Management</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Reference_Trl" uid="MRP-AD_Reference_Trl-es_PY-1010279">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Reference_Trl-es_PY-1010279</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>PP_CostCollectorType Transaction Manufacturing Management</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010849">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010849</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010849</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Material Receipt</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010849">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010849</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010849">1010852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Material Receipt</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010849">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010849</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010849">1010852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Material Receipt</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010849">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010849</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010849">1010852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Material Receipt</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010849">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010849</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010849">1010852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Material Receipt</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010850">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010850</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010850</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Issue</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>110</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010850">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010850</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010850">1010853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Issue</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010850">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010850</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010850">1010853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Issue</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010850">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010850</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010850">1010853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Issue</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010850">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010850</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010850">1010853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Issue</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010851">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010851</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010851</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Usege Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>120</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010851">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010851</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010851">1010854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Usege Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010851">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010851</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010851">1010854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Usege Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010851">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010851</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010851">1010854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Usege Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010851">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010851</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010851">1010854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Usege Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Method Change Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>130</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010852">1010855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Method Change Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010852">1010855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Method Change Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010852">1010855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Method Change Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010852">1010855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Method Change Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Rate Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010853">1010856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Rate Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010853">1010856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Rate Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010853">1010856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Rate Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010853">1010856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Rate Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Mix Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>150</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010854">1010857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Mix Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010854">1010857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Mix Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010854">1010857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Mix Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010854">1010857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Mix Variance</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Activity Control</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>160</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010855">1010858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Activity Control</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010855">1010858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Activity Control</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010855">1010858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Activity Control</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010855">1010858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Activity Control</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Return</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>115</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010856">1010859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Return</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010856">1010859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Return</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010856">1010859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Return</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010084">1010087</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010856">1010859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Component Return</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>NOW()</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Column" uid="MRP32MRP-AD_Column-1017322-20150811093221">
+<column name="AD_Reference_ID" refTable="AD_Reference" type="18">
+<oldValue>10</oldValue>
+<newValue refUID="CORE-AD_Reference-17">17</newValue>
+</column>
+<column name="AD_Reference_Value_ID" refTable="AD_Reference" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010282</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="MRP-AD_Field_Trl-1018065-es_AR">
+<column name="Name" type="10">
+<oldValue>PP_Product_BOM_ID</oldValue>
+<newValue>Lista de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="MRP-AD_Field_Trl-1018180-es_AR">
+<column name="Name" type="10">
+<oldValue>Lista de Materiales y Fórmula</oldValue>
+<newValue>Lista de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="MRP-AD_Field_Trl-1018224-es_AR">
+<column name="Name" type="10">
+<oldValue>PP_Product_BOM_ID</oldValue>
+<newValue>Lista de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="MRP-AD_Field_Trl-1018091-es_AR">
+<column name="Name" type="10">
+<oldValue>PP_Product_BOM_ID</oldValue>
+<newValue>Lista de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018218">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>290</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018205">
+<column name="SeqNo" type="11">
+<oldValue>300</oldValue>
+<newValue>290</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018234">
+<column name="SeqNo" type="11">
+<oldValue>310</oldValue>
+<newValue>300</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018255">
+<column name="SeqNo" type="11">
+<oldValue>320</oldValue>
+<newValue>310</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018235">
+<column name="SeqNo" type="11">
+<oldValue>330</oldValue>
+<newValue>320</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018207">
+<column name="SeqNo" type="11">
+<oldValue>340</oldValue>
+<newValue>330</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018231">
+<column name="SeqNo" type="11">
+<oldValue>350</oldValue>
+<newValue>340</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018196">
+<column name="SeqNo" type="11">
+<oldValue>360</oldValue>
+<newValue>350</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018200">
+<column name="SeqNo" type="11">
+<oldValue>370</oldValue>
+<newValue>360</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018209">
+<column name="SeqNo" type="11">
+<oldValue>380</oldValue>
+<newValue>370</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018210">
+<column name="SeqNo" type="11">
+<oldValue>390</oldValue>
+<newValue>380</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="SeqNo" type="11">
+<oldValue>400</oldValue>
+<newValue>390</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018229">
+<column name="SeqNo" type="11">
+<oldValue>410</oldValue>
+<newValue>400</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="SeqNo" type="11">
+<oldValue>420</oldValue>
+<newValue>410</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="SeqNo" type="11">
+<oldValue>430</oldValue>
+<newValue>420</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018242">
+<column name="SeqNo" type="11">
+<oldValue>440</oldValue>
+<newValue>430</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="SeqNo" type="11">
+<oldValue>450</oldValue>
+<newValue>440</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018254">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018226">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018196">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>350</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018200">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>360</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018242">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>430</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018229">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>400</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018209">
+<column name="SeqNo" type="11">
+<oldValue>370</oldValue>
+<newValue>350</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018210">
+<column name="SeqNo" type="11">
+<oldValue>380</oldValue>
+<newValue>360</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="SeqNo" type="11">
+<oldValue>390</oldValue>
+<newValue>370</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="SeqNo" type="11">
+<oldValue>410</oldValue>
+<newValue>380</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="SeqNo" type="11">
+<oldValue>420</oldValue>
+<newValue>390</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="SeqNo" type="11">
+<oldValue>440</oldValue>
+<newValue>400</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018231">
+<column name="SeqNo" type="11">
+<oldValue>340</oldValue>
+<newValue>330</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018209">
+<column name="SeqNo" type="11">
+<oldValue>350</oldValue>
+<newValue>340</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018207">
+<column name="SeqNo" type="11">
+<oldValue>330</oldValue>
+<newValue>350</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018207">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018205">
+<column name="IsSameLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018234">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018199">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>90</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018224">
+<column name="SeqNo" type="11">
+<oldValue>130</oldValue>
+<newValue>90</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018226">
+<column name="SeqNo" type="11">
+<oldValue>140</oldValue>
+<newValue>130</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018247">
+<column name="SeqNo" type="11">
+<oldValue>150</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018248">
+<column name="SeqNo" type="11">
+<oldValue>160</oldValue>
+<newValue>150</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018203">
+<column name="SeqNo" type="11">
+<oldValue>170</oldValue>
+<newValue>160</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018204">
+<column name="SeqNo" type="11">
+<oldValue>180</oldValue>
+<newValue>170</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018245">
+<column name="SeqNo" type="11">
+<oldValue>190</oldValue>
+<newValue>180</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018212">
+<column name="SeqNo" type="11">
+<oldValue>200</oldValue>
+<newValue>190</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018244">
+<column name="SeqNo" type="11">
+<oldValue>210</oldValue>
+<newValue>200</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018211">
+<column name="SeqNo" type="11">
+<oldValue>220</oldValue>
+<newValue>210</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018214">
+<column name="SeqNo" type="11">
+<oldValue>230</oldValue>
+<newValue>220</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018213">
+<column name="SeqNo" type="11">
+<oldValue>240</oldValue>
+<newValue>230</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018236">
+<column name="SeqNo" type="11">
+<oldValue>250</oldValue>
+<newValue>240</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018250">
+<column name="SeqNo" type="11">
+<oldValue>260</oldValue>
+<newValue>250</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018232">
+<column name="SeqNo" type="11">
+<oldValue>270</oldValue>
+<newValue>260</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018233">
+<column name="SeqNo" type="11">
+<oldValue>280</oldValue>
+<newValue>270</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018205">
+<column name="SeqNo" type="11">
+<oldValue>290</oldValue>
+<newValue>280</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018234">
+<column name="SeqNo" type="11">
+<oldValue>300</oldValue>
+<newValue>290</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018255">
+<column name="SeqNo" type="11">
+<oldValue>310</oldValue>
+<newValue>300</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018235">
+<column name="SeqNo" type="11">
+<oldValue>320</oldValue>
+<newValue>310</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018231">
+<column name="SeqNo" type="11">
+<oldValue>330</oldValue>
+<newValue>320</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018209">
+<column name="SeqNo" type="11">
+<oldValue>340</oldValue>
+<newValue>330</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018207">
+<column name="SeqNo" type="11">
+<oldValue>350</oldValue>
+<newValue>340</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018210">
+<column name="SeqNo" type="11">
+<oldValue>360</oldValue>
+<newValue>350</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="SeqNo" type="11">
+<oldValue>370</oldValue>
+<newValue>360</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="SeqNo" type="11">
+<oldValue>380</oldValue>
+<newValue>370</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="SeqNo" type="11">
+<oldValue>390</oldValue>
+<newValue>380</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="SeqNo" type="11">
+<oldValue>400</oldValue>
+<newValue>390</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018224">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018231">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018209">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018210">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="AD_FieldGroup_ID" refTable="AD_FieldGroup" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_FieldGroup-125">125</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018257">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>130</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018270">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>150</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018260">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>80</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018265">
+<column name="SeqNo" type="11">
+<oldValue>90</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018275">
+<column name="SeqNo" type="11">
+<oldValue>100</oldValue>
+<newValue>90</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018276">
+<column name="SeqNo" type="11">
+<oldValue>110</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018271">
+<column name="SeqNo" type="11">
+<oldValue>120</oldValue>
+<newValue>110</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018274">
+<column name="SeqNo" type="11">
+<oldValue>140</oldValue>
+<newValue>120</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018258">
+<column name="SeqNo" type="11">
+<oldValue>160</oldValue>
+<newValue>130</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018259">
+<column name="SeqNo" type="11">
+<oldValue>170</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018273">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018266">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018274">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018281">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>60</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018279">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>100</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018313">
+<column name="SeqNo" type="11">
+<oldValue>70</oldValue>
+<newValue>60</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018314">
+<column name="SeqNo" type="11">
+<oldValue>80</oldValue>
+<newValue>70</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018301">
+<column name="SeqNo" type="11">
+<oldValue>90</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018311">
+<column name="SeqNo" type="11">
+<oldValue>160</oldValue>
+<newValue>90</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018284">
+<column name="SeqNo" type="11">
+<oldValue>110</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018291">
+<column name="SeqNo" type="11">
+<oldValue>120</oldValue>
+<newValue>110</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018292">
+<column name="SeqNo" type="11">
+<oldValue>130</oldValue>
+<newValue>120</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018308">
+<column name="SeqNo" type="11">
+<oldValue>140</oldValue>
+<newValue>130</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018303">
+<column name="SeqNo" type="11">
+<oldValue>150</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018278">
+<column name="SeqNo" type="11">
+<oldValue>170</oldValue>
+<newValue>150</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018310">
+<column name="SeqNo" type="11">
+<oldValue>180</oldValue>
+<newValue>160</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018293">
+<column name="SeqNo" type="11">
+<oldValue>190</oldValue>
+<newValue>170</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018294">
+<column name="SeqNo" type="11">
+<oldValue>200</oldValue>
+<newValue>180</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018280">
+<column name="SeqNo" type="11">
+<oldValue>210</oldValue>
+<newValue>190</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018290">
+<column name="SeqNo" type="11">
+<oldValue>220</oldValue>
+<newValue>200</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018286">
+<column name="SeqNo" type="11">
+<oldValue>230</oldValue>
+<newValue>210</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018312">
+<column name="SeqNo" type="11">
+<oldValue>240</oldValue>
+<newValue>220</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018315">
+<column name="SeqNo" type="11">
+<oldValue>250</oldValue>
+<newValue>230</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018296">
+<column name="SeqNo" type="11">
+<oldValue>260</oldValue>
+<newValue>240</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018302">
+<column name="SeqNo" type="11">
+<oldValue>270</oldValue>
+<newValue>250</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018306">
+<column name="SeqNo" type="11">
+<oldValue>280</oldValue>
+<newValue>260</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018287">
+<column name="SeqNo" type="11">
+<oldValue>290</oldValue>
+<newValue>270</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018309">
+<column name="SeqNo" type="11">
+<oldValue>300</oldValue>
+<newValue>280</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018305">
+<column name="SeqNo" type="11">
+<oldValue>310</oldValue>
+<newValue>290</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018307">
+<column name="SeqNo" type="11">
+<oldValue>320</oldValue>
+<newValue>300</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018304">
+<column name="SeqNo" type="11">
+<oldValue>330</oldValue>
+<newValue>310</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018311">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018286">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018315">
+<column name="IsSameLine" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018312">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018315">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018296">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018315">
+<column name="IsSameLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018302">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018306">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018287">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018309">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018305">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018307">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018304">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010386">
+<column name="WhereClause" type="10">
+<oldValue>costcollectortype='110'</oldValue>
+<newValue>costcollectortype='110' or costcollectortype='115' </newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010386">
+<column name="WhereClause" type="10">
+<oldValue>costcollectortype='110' or costcollectortype='115' </oldValue>
+<newValue>(costcollectortype='110' or costcollectortype='115') </newValue>
+</column>
+</changegroup>
+</changelog>

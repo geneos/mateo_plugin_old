@@ -94,6 +94,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	/** Activity Control = 160 */
 	public static final String COSTCOLLECTORTYPE_ActivityControl = "160";
 
+	public static final String COSTCOLLECTORTYPE_ComponentReturn = "115";
+
 	/**
 	 * 
 	 */
@@ -346,11 +348,6 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 			return DocAction.STATUS_Invalid;
 		}
 
-		// Migración Libero
-		// Revisar
-		// MPeriod.testPeriodOpen(getCtx(), getDateAcct(),
-		// getC_DocTypeTarget_ID(), getAD_Org_ID());
-
 		MDocType dt = MDocType.get(getCtx(), getC_DocTypeTarget_ID());
 
 		if (!MPeriod.isOpen(getCtx(), getDateAcct(), dt.getDocBaseType())) {
@@ -409,6 +406,15 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 				throw new IllegalStateException("@M_AttributeSet_ID@ @IsMandatory@ @M_Product_ID@=" + product.getValue());
 			}
 		}
+		// Return
+		else if (isReturn()) {
+			MProduct product = getM_Product();
+			MPPOrderBOMLine bomline =getPP_Order_BOMLine();
+			BigDecimal qtyDelivered = bomline.getQtyDelivered(getM_AttributeSetInstance_ID());
+			if ( getMovementQty().negate().compareTo(qtyDelivered) == 1 ) {
+				throw new IllegalStateException("@QtyDelivered@ ("+qtyDelivered+") menor que cantidad a devolver ("+getMovementQty().negate()+")@M_Product_ID@=" + product.getValue());
+			}
+		}
 
 		m_justPrepared = true;
 		setDocAction(ACTION_Complete);
@@ -452,7 +458,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		// Material Issue (component issue, method change variance, mix
 		// variance)
 		// Material Receipt
-		if (isIssue() || isReceipt()) {
+		if (isIssue() || isReceipt() || isReturn()) {
 			// Stock Movement
 			MProduct product = getM_Product();
 			if (product != null && product.isStocked() && !isVariance()) {
@@ -466,10 +472,10 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 			} // stock movement
 			
 			
-			if (isIssue()) {
+			if (isIssue() || isReturn()) {
 				MPPOrderBOMLine obomline = getPP_Order_BOMLine();
 
-				// Chequeo que la cantidad entregada quede negativa
+				// Chequeo que la cantidad entregada no quede negativa
 				if (obomline.getQtyDelivered().add(getMovementQty()).signum() == -1)
 					throw new IllegalStateException("PPCostoCollector.completeIt: Cantidad entregada no puede quedar en negativo"+this);
 
@@ -903,6 +909,10 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		;
 	}
 
+	public boolean isReturn() {
+		return isCostCollectorType(COSTCOLLECTORTYPE_ComponentReturn);
+	}
+	
 	public boolean isReceipt() {
 		return isCostCollectorType(COSTCOLLECTORTYPE_MaterialReceipt);
 	}
@@ -919,7 +929,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	public String getMovementType() {
 		if (isReceipt())
 			return MTransaction.MOVEMENTTYPE_WorkOrderPlus;
-		else if (isIssue())
+		else if (isIssue() || isReturn())
 			return MTransaction.MOVEMENTTYPE_WorkOrder_;
 		else
 			return null;

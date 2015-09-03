@@ -65,9 +65,9 @@ public class MUMStorage {
 		sql += " AND s.M_Product_ID=?" + " AND COALESCE(s.M_AttributeSetInstance_ID,0)=? ";
 		if (positiveOnly) {
 			sql += " AND s.QtyOnHand > 0 ";
-		} else {
+		}/* else {
 			sql += " AND s.QtyOnHand <> 0 ";
-		}
+		}*/
 		sql += "ORDER BY l.PriorityNo DESC, M_AttributeSetInstance_ID";
 		if (!FiFo)
 			sql += " DESC";
