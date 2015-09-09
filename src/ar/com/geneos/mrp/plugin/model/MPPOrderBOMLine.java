@@ -135,7 +135,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		MProduct prod = MProduct.get(bomLine.getCtx(), bomLine.getM_Product_ID());
 		MPPOrder ppOrder = new MPPOrder(bomLine.getCtx(),PP_Order_ID,trxName);
 		MPPProductPlanning prodPlanning = MPPProductPlanning.find(ppOrder.getCtx(), ppOrder.getAD_Org_ID(), M_Warehouse_ID,ppOrder.getS_Resource_ID() , prod.getM_Product_ID(), trxName);
-		if (prodPlanning.isAlternative())
+		if (prodPlanning != null && prodPlanning.isAlternative())
 			setDescription(bomLine.getDescription());
 		
 	}
