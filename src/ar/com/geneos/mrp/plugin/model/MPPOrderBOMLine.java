@@ -332,6 +332,11 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		if (isComponentType(COMPONENTTYPE_Component, COMPONENTTYPE_Phantom, COMPONENTTYPE_By_Product, COMPONENTTYPE_Co_Product)
 				&& (getM_Product().getC_UOM_ID() != getC_UOM_ID())) {
 			BigDecimal rate = MUOMConversion.getProductRateFrom(getCtx(), getM_Product_ID(), getC_UOM_ID());
+			if (rate == null){
+				MUOM uomTo = new MUOM(getCtx(),getC_UOM_ID(),get_TrxName());
+				MUOM uomFrom = new MUOM(getCtx(),getM_Product().getC_UOM_ID(),get_TrxName());
+				throw new IllegalStateException("@NotExist@ @UOMConversion@ "+uomFrom+" -> "+uomTo);
+			}
 			qtyrequired = qty.multiply(rate);
 		}
 		setQtyRequired(qtyrequired);
