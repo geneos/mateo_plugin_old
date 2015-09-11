@@ -37,6 +37,13 @@ public class MUColumnNames {
 	public static final String COLUMNNAME_Line = "Line";
 	public static final String COLUMNNAME_DocumentNo = "DocumentNos";
 	public static final String COLUMNNAME_M_InOut_ID = "M_InOut_ID";
+	public static final String COLUMNNAME_Value = "Value";
+	public static final String COLUMNNAME_Name = "Name";
+	public static final String COLUMNNAME_M_Forecast_ID = "M_Forecast_ID";
+	public static final String COLUMNNAME_DateFrom = "DateFrom";
+	public static final String COLUMNNAME_DateTo = "DateTo";
+	public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
+	public static final String COLUMNNAME_QtyReserved = "QtyReserved";
 	
 
 

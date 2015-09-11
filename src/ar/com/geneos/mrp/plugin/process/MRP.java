@@ -1422,11 +1422,6 @@ public class MRP extends SvrProcess {
 	}
 
 	private void createMRPNote(String code, MPPMRP mrp, MProduct product, String comment, String trxName) throws SQLException {
-		// String comment = Msg.translate(getCtx(),
-		// MPPMRP.COLUMNNAME_DateStartSchedule)
-		// + ":" + mrp.getDateStartSchedule()
-		// + " " + Msg.translate(getCtx(), MPPMRP.COLUMNNAME_DatePromised)
-		// + ":" + DemandDateStartSchedule;
 		createMRPNote(code, mrp.getAD_Org_ID(), mrp.getID(), product, MPPMRP.getDocumentNo(mrp.getID()), mrp.getQty(), comment, trxName);
 	}
 

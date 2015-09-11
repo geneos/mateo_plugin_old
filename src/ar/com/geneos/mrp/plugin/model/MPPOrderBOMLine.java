@@ -335,7 +335,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 			if (rate == null){
 				MUOM uomTo = new MUOM(getCtx(),getC_UOM_ID(),get_TrxName());
 				MUOM uomFrom = new MUOM(getCtx(),getM_Product().getC_UOM_ID(),get_TrxName());
-				throw new IllegalStateException("@NotExist@ @UOMConversion@ "+uomFrom+" -> "+uomTo);
+				throw new IllegalStateException("@M_Product_ID@:"+getM_Product()+" @NotExist@ @UOMConversion@ "+uomFrom+" -> "+uomTo);
 			}
 			qtyrequired = qty.multiply(rate);
 		}

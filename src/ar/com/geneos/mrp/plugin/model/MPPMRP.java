@@ -616,9 +616,10 @@ public class MPPMRP extends LP_PP_MRP {
 		mrp.setDateFinishSchedule(auxFCLine.getDatePromised());
 		mrp.setDateOrdered(auxFCLine.getDatePromised());
 		mrp.setM_Warehouse_ID(auxFCLine.getM_Warehouse_ID());
-		mrp.setM_Product_ID(fl.getM_Product_ID());
-		mrp.setQty(fl.getQty());
-		mrp.setDocStatus(DocAction.STATUS_InProgress);
+		mrp.setS_Resource_ID(auxFCLine.getS_Resource_ID());
+		mrp.setM_Product_ID(auxFCLine.getM_Product_ID());
+		mrp.setQty(auxFCLine.getQty());
+		mrp.setDocStatus(DocAction.STATUS_Drafted);
 		mrp.save();
 	}
 

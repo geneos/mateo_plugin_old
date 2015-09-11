@@ -67,4 +67,32 @@ public class LP_M_ForecastLine extends X_M_ForecastLine {
 			return 0;
 		return ii.intValue();
 	}
+
+	/** Column name S_Resource_ID */
+	public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
+
+	/**
+	 * Set Resource (Plant).
+	 * 
+	 * @param S_Resource
+	 */
+	public void setS_Resource(int S_Resource_ID) {
+		if (S_Resource_ID < 1)
+			set_Value(COLUMNNAME_S_Resource_ID, null);
+		else
+			set_Value(COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
+	}
+
+	/**
+	 * Get Resource (Plant).
+	 * 
+	 * @return Resource
+	 */
+	public int getS_Resource_ID() {
+		Integer ii = (Integer) get_Value(COLUMNNAME_S_Resource_ID);
+		if (ii == null)
+			return 0;
+		return ii.intValue();
+	}
+
 }

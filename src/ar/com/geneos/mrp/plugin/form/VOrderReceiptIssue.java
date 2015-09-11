@@ -28,7 +28,6 @@ import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -59,8 +58,6 @@ import org.openXpertya.grid.ed.VLocator;
 import org.openXpertya.grid.ed.VLookup;
 import org.openXpertya.grid.ed.VNumber;
 import org.openXpertya.grid.ed.VPAttribute;
-import org.openXpertya.minigrid.IDColumn;
-import org.openXpertya.minigrid.IMiniTable;
 import org.openXpertya.minigrid.MiniTable;
 import org.openXpertya.model.MField;
 import org.openXpertya.model.MFieldVO;
@@ -69,11 +66,7 @@ import org.openXpertya.model.MLookup;
 import org.openXpertya.model.MLookupFactory;
 import org.openXpertya.model.MPAttributeLookup;
 import org.openXpertya.model.MProduct;
-import org.openXpertya.model.MTab;
-import org.openXpertya.model.MWindow;
 import org.openXpertya.model.M_Column;
-import org.openXpertya.model.M_Tab;
-import org.openXpertya.model.M_Window;
 import org.openXpertya.process.ProcessInfo;
 import org.openXpertya.util.ASyncProcess;
 import org.openXpertya.util.CLogger;
@@ -88,7 +81,6 @@ import org.openXpertya.util.TrxRunnable;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
 import ar.com.geneos.mrp.plugin.util.MUMColumn;
-import ar.com.geneos.mrp.plugin.util.MUMTab;
 import ar.com.geneos.mrp.plugin.util.MUMWindow;
 
 /**
@@ -200,14 +192,14 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		Properties ctx = Env.getCtx();
 
 		Language language = Language.getLoginLanguage(); // Base Language
-		MLookup orderL = MLookupFactory.get(ctx, m_WindowNo, M_Column.getColumnID(null, MPPOrder.Table_Name, MPPOrder.COLUMNNAME_PP_Order_ID), DisplayType.Search,
-				language, "PP_Order_ID", 0, false, "PP_Order.DocStatus = '" + MPPOrder.DOCACTION_Complete + "'");
+		MLookup orderL = MLookupFactory.get(ctx, m_WindowNo, M_Column.getColumnID(null, MPPOrder.Table_Name, MPPOrder.COLUMNNAME_PP_Order_ID),
+				DisplayType.Search, language, "PP_Order_ID", 0, false, "PP_Order.DocStatus = '" + MPPOrder.DOCACTION_Complete + "'");
 
 		orderField = new VLookup("PP_Order_ID", false, false, true, orderL);
-		//orderField.setBackground(AdempierePLAF.getInfoBackground());
+		// orderField.setBackground(AdempierePLAF.getInfoBackground());
 		orderField.addVetoableChangeListener(this);
 
-		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0,MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_S_Resource_ID),
+		MLookup resourceL = MLookupFactory.get(ctx, m_WindowNo, 0, MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_S_Resource_ID),
 				DisplayType.TableDir);
 		resourceField = new VLookup("S_Resource_ID", false, false, false, resourceL);
 
@@ -230,18 +222,28 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		locatorField = new VLocator("M_Locator_ID", true, false, true, locatorL, m_WindowNo);
 
 		MPAttributeLookup attributeL = new MPAttributeLookup(ctx, m_WindowNo);
-		
+
 		/**
-		 * Libero to Libertya migration
-		 * Missing arg from Libero (boolean searchOnly)
+		 * Libero to Libertya migration Missing arg from Libero (boolean
+		 * searchOnly)
 		 */
 		attribute = new VPAttribute(false, false, true, m_WindowNo, attributeL, 0, MUColumnNames.COLUMNNAME_M_AttributeSetInstance_ID);
-		
+
 		attribute.setValue(0);
 		// Tab, Window
 		int m_Window = MUMWindow.getWindow_ID("Orden de Manufactura");
-											 //(ctx , m_WindowNo , 1000031 , 1000013, false, false, false);
-		MFieldVO vo = MFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, /*MUMTab.getTab_ID(m_Window, "Order"),*/ false, false, false);
+		// (ctx , m_WindowNo , 1000031 , 1000013, false, false, false);
+		MFieldVO vo = MFieldVO.createStdField(ctx, m_WindowNo, 0, m_Window, /*
+																			 * MUMTab
+																			 * .
+																			 * getTab_ID
+																			 * (
+																			 * m_Window
+																			 * ,
+																			 * "Order"
+																			 * )
+																			 * ,
+																			 */false, false, false);
 		// M_AttributeSetInstance_ID
 		vo.AD_Column_ID = MUMColumn.getColumn_ID(MPPOrder.Table_Name, MPPOrder.COLUMNNAME_M_AttributeSetInstance_ID);
 		MField field = new MField(vo);
@@ -391,7 +393,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		Generate.setLayout(new BorderLayout());
 		Generate.add(info, BorderLayout.CENTER);
 		Generate.setEnabled(false);
-		//info.setBackground(AdempierePLAF.getFieldBackground_Inactive());
+		// info.setBackground(AdempierePLAF.getFieldBackground_Inactive());
 		info.setEditable(false);
 		TabsReceiptsIssue.addChangeListener(this);
 		panel.add(TabsReceiptsIssue, java.awt.BorderLayout.CENTER);
@@ -438,12 +440,12 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoLocator"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
+
 			if ((isOnlyReceipt() || isBackflush()) && getM_AttributeSetInstance_ID() <= 0) {
 				JOptionPane.showMessageDialog(null, Msg.getMsg(Env.getCtx(), "NoMASI"), "Info", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
+
 			// Switch Tabs
 			TabsReceiptsIssue.setSelectedIndex(1);
 
@@ -452,10 +454,12 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 			if (ADialog.ask(m_WindowNo, panel, "Update")) {
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				final boolean isCloseDocument = false;
-				/*Only close from Document
-				 * final boolean isCloseDocument = ADialog.ask(m_WindowNo, panel,
-						Msg.parseTranslation(Env.getCtx(), "@IsCloseDocument@ : " + getPP_Order().getDocumentNo()));
-				*/
+				/*
+				 * Only close from Document final boolean isCloseDocument =
+				 * ADialog.ask(m_WindowNo, panel,
+				 * Msg.parseTranslation(Env.getCtx(), "@IsCloseDocument@ : " +
+				 * getPP_Order().getDocumentNo()));
+				 */
 				if (cmd_process(isCloseDocument, issue)) {
 					dispose();
 					return;
@@ -587,7 +591,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	private void generateSummaryTable() {
 
 		info.setText(generateSummaryTable(issue, productField.getDisplay(), uomField.getDisplay(), attribute.getDisplay(), toDeliverQty.getDisplay(),
-				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt(),isReturn()));
+				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt(), isReturn()));
 
 	} // generateInvoices_complete
 
@@ -622,7 +626,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		super.setIsBackflush(pickcombo.getValue().equals(1));
 		return super.isBackflush();
 	}
-	
+
 	/**
 	 * Determines whether the Delivery Rule is set to 'IsReturn'
 	 * 
@@ -789,7 +793,6 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	public void valueChanged(ListSelectionEvent e) {
 	}
 
-
 	public boolean isUILocked() {
 		return true;
 	}
@@ -846,18 +849,18 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	@Override
 	public void lockUI(ProcessInfo pi) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void unlockUI(ProcessInfo pi) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void executeASync(ProcessInfo pi) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
