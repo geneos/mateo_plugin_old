@@ -278,11 +278,16 @@ public class MRequisition extends LP_M_Requisition implements DocAction {
 		}
 
 		if (lines.length == 0) {
-			throw new RuntimeException("@NoLines@");
+			m_processMsg = "@NoLines@";
+			return DocAction.STATUS_Invalid;
 		}
 
 		// Std Period open?
-		MPeriod.isOpen(getCtx(), getDateDoc(), MDocType.DOCBASETYPE_PurchaseRequisition, getAD_Org_ID());
+		if (!		MPeriod.isOpen(getCtx(), getDateDoc(), MDocType.DOCBASETYPE_PurchaseRequisition, getAD_Org_ID())) {
+			m_processMsg = "@PeriodClosed@";
+			return DocAction.STATUS_Invalid;
+		}
+		//MPeriod.isOpen(getCtx(), getDateDoc(), MDocType.DOCBASETYPE_PurchaseRequisition, getAD_Org_ID());
 
 		// Add up Amounts
 		int precision = MPriceList.getStandardPrecision(getCtx(), getM_PriceList_ID());

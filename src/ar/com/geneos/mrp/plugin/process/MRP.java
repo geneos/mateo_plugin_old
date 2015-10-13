@@ -958,6 +958,8 @@ public class MRP extends SvrProcess {
 
 			for (int ofq = 1; ofq <= loops; ofq++) {
 				log.info("Is Purchased: " + product.isPurchased() + " Is BOM: " + product.isBOM());
+				//Commit
+				Trx.get(trxName, false).commit();
 				try {
 					createSupply(AD_Org_ID, PP_MRP_ID, product, QtyPlanned, DemandDateStartSchedule, trxName);
 				} catch (MRPCreateSupplyException e) {
@@ -965,6 +967,8 @@ public class MRP extends SvrProcess {
 					// Indicates that there was an error during document
 					// creation
 					e.printStackTrace();
+					//Rollback
+					Trx.get(trxName, false).rollback();
 					createMRPNote("MRP-160", AD_Org_ID, PP_MRP_ID, product, QtyPlanned, DemandDateStartSchedule, e, trxName);
 				}
 			} // end for oqf
@@ -1333,6 +1337,7 @@ public class MRP extends SvrProcess {
 				msg = err.getName();
 			if (msg == null || msg.length() == 0)
 				msg = "SaveError";
+			//Try Delete
 			throw new MRPCreateSupplyException(msg);
 		}
 	}

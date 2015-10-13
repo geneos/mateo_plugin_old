@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 import ar.com.geneos.mrp.plugin.model.LP_PP_Product_BOM;
 
-public class BOMExpiredException extends RuntimeException {
+public class BOMExpiredException extends MRPException {
 	/**
 	 * 
 	 */

@@ -33,6 +33,10 @@ import org.openXpertya.model.*;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
+import org.openXpertya.util.Msg;
+import org.openXpertya.util.Trx;
+
+import ar.com.geneos.mrp.plugin.exception.MRPException;
 
 /**
  *  PP Product BOM Line Model.
@@ -55,6 +59,7 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	 */
 	private static final long serialVersionUID = -5792418944606756221L;
 	MPPProductBOM m_bom = null;
+	private boolean isLocalTrx;
 	
 	/**
 	 * Get all the Product BOM line for a Component
@@ -162,20 +167,34 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	@Override
 	protected boolean beforeSave(boolean newRecord)
 	{
-		//
-		// For Co/By Products, Qty should be always negative:
-		if (isCoProduct() && getQty(false).signum() >= 0)
-		{
-			throw new IllegalStateException("@Qty@ > 0");
+		isLocalTrx = false;
+		//Creo transaccion si no existe para que sea atomica la operacion, si falla el after save se debe volver atras
+		if (get_TrxName() == null){
+			set_TrxName(Trx.createTrxName("MPPProductBOMLine"));
+			Trx.createTrx(get_TrxName());
+			isLocalTrx = true;
 		}
-		//
-		// Update Line#
-		if (getLine() <= 0)
-		{
-			final String sql = "SELECT COALESCE(MAX("+COLUMNNAME_Line+"),0) + 10 FROM "+Table_Name
-								+" WHERE "+COLUMNNAME_PP_Product_BOM_ID+"=?";
-			int line = DB.getSQLValueEx(get_TrxName(), sql, getPP_Product_BOM_ID());
-			setLine(line);
+		try {
+			//
+			// For Co/By Products, Qty should be always negative:
+			if (isCoProduct() && getQty(false).signum() >= 0)
+			{
+				throw new MRPException("@Qty@ > 0");
+			}
+			//
+			// Update Line#
+			if (getLine() <= 0)
+			{
+				final String sql = "SELECT COALESCE(MAX("+COLUMNNAME_Line+"),0) + 10 FROM "+Table_Name
+									+" WHERE "+COLUMNNAME_PP_Product_BOM_ID+"=?";
+				int line = DB.getSQLValueEx(get_TrxName(), sql, getPP_Product_BOM_ID());
+				setLine(line);
+			}
+		}
+		catch (MRPException e){
+			log.saveError("Error",
+					Msg.getMsg(getCtx(), e.getLocalizedMessage()));
+			return false;
 		}
 		
 		return true;
@@ -186,12 +205,24 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 	{
 		if (!success)
 			return false;
-
-		int lowlevel = getLowLevel();
-		MProduct product = new MProduct(getCtx(), getM_Product_ID(), get_TrxName());
-		product.setLowLevel(lowlevel); //update lowlevel
-		product.save();
-		
+		try {
+			int lowlevel = getLowLevel();
+			MProduct product = new MProduct(getCtx(), getM_Product_ID(), get_TrxName());
+			product.setLowLevel(lowlevel); //update lowlevel
+			product.save();
+		}
+		catch (Exception e){
+			log.saveError("Error",
+					Msg.getMsg(getCtx(), e.getLocalizedMessage()));
+			//Vuelvo transaccion atras
+			if (isLocalTrx && get_TrxName() != null){
+				Trx.get(get_TrxName(), false).rollback();
+			}
+			return false;
+		}
+		if (isLocalTrx && get_TrxName() != null){
+			Trx.get(get_TrxName(), false).commit();
+		}
 		return true;
 	}
 	
@@ -401,14 +432,14 @@ class ProductLowLevelCalculator
 					}
 					else
 					{
-						throw new IllegalStateException("Cycle BOM & Formula:" + rs.getString(2) + "(" + rs.getString(3) + ")");
+						throw new MRPException("Cycle BOM & Formula:" + rs.getString(2) + "(" + rs.getString(3) + ")");
 					}
 				}
 				else
 				{
 					//Child = Parent error
 					MProduct product = MProduct.get(m_ctx, M_Product_ID);
-					throw new IllegalStateException("Cycle BOM & Formula:" + rs.getString(2) + "(" + rs.getString(3) +")"
+					throw new MRPException("Cycle BOM & Formula:" + rs.getString(2) + "(" + rs.getString(3) +")"
 													+ " - Component: " + product.getValue() + "(" + product.getM_Product_ID() + ")");
 				}
 			}

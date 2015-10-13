@@ -475,7 +475,7 @@ public class VMRPDetailed extends MRPDetailed implements FormPanel, ActionListen
 	 *             if Lookups cannot be initialized
 	 */
 	private void fillPicks() throws Exception {
-		prepareTable(m_layout, getTableName(), getWhereClause(getSQLWhere()), "DatePromised,ProductValue");
+		prepareTable(m_layout, getTableName(), getWhereClause(getSQLWhere()), "DatePromised asc,ProductValue asc, typemrp desc");
 	}
 
 	protected int getAD_Org_ID() {

@@ -1,6 +1,6 @@
 package ar.com.geneos.mrp.plugin.exception;
 
-public class MRPCreateSupplyException extends RuntimeException {
+public class MRPCreateSupplyException extends MRPException {
 
 	/**
 	 * 

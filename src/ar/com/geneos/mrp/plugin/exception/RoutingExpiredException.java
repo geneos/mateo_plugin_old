@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 import org.openXpertya.model.X_AD_Workflow;
 
-public class RoutingExpiredException extends RuntimeException {
+public class RoutingExpiredException extends MRPException {
 
 	/**
 		 * 

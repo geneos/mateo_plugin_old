@@ -52,6 +52,7 @@ import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 import org.openXpertya.util.KeyNamePair;
 import org.openXpertya.util.Msg;
+import org.openXpertya.util.Trx;
 import org.openXpertya.wf.MWFNode;
 import org.openXpertya.wf.MWFNodeNext;
 import org.openXpertya.wf.MWorkflow;
@@ -60,6 +61,7 @@ import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 
 import ar.com.geneos.mrp.plugin.exception.BOMExpiredException;
 import ar.com.geneos.mrp.plugin.exception.DocTypeNotFoundException;
+import ar.com.geneos.mrp.plugin.exception.MRPException;
 import ar.com.geneos.mrp.plugin.exception.RoutingExpiredException;
 import ar.com.geneos.mrp.plugin.tool.engine.CostDimension;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
@@ -417,6 +419,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	}
 
 	private MPPOrderBOMLine[] m_lines = null;
+	private boolean isLocalTrx;
 
 	/**
 	 * Get Order BOM Lines
@@ -453,6 +456,15 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
+		
+		isLocalTrx = false;
+		//Creo transaccion si no existe para que sea atomica la operacion, si falla el after save se debe volver atras
+		if (get_TrxName() == null){
+			set_TrxName(Trx.createTrxName("MPPProductBOMLine"));
+			Trx.createTrx(get_TrxName());
+			isLocalTrx = true;
+		}
+		
 		if (getAD_Client_ID() == 0) {
 			m_processMsg = "AD_Client_ID = 0";
 			return false;
@@ -536,11 +548,20 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_NEW, log);
 			else
 				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
-
-		} catch (Exception e) {
-			log.saveError("SaveError", e);
-			e.printStackTrace();
+		}
+		catch (Exception e){
+			log.saveError("Error",
+					Msg.getMsg(getCtx(), e.getLocalizedMessage()));
+			//Vuelvo transaccion atras
+			if (isLocalTrx && get_TrxName() != null){
+				Trx.get(get_TrxName(), false).rollback();
+			}
 			return false;
+		}
+
+		//Commit manual si isLocalTrx esta seteado
+		if (isLocalTrx && get_TrxName() != null){
+			Trx.get(get_TrxName(), false).commit();
 		}
 		return true;
 	} // beforeSave
@@ -1135,19 +1156,19 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	 * Create PP_Order_BOM from PP_Product_BOM. Create PP_Order_Workflow from
 	 * AD_Workflow.
 	 */
-	private void explotion() {
+	private void explotion() throws MRPException{
 		// Create BOM Head
 		final MPPProductBOM PP_Product_BOM = MPPProductBOM.get(getCtx(), getPP_Product_BOM_ID());
 		
 		// Product from Order should be same as product from BOM - teo_sarca [
 		// 2817870 ]
 		if (getM_Product_ID() != PP_Product_BOM.getM_Product_ID()) {
-			throw new RuntimeException("@NotMatch@ @PP_Product_BOM_ID@ , @M_Product_ID@");
+			throw new MRPException("@NotMatch@ @PP_Product_BOM_ID@ , @M_Product_ID@");
 		}
 		// Product BOM Configuration should be verified - teo_sarca [ 2817870 ]
 		final MProduct product = MProduct.get(getCtx(), PP_Product_BOM.getM_Product_ID());
 		if (!product.isVerified()) {
-			throw new RuntimeException("Product BOM Configuration not verified. Please verify the product first - " + product.getValue()); // TODO:
+			throw new MRPException("Product BOM Configuration not verified. Please verify the product first - " + product.getValue()); // TODO:
 																																			// translate
 		}
 		if (PP_Product_BOM.isValidFromTo(getDateStartSchedule())) {
@@ -1178,7 +1199,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		final MWorkflow AD_Workflow = MWorkflow.get(getCtx(), getAD_Workflow_ID());
 		// Workflow should be validated first - teo_sarca [ 2817870 ]
 		if (!AD_Workflow.isValid()) {
-			throw new RuntimeException("Routing is not valid. Please validate it first - " + AD_Workflow.getValue()); // TODO:
+			throw new MRPException("Routing is not valid. Please validate it first - " + AD_Workflow.getValue()); // TODO:
 																														// translate
 		}
 		if (MUMWorkflow.isValidFromTo(AD_Workflow, getDateStartSchedule())) {

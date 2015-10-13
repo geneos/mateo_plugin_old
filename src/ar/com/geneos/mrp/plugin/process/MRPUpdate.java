@@ -287,7 +287,7 @@ public class MRPUpdate extends SvrProcess
 			+"t.ad_client_id ,t.S_Resource_ID, null as C_BPartner_ID "
 			+" FROM M_ForecastLine t "
 			+" INNER JOIN M_Forecast f ON (f.M_Forecast_ID=t.M_Forecast_ID) "
-			+" WHERE t.Qty > 0 AND "
+			+" WHERE t.Qty > 0 AND t.isactive='Y' AND "
 			+"t.AD_Client_ID="+AD_Client_ID+" AND t.AD_Org_ID="+AD_Org_ID+" AND t.M_Warehouse_ID= "+M_Warehouse_ID;
 		executeUpdate(sql + sql_insert);
 		trx.commit(true);
