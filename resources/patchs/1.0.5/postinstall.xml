@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="I" tableName="AD_Window_Access" uid="MRP-AD_Window_Access-0-1010209">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Window_Access-0-1010209</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010098">1010098</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Role_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Window_ID" refTable="AD_Window" type="30">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Window-1010209">1010209</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 17:43:02.80461</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 17:43:02.80516</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010597">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_TreeNodeMM-10-1010597</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Tree_ID" refTable="AD_Tree" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Tree-10">10</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:20:45.067836</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Node_ID" refTable="AD_Menu" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Menu-1010597">1010597</newValue>
+</column>
+<column name="Parent_ID" refTable="AD_Menu" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Menu-0">0</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>999</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:20:45.067836</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010597">
+<column name="Parent_ID" refTable="AD_Menu" type="18">
+<oldValue>0</oldValue>
+<newValue refUID="MRP-AD_Menu-1010558">1010571</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>999</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010589">
+<column name="SeqNo" type="11">
+<oldValue>0</oldValue>
+<newValue>1</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010584">
+<column name="SeqNo" type="11">
+<oldValue>1</oldValue>
+<newValue>2</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010583">
+<column name="SeqNo" type="11">
+<oldValue>2</oldValue>
+<newValue>3</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-10-1010559">
+<column name="SeqNo" type="11">
+<oldValue>3</oldValue>
+<newValue>4</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-1010177-1010597">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_TreeNodeMM-1010177-1010597</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Tree_ID" refTable="AD_Tree" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Tree-1010163">1010177</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:22:18.889316</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Node_ID" refTable="AD_Menu" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Menu-1010597">1010597</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:22:18.889847</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_TreeNodeMM" uid="MRP-AD_TreeNodeMM-1010177-1010597">
+<column name="Parent_ID" refTable="AD_Menu" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Menu-1010558">1010571</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>0</oldValue>
+<newValue>3</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Window_Access" uid="MRP-AD_Window_Access-1010144-1010209">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Window_Access-1010144-1010209</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010098">1010098</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Role_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010144</newValue>
+</column>
+<column name="AD_Window_ID" refTable="AD_Window" type="30">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Window-1010209">1010209</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:22:55.625758</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsReadWrite" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-14 18:22:55.6262</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="S_ResourceType" uid="MRPD-S_ResourceType-1010083">
+<column name="C_UOM_ID" refTable="C_UOM" type="19">
+<oldValue>100</oldValue>
+<newValue refUID="CORE-C_UOM-101">101</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="M_Product" uid="MRPD-M_Product-1015480">
+<column name="C_UOM_ID" refTable="C_UOM" type="19">
+<oldValue>100</oldValue>
+<newValue refUID="CORE-C_UOM-101">101</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="M_CostType" uid="MRP-M_CostType-1010088">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-M_CostType-1010088</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="CostingMethod" type="17">
+<oldValue>null</oldValue>
+<newValue>S</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-16 09:39:30.064584</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="M_CostType_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010088</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Costo Estándar</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-16 09:39:30.065192</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+</changelog>

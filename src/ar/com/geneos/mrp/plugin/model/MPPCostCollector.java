@@ -28,7 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
+import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MBPartner;
+import org.openXpertya.model.MClient;
+import org.openXpertya.model.MCost;
 import org.openXpertya.model.MDocType;
 import org.openXpertya.model.MLocator;
 import org.openXpertya.model.MOrder;
@@ -48,6 +51,7 @@ import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
 import org.openXpertya.util.TimeUtil;
 
+import ar.com.geneos.mrp.plugin.tool.engine.CostDimension;
 import ar.com.geneos.mrp.plugin.tool.engine.CostingMethodFactory;
 import ar.com.geneos.mrp.plugin.tool.engine.StandardCostingMethod;
 import ar.com.geneos.mrp.plugin.tool.engine.StorageEngine;
@@ -549,10 +553,38 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 						+ Msg.translate(getCtx(), "PP_Order_Node_ID") + ": " + getPP_Order_Node().getValue();
 				return DocStatus;
 			} else {
+				
+				/*
+				 * Comentamos la estructura de cálculos de costos original para simplificar a la estructura del módulo MRP versión 1.0
+				 * Geneos
+				 * 
+				 *
+				 
 				final StandardCostingMethod standardCostingMethod = (StandardCostingMethod) CostingMethodFactory.get().getCostingMethod(
 						LP_M_CostType.COSTINGMETHOD_StandardCosting);
+				
 				standardCostingMethod.createActivityControl(this);
-
+				*/
+				
+				final MProduct product = MUMProduct.forS_Resource_ID(getCtx(), getS_Resource_ID(), null);
+				final MAcctSchema as = MClient.get(getCtx(), getAD_Client_ID()).getAcctSchema();
+				
+				final CostDimension d = new CostDimension(product, as, as.getM_CostType_ID(), getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
+						CostDimension.ANY);
+				final MPPOrder order = getPP_Order();
+				
+				Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
+				
+				for (MCost cost : costs) {
+					/*
+					 *  Crear dimensión de costos para la orden desde un elemento del colector de costos
+					 *  Geneos
+					 *  
+					 */
+					
+					MPPOrderCost.createOrderCostDimensionFromCollector(order.getID(), cost, this);
+				}			
+				
 				if (activity.getQtyDelivered().compareTo(activity.getQtyRequired()) >= 0) {
 					activity.closeIt();
 					activity.save();

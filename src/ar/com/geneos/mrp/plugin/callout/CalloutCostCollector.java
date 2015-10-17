@@ -50,14 +50,18 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 		if (PP_Order_ID == null || PP_Order_ID <= 0)
 			return state;
 
-		int cost_collector_id = (Integer) mTab.getValue("pp_cost_collector_id");
-		MPPCostCollector cc = new MPPCostCollector(Env.getCtx(), cost_collector_id, null);// GridTabWrapper.create(mTab,
-																							// I_PP_Cost_Collector.class);
-		//
 		MPPOrder pp_order = new MPPOrder(ctx, PP_Order_ID, null);
-		mTab.setValue("PP_Order_ID", pp_order); // MPPCostCollector.setPP_Order(cc,
-												// pp_order);
-		//
+		
+		mTab.setValue("Description", pp_order.getDescription());
+		mTab.setValue("C_Resource_ID", pp_order.getS_Resource_ID());
+		System.out.println("S_Resource_ID: " + pp_order.getS_Resource_ID());
+		mTab.setValue("M_Product_ID", pp_order.getM_Product_ID());
+		mTab.setValue("PP_Order_Workflow_ID", pp_order.getMPPOrderWorkflow().getPP_Order_Workflow_ID());
+		System.out.println("PP_Order_Workflow_ID: " + pp_order.getAD_Workflow_ID());
+		mTab.setValue("C_UOM_ID", pp_order.getC_UOM_ID());
+		mTab.setValue("costcollectortype", "160");
+		
+		
 		setCalloutActive(false);
 		state.setContinueStatus(MPluginStatusCallout.STATE_TRUE_AND_SKIP);
 		return state;
@@ -73,8 +77,8 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 		if (PP_Order_Node_ID == null || PP_Order_Node_ID <= 0)
 			return state;
 
-		int cost_collector_id = (Integer) mTab.getValue("pp_cost_collector_id");
-		MPPCostCollector cc = new MPPCostCollector(Env.getCtx(), cost_collector_id, null);// GridTabWrapper.create(mTab,
+		//int cost_collector_id = (Integer) mTab.getValue("PP_Cost_Collector_ID");
+		//MPPCostCollector cc = new MPPCostCollector(Env.getCtx(), cost_collector_id, null);// GridTabWrapper.create(mTab,
 																							// I_PP_Cost_Collector.class);
 		//
 		MPPOrderNode node = getPP_Order_Node(ctx, PP_Order_Node_ID);
@@ -95,7 +99,7 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 			return state;
 		}
 
-		int cost_collector_id = (Integer) mTab.getValue("pp_cost_collector_id");
+		int cost_collector_id = (Integer) mTab.getValue("PP_Cost_Collector_ID");
 		MPPCostCollector cc = new MPPCostCollector(Env.getCtx(), cost_collector_id, null);// GridTabWrapper.create(mTab,
 																							// I_PP_Cost_Collector.class);
 
@@ -104,6 +108,7 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 
 		RoutingService routingService = RoutingServiceFactory.get().getRoutingService(ctx);
 		BigDecimal durationReal = routingService.estimateWorkingTime(cc);
+		
 		// If Activity Control Duration should be specified
 		// FIXME: this message is really anoying. We need to find a proper
 		// solution - teo_sarca
@@ -114,7 +119,9 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 		// MPPOrderNode.COLUMNNAME_DurationReal);
 		// }
 		//
+		
 		mTab.setValue("DurationReal", durationReal); // cc.setDurationReal(durationReal);
+		
 		//
 		setCalloutActive(false);
 		state.setContinueStatus(MPluginStatusCallout.STATE_TRUE_AND_SKIP);
