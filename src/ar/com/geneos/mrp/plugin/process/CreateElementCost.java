@@ -17,25 +17,13 @@
 package ar.com.geneos.mrp.plugin.process;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 
-import org.openXpertya.model.MBPartner;
-import org.openXpertya.model.MOrder;
-import org.openXpertya.model.MOrderLine;
-import org.openXpertya.model.MProduct;
-import org.openXpertya.model.MProductPO;
-import org.openXpertya.model.MRequisition;
-import org.openXpertya.model.MRequisitionLine;
-import org.openXpertya.model.POResultSet;
-import org.openXpertya.model.Query;
+import org.openXpertya.model.MInvoice;
 import org.openXpertya.process.ProcessInfoParameter;
 import org.openXpertya.process.SvrProcess;
-import org.openXpertya.util.CLogger;
-import org.openXpertya.util.Msg;
-import org.openXpertya.util.ValueNamePair;
+
+import ar.com.geneos.mrp.plugin.model.MPPOrderCost;
 
 /**
  * Create PO from Requisition
@@ -55,19 +43,44 @@ import org.openXpertya.util.ValueNamePair;
  *         /tracker/?func=detail&aid=2844074&group_id=176962&atid=879335
  */
 public class CreateElementCost extends SvrProcess {
-		/**
+	
+	int p_PP_Order_ID = 0;
+	int p_M_Cost_Type_ID = 0;
+	int p_M_CostElement_ID = 0;
+	int p_C_Invoice_ID = 0;
+	int p_Cost = 0;
+	int p_C_AcctSchema_ID = 0;
+	String p_Description = "";
+	
+	
+	/**
 	 * Prepare - e.g., get Parameters.
+	 * 
+	 * @PP_Order_ID define una OM en concreto, o si se deja en blanco todas las OM.
+	 * @date aplica a todas las OM en el rango de fechas
+	 * 
 	 */
 	protected void prepare() {
 		ProcessInfoParameter[] para = getParameter();
 		for (int i = 0; i < para.length; i++) {
 			String name = para[i].getParameterName();
+			
 			if (para[i].getParameter() == null)
 				;
-			//else if (name.equals("AD_Org_ID"))
-			//	p_AD_Org_ID = para[i].getParameterAsInt();
-			//else if (name.equals("M_Warehouse_ID"))
-			//	p_M_Warehouse_ID = para[i].getParameterAsInt();
+			else if (name.equals("C_AcctSchema_ID"))
+				p_C_AcctSchema_ID = para[i].getParameterAsInt();
+			else if (name.equals("M_CostType_ID"))
+				p_M_Cost_Type_ID = para[i].getParameterAsInt();
+			else if (name.equals("PP_Order_ID"))
+				p_PP_Order_ID = para[i].getParameterAsInt();
+			else if (name.equals("M_CostElement_ID"))
+				p_M_CostElement_ID = para[i].getParameterAsInt();
+			else if (name.equals("Descrption"))
+				p_Description = para[i].valueToString();	
+			else if (name.equals("C_Invoice_ID"))
+				p_C_Invoice_ID = para[i].getParameterAsInt();
+			else if (name.equals("Cost"))
+				p_Cost = para[i].getParameterAsInt();			
 			else
 				log.log(Level.SEVERE, "Unknown Parameter: " + name);
 		}
@@ -80,7 +93,25 @@ public class CreateElementCost extends SvrProcess {
 	 * @throws Exception
 	 */
 	protected String doIt() throws Exception {
-		return "";
+		
+		MPPOrderCost orderCostDimension = new MPPOrderCost(this.getCtx(),0,this.get_TrxName());
+		orderCostDimension.setC_AcctSchema_ID(p_C_AcctSchema_ID);
+		orderCostDimension.setM_CostElement_ID(p_M_CostElement_ID);
+		orderCostDimension.setM_CostType_ID(p_M_Cost_Type_ID);
+		orderCostDimension.setPP_Order_ID(p_PP_Order_ID);
+		orderCostDimension.setDescription(p_Description);
+		if(p_C_Invoice_ID != 0) {
+			MInvoice inv = new MInvoice(this.getCtx(),p_C_Invoice_ID,this.get_TrxName());		
+			orderCostDimension.setCurrentCostPrice(inv.getGrandTotal());	
+		} else if(p_Cost != 0) {		
+			orderCostDimension.setCurrentCostPrice(BigDecimal.valueOf(p_Cost));	
+		} else {
+			throw new RuntimeException("@NotCostAvailable@");
+		}
+			 
+		orderCostDimension.save();
+		
+		return "@OK@";
 	} // doit
 
 	

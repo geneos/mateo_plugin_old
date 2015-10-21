@@ -116,60 +116,60 @@ public class LP_PP_Order_Cost extends org.openXpertya.model.PO {
 	}
 
 	/** Set cumulatedamt */
-	public static final String COLUMNNAME_cumulatedamt = "cumulatedamt";
+	public static final String COLUMNNAME_cumulatedamt = "CumulatedAmt";
 
 	public void setCumulatedAmt(BigDecimal cumulatedamt) {
-		set_Value("cumulatedamt", cumulatedamt);
+		set_Value("CumulatedAmt", cumulatedamt);
 	}
 
 	/** Get cumulatedamt */
 	public BigDecimal getCumulatedAmt() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedamt");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedAmt");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set cumulatedamtpost */
-	public static final String COLUMNNAME_cumulatedamtpost = "cumulatedamtpost";
+	public static final String COLUMNNAME_cumulatedamtpost = "CumulatedAmtPost";
 
 	public void setCumulatedQmtPost(BigDecimal cumulatedamtpost) {
-		set_Value("cumulatedamtpost", cumulatedamtpost);
+		set_Value("CumulatedAmtPost", cumulatedamtpost);
 	}
 
 	/** Get cumulatedamtpost */
 	public BigDecimal getCumulatedAmtPost() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedamtpost");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedAmtPost");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set cumulatedqty */
-	public static final String COLUMNNAME_cumulatedqty = "cumulatedqty";
+	public static final String COLUMNNAME_cumulatedqty = "CumulatedQty";
 
 	public void setCumulatedQty(BigDecimal cumulatedqty) {
-		set_Value("cumulatedqty", cumulatedqty);
+		set_Value("CumulatedQty", cumulatedqty);
 	}
 
 	/** Get cumulatedqty */
 	public BigDecimal getCumulatedQty() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedqty");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedQty");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set cumulatedqtypost */
-	public static final String COLUMNNAME_cumulatedqtypost = "cumulatedqtypost";
+	public static final String COLUMNNAME_cumulatedqtypost = "CumulatedQtyPost";
 
 	public void setCumulatedQtyPost(BigDecimal cumulatedqtypost) {
-		set_Value("cumulatedqtypost", cumulatedqtypost);
+		set_Value("CumulatedQtyPost", cumulatedqtypost);
 	}
 
 	/** Get cumulatedqtypost */
 	public BigDecimal getCumulatedQtyPost() {
-		BigDecimal bd = (BigDecimal) get_Value("cumulatedqtypost");
+		BigDecimal bd = (BigDecimal) get_Value("CumulatedQtyPost");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
@@ -195,30 +195,30 @@ public class LP_PP_Order_Cost extends org.openXpertya.model.PO {
 	}
 
 	/** Set currentcostpricell */
-	public static final String COLUMNNAME_currentcostpricell = "currentcostpricell";
+	public static final String COLUMNNAME_currentcostpricell = "CurrentCostPriceLL";
 
 	public void setCurrentCostPriceLL(BigDecimal currentcostpricell) {
-		set_Value("currentcostpricell", currentcostpricell);
+		set_Value("CurrentCostPriceLL", currentcostpricell);
 	}
 
 	/** Get currentcostpricell */
 	public BigDecimal getCurrentCostPriceLL() {
-		BigDecimal bd = (BigDecimal) get_Value("currentcostpricell");
+		BigDecimal bd = (BigDecimal) get_Value("CurrentCostPriceLL");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
 	}
 
 	/** Set currentqty */
-	public static final String COLUMNNAME_currentqty = "currentqty";
+	public static final String COLUMNNAME_currentqty = "CurrentQty";
 
 	public void setCurrentQty(BigDecimal currentqty) {
-		set_Value("currentqty", currentqty);
+		set_Value("CurrentQty", currentqty);
 	}
 
 	/** Get currentqty */
 	public BigDecimal getCurrentQty() {
-		BigDecimal bd = (BigDecimal) get_Value("currentqty");
+		BigDecimal bd = (BigDecimal) get_Value("CurrentQty");
 		if (bd == null)
 			return Env.ZERO;
 		return bd;
@@ -335,4 +335,21 @@ public class LP_PP_Order_Cost extends org.openXpertya.model.PO {
 			return 0;
 		return ii.intValue();
 	}
+	
+	/** Set Description.
+	Optional short description of the record */
+	public static final String COLUMNNAME_Description = "Description";
+
+	public void setDescription (String Description) {
+		if (Description != null && Description.length() > 510){
+			log.warning("Length > 510 - truncated");
+			Description = Description.substring(0,510);
+		}
+		set_Value ("Description", Description);
+	}
+	/** Get Description.
+	Optional short description of the record */
+	public String getDescription() {
+		return (String)get_Value("Description");
+	}	
 }

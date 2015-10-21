@@ -6,6 +6,7 @@
 ---------- Nuevas columnas en tablas y/o vistas 
 ----------------------------------------------------------------------
 
+ALTER TABLE PP_Order_Cost ADD COLUMN Description character varying(510);
 ----------------------------------------------------------------------
 ---------- Modificación de tablas y/o vistas
 ----------------------------------------------------------------------
@@ -22,3 +23,4 @@ ALTER TABLE PP_Cost_Collector ALTER COLUMN QtyReject TYPE numeric;
 ALTER TABLE PP_Cost_Collector ALTER COLUMN ScrappedQty TYPE numeric;
 ALTER TABLE PP_Cost_Collector ALTER COLUMN SetupTimeReal TYPE numeric;
 ALTER TABLE M_Cost ALTER COLUMN M_Warehouse_ID DROP NOT NULL ;
+ALTER TABLE PP_Order_Cost ALTER COLUMN M_Product_ID DROP NOT NULL ;

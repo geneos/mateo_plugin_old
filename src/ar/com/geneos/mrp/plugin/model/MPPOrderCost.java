@@ -19,7 +19,8 @@ package ar.com.geneos.mrp.plugin.model;
 
 
 import java.sql.ResultSet;
-import java.util.Properties;
+import java.util.Properties; 
+import org.openXpertya.model.MProduct;
 
 import org.openXpertya.model.*;
 
@@ -54,7 +55,7 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 		}
 		else 
 		{
-			orderCostDimension.setCostDimension(cost);
+			orderCostDimension.setCostDimension(cost, cost.get_TrxName());
 		}
 		orderCostDimension.save();
 		return orderCostDimension;
@@ -109,14 +110,29 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 	{
 		this(cost.getCtx(), 0, trxName);
 		setPP_Order_ID(PP_Order_ID);
-		setCostDimension(cost);
+		setCostDimension(cost, trxName);
 	}
 	
+	/*
+	 *  Constructor para crear elemento de costos para la orden desde un elemento del colector de costos
+	 *  Geneos
+	 *  
+	 */		
+	
+	public MPPOrderCost(MCost cost, MPPCostCollector costCollector,
+			int PP_Order_ID, String trxName) {
+		// TODO Auto-generated constructor stub
+		this(cost.getCtx(), 0, trxName);
+		setPP_Order_ID(PP_Order_ID);
+		setCostDimensioncostCollector(cost, costCollector);		
+	}
+
 	/**
 	 * Set Values from Cost Dimension  
 	 * @param cost
+	 * @param trxName 
 	 */
-	public void setCostDimension(MCost cost)
+	public void setCostDimension(MCost cost, String trxName)
 	{
 		setClientOrg(cost);
 		setC_AcctSchema_ID(cost.getC_AcctSchema_ID());
@@ -126,7 +142,66 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 		setCurrentCostPrice(cost.getCurrentCostPrice());
 		setCurrentCostPriceLL(cost.getCurrentCostPriceLL());
 		setM_Product_ID(cost.getM_Product_ID());
+		MProduct p = new MProduct(cost.getCtx(), cost.getM_Product_ID(), trxName);
+		setDescription("Costo de Producto " + p.getValue() + " - " + p.getName());
 		setM_AttributeSetInstance_ID(cost.getM_AttributeSetInstance_ID());
 		setM_CostElement_ID(cost.getM_CostElement_ID());
 	}
+	
+	/*
+	 *  Crear dimensión de costos para la orden desde un elemento del colector de costos
+	 *  Geneos
+	 *  
+	 */	
+
+	/**
+	 * Set Values from Cost Dimension from MPPCostCollector
+	 * @param cost
+	 * @param @param cost
+	 */
+	
+	public static void createOrderCostDimensionFromCollector(int PP_Order_ID,
+			MCost cost, MPPCostCollector costCollector) {
+		// TODO Auto-generated method stub
+		
+		// Check if we already added this cost dimension
+		MPPOrderCost orderCostDimension = MPPOrderCost.getByCostDimension(PP_Order_ID,cost);
+		if(orderCostDimension == null) {	
+		   orderCostDimension = new MPPOrderCost(cost, costCollector, PP_Order_ID, cost.get_TrxName());
+		}
+		
+		orderCostDimension.setCostDimensioncostCollector(cost, costCollector);
+		
+		orderCostDimension.save();		
+		
+	}
+	
+	/**
+	 * Set Values from Cost Dimension from Collector
+	 * @param cost
+	 * @param costCollector
+	 */	
+
+	private void setCostDimensioncostCollector(MCost cost,
+			MPPCostCollector costCollector) {
+		// TODO Auto-generated method stub
+		setClientOrg(cost);
+		setC_AcctSchema_ID(cost.getC_AcctSchema_ID());
+		setM_CostType_ID(cost.getM_CostType_ID());
+		setCumulatedAmt(cost.getCumulatedAmt());
+		
+		// En el contexto de un registro de actividad la cantidad es la duración de operación sobre el recurso
+		setCurrentQty(costCollector.getDurationReal());
+		// Estandarizar mensaje
+		setDescription("Costo de Recursos");
+		
+		setCurrentCostPrice(cost.getCurrentCostPrice());
+		setCurrentCostPriceLL(cost.getCurrentCostPriceLL());
+		setM_Product_ID(cost.getM_Product_ID());
+		setM_AttributeSetInstance_ID(cost.getM_AttributeSetInstance_ID());
+		setM_CostElement_ID(cost.getM_CostElement_ID());		
+		
+	}
+
+
 }
