@@ -19,6 +19,7 @@ package ar.com.geneos.mrp.plugin.process;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -77,6 +78,8 @@ public class RequisitionPOCreate extends SvrProcess {
 	private int p_M_Product_Category_ID = 0;
 	/** BPartner Group */
 	private int p_C_BP_Group_ID = 0;
+	/** BPartner Group */
+	private int p_C_BPartner_ID = 0;
 	/** Requisition */
 	private int p_M_Requisition_ID = 0;
 
@@ -104,11 +107,37 @@ public class RequisitionPOCreate extends SvrProcess {
 			else if (name.equals("M_Warehouse_ID"))
 				p_M_Warehouse_ID = para[i].getParameterAsInt();
 			else if (name.equals("DateDoc")) {
+				
 				p_DateDoc_From = (Timestamp) para[i].getParameter();
 				p_DateDoc_To = (Timestamp) para[i].getParameter_To();
+				
+				
+				Calendar cal = Calendar.getInstance();
+				// creates calendar 
+				cal.setTime(p_DateDoc_To); 
+				// sets calendar time/date 
+				cal.add(Calendar.DATE, 1);
+				cal.add(Calendar.SECOND, -1);
+				// returns new date object, one hour in the future
+				p_DateDoc_To = new Timestamp (cal.getTime().getTime());
+				
+				
+				
 			} else if (name.equals("DateRequired")) {
 				p_DateRequired_From = (Timestamp) para[i].getParameter();
+				
 				p_DateRequired_To = (Timestamp) para[i].getParameter_To();
+				
+				Calendar cal = Calendar.getInstance();
+				// creates calendar 
+				cal.setTime(p_DateRequired_To); 
+				// sets calendar time/date 
+				cal.add(Calendar.DATE, 1);
+				cal.add(Calendar.SECOND, -1);
+				// returns new date object, one hour in the future
+				p_DateRequired_To = new Timestamp (cal.getTime().getTime());
+				
+				
 			} else if (name.equals("PriorityRule"))
 				p_PriorityRule = (String) para[i].getParameter();
 			else if (name.equals("AD_User_ID"))
@@ -119,6 +148,8 @@ public class RequisitionPOCreate extends SvrProcess {
 				p_M_Product_Category_ID = para[i].getParameterAsInt();
 			else if (name.equals("C_BP_Group_ID"))
 				p_C_BP_Group_ID = para[i].getParameterAsInt();
+			else if (name.equals("C_BPartner_ID"))
+				p_C_BPartner_ID = para[i].getParameterAsInt();			
 			else if (name.equals("M_Requisition_ID"))
 				p_M_Requisition_ID = para[i].getParameterAsInt();
 			else if (name.equals("ConsolidateDocument"))
@@ -184,12 +215,21 @@ public class RequisitionPOCreate extends SvrProcess {
 		whereClause.append(" AND EXISTS (SELECT 1 FROM M_Requisition r WHERE M_RequisitionLine.M_Requisition_ID=r.M_Requisition_ID").append(
 				" AND r.DocStatus=?");
 		params.add(MRequisition.DOCSTATUS_Completed);
+		
+		// Anexo de proveedor - p_C_BPartner_ID
+		
+		if (p_C_BPartner_ID > 0) {
+			whereClause.append(" AND M_RequisitionLine.C_BPartner_ID=?");
+			params.add(p_C_BPartner_ID);
+		}
+		
 		if (p_M_Warehouse_ID > 0) {
 			whereClause.append(" AND r.M_Warehouse_ID=?");
 			params.add(p_M_Warehouse_ID);
 		}
 		if (p_DateDoc_From != null) {
 			whereClause.append(" AND r.DateDoc >= ?");
+			System.out.println(p_DateDoc_From.getDate());
 			params.add(p_DateDoc_From);
 		}
 		if (p_DateDoc_To != null) {

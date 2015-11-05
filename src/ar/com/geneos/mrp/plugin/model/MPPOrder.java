@@ -31,10 +31,14 @@ import java.util.logging.Level;
 import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MClient;
 import org.openXpertya.model.MCost;
+import org.openXpertya.model.MCostType;
+import org.openXpertya.model.MCostElement;
 import org.openXpertya.model.MDocType;
 import org.openXpertya.model.MLocator;
 import org.openXpertya.model.MOrder;
+import org.openXpertya.model.MPreference;
 import org.openXpertya.model.MProduct;
+import org.openXpertya.model.MProductCategoryAcct;
 import org.openXpertya.model.MProject;
 import org.openXpertya.model.MResource;
 import org.openXpertya.model.MStorage;
@@ -955,7 +959,11 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			return false; 
 		}
 
-		createVariances();
+		//createVariances();
+		
+		// Agregar actualización de costos
+		
+		updateCostValues();
 
 		for (MPPOrderBOMLine line : getLines()) {
 			BigDecimal old = line.getQtyRequired();
@@ -997,6 +1005,155 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			return false;
 		return true;
 	} // closeIt
+
+	/*
+	 * 	
+	 * 	Actualización de los elementos de costos directos.
+	 * 	Actualiza los costos de materiales en función de los consumos reales y 
+	 * 	los costos configurados en los elementos.
+	 * 
+	 * 	@ Geneos
+	 * 	@ 26/10/2015
+	 * 
+	 */
+	
+	private void updateCostValues() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Object> finalParams = new ArrayList<Object>();
+		StringBuffer finalWhereClause = new StringBuffer();
+
+		finalWhereClause.append(MPPOrder.COLUMNNAME_PP_Order_ID + "=? ");
+		finalParams.add(this.getPP_Order_ID());		
+		
+		Query costos_om = new Query(getCtx(), MPPOrderCost.Table_Name, finalWhereClause.toString(), get_TrxName()).setParameters(finalParams);
+		Collection<MPPOrderCost> costos_om_lista = costos_om.list();
+		
+		for (MPPOrderCost cost_om_item : costos_om_lista) {
+
+			// Dependiendo del tipo de elemento de costo actualizar el costo.
+			
+			MCostElement elem = new MCostElement(getCtx(), cost_om_item.getM_CostElement_ID(), get_TrxName());
+						
+			MProduct prod = new MProduct(getCtx(), cost_om_item.getM_Product_ID(), get_TrxName());
+			
+			String cat_acct = "";
+			
+			if(cost_om_item.getM_Product_ID() != 0){
+
+				ArrayList<Object> finalParams_cat = new ArrayList<Object>();
+				StringBuffer finalWhereClause_cat = new StringBuffer();
+
+				finalWhereClause_cat.append("M_Product_Category_ID " + "=? ");
+				finalParams_cat.add(prod.getM_Product_Category_ID());		
+				
+				MProductCategoryAcct prod_cat_acct = new Query(getCtx(), MProductCategoryAcct.Table_Name, finalWhereClause_cat.toString(), get_TrxName()).setParameters(finalParams_cat).firstOnly();
+				
+				cat_acct = prod_cat_acct.getCostingMethod();
+				
+				if(cat_acct.equals(null)) {
+					cat_acct = MClient.get(Env.getCtx(), prod.getAD_Client_ID()).getAcctSchema().getCostingMethod();
+					if(cat_acct.equals(null)) {
+						log.info("No existe metodo de costeo establecido para la categoría de producto y tampoco para el esquema contable.");
+						return;
+					}
+				}				
+				
+			}
+				
+			
+			
+			
+			BigDecimal cost_instance = Env.ZERO;
+			
+			if (LP_M_CostElement.COSTELEMENTTYPE_Material.equals(elem.getCostElementType())) {
+				
+				// Materiales deben actualizarse
+				
+				// Obtener la cantidad de material real utilizada
+				
+				BigDecimal qty_bom = Env.ZERO;
+				MPPOrderBOMLine[] lineas = this.getLines();
+				
+				for(int ind = 0; ind<= lineas.length; ind++) {
+					
+					if(lineas[ind].getM_Product_ID() == cost_om_item.getM_Product_ID()) {
+						qty_bom.add(lineas[ind].getQtyDelivered());
+					}
+					
+				}
+				
+				
+				if(cat_acct.equals(MCostType.COSTINGMETHOD_LastInvoice)) {
+					
+					cost_instance = MCost.lastInvoiceCostingMethod(prod);
+					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+					cost_om_item.setCumulatedQty(qty_bom);
+					cost_om_item.save();
+					
+				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_AverageInvoice)) {
+					
+					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
+					cost_instance = MCost.averageInvoiceCostingMethod(prod, days);
+					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+					cost_om_item.setCumulatedQty(qty_bom);
+					cost_om_item.save();
+					
+				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_LastPOPrice)) {
+				
+					cost_instance = MCost.lastPOPriceCostingMethod(prod);
+					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+					cost_om_item.setCumulatedQty(qty_bom);
+					cost_om_item.save();
+					
+				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_AveragePO)) {
+				
+					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
+					cost_instance = MCost.averagePOCostingMethod(prod, days);
+					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+					cost_om_item.setCumulatedQty(qty_bom);
+					cost_om_item.save();
+					
+				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_StandardCosting)) {
+					
+					cost_instance = MCost.standardCostingMethod(prod, cost_om_item.getM_CostType_ID(), cost_om_item.getM_CostElement_ID());
+					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+					cost_om_item.setCumulatedQty(qty_bom);
+					cost_om_item.save();
+		
+				}
+				
+			} else if (LP_M_CostElement.COSTELEMENTTYPE_Resource.equals(elem.getCostElementType())) {
+				// Recursos deben actualizarse
+				
+				cost_instance = MCost.standardCostingMethod(prod, cost_om_item.getM_CostType_ID(), cost_om_item.getM_CostElement_ID());
+				
+				// qty_cc debe instanciarse con la suma de los registros de cost collector para el recurso.
+				BigDecimal qty_cc = Env.ZERO;
+				
+				List<MPPCostCollector> list_cc = MPPCostCollector.getCostCollectorResourceOM(getCtx(), cost_om_item.getM_Product_ID(), this.getPP_Order_ID(), null);
+				
+				for (MPPCostCollector cc : list_cc) {
+					qty_cc.add(cc.getMovementQty());
+				}
+				
+				cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_cc));
+				cost_om_item.setCumulatedQty(qty_cc);
+				cost_om_item.save();
+				
+			} else if (LP_M_CostElement.COSTELEMENTTYPE_BurdenMOverhead.equals(elem.getCostElementType())) {
+				// Costos indirectos no deben actualizarse				
+				
+			} else {
+				// Sino error.
+				// Analizar como manejarlo.
+				log.info("No existe metodo de costeo establecido para la categoría de producto y tampoco para el esquema contable.");
+				return;
+			} 				
+			
+		}
+		
+	}
 
 	public boolean reverseCorrectIt() {
 		log.info("reverseCorrectIt - " + toString());

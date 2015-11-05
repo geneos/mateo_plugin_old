@@ -87,7 +87,7 @@ public class CalloutCostCollector extends CalloutPluginEngine {
 		mTab.setValue("MovementQty", node.getQtyToDeliver()); // cc.setMovementQty(node.getQtyToDeliver());
 		//
 		setCalloutActive(false);
-		duration(ctx, WindowNo, mTab, mField, value);
+		//duration(ctx, WindowNo, mTab, mField, value);
 		//
 		state.setContinueStatus(MPluginStatusCallout.STATE_TRUE_AND_SKIP);
 		return state;

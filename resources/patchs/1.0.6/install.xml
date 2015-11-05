@@ -1,0 +1,1689 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_AR-1010430">
+<column name="Description" type="10">
+<oldValue>This process recreate the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process recreate the demand, approved and open orders for a product.Generally, this process is only performed during the implementation of MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Create Record MRP</oldValue>
+<newValue>Crear registros MRP</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010430">
+<column name="Name" type="10">
+<oldValue>Create Record MRP</oldValue>
+<newValue>Crear registros MRP</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010430">
+<column name="Name" type="10">
+<oldValue>Create Record MRP</oldValue>
+<newValue>Crear registros MRP</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010430">
+<column name="Name" type="10">
+<oldValue>Create Record MRP</oldValue>
+<newValue>Crear registros MRP</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_AR-1010430">
+<column name="Description" type="10">
+<oldValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010430">
+<column name="Description" type="10">
+<oldValue>This process recreate the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process recreate the demand, approved and open orders for a product.Generally, this process is only performed during the implementation of MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010430">
+<column name="Description" type="10">
+<oldValue>This process recreate the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process recreate the demand, approved and open orders for a product.Generally, this process is only performed during the implementation of MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010430">
+<column name="Description" type="10">
+<oldValue>This process recreate the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process recreate the demand, approved and open orders for a product.Generally, this process is only performed during the implementation of MRP</oldValue>
+<newValue>Este proceso recrea la demanda, órdenes aprobadas y abiertas para un producto. Generalmente, este proceso es ejecutado únicamente durante la implementación de MRP.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_AR-1010429">
+<column name="Description" type="10">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Calculate Low Level</oldValue>
+<newValue>Calcular niveles inferiores</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010429">
+<column name="Description" type="10">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010429">
+<column name="Description" type="10">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010429">
+<column name="Description" type="10">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>This process calculate and register the lowest level of a product inside any BOM. It is used in the MRP calculations and should be executed when you enter a new BOM.</oldValue>
+<newValue>Este proceso calcula y registra el nivel menor de un producto dentro de una LDM. Es usado en los cálculos del MRP y debe ser ejecutado cuando ingresa una nueva LDM.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010429">
+<column name="Name" type="10">
+<oldValue>Calculate Low Level</oldValue>
+<newValue>Calcular niveles inferiores</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010429">
+<column name="Name" type="10">
+<oldValue>Calculate Low Level</oldValue>
+<newValue>Calcular niveles inferiores</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010429">
+<column name="Name" type="10">
+<oldValue>Calculate Low Level</oldValue>
+<newValue>Calcular niveles inferiores</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_AR-1010431">
+<column name="Description" type="10">
+<oldValue>This process calcualte the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The regenerative material plan process calculates the demands and supply for every product of the organization, warehouse and plant. This process generates a material plan even if there is no changes, since the last time it was executed.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010431">
+<column name="Description" type="10">
+<oldValue>This process calcualte the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The regenerative material plan process calculates the demands and supply for every product of the organization, warehouse and plant. This process generates a material plan even if there is no changes, since the last time it was executed.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010431">
+<column name="Description" type="10">
+<oldValue>This process calcualte the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The regenerative material plan process calculates the demands and supply for every product of the organization, warehouse and plant. This process generates a material plan even if there is no changes, since the last time it was executed.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010431">
+<column name="Description" type="10">
+<oldValue>This process calcualte the demand, approved and open orders for a product.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The regenerative material plan process calculates the demands and supply for every product of the organization, warehouse and plant. This process generates a material plan even if there is no changes, since the last time it was executed.</oldValue>
+<newValue>Este proceso calcula la demanda, órdenes aprobadas y abiertas para un producto.</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_AR-1010431">
+<column name="Name" type="10">
+<oldValue>Regenerative Material Plan</oldValue>
+<newValue>Calcular plan de materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_ES-1010431">
+<column name="Name" type="10">
+<oldValue>Regenerative Material Plan</oldValue>
+<newValue>Calcular plan de materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_MX-1010431">
+<column name="Name" type="10">
+<oldValue>Regenerative Material Plan</oldValue>
+<newValue>Calcular plan de materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Trl" uid="MRP-AD_Process_Trl-es_PY-1010431">
+<column name="Name" type="10">
+<oldValue>Regenerative Material Plan</oldValue>
+<newValue>Calcular plan de materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP32MRP-AD_Ref_List-1010838-20150811093243">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP32MRP-AD_Ref_List-1010841-20150811093245">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11288-es_ES">
+<column name="Description" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11288-es_AR">
+<column name="Description" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11288-es_MX">
+<column name="Description" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11288-es_PY">
+<column name="Description" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Metodo de Coste</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11204-es_ES">
+<column name="Description" type="10">
+<oldValue>No. Línea único para este documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Indica el No. Línea para un documento . También controlará el orden de despliegue de las líneas dentro de un documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Nro. Línea</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11204-es_AR">
+<column name="Description" type="10">
+<oldValue>No. Línea único para este documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Indica el No. Línea para un documento . También controlará el orden de despliegue de las líneas dentro de un documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Nro. Línea</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11204-es_MX">
+<column name="Description" type="10">
+<oldValue>No. Línea único para este documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Indica el No. Línea para un documento . También controlará el orden de despliegue de las líneas dentro de un documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Nro. Línea</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field_Trl" uid="CORE-AD_Field_Trl-11204-es_PY">
+<column name="Description" type="10">
+<oldValue>No. Línea único para este documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>Indica el No. Línea para un documento . También controlará el orden de despliegue de las líneas dentro de un documento</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Nro. Línea</oldValue>
+<newValue>Método de Costeo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Column" uid="CORE-AD_Column-13245">
+<column name="AD_Reference_Value_ID" refTable="AD_Reference" type="18">
+<oldValue>122</oldValue>
+<newValue refUID="MRP32MRP-AD_Reference-1010277-20150811093242">1010276</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP32MRP-AD_Ref_List-1010839-20150811093244">
+<column name="Value" type="10">
+<oldValue>i</oldValue>
+<newValue>U</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP32MRP-AD_Ref_List-1010842-20150811093245">
+<column name="Value" type="10">
+<oldValue>p</oldValue>
+<newValue>P</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-147-es_ES">
+<column name="Description" type="10">
+<oldValue>Costo Promedio Ponderado de la orden de compra</oldValue>
+<newValue>Costo Promedio Ponderado de la Orden de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Promedio</oldValue>
+<newValue>Promedio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-147-es_AR">
+<column name="Name" type="10">
+<oldValue>Promedio</oldValue>
+<newValue>Promedio Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-147-es_AR">
+<column name="Description" type="10">
+<oldValue>Costo Promedio Ponderado de la orden de compra</oldValue>
+<newValue>Costo Promedio Ponderado de la Orden de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Promedio Orden de Compra</oldValue>
+<newValue>Promedio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-147-es_MX">
+<column name="Description" type="10">
+<oldValue>Costo Promedio Ponderado de la orden de compra</oldValue>
+<newValue>Costo Promedio Ponderado de la Orden de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Promedio</oldValue>
+<newValue>Promedio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-147-es_PY">
+<column name="Description" type="10">
+<oldValue>Costo Promedio Ponderado de la orden de compra</oldValue>
+<newValue>Costo Promedio Ponderado de la Orden de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Promedio</oldValue>
+<newValue>Promedio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="CORE-AD_Ref_List-239">
+<column name="IsActive" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-239-es_ES">
+<column name="Name" type="10">
+<oldValue>Ultimo Precio del Pedido a Proveedor</oldValue>
+<newValue>Ultimo Precio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-239-es_AR">
+<column name="Name" type="10">
+<oldValue>Ultimo Precio del Pedido a Proveedor</oldValue>
+<newValue>Ultimo Precio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-239-es_MX">
+<column name="Name" type="10">
+<oldValue>Ultimo Precio del Pedido a Proveedor</oldValue>
+<newValue>Ultimo Precio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="CORE-AD_Ref_List_Trl-239-es_PY">
+<column name="Name" type="10">
+<oldValue>Ultimo Precio del Pedido a Proveedor</oldValue>
+<newValue>Ultimo Precio de Orden de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010876">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010876</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Reference-122">122</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010876</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:29.958075</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Last Invoice Price</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:29.958949</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010876">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010876</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010876">1010876</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.295945</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Last Invoice Price</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.296899</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010876">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010876</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010876">1010876</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.519947</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Last Invoice Price</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.520814</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010876">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010876</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010876">1010876</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.717431</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Last Invoice Price</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.717951</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010876">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010876</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010876">1010876</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.906545</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Last Invoice Price</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:53:30.907239</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010876">
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Last Invoice Price</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010876">
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Last Invoice Price</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010876">
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Last Invoice Price</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010876">
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Last Invoice Price</oldValue>
+<newValue>Último precio de Factura de Compra</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010877">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List-1010877</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Reference-122">122</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010877</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:39.624187</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Costeo por promedio ponderado del precio de la Factura de Compra</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Promedio de Factura de Compra</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:39.625202</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>I</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010877">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_ES-1010877</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010877">1010877</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:39.878388</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Costeo por promedio ponderado del precio de la Factura de Compra</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Promedio de Factura de Compra</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:39.879187</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010877">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_AR-1010877</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010877">1010877</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.094458</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Costeo por promedio ponderado del precio de la Factura de Compra</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Promedio de Factura de Compra</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.095388</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010877">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_MX-1010877</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010877">1010877</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.305327</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Costeo por promedio ponderado del precio de la Factura de Compra</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Promedio de Factura de Compra</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.305914</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010877">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Ref_List_Trl-es_PY-1010877</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Ref_List-1010877">1010877</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.516601</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Costeo por promedio ponderado del precio de la Factura de Compra</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Promedio de Factura de Compra</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-29 07:55:40.517476</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010877">
+<column name="Description" type="10">
+<oldValue>Costeo por promedio ponderado del precio de la Factura de Compra</oldValue>
+<newValue/>
+</column>
+<column name="Name" type="10">
+<oldValue>Promedio de Factura de Compra</oldValue>
+<newValue>Avarage Invoice</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Column" uid="CORE-AD_Column-13245">
+<column name="AD_Reference_Value_ID" refTable="AD_Reference" type="18">
+<oldValue>1010276</oldValue>
+<newValue refUID="CORE-AD_Reference-122">122</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010385">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010361">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010362">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010363">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010364">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010365">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010366">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010367">
+<column name="IsReadOnly" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010366">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010365">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018493-20150820145035">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>70</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018494-20150820145036">
+<column name="SeqNo" type="11">
+<oldValue>80</oldValue>
+<newValue>70</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018492-20150820145034">
+<column name="SeqNo" type="11">
+<oldValue>90</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018489-20150820145031">
+<column name="SeqNo" type="11">
+<oldValue>100</oldValue>
+<newValue>90</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018501-20150820145043">
+<column name="SeqNo" type="11">
+<oldValue>110</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018499-20150820145041">
+<column name="SeqNo" type="11">
+<oldValue>120</oldValue>
+<newValue>110</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRPC2MRP-AD_Field-1018500-20150820145042">
+<column name="SeqNo" type="11">
+<oldValue>130</oldValue>
+<newValue>120</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="CORE-AD_Tab-254">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015031">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015033">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015034">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015037">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015035">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015032">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015036">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-11288">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>70</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-11290">
+<column name="SeqNo" type="11">
+<oldValue>80</oldValue>
+<newValue>70</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP32MRP-AD_Field-1018477-20150811093247">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6783">
+<column name="SeqNo" type="11">
+<oldValue>10</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-1015142">
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP32MRP-AD_Field-1018476-20150811093241">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6785">
+<column name="SeqNo" type="11">
+<oldValue>20</oldValue>
+<newValue>10</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6782">
+<column name="SeqNo" type="11">
+<oldValue>30</oldValue>
+<newValue>20</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6786">
+<column name="SeqNo" type="11">
+<oldValue>40</oldValue>
+<newValue>30</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6784">
+<column name="SeqNo" type="11">
+<oldValue>50</oldValue>
+<newValue>40</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6789">
+<column name="SeqNo" type="11">
+<oldValue>60</oldValue>
+<newValue>50</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="CORE-AD_Field-6788">
+<column name="SeqNo" type="11">
+<oldValue>70</oldValue>
+<newValue>60</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Process_Para" uid="MRP-AD_Process_Para-1011094">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Process_Para-1011094</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Process_ID" refTable="AD_Process" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Process-1010439">1010440</newValue>
+</column>
+<column name="AD_Process_Para_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1011094</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Reference-30">30</newValue>
+</column>
+<column name="ColumnName" type="10">
+<oldValue>null</oldValue>
+<newValue>C_BPartner_ID</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:23.807065</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="FieldLength" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>null</oldValue>
+<newValue>The Business Partner</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsEncrypted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMandatory" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsRange" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="SameLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>110</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:23.807747</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_ES-1011094">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Process_Para_Trl-es_ES-1011094</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Process_Para_ID" refTable="AD_Process_Para" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Process_Para-1011094">1011094</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.347668</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>null</oldValue>
+<newValue>The Business Partner</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.348251</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_AR-1011094">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Process_Para_Trl-es_AR-1011094</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Process_Para_ID" refTable="AD_Process_Para" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Process_Para-1011094">1011094</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.642457</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>null</oldValue>
+<newValue>The Business Partner</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.643161</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_MX-1011094">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Process_Para_Trl-es_MX-1011094</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Process_Para_ID" refTable="AD_Process_Para" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Process_Para-1011094">1011094</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.863672</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>null</oldValue>
+<newValue>The Business Partner</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:24.864395</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_PY-1011094">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-AD_Process_Para_Trl-es_PY-1011094</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_ComponentVersion-1010102">1010102</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Process_Para_ID" refTable="AD_Process_Para" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Process_Para-1011094">1011094</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:25.094731</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>null</oldValue>
+<newValue>The Business Partner</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Business Partner</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-10-30 15:47:25.095214</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_ES-1011094">
+<column name="Description" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_AR-1011094">
+<column name="Description" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_MX-1011094">
+<column name="Description" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para_Trl" uid="MRP-AD_Process_Para_Trl-es_PY-1011094">
+<column name="Description" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Help" type="14">
+<oldValue>The Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Business Partner</oldValue>
+<newValue>Proveedor</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para" uid="MRP-AD_Process_Para-1011094">
+<column name="AD_Val_Rule_ID" refTable="AD_Val_Rule" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Val_Rule-1010141">1010141</newValue>
+</column>
+</changegroup>
+</changelog>

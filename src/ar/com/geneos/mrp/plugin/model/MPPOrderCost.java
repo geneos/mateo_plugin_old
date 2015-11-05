@@ -75,8 +75,7 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 		whereClause.append(MPPOrderCost.COLUMNNAME_C_AcctSchema_ID + "=? AND ");
 		whereClause.append(MPPOrderCost.COLUMNNAME_M_CostType_ID+ "=? AND "); 
 		whereClause.append(MPPOrderCost.COLUMNNAME_M_CostElement_ID+ "=? AND "); 
-		whereClause.append(MPPOrderCost.COLUMNNAME_M_Product_ID+ "=? AND "); 
-		whereClause.append(MPPOrderCost.COLUMNNAME_M_AttributeSetInstance_ID+ "=? ");
+		whereClause.append(MPPOrderCost.COLUMNNAME_M_Product_ID+ "=?"); 
 		
 		return new Query(cost.getCtx(), LP_PP_Order_Cost.Table_Name, whereClause.toString(), cost.get_TrxName())
 		.setClient_ID()
@@ -86,8 +85,7 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 				cost.getC_AcctSchema_ID(), 
 				cost.getM_CostType_ID(), 
 				cost.getM_CostElement_ID(), 
-				cost.getM_Product_ID(), 
-				cost.getM_AttributeSetInstance_ID())
+				cost.getM_Product_ID())
 		.firstOnly();
 	}
 

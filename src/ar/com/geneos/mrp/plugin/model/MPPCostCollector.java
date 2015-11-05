@@ -77,7 +77,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	 */
 	private static final long serialVersionUID = 2329378809441860241L;
 
-	public static final String DOCBASETYPE_ManufacturingCostCollector = "MCC";
+	public static final String DOCBASETYPE_ManufacturingCostCollector = "MOR";
 
 	public static final String DOCACTION_None = null;
 
@@ -1029,5 +1029,38 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	/**
+	 * Obtener los cost collectos para un Recurso y una OM
+	 * 
+	 * @param product
+	 * @param AD_Client_ID
+	 * @param dateAcct
+	 * @return Collection the Cost Collector
+	 */
+	
+	public static List<MPPCostCollector> getCostCollectorResourceOM(Properties ctx, int M_Product_ID, int PP_Order_ID, String trxName) {
+		List<Object> params = new ArrayList();
+		
+		final StringBuffer whereClause = new StringBuffer();
+		
+		whereClause.append(MPPCostCollector.COLUMNNAME_costcollectortype + " NOT IN ('100','110') AND ");
+		
+		if (M_Product_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_M_Product_ID + "=? AND ");
+			params.add(M_Product_ID);
+		}
+
+		if (PP_Order_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_PP_Order_ID + "=? AND ");
+			params.add(PP_Order_ID);
+		}
+
+		return new Query(ctx, LP_PP_Cost_Collector.Table_Name, whereClause.toString(), trxName).setParameters(params).list();
+
+	}
+
+	
+	
 
 } // MPPCostCollector

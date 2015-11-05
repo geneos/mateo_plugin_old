@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="M" tableName="C_DocType" uid="CORE-C_DocType-1010524">
+<column name="AllowChangePriceList" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+</changelog>
