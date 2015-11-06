@@ -186,64 +186,6 @@
 <newValue>3</newValue>
 </column>
 </changegroup>
-<changegroup operation="M" tableName="S_ResourceType" uid="MRPD-S_ResourceType-1010083">
-<column name="C_UOM_ID" refTable="C_UOM" type="19">
-<oldValue>100</oldValue>
-<newValue refUID="CORE-C_UOM-101">101</newValue>
-</column>
-</changegroup>
-<changegroup operation="M" tableName="M_Product" uid="MRPD-M_Product-1015480">
-<column name="C_UOM_ID" refTable="C_UOM" type="19">
-<oldValue>100</oldValue>
-<newValue refUID="CORE-C_UOM-101">101</newValue>
-</column>
-</changegroup>
-<changegroup operation="I" tableName="M_CostType" uid="MRP-M_CostType-1010088">
-<column name="AD_Client_ID" type="19">
-<oldValue>null</oldValue>
-<newValue>1010016</newValue>
-</column>
-<column name="AD_ComponentObjectUID" type="10">
-<oldValue>null</oldValue>
-<newValue>MRP-M_CostType-1010088</newValue>
-</column>
-<column name="AD_Org_ID" type="19">
-<oldValue>null</oldValue>
-<newValue>1010053</newValue>
-</column>
-<column name="CostingMethod" type="17">
-<oldValue>null</oldValue>
-<newValue>S</newValue>
-</column>
-<column name="Created" type="16">
-<oldValue>null</oldValue>
-<newValue>2015-10-16 09:39:30.064584</newValue>
-</column>
-<column name="CreatedBy" type="18">
-<oldValue>null</oldValue>
-<newValue>1010717</newValue>
-</column>
-<column name="IsActive" type="20">
-<oldValue>null</oldValue>
-<newValue>Y</newValue>
-</column>
-<column name="M_CostType_ID" type="13">
-<oldValue>null</oldValue>
-<newValue>1010088</newValue>
-</column>
-<column name="Name" type="10">
-<oldValue>null</oldValue>
-<newValue>Costo Estándar</newValue>
-</column>
-<column name="Updated" type="16">
-<oldValue>null</oldValue>
-<newValue>2015-10-16 09:39:30.065192</newValue>
-</column>
-<column name="UpdatedBy" type="18">
-<oldValue>null</oldValue>
-<newValue>1010717</newValue>
-</column>
-</changegroup>
 <changegroup operation="I" tableName="AD_Process_Access" uid="MRP-AD_Process_Access-1010444-0">
 <column name="AD_Client_ID" type="19">
 <oldValue>null</oldValue>
