@@ -10,7 +10,6 @@ import org.openXpertya.util.Util;
 import ar.com.geneos.mrp.plugin.model.IDocumentLine;
 import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 
 /**
@@ -330,6 +329,6 @@ public class CostDimension {
 
 	public String getCostingMethod() {
 		MCostType ct = new MCostType(Env.getCtx(), getM_CostType_ID(), null);
-		return MUMCostType.getCostingMethod(ct);
+		return ct.getCostingMethod();
 	}
 }

@@ -42,7 +42,6 @@ import ar.com.geneos.mrp.plugin.tool.engine.CostDimension;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;
 import ar.com.geneos.mrp.plugin.util.MUMCostElement;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMOrg;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 
@@ -624,7 +623,7 @@ public class MCost extends LP_M_Cost {
 			 */
 
 			MCostElement ce = MUMCostElement.getByMaterialCostElementType(as);
-			List<MCostType> costtypes = MUMCostType.get(product.getCtx(), product.get_TrxName());
+			List<MCostType> costtypes = MCostType.get(product.getCtx(), product.get_TrxName());
 			for (MCostType mc : costtypes) {
 				MCost cost = getOrCreate(product, M_ASI_ID, as, Org_ID, M_Warehouse_ID, mc.getM_CostType_ID(), ce.getM_CostElement_ID());
 				if (cost != null && cost.getCurrentCostPrice().signum() != 0) {
@@ -950,7 +949,7 @@ public class MCost extends LP_M_Cost {
 			String cl = MUMProduct.getCostingLevel(product, as);
 			// Create Std Costing
 			if (LP_C_AcctSchema.COSTINGLEVEL_Client.equals(cl)) {
-				for (MCostType ct : MUMCostType.get(product.getCtx(), product.get_TrxName())) {
+				for (MCostType ct : MCostType.get(product.getCtx(), product.get_TrxName())) {
 					for (MCostElement ce : ces) {
 						MCost cost = MCost.getOrCreate(product, M_ASI_ID, as, 0, 0, ct.getM_CostType_ID(), ce.getM_CostElement_ID());
 						if (cost.is_new()) {
@@ -965,7 +964,7 @@ public class MCost extends LP_M_Cost {
 				if (orgs == null)
 					orgs = MUMOrg.getOfClient(product);
 				for (MOrg o : orgs) {
-					for (MCostType ct : MUMCostType.get(product.getCtx(), product.get_TrxName())) {
+					for (MCostType ct : MCostType.get(product.getCtx(), product.get_TrxName())) {
 						for (MCostElement ce : ces) {
 							MCost cost = MCost.getOrCreate(product, M_ASI_ID, as, o.getAD_Org_ID(), 0, ct.getM_CostType_ID(), ce.getM_CostElement_ID());
 							if (cost.is_new()) {
@@ -1002,7 +1001,7 @@ public class MCost extends LP_M_Cost {
 			String cl = MUMProduct.getCostingLevel(product, as);
 			// Create Std Costing
 			if (LP_C_AcctSchema.COSTINGLEVEL_Client.equals(cl)) {
-				for (MCostType ct : MUMCostType.get(product.getCtx(), product.get_TrxName())) {
+				for (MCostType ct : MCostType.get(product.getCtx(), product.get_TrxName())) {
 					for (MCostElement ce : ces) {
 						MCost cost = MCost.getOrCreate(product, M_ASI_ID, as, 0, 0, ct.getM_CostType_ID(), ce.getM_CostElement_ID());
 						if (cost != null)
@@ -1013,7 +1012,7 @@ public class MCost extends LP_M_Cost {
 				if (orgs == null)
 					orgs = MUMOrg.getOfClient(product);
 				for (MOrg o : orgs) {
-					for (MCostType ct : MUMCostType.get(product.getCtx(), product.get_TrxName())) {
+					for (MCostType ct : MCostType.get(product.getCtx(), product.get_TrxName())) {
 						for (MCostElement ce : ces) {
 							MCost cost = MCost.getOrCreate(product, M_ASI_ID, as, o.getAD_Org_ID(), 0, ct.getM_CostType_ID(), ce.getM_CostElement_ID());
 							if (cost != null)
@@ -1809,43 +1808,39 @@ public class MCost extends LP_M_Cost {
 		return true;
 	} // beforeDelete
 
-	
-	
 	public static BigDecimal lastInvoiceCostingMethod(MProduct prod) {
 		// TODO Auto-generated method stub
-					
+
 		BigDecimal pricelist = Env.ZERO;
-		
+
 		try {
-			
+
 			StringBuilder sql = new StringBuilder();
-			
+
 			sql.append("SELECT invline.pricelist, inv.dateinvoice ");
 			sql.append("FROM C_InvoiceLine invline ");
 			sql.append("INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID) ");
 			sql.append("WHERE inv.docstaus IN ('CO','CL') ");
 			sql.append("AND invline.M_Product_ID = " + prod.getM_Product_ID());
 			sql.append("ORDER BY inv.dateinvoice desc");
-			
-			
+
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				pricelist = rs.getBigDecimal(0);
 			}
-			
+
 			rs.close();
 			pstmt.close();
-		
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return pricelist;
-		
+
 	}
 
 	public static BigDecimal averageInvoiceCostingMethod(MProduct prod, int days) {
@@ -1854,75 +1849,74 @@ public class MCost extends LP_M_Cost {
 		Calendar calendar = Calendar.getInstance();
 		Date fecha = new Date();
 		calendar.setTime(fecha); // Configuramos la fecha que se recibe
-	    calendar.add(Calendar.DAY_OF_YEAR, days*(-1));  // numero de días a añadir, o restar en caso de días<0
-	    Date fecha_desde = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
-		
+		calendar.add(Calendar.DAY_OF_YEAR, days * (-1)); // numero de días a
+															// añadir, o restar
+															// en caso de días<0
+		Date fecha_desde = calendar.getTime(); // Devuelve el objeto Date con
+												// los nuevos días añadidos
+
 		try {
-			
+
 			StringBuilder sql = new StringBuilder();
-			
+
 			sql.append("SELECT avg(invline.pricelist) ");
 			sql.append("FROM C_InvoiceLine invline ");
 			sql.append("INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID) ");
 			sql.append("WHERE inv.docstaus IN ('CO','CL') ");
 			sql.append("AND invline.M_Product_ID = " + prod.getM_Product_ID());
 			sql.append("AND inv.dateinvoice >= '" + fecha_desde.toString() + "'");
-			
-			
+
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				pricelist = rs.getBigDecimal(0);
 			}
-			
+
 			rs.close();
 			pstmt.close();
-		
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return pricelist;
-		
+
 	}
 
 	public static BigDecimal lastPOPriceCostingMethod(MProduct prod) {
 		// TODO Auto-generated method stub
 		BigDecimal pricelist = Env.ZERO;
-		
+
 		try {
-			
+
 			StringBuilder sql = new StringBuilder();
-			
+
 			sql.append("SELECT orderline.pricelist, ord.dateordered ");
 			sql.append("FROM C_OrderLine ordLine ");
 			sql.append("INNER JOIN C_Order ord ON (ord.C_Order_ID = ordLine.C_Order_ID) ");
 			sql.append("WHERE ord.docstaus IN ('CO','CL') ");
 			sql.append("AND ordline.M_Product_ID = " + prod.getM_Product_ID());
 			sql.append("ORDER BY ord.dateordered desc");
-			
-			
+
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				pricelist = rs.getBigDecimal(0);
 			}
-			
+
 			rs.close();
 			pstmt.close();
-		
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return pricelist;
-		
+
 	}
 
 	public static BigDecimal averagePOCostingMethod(MProduct prod, int days) {
@@ -1930,39 +1924,39 @@ public class MCost extends LP_M_Cost {
 		// TODO Auto-generated method stub
 		BigDecimal pricelist = Env.ZERO;
 		Calendar calendar = Calendar.getInstance();
-	    calendar.add(Calendar.DATE, days);  // numero de días a añadir, o restar en caso de días<0
-	    Date fecha_desde = calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
-		
+		calendar.add(Calendar.DATE, days); // numero de días a añadir, o restar
+											// en caso de días<0
+		Date fecha_desde = calendar.getTime(); // Devuelve el objeto Date con
+												// los nuevos días añadidos
+
 		try {
-			
+
 			StringBuilder sql = new StringBuilder();
-			
+
 			sql.append("SELECT avg(ordline.pricelist) ");
 			sql.append("FROM C_OrderLine ordline ");
 			sql.append("INNER JOIN C_Order ord ON (ord.C_Order_ID = ordline.C_Order_ID) ");
 			sql.append("WHERE ord.docstatus IN ('CO','CL') ");
 			sql.append("AND ordline.M_Product_ID = " + prod.getM_Product_ID() + " ");
 			sql.append("AND ord.dateordered >= '" + fecha_desde.toString() + "'");
-			
-			
+
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				pricelist = rs.getBigDecimal(1);
 			}
-			
+
 			rs.close();
 			pstmt.close();
-		
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return pricelist;	
-	
+
+		return pricelist;
+
 	}
 
 	public static BigDecimal standardCostingMethod(MProduct prod, int costType_ID, int costElement_ID) {
@@ -1977,7 +1971,7 @@ public class MCost extends LP_M_Cost {
 		finalWhereClause.append("AND C_AcctSchema_ID " + "=? ");
 		finalWhereClause.append("AND M_CostType_ID " + "=? ");
 		finalWhereClause.append("AND M_CostElement_ID " + "=? ");
-		
+
 		finalParams.add(prod.getAD_Client_ID());
 		System.out.println(prod.getAD_Client_ID());
 		finalParams.add(prod.getAD_Org_ID());
@@ -1990,16 +1984,15 @@ public class MCost extends LP_M_Cost {
 		System.out.println(costType_ID);
 		finalParams.add(costElement_ID);
 		System.out.println(costElement_ID);
-		
+
 		MCost cost = new Query(Env.getCtx(), MCost.Table_Name, finalWhereClause.toString(), null).setParameters(finalParams).firstOnly();
-		
-		if(cost.equals(null)) {
+
+		if (cost.equals(null)) {
 			return Env.ZERO;
 		} else {
 			return cost.getCurrentCostPrice();
 		}
-		
+
 	}
-	
 
 } // MCost

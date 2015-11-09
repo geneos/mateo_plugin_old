@@ -78,7 +78,6 @@ import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.model.MPPOrder;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;
 import ar.com.geneos.mrp.plugin.util.MUMCostElement;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 import ar.com.geneos.mrp.plugin.util.MUMTransaction;
 import ar.com.geneos.mrp.plugin.util.MUMatchInv;
@@ -236,7 +235,7 @@ public class CostEngine {
 				transaction.get_TrxName())));
 
 		List<MCostElement> costElements = MUMCostElement.getCostElement(transaction.getCtx(), transaction.get_TrxName());
-		List<MCostType> costTypes = MUMCostType.get(transaction.getCtx(), transaction.get_TrxName());
+		List<MCostType> costTypes = MCostType.get(transaction.getCtx(), transaction.get_TrxName());
 		for (MAcctSchema accountSchema : acctSchemas) {
 			for (MCostType costType : costTypes) {
 				if (!costType.isActive())
@@ -292,7 +291,7 @@ public class CostEngine {
 
 		// The Change of price in the Invoice Line is not generated cost
 		// adjustment for Average PO Costing method
-		if (model instanceof LP_M_MatchPO && LP_M_CostType.COSTINGMETHOD_AverageInvoice.equals(MUMCostType.getCostingMethod(costType)))
+		if (model instanceof LP_M_MatchPO && LP_M_CostType.COSTINGMETHOD_AverageInvoice.equals(costType.getCostingMethod()))
 			return;
 
 		if (model instanceof LP_C_LandedCostAllocation) {
@@ -307,7 +306,7 @@ public class CostEngine {
 		if ((MCostElement.COSTELEMENTTYPE_Material.equals(costElement.getCostElementType()) || LP_M_CostElement.COSTELEMENTTYPE_LandedCost.equals(costElement
 				.getCostElementType()))
 				&& transaction.getMovementType().contains("+")
-				&& !LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(MUMCostType.getCostingMethod(costType))) {
+				&& !LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(costType.getCostingMethod())) {
 			if (model instanceof MMovementLine || model instanceof MInventoryLine
 					|| (model instanceof MInOutLine && MTransaction.MOVEMENTTYPE_CustomerReturns.equals(transaction.getMovementType()))) {
 				costThisLevel = getCostThisLevel(accountSchema, costType, costElement, transaction, model, costingLevel);
@@ -346,7 +345,7 @@ public class CostEngine {
 			}
 		}
 
-		if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(MUMCostType.getCostingMethod(costType))) {
+		if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(costType.getCostingMethod())) {
 			if (model instanceof MPPCostCollector) {
 				MPPCostCollector costCollector = (MPPCostCollector) model;
 				if (MPPCostCollector.COSTCOLLECTORTYPE_MaterialReceipt.equals(costCollector.getCostCollectorType())) {
@@ -377,7 +376,7 @@ public class CostEngine {
 			 * if (productionLine.getMovementQty().signum() < 0) costLowLevel =
 			 * Env.ZERO; }
 			 */
-		} else if (LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(MUMCostType.getCostingMethod(costType))) {
+		} else if (LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(costType.getCostingMethod())) {
 			costThisLevel = cost.getCurrentCostPrice();
 			costLowLevel = cost.getCurrentCostPriceLL();
 			if (costThisLevel.signum() == 0 && MCostElement.COSTELEMENTTYPE_Material.equals(costElement.getCostElementType())) {
@@ -394,7 +393,7 @@ public class CostEngine {
 			}
 		}
 
-		final ICostingMethod method = CostingMethodFactory.get().getCostingMethod(MUMCostType.getCostingMethod(costType));
+		final ICostingMethod method = CostingMethodFactory.get().getCostingMethod(costType.getCostingMethod());
 		method.setCostingMethod(accountSchema, transaction, model, cost, costThisLevel, costLowLevel, model.isSOTrx());
 		method.process();
 	}
@@ -441,7 +440,7 @@ public class CostEngine {
 
 		for (MTransaction transaction : MUMTransaction.getByInOutLine(ioLine)) {
 			for (MAcctSchema accountSchema : MAcctSchema.getClientAcctSchema(allocation.getCtx(), allocation.getAD_Client_ID())) {
-				List<MCostType> costTypes = MUMCostType.get(allocation.getCtx(), allocation.get_TrxName());
+				List<MCostType> costTypes = MCostType.get(allocation.getCtx(), allocation.get_TrxName());
 
 				for (MCostType costType : costTypes) {
 					MCostElement costElement = new MCostElement(allocation.getCtx(), allocation.getM_CostElement_ID(), allocation.get_TrxName());
@@ -647,7 +646,7 @@ public class CostEngine {
 	public boolean clearAccounting(MAcctSchema accountSchema, MCostType costType, PO model, Timestamp dateAcct) {
 
 		// check if costing type need reset accounting
-		if (!accountSchema.getCostingMethod().equals(MUMCostType.getCostingMethod(costType)))
+		if (!accountSchema.getCostingMethod().equals(costType.getCostingMethod()))
 			return false;
 		final String docBaseType;
 		// check if account period is open

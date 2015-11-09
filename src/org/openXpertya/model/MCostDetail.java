@@ -41,7 +41,6 @@ import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.tool.engine.CostEngine;
 import ar.com.geneos.mrp.plugin.util.MUDB;
 import ar.com.geneos.mrp.plugin.util.MUMCostElement;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 import ar.com.geneos.mrp.plugin.util.MUMTransaction;
 
@@ -535,11 +534,10 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
-			 * if (client.isCostImmediate()) 
+			 * if (client.isCostImmediate())
 			 */
 			cd.process();
 		}
@@ -606,8 +604,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
 			 * if (client.isCostImmediate())
@@ -680,8 +677,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
 			 * if (client.isCostImmediate());
@@ -751,8 +747,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
 			 * if (client.isCostImmediate())
@@ -826,8 +821,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
 			 * if (client.isCostImmediate())
@@ -896,8 +890,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		if (ok && !cd.isProcessed()) {
 			MClient client = MClient.get(as.getCtx(), as.getAD_Client_ID());
 			/**
-			 * Libero to Libertya migration
-			 * Always is costImmediate
+			 * Libero to Libertya migration Always is costImmediate
 			 */
 			/*
 			 * if (client.isCostImmediate());
@@ -1080,7 +1073,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		setM_CostElement_ID(M_CostElement_ID);
 		setM_CostType_ID(M_CostType_ID);
 		MCostType ct = new MCostType(as.getCtx(), M_CostType_ID, trxName);
-		setCostingMethod(MUMCostType.getCostingMethod(ct));
+		setCostingMethod(ct.getCostingMethod());
 		//
 		setAmt(Amt);
 		setQty(Qty);
@@ -1110,7 +1103,7 @@ public class MCostDetail extends LP_M_CostDetail {
 		setM_CostElement_ID(costElementId);
 		setM_AttributeSetInstance_ID(transaction.getM_AttributeSetInstance_ID());
 		MCostType ct = new MCostType(transaction.getCtx(), costTypeId, transaction.get_TrxName());
-		setCostingMethod(MUMCostType.getCostingMethod(ct));
+		setCostingMethod(ct.getCostingMethod());
 		setAmt(amt);
 		setAmtLL(amtLL);
 		setQty(qty);

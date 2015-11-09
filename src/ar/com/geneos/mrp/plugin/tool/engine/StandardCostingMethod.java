@@ -12,8 +12,6 @@ import org.openXpertya.model.MCostType;
 import org.openXpertya.model.MDocType;
 import org.openXpertya.model.MInvoice;
 import org.openXpertya.model.MInvoiceLine;
-import org.openXpertya.model.MLandedCostAllocation;
-import org.openXpertya.model.MMatchInv;
 import org.openXpertya.model.MPeriod;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MTransaction;
@@ -35,7 +33,6 @@ import ar.com.geneos.mrp.plugin.model.MPPOrderCost;
 import ar.com.geneos.mrp.plugin.model.RoutingService;
 import ar.com.geneos.mrp.plugin.model.RoutingServiceFactory;
 import ar.com.geneos.mrp.plugin.util.MUMCostElement;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 import ar.com.geneos.mrp.plugin.util.MUMTransaction;
 
@@ -419,7 +416,7 @@ public class StandardCostingMethod extends AbstractCostingMethod implements ICos
 					costCollectorRateVariance = MPPCostCollector.createVarianceCostCollector(costCollector, MPPCostCollector.COSTCOLLECTORTYPE_RateVariance);
 				}
 
-				List<MCostType> costTypes = MUMCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
+				List<MCostType> costTypes = MCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
 				for (MCostType costType : costTypes) {
 					createVarianceCostDetail(costCollectorRateVariance, amtActual.negate(), quantity.negate(), costDetail, null, accountSchema, costType,
 							costElement);
@@ -466,10 +463,10 @@ public class StandardCostingMethod extends AbstractCostingMethod implements ICos
 				final BigDecimal amtStd = priceStd.multiply(qty);
 				final BigDecimal amtActual = priceActual.multiply(qty);
 				//
-				List<MCostType> costtypes = MUMCostType.get(as.getCtx(), as.get_TrxName());
+				List<MCostType> costtypes = MCostType.get(as.getCtx(), as.get_TrxName());
 				for (MCostType costType : costtypes) {
 					// implementation only for standard cost
-					if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(MUMCostType.getCostingMethod(costType)))
+					if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(costType.getCostingMethod()))
 						continue;
 					createVarianceCostDetail(ccmv, amtActual, qty, null, resourcePActual, as, costType, element);
 					createVarianceCostDetail(ccmv, amtStd.negate(), qty.negate(), null, resourcePStd, as, costType, element);
@@ -597,10 +594,10 @@ public class StandardCostingMethod extends AbstractCostingMethod implements ICos
 				if (costs.scale() > accountSchema.getCostingPrecision())
 					costs = costs.setScale(accountSchema.getCostingPrecision(), RoundingMode.HALF_UP);
 				//
-				List<MCostType> costTypes = MUMCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
+				List<MCostType> costTypes = MCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
 				for (MCostType costType : costTypes) {
 					// implementation only for standard cost
-					if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(MUMCostType.getCostingMethod(costType)))
+					if (!LP_M_CostType.COSTINGMETHOD_StandardCosting.equals(costType.getCostingMethod()))
 						continue;
 
 					MCostDetail costDetail = new MCostDetail(accountSchema, costCollector.getAD_Org_ID(), // AD_Org_ID,
@@ -640,7 +637,7 @@ public class StandardCostingMethod extends AbstractCostingMethod implements ICos
 				//
 				// Create / Update Cost Detail
 				if (amt.compareTo(Env.ZERO) != 0) {
-					List<MCostType> costTypes = MUMCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
+					List<MCostType> costTypes = MCostType.get(accountSchema.getCtx(), accountSchema.get_TrxName());
 					for (MCostType costType : costTypes) {
 						createVarianceCostDetail(usageVariance, amt, quantity, null, product, accountSchema, costType, element);
 					}

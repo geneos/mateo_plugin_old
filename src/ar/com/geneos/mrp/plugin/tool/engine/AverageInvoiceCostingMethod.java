@@ -33,7 +33,6 @@ import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;
 import ar.com.geneos.mrp.plugin.util.MUMCostElement;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMLandedCostAllocation;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 import ar.com.geneos.mrp.plugin.util.MUMTransaction;
@@ -643,7 +642,7 @@ public class AverageInvoiceCostingMethod extends AbstractCostingMethod implement
 		IDocumentLine model = costCollectorVariance;
 
 		MCost cost = MCost.validateCostForCostType(acctSchema, costType, costElement, product.getM_Product_ID(), 0, 0, 0, mtrx.get_TrxName());
-		final ICostingMethod method = CostingMethodFactory.get().getCostingMethod(MUMCostType.getCostingMethod(costType));
+		final ICostingMethod method = CostingMethodFactory.get().getCostingMethod(costType.getCostingMethod());
 		method.setCostingMethod(acctSchema, mtrx, model, cost, costThisLevel, costLowLevel, model.isSOTrx());
 		method.process();
 	}

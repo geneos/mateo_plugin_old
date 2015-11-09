@@ -23,7 +23,6 @@ import ar.com.geneos.mrp.plugin.model.LP_M_Transaction;
 import ar.com.geneos.mrp.plugin.model.MCostDetail;
 import ar.com.geneos.mrp.plugin.model.MCostQueue;
 import ar.com.geneos.mrp.plugin.util.MUMAcctSchema;
-import ar.com.geneos.mrp.plugin.util.MUMCostType;
 import ar.com.geneos.mrp.plugin.util.MUMProduct;
 import ar.com.geneos.mrp.plugin.util.MUMTransaction;
 
@@ -84,7 +83,7 @@ public class FifoLifoCostingMethod extends AbstractCostingMethod {
 		// TODO: need evaluate this!
 		if (cQueue != null) {
 			MCostType ct = new MCostType(dimension.getCtx(), dimension.getM_CostType_ID(), dimension.get_TrxName());
-			if (cQueue.length > 0 && MUMCostType.isFifo(ct))
+			if (cQueue.length > 0 && ct.isFifo())
 				dimension.setCurrentCostPrice(cQueue[0].getCurrentCostPrice());
 			else if (cQueue.length > 0
 					&& LP_M_CostElement.COSTELEMENTTYPE_LandedCost.equals(new MCostElement(dimension.getCtx(), dimension.getM_CostElement_ID(), dimension
