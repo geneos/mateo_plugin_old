@@ -74,7 +74,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 
 	public static final String COMPONENTTYPE_By_Product = null;
 
-	public static final String COMPONENTTYPE_Co_Product = null;
+	public static final String COMPONENTTYPE_Co_Product = "CP";
 
 	public static final String COLUMNNAME_PP_Order_BOMLine_ID = "PP_Order_BOMLine_ID";
 
@@ -191,7 +191,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		}
 
 		if (newRecord || is_ValueChanged(COLUMNNAME_C_UOM_ID) || is_ValueChanged(COLUMNNAME_QtyEntered) || is_ValueChanged(COLUMNNAME_QtyRequired)) {
-			if (getQtyRequired().compareTo(getQtyDelivered()) < 0)
+			if (getQtyRequired().compareTo(getQtyDelivered()) < 0 && !getComponentType().equals(COMPONENTTYPE_Co_Product))
 				throw new IllegalStateException("@QtyRequired@ < @QtyDelivered@");
 
 			int precision = MUOM.getPrecision(getCtx(), getC_UOM_ID());

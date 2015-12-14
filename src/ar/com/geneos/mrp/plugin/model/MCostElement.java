@@ -39,15 +39,20 @@ public class MCostElement extends MPluginPO {
 			}
 		}
 
-		// Maintain Calculated
-		/*
-		 * if (COSTELEMENTTYPE_Material.equals(getCostElementType())) { String
-		 * cm = getCostingMethod(); if (cm == null || cm.length() == 0 ||
-		 * COSTINGMETHOD_StandardCosting.equals(cm)) setIsCalculated(false);
-		 * else setIsCalculated(true); } else { if (isCalculated())
-		 * setIsCalculated(false); if (getCostingMethod() != null)
-		 * setCostingMethod(null); }
-		 */
+		// Maintain Calclated
+        if (LP_M_CostElement.COSTELEMENTTYPE_Material.equals(ce.getCostElementType())) {
+
+            String	cm	= ce.getCostingMethod();
+
+            if ((cm == null) || (cm.length() == 0) || LP_M_CostElement.COSTINGMETHOD_StandardCosting.equals(cm)) {
+            	ce.setIsCalculated(false);
+            } else {
+            	ce.setIsCalculated(true);
+            }
+
+        } else {
+        	ce.setIsCalculated(false);
+        }
 
 		if (ce.getAD_Org_ID() != 0)
 			ce.setAD_Org_ID(0);
