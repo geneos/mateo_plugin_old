@@ -17,7 +17,11 @@ import ar.com.geneos.mrp.plugin.model.LP_M_Product_Category_Acct;
 
 public class MUMProductCategoryAcct {
 
-	private static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+	public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
+	public static final String COLUMNNAME_M_CostType_ID = "M_CostType_ID";
+	public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
+	public static final String COLUMNNAME_M_Product_Category_ID = "M_Product_Category_ID";
+	public static final String COLUMNNAME_C_AcctSchema_ID = "C_AcctSchema_ID";
 
 	private static CCache<String, MProductCategoryAcct> s_cache = new CCache<String, MProductCategoryAcct>(MProductCategoryAcct.Table_Name, 40, 5);
 

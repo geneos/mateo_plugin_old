@@ -1031,37 +1031,31 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		
 		for (MPPOrderCost cost_om_item : costos_om_lista) {
 
-			// Dependiendo del tipo de elemento de costo actualizar el costo.
+			// Dependiendo del elemento y el tipo de costo, actualizar el costo en la OM.
 			
 			MCostElement elem = new MCostElement(getCtx(), cost_om_item.getM_CostElement_ID(), get_TrxName());
+			LP_M_CostType tipo = new LP_M_CostType(getCtx(), cost_om_item.getM_CostType_ID(), get_TrxName());
 						
 			MProduct prod = new MProduct(getCtx(), cost_om_item.getM_Product_ID(), get_TrxName());
 			
-			String cat_acct = "";
+			String metodo = "";
+			
+			// El método de costeo se obtiene de la categoría del producto y en caso de no tener
+			// configurada se toma el método asociado al Tipo de Costo.
 			
 			if(cost_om_item.getM_Product_ID() != 0){
 
 				ArrayList<Object> finalParams_cat = new ArrayList<Object>();
 				StringBuffer finalWhereClause_cat = new StringBuffer();
-
 				finalWhereClause_cat.append("M_Product_Category_ID " + "=? ");
 				finalParams_cat.add(prod.getM_Product_Category_ID());		
-				
 				MProductCategoryAcct prod_cat_acct = new Query(getCtx(), MProductCategoryAcct.Table_Name, finalWhereClause_cat.toString(), get_TrxName()).setParameters(finalParams_cat).firstOnly();
-				
-				cat_acct = prod_cat_acct.getCostingMethod();
-				
-				if(cat_acct.equals(null)) {
-					cat_acct = MClient.get(Env.getCtx(), prod.getAD_Client_ID()).getAcctSchema().getCostingMethod();
-					if(cat_acct.equals(null)) {
-						log.info("No existe metodo de costeo establecido para la categoría de producto y tampoco para el esquema contable.");
-						return;
-					}
-				}				
+				metodo = prod_cat_acct.getCostingMethod();
 				
 			}
-				
 			
+			if(metodo == null || metodo.equals(""))
+				metodo = tipo.getCostingMethod();
 			
 			
 			BigDecimal cost_instance = Env.ZERO;
@@ -1075,23 +1069,20 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				BigDecimal qty_bom = Env.ZERO;
 				MPPOrderBOMLine[] lineas = this.getLines();
 				
-				for(int ind = 0; ind<= lineas.length; ind++) {
-					
+				for(int ind = 0; ind<lineas.length; ind++) {
 					if(lineas[ind].getM_Product_ID() == cost_om_item.getM_Product_ID()) {
-						qty_bom.add(lineas[ind].getQtyDelivered());
-					}
-					
-				}
+						qty_bom = qty_bom.add(lineas[ind].getQtyDelivered());
+					}	
+				}			
 				
-				
-				if(cat_acct.equals(MCostType.COSTINGMETHOD_LastInvoice)) {
+				if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastInvoice)) {
 					
 					cost_instance = MCost.lastInvoiceCostingMethod(prod);
 					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
 					cost_om_item.setCumulatedQty(qty_bom);
 					cost_om_item.save();
 					
-				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_AverageInvoice)) {
+				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AverageInvoice)) {
 					
 					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
 					cost_instance = MCost.averageInvoiceCostingMethod(prod, days);
@@ -1099,14 +1090,14 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					cost_om_item.setCumulatedQty(qty_bom);
 					cost_om_item.save();
 					
-				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_LastPOPrice)) {
+				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastPOPrice)) {
 				
 					cost_instance = MCost.lastPOPriceCostingMethod(prod);
 					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
 					cost_om_item.setCumulatedQty(qty_bom);
 					cost_om_item.save();
 					
-				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_AveragePO)) {
+				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AveragePO)) {
 				
 					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
 					cost_instance = MCost.averagePOCostingMethod(prod, days);
@@ -1114,7 +1105,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					cost_om_item.setCumulatedQty(qty_bom);
 					cost_om_item.save();
 					
-				} else if(cat_acct.equals(MCostType.COSTINGMETHOD_StandardCosting)) {
+				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_StandardCosting)) {
 					
 					cost_instance = MCost.standardCostingMethod(prod, cost_om_item.getM_CostType_ID(), cost_om_item.getM_CostElement_ID());
 					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
@@ -1134,7 +1125,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				List<MPPCostCollector> list_cc = MPPCostCollector.getCostCollectorResourceOM(getCtx(), cost_om_item.getM_Product_ID(), this.getPP_Order_ID(), null);
 				
 				for (MPPCostCollector cc : list_cc) {
-					qty_cc.add(cc.getMovementQty());
+					qty_cc = qty_cc.add(cc.getMovementQty());
 				}
 				
 				cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_cc));
@@ -1780,7 +1771,9 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	 * calculating standard costs variances
 	 */
 	public final void createStandardCosts() {
+		
 		MAcctSchema as = MClient.get(getCtx(), getAD_Client_ID()).getAcctSchema();
+		
 		log.info("Cost_Group_ID" + as.getM_CostType_ID());
 
 		final TreeSet<Integer> productsAdded = new TreeSet<Integer>();
@@ -1790,14 +1783,25 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		{
 			final MProduct product = getM_Product();
 			productsAdded.add(product.getM_Product_ID());
-			//
-			final CostDimension d = new CostDimension(product, as, as.getM_CostType_ID(), getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
+			
+			int costType_ID = MUMProduct.getProductCategoryCostTypeID(getCtx(), get_TrxName(), product.getM_Product_Category_ID(), as);
+			
+			final CostDimension d;
+			
+			if(costType_ID == 0)
+				d = new CostDimension(product, as, as.getM_CostType_ID(), getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
 					CostDimension.ANY);
+			else
+				d = new CostDimension(product, as, costType_ID, getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
+						CostDimension.ANY);
+			
 			Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
+			
 			for (MCost cost : costs) {
 				// Create or Update the Order Cost dimension
 				MPPOrderCost.createOrderCostDimension(getID(), cost);
 			}
+			
 		}
 		//
 		// Create Standard Costs for Order BOM Line
@@ -1808,10 +1812,20 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			if (productsAdded.contains(product.getM_Product_ID())) {
 				continue;
 			}
+			
 			productsAdded.add(product.getM_Product_ID());
-			//
-			CostDimension d = new CostDimension(line.getM_Product(), as, as.getM_CostType_ID(), line.getAD_Org_ID(), getM_Warehouse_ID(),
-					line.getM_AttributeSetInstance_ID(), CostDimension.ANY);
+			
+			int costType_ID = MUMProduct.getProductCategoryCostTypeID(getCtx(), get_TrxName(), product.getM_Product_Category_ID(), as);
+						
+			final CostDimension d;
+			
+			if(costType_ID == 0)
+				d = new CostDimension(line.getM_Product(), as, as.getM_CostType_ID(), line.getAD_Org_ID(), getM_Warehouse_ID(),
+						line.getM_AttributeSetInstance_ID(), CostDimension.ANY);
+			else
+				d = new CostDimension(line.getM_Product(), as, costType_ID, line.getAD_Org_ID(), getM_Warehouse_ID(),
+						line.getM_AttributeSetInstance_ID(), CostDimension.ANY);
+			
 			Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
 			for (MCost cost : costs) {
 				// Create or Update the Order Cost dimension
@@ -1832,9 +1846,18 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 				continue;
 			}
 			productsAdded.add(resourceProduct.getM_Product_ID());
-			//
-			CostDimension d = new CostDimension(resourceProduct, as, as.getM_CostType_ID(), node.getAD_Org_ID(), getM_Warehouse_ID(), 0, // ASI
-					CostDimension.ANY);
+
+			int costType_ID = MUMProduct.getProductCategoryCostTypeID(getCtx(), get_TrxName(), resourceProduct.getM_Product_Category_ID(), as);
+						
+			final CostDimension d;
+			
+			if(costType_ID == 0)
+				d = new CostDimension(resourceProduct, as, as.getM_CostType_ID(), node.getAD_Org_ID(), getM_Warehouse_ID(), 0, // ASI
+						CostDimension.ANY);
+			else
+				d = new CostDimension(resourceProduct, as, costType_ID, node.getAD_Org_ID(), getM_Warehouse_ID(), 0, // ASI
+						CostDimension.ANY);
+
 			Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
 			for (MCost cost : costs) {
 				// Create or Update the Order Cost dimension

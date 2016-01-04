@@ -406,7 +406,10 @@ public class MCost extends LP_M_Cost {
 		}
 
 		// Create/Update Costs
-		MCostDetail.processProduct(product, trxName);
+		
+		// Comentado por Geneos
+		
+		//MCostDetail.processProduct(product, trxName);
 
 		return getCurrentCost(product, M_AttributeSetInstance_ID, as, AD_Org_ID, M_Warehouse_ID, as.getM_CostType_ID(), costingMethod, qty, C_OrderLine_ID,
 				zeroCostsOK, trxName);
@@ -623,6 +626,7 @@ public class MCost extends LP_M_Cost {
 			 */
 
 			MCostElement ce = MUMCostElement.getByMaterialCostElementType(as);
+			
 			List<MCostType> costtypes = MCostType.get(product.getCtx(), product.get_TrxName());
 			for (MCostType mc : costtypes) {
 				MCost cost = getOrCreate(product, M_ASI_ID, as, Org_ID, M_Warehouse_ID, mc.getM_CostType_ID(), ce.getM_CostElement_ID());
@@ -1817,18 +1821,18 @@ public class MCost extends LP_M_Cost {
 
 			StringBuilder sql = new StringBuilder();
 
-			sql.append("SELECT invline.pricelist, inv.dateinvoice ");
-			sql.append("FROM C_InvoiceLine invline ");
-			sql.append("INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID) ");
-			sql.append("WHERE inv.docstaus IN ('CO','CL') ");
-			sql.append("AND invline.M_Product_ID = " + prod.getM_Product_ID());
-			sql.append("ORDER BY inv.dateinvoice desc");
+			sql.append("SELECT invline.pricelist, inv.dateinvoiced");
+			sql.append(" FROM C_InvoiceLine invline");
+			sql.append(" INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID)");
+			sql.append(" WHERE inv.docstatus IN ('CO','CL')");
+			sql.append(" AND invline.M_Product_ID = " + prod.getM_Product_ID());
+			sql.append(" ORDER BY inv.dateinvoiced desc");
 
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				pricelist = rs.getBigDecimal(0);
+				pricelist = rs.getBigDecimal(1);
 			}
 
 			rs.close();
@@ -1859,18 +1863,18 @@ public class MCost extends LP_M_Cost {
 
 			StringBuilder sql = new StringBuilder();
 
-			sql.append("SELECT avg(invline.pricelist) ");
-			sql.append("FROM C_InvoiceLine invline ");
-			sql.append("INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID) ");
-			sql.append("WHERE inv.docstaus IN ('CO','CL') ");
-			sql.append("AND invline.M_Product_ID = " + prod.getM_Product_ID());
-			sql.append("AND inv.dateinvoice >= '" + fecha_desde.toString() + "'");
+			sql.append("SELECT avg(invline.pricelist)");
+			sql.append(" FROM C_InvoiceLine invline");
+			sql.append(" INNER JOIN C_Invoice inv ON (inv.C_Invoice_ID = invline.C_Invoice_ID)");
+			sql.append(" WHERE inv.docstatus IN ('CO','CL')");
+			sql.append(" AND invline.M_Product_ID = " + prod.getM_Product_ID());
+			sql.append(" AND inv.dateinvoiced >= '" + fecha_desde.toString() + "'");
 
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				pricelist = rs.getBigDecimal(0);
+				pricelist = rs.getBigDecimal(1);
 			}
 
 			rs.close();
@@ -1893,18 +1897,18 @@ public class MCost extends LP_M_Cost {
 
 			StringBuilder sql = new StringBuilder();
 
-			sql.append("SELECT orderline.pricelist, ord.dateordered ");
-			sql.append("FROM C_OrderLine ordLine ");
-			sql.append("INNER JOIN C_Order ord ON (ord.C_Order_ID = ordLine.C_Order_ID) ");
-			sql.append("WHERE ord.docstaus IN ('CO','CL') ");
-			sql.append("AND ordline.M_Product_ID = " + prod.getM_Product_ID());
-			sql.append("ORDER BY ord.dateordered desc");
+			sql.append("SELECT orderline.pricelist, ord.dateordered");
+			sql.append(" FROM C_OrderLine ordLine");
+			sql.append(" INNER JOIN C_Order ord ON (ord.C_Order_ID = ordLine.C_Order_ID)");
+			sql.append(" WHERE ord.docstatus IN ('CO','CL')");
+			sql.append(" AND ordline.M_Product_ID = " + prod.getM_Product_ID());
+			sql.append(" ORDER BY ord.dateordered desc");
 
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				pricelist = rs.getBigDecimal(0);
+				pricelist = rs.getBigDecimal(1);
 			}
 
 			rs.close();
@@ -1933,12 +1937,12 @@ public class MCost extends LP_M_Cost {
 
 			StringBuilder sql = new StringBuilder();
 
-			sql.append("SELECT avg(ordline.pricelist) ");
-			sql.append("FROM C_OrderLine ordline ");
-			sql.append("INNER JOIN C_Order ord ON (ord.C_Order_ID = ordline.C_Order_ID) ");
-			sql.append("WHERE ord.docstatus IN ('CO','CL') ");
-			sql.append("AND ordline.M_Product_ID = " + prod.getM_Product_ID() + " ");
-			sql.append("AND ord.dateordered >= '" + fecha_desde.toString() + "'");
+			sql.append("SELECT avg(ordline.pricelist)");
+			sql.append(" FROM C_OrderLine ordline");
+			sql.append(" INNER JOIN C_Order ord ON (ord.C_Order_ID = ordline.C_Order_ID)");
+			sql.append(" WHERE ord.docstatus IN ('CO','CL')");
+			sql.append(" AND ordline.M_Product_ID = " + prod.getM_Product_ID());
+			sql.append(" AND ord.dateordered >= '" + fecha_desde.toString() + "'");
 
 			PreparedStatement pstmt = DB.prepareStatement(sql.toString(), null);
 			ResultSet rs = pstmt.executeQuery();

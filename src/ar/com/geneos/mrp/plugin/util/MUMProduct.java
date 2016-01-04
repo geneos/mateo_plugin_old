@@ -1,6 +1,9 @@
 package ar.com.geneos.mrp.plugin.util;
 
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import org.openXpertya.model.MAcctSchema;
@@ -12,6 +15,7 @@ import org.openXpertya.model.MProductCategory;
 import org.openXpertya.model.MProductCategoryAcct;
 import org.openXpertya.model.MResource;
 import org.openXpertya.model.Query;
+import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 
 import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
@@ -20,7 +24,7 @@ import ar.com.geneos.mrp.plugin.model.LP_M_Product_Category;
 
 public class MUMProduct {
 
-	private static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
+	public static final String COLUMNNAME_S_Resource_ID = "S_Resource_ID";
 	public static final String COLUMNNAME_IsCurrentVendor = "IsCurrentVendor";
 	public static final String COLUMNNAME_DeliveryTime_Promised = "DeliveryTime_Promised";
 	public static final String COLUMNNAME_Order_Min = "Order_Min";
@@ -243,4 +247,40 @@ public class MUMProduct {
 		
 	}
 
+	/**
+	 * 	Método que retorna el tipo de costo asociado a la categoría del producto en la tabla M_Product_Category_Acct
+	 * 	
+	 * 
+	 */
+	
+	public static int getProductCategoryCostTypeID(Properties ctx, String trxName, int productID, MAcctSchema as) {
+		
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("SELECT M_CostType_ID")
+				.append(" FROM M_Product_Category_Acct")
+				.append(" WHERE " + MUMProductCategoryAcct.COLUMNNAME_M_Product_Category_ID + "=" + productID)
+				.append(" AND " + MUMProductCategoryAcct.COLUMNNAME_C_AcctSchema_ID + "=" + as.getC_AcctSchema_ID());
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		pstmt = DB.prepareStatement(sql.toString(), trxName);
+		
+		try {
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
+	}	
+	
+	
+	
 }
