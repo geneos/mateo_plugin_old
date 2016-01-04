@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="I" tableName="C_DocType" uid="MRP-C_DocType-1010638">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-C_DocType-1010638</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="AllowChangePriceList" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="AllowDeliveryReturned" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="AllowProposalDue" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="C_DocType_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010638</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:25.246311</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="DocBaseType" type="17">
+<oldValue>null</oldValue>
+<newValue>MCC</newValue>
+</column>
+<column name="DocNoSequence_ID" refTable="AD_Sequence" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Sequence-1012030">1011987</newValue>
+</column>
+<column name="DocTypeKey" type="10">
+<oldValue>null</oldValue>
+<newValue>CAC</newValue>
+</column>
+<column name="DocumentCopies" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="DragOrderDocumentDiscounts" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="DragOrderLineDiscounts" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="DragOrderPrice" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="EnabledInPOS" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="EnableInCreateFromShipment" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="GL_Category_ID" refTable="GL_Category" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-GL_Category-1010098">1010098</newValue>
+</column>
+<column name="HasCharges" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="HasProforma" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCheckoutPlaceRestricted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCreateCounter" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDefaultCounterDoc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDocNoControlled" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="iselectronic" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFiscal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFiscalDocument" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsInTransit" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPaymentOrderSeq" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPickQAConfirm" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrintAtCompleting" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrintPreview" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsReceiptSeq" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsShipConfirm" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSOTrx" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSplitWhenDifference" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsWarehouseClosureControl" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LinesCountMax" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="m_trannaturecodea_id" type="22">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="m_trannaturecodeb_id" type="22">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="POSEnableDue" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="POSEnableDueDays" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="ReserveStockManagment" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="signo_issotrx" type="17">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:25.247508</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="UseOrderWarehouse" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="ValidateSeqLength" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="C_DocType_Trl" uid="MRP-C_DocType_Trl-es_ES-1010638">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-C_DocType_Trl-es_ES-1010638</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="C_DocType_ID" refTable="C_DocType" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-C_DocType-1010638">1010638</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:27.836964</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:27.837685</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="C_DocType_Trl" uid="MRP-C_DocType_Trl-es_AR-1010638">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-C_DocType_Trl-es_AR-1010638</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="C_DocType_ID" refTable="C_DocType" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-C_DocType-1010638">1010638</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.131934</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.132691</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="C_DocType_Trl" uid="MRP-C_DocType_Trl-es_MX-1010638">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-C_DocType_Trl-es_MX-1010638</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="C_DocType_ID" refTable="C_DocType" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-C_DocType-1010638">1010638</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.298586</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.299296</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="C_DocType_Trl" uid="MRP-C_DocType_Trl-es_PY-1010638">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-C_DocType_Trl-es_PY-1010638</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010053</newValue>
+</column>
+<column name="C_DocType_ID" refTable="C_DocType" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-C_DocType-1010638">1010638</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.462373</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2015-12-16 14:12:28.463632</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="C_DocType" uid="MRP-C_DocType-1010638">
+<column name="GL_Category_ID" refTable="GL_Category" type="19">
+<oldValue>1010098</oldValue>
+<newValue refUID="CORE-GL_Category-1010107">1010107</newValue>
+</column>
+</changegroup>
+</changelog>
