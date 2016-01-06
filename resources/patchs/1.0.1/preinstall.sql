@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------
 
 ------------------------
-CREATE OR REPLACE FUNCTION libertya.qtyAvailableForBOMLine(p_order_bomline_id integer)
+CREATE OR REPLACE FUNCTION qtyAvailableForBOMLine(p_order_bomline_id integer)
   RETURNS numeric AS
 $BODY$
 DECLARE
@@ -39,7 +39,7 @@ ALTER FUNCTION libertya.qtyAvailableForBOMLine(integer)
 
 ------------------------------------
 
-CREATE OR REPLACE FUNCTION libertya.qtyDeliveredForBOMLine(p_order_bomline_id integer,p_attributesetinstance_id integer)
+CREATE OR REPLACE FUNCTION qtyDeliveredForBOMLine(p_order_bomline_id integer,p_attributesetinstance_id integer)
   RETURNS numeric AS
 $BODY$
 DECLARE
@@ -71,7 +71,7 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION libertya.qtyDeliveredForBOMLine(integer,integer)
+ALTER FUNCTION qtyDeliveredForBOMLine(integer,integer)
   OWNER TO libertya;
 
 ----------------------------------------------------------------------
