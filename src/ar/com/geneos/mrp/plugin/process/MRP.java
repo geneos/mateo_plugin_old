@@ -36,6 +36,7 @@ import org.openXpertya.model.MDocType;
 import org.openXpertya.model.MMessage;
 import org.openXpertya.model.MNote;
 import org.openXpertya.model.MOrg;
+import org.openXpertya.model.MPriceList;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MProductPO;
 import org.openXpertya.model.MRequisition;
@@ -1238,8 +1239,15 @@ public class MRP extends SvrProcess {
 		req.setDescription("Generada por MRP"); // TODO: add translation
 		req.setM_Warehouse_ID(m_product_planning.getM_Warehouse_ID());
 		req.setC_DocType_ID(docTypeReq_ID);
+		
+		// Si el proveedor no tiene configurada una tarifa,
+		// obtenemos la tarifa de compras predeterminada.
+		
 		if (M_PriceList_ID > 0)
 			req.setM_PriceList_ID(M_PriceList_ID);
+		else {
+			req.setM_PriceList_ID(MPriceList.getDefault(getCtx(), false).getM_PriceList_ID());
+		}
 		req.save();
 
 		MRequisitionLine reqline = new MRequisitionLine(req);
@@ -1248,7 +1256,10 @@ public class MRP extends SvrProcess {
 		reqline.setC_BPartner_ID(m_product_planning.getC_BPartner_ID());
 		reqline.setM_Product_ID(m_product_planning.getM_Product_ID());
 		reqline.setPrice();
-		reqline.setPriceActual(Env.ZERO);
+		
+		// Comentado porque causaba siempre requisicoones con precio 0.
+		//reqline.setPriceActual(Env.ZERO);
+		
 		reqline.setQty(QtyPlanned);
 		
 		//Si el producto es Alternativo copio la descripcion de la bomline
