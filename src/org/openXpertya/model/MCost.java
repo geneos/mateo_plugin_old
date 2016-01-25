@@ -1,6 +1,7 @@
 package org.openXpertya.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,10 @@ import ar.com.geneos.mrp.plugin.model.LP_C_AcctSchema;
 import ar.com.geneos.mrp.plugin.model.LP_M_Cost;
 import ar.com.geneos.mrp.plugin.model.LP_M_CostType;
 import ar.com.geneos.mrp.plugin.model.MCostQueue;
+import ar.com.geneos.mrp.plugin.model.MPPCostCollector;
 import ar.com.geneos.mrp.plugin.model.MPPMRP;
+import ar.com.geneos.mrp.plugin.model.MPPOrder;
+import ar.com.geneos.mrp.plugin.model.MPPOrderCost;
 import ar.com.geneos.mrp.plugin.tool.engine.CostComponent;
 import ar.com.geneos.mrp.plugin.tool.engine.CostDimension;
 import ar.com.geneos.mrp.plugin.util.MUColumnNames;
@@ -1996,6 +2000,44 @@ public class MCost extends LP_M_Cost {
 		} else {
 			return cost.getCurrentCostPrice();
 		}
+
+	}
+
+	public static BigDecimal OrderMaterials(Properties ctx, MProduct prod, int pp_Order_ID, String trxName) {
+	
+		// TODO Auto-generated method stub
+		BigDecimal costUn = Env.ZERO;
+		BigDecimal totalOrder = Env.ZERO;
+		BigDecimal cantOrder = Env.ZERO;
+		int attr_id = 0;
+		MPPOrder pp_order = null;
+		
+		// Obtengo todos los colectores asociados a entregas del producto en la orden.
+		
+		List<MPPCostCollector> cc_list = MPPCostCollector.getCostCollectorIssueOM(ctx, prod.getM_Product_ID(),
+				pp_Order_ID, trxName);
+		
+		for (MPPCostCollector cc_item : cc_list) {
+
+			attr_id = cc_item.getM_AttributeSetInstance_ID();
+			
+			// Necesito buscar la OM asociada a ese atributo
+			
+			pp_order = MPPCostCollector.getCostCollectorOrderAttr(ctx, prod.getM_Product_ID(),
+					attr_id, trxName);
+
+			if(pp_order!=null) {
+				// Obtengo el rendimineto de la Orden
+				cantOrder = pp_order.getQtyEntered();
+				// Obtengo el costo de la Orden como sumatoria de todos los costos asociados
+				totalOrder = totalOrder.add(MPPOrderCost.getTotalCostOrder(ctx,pp_order.getPP_Order_ID(), trxName));					
+				// Obtengo el costo unitario de la Orden
+				costUn = totalOrder.divide(cantOrder, 2, RoundingMode.HALF_UP);
+			}
+			
+		}			
+
+		return costUn;
 
 	}
 

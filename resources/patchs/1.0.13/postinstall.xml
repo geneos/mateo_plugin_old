@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="I" tableName="M_CostElement" uid="MRP-M_CostElement-1010108">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-M_CostElement-1010108</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="CostElementType" type="17">
+<oldValue>null</oldValue>
+<newValue>R</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:14:30.965627</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCalculated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="M_CostElement_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010108</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Coste Estándar de Recursos</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:14:30.966113</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="M_CostElement" uid="MRP-M_CostElement-1010109">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-M_CostElement-1010109</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="CostElementType" type="17">
+<oldValue>null</oldValue>
+<newValue>M</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:14:45.475135</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCalculated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="M_CostElement_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010109</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Coste Estándar de Materiales</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:14:45.47588</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="M_CostElement" uid="MRP-M_CostElement-1010110">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-M_CostElement-1010110</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="CostElementType" type="17">
+<oldValue>null</oldValue>
+<newValue>B</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:15:02.838832</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCalculated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="M_CostElement_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010110</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Costos Indirectos</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:15:02.83951</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="M_CostElement" uid="MRP-M_CostElement-1010111">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>1010016</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP-M_CostElement-1010111</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="CostElementType" type="17">
+<oldValue>null</oldValue>
+<newValue>M</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:15:19.953372</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCalculated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="M_CostElement_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010111</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Costo Real de Materiales</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-01-20 15:15:19.954104</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>1010717</newValue>
+</column>
+</changegroup>
+</changelog>

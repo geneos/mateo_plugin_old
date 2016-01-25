@@ -18,11 +18,16 @@ package ar.com.geneos.mrp.plugin.model;
 
 
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties; 
 import org.openXpertya.model.MProduct;
+import org.openXpertya.model.Query;
 
 import org.openXpertya.model.*;
+import org.openXpertya.util.Env;
 
 /**
  * PP Order Cost Model.
@@ -88,6 +93,35 @@ public class MPPOrderCost extends LP_PP_Order_Cost
 				cost.getM_Product_ID())
 		.firstOnly();
 	}
+	
+	/**
+	 * get Order Cost Dimension 
+	 * @param PP_Order_ID Manufacturing Order ID
+	 * @param cost Cost Dimension
+	 * @return MPPOrderCost Order Cost Dimension
+	 */
+	
+	public static BigDecimal getTotalCostOrder(Properties ctx,int PP_Order_ID, String trxName)
+	{
+		final StringBuffer whereClause = new StringBuffer();
+		List<Object> params = new ArrayList();
+		
+		whereClause.append(MPPOrderCost.COLUMNNAME_PP_Order_ID + "=?");
+		params.add(PP_Order_ID);
+		
+		BigDecimal result = Env.ZERO;
+		
+		
+		List<MPPOrderCost> oc_list = new Query(ctx, LP_PP_Order_Cost.Table_Name, whereClause.toString(), trxName).setParameters(params).list();
+		
+		for (MPPOrderCost oc_item : oc_list) {
+			result = result.add(oc_item.getCurrentCostPrice());
+		}
+		
+		return result;
+		
+	}
+	
 
 	public MPPOrderCost(Properties ctx, int PP_Order_Cost_ID,String trxName)
 	{

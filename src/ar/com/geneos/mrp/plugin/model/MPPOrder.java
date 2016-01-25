@@ -1062,56 +1062,79 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			
 			if (LP_M_CostElement.COSTELEMENTTYPE_Material.equals(elem.getCostElementType())) {
 				
-				// Materiales deben actualizarse
+				// Completando comportamiento
+				// 19/01/2106
+				// Falta definir que hacer cuando el producto es fabricado.
+				// Debería obtenerse el costo unitario, en función de la cantidad rendida
+				// de la OM desde la que fue producto y el costo de la OM.
 				
-				// Obtener la cantidad de material real utilizada
-				
-				BigDecimal qty_bom = Env.ZERO;
-				MPPOrderBOMLine[] lineas = this.getLines();
-				
-				for(int ind = 0; ind<lineas.length; ind++) {
-					if(lineas[ind].getM_Product_ID() == cost_om_item.getM_Product_ID()) {
-						qty_bom = qty_bom.add(lineas[ind].getQtyDelivered());
-					}	
-				}			
-				
-				if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastInvoice)) {
+				if(prod.isBOM()) {
 					
-					cost_instance = MCost.lastInvoiceCostingMethod(prod);
-					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
-					cost_om_item.setCumulatedQty(qty_bom);
-					cost_om_item.save();
+					// Obtener la cantidad de material real utilizada
 					
-				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AverageInvoice)) {
+					BigDecimal qty_bom = Env.ZERO;
+					MPPOrderBOMLine[] lineas = this.getLines();
 					
-					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
-					cost_instance = MCost.averageInvoiceCostingMethod(prod, days);
-					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
-					cost_om_item.setCumulatedQty(qty_bom);
-					cost_om_item.save();
+					if(metodo.equals(LP_M_CostType.COSTINGMETHOD_OrderMaterials)) {
+						cost_instance = MCost.OrderMaterials(getCtx(),prod, cost_om_item.getPP_Order_ID(),get_TrxName());
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+					}
 					
-				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastPOPrice)) {
-				
-					cost_instance = MCost.lastPOPriceCostingMethod(prod);
-					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
-					cost_om_item.setCumulatedQty(qty_bom);
-					cost_om_item.save();
+				} else {
 					
-				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AveragePO)) {
-				
-					int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
-					cost_instance = MCost.averagePOCostingMethod(prod, days);
-					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
-					cost_om_item.setCumulatedQty(qty_bom);
-					cost_om_item.save();
+					// Obtener la cantidad de material real utilizada
 					
-				} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_StandardCosting)) {
+					BigDecimal qty_bom = Env.ZERO;
+					MPPOrderBOMLine[] lineas = this.getLines();
 					
-					cost_instance = MCost.standardCostingMethod(prod, cost_om_item.getM_CostType_ID(), cost_om_item.getM_CostElement_ID());
-					cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
-					cost_om_item.setCumulatedQty(qty_bom);
-					cost_om_item.save();
-		
+					for(int ind = 0; ind<lineas.length; ind++) {
+						if(lineas[ind].getM_Product_ID() == cost_om_item.getM_Product_ID()) {
+							qty_bom = qty_bom.add(lineas[ind].getQtyDelivered());
+						}	
+					}			
+					
+					if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastInvoice)) {
+						
+						cost_instance = MCost.lastInvoiceCostingMethod(prod);
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+						
+					} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AverageInvoice)) {
+						
+						int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
+						cost_instance = MCost.averageInvoiceCostingMethod(prod, days);
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+						
+					} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_LastPOPrice)) {
+					
+						cost_instance = MCost.lastPOPriceCostingMethod(prod);
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+						
+					} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_AveragePO)) {
+					
+						int days = Integer.valueOf(MPreference.GetCustomPreferenceValue("daysAvarageCost"));
+						cost_instance = MCost.averagePOCostingMethod(prod, days);
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+						
+					} else if(metodo.equals(LP_M_CostType.COSTINGMETHOD_StandardCosting)) {
+						
+						cost_instance = MCost.standardCostingMethod(prod, cost_om_item.getM_CostType_ID(), cost_om_item.getM_CostElement_ID());
+						cost_om_item.setCurrentCostPrice(cost_instance.multiply(qty_bom));
+						cost_om_item.setCumulatedQty(qty_bom);
+						cost_om_item.save();
+			
+					}
+					
+					
 				}
 				
 			} else if (LP_M_CostElement.COSTELEMENTTYPE_Resource.equals(elem.getCostElementType())) {
@@ -1767,8 +1790,14 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 	}
 
 	/**
-	 * Save standard costs records into PP_Order_Cost. This will be usefull for
-	 * calculating standard costs variances
+	 *	Crea los registros en PP_Order_Cost.
+	 *	Dependiendo de la consfiguración para cada producto, busca registros en M_Cost
+	 *	que tengan correspondencia con le tipo de costos configurado en la categoría del producto
+	 *	o en el escquema contable.
+	 *	
+	 *	19/01/2016
+	 *	Cooperativa Geneos
+	 *
 	 */
 	public final void createStandardCosts() {
 		
@@ -1847,7 +1876,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			}
 			productsAdded.add(resourceProduct.getM_Product_ID());
 
-			int costType_ID = MUMProduct.getProductCategoryCostTypeID(getCtx(), get_TrxName(), resourceProduct.getM_Product_Category_ID(), as);
+			int costType_ID = MUMProduct.	getProductCategoryCostTypeID(getCtx(), get_TrxName(), resourceProduct.getM_Product_Category_ID(), as);
 						
 			final CostDimension d;
 			

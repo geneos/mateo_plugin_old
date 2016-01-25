@@ -533,6 +533,8 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		
 		// Si el producto es Alternativo entonces no realiza reservas
 		MPPProductPlanning prodPlanning = MPPProductPlanning.find(getCtx(), getParent().getAD_Org_ID(), getParent().getM_Warehouse_ID(),getParent().getS_Resource_ID() , getM_Product_ID(), get_TrxName());
+		
+		// Si no existe planeamiento al no consultarse explota por null pointer
 		if (prodPlanning.isAlternative())
 			return;
 		

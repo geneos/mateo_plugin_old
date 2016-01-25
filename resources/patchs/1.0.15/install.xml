@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_ES-1011141">
+<column name="MsgTip" type="14">
+<oldValue>Recepción de materiales como resultado de la producción.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_AR-1011141">
+<column name="MsgTip" type="14">
+<oldValue>Recepción de materiales como resultado de la producción.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_MX-1011141">
+<column name="MsgTip" type="14">
+<oldValue>Recepción de materiales como resultado de la producción.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_PY-1011141">
+<column name="MsgTip" type="14">
+<oldValue>Recepción de materiales como resultado de la producción.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_ES-1011140">
+<column name="MsgTip" type="14">
+<oldValue>Entrga de materiales para producción, de los productos de las líneas de la fórmula asociada a la Orden de Manufactura.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_AR-1011140">
+<column name="MsgTip" type="14">
+<oldValue>Entrga de materiales para producción, de los productos de las líneas de la fórmula asociada a la Orden de Manufactura.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_MX-1011140">
+<column name="MsgTip" type="14">
+<oldValue>Entrga de materiales para producción, de los productos de las líneas de la fórmula asociada a la Orden de Manufactura.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message_Trl" uid="MRP-AD_Message_Trl-es_PY-1011140">
+<column name="MsgTip" type="14">
+<oldValue>Entrga de materiales para producción, de los productos de las líneas de la fórmula asociada a la Orden de Manufactura.</oldValue>
+<newValue/>
+</column>
+</changegroup>
+</changelog>

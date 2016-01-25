@@ -1061,6 +1061,68 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	}
 
 	
+	/**
+	 * Obtener los cost collectos para un Recurso y una OM
+	 * 
+	 * @param product
+	 * @param AD_Client_ID
+	 * @param dateAcct
+	 * @return Collection the Cost Collector
+	 */
 	
+	public static List<MPPCostCollector> getCostCollectorIssueOM(Properties ctx, int M_Product_ID, int PP_Order_ID, String trxName) {
+		List<Object> params = new ArrayList();
+		
+		final StringBuffer whereClause = new StringBuffer();
+		
+		// Busco los registros que sena entregas de materiales
+		
+		whereClause.append(MPPCostCollector.COLUMNNAME_costcollectortype + " IN ('110') AND ");
+		
+		if (M_Product_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_M_Product_ID + "=? AND ");
+			params.add(M_Product_ID);
+		}
+
+		if (PP_Order_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_PP_Order_ID + "=?");
+			params.add(PP_Order_ID);
+		}
+
+		return new Query(ctx, LP_PP_Cost_Collector.Table_Name, whereClause.toString(), trxName).setParameters(params).list();
+
+	}
+
+	public static MPPOrder getCostCollectorOrderAttr(Properties ctx,
+			int m_Product_ID, int attr_id, String trxName) {
+		// TODO Auto-generated method stub
+
+		List<Object> params = new ArrayList();
+		
+		final StringBuffer whereClause = new StringBuffer();
+		
+		// Busco los registros que sean recepción de materiales
+		
+		whereClause.append(MPPCostCollector.COLUMNNAME_costcollectortype + " IN ('100') AND ");
+		
+		if (m_Product_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_M_Product_ID + "=? AND ");
+			params.add(m_Product_ID);
+		}
+
+		if (attr_id > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_M_AttributeSetInstance_ID + "=?");
+			params.add(attr_id);
+		}
+
+		List<MPPCostCollector> cc_list = new Query(ctx, LP_PP_Cost_Collector.Table_Name, whereClause.toString(), trxName).setParameters(params).list();
+		
+				
+		for (MPPCostCollector cc_item : cc_list) {
+			return cc_item.getPP_Order();
+		}
+		
+		return null;
+	}	
 
 } // MPPCostCollector

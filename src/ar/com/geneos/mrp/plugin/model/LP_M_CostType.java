@@ -56,6 +56,8 @@ public class LP_M_CostType extends org.openXpertya.model.X_M_CostType {
 	public static final String COSTINGMETHOD_LastInvoice = "i";
 	/** User Defined = U */
 	public static final String COSTINGMETHOD_UserDefined = "U";
+	/** Manufacturing Order = O */
+	public static final String COSTINGMETHOD_OrderMaterials = "O";
 
 	/**
 	 * Set Costing Method. Indicates how Costs will be calculated
