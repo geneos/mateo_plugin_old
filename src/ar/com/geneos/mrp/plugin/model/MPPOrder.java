@@ -253,7 +253,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					}
 				}
 
-				MStorage[] storages = MPPOrder.getStorages(order.getCtx(), M_Product_ID, order.getM_Warehouse_ID(), M_AttributeSetInstance_ID,
+				MStorage[] storages = MPPOrder.getStorages(order.getCtx(), M_Product_ID, order.getM_Warehouse_ID(),0, M_AttributeSetInstance_ID,
 						minGuaranteeDate,true, order.get_TrxName());
 
 				if (M_AttributeSetInstance_ID == 0) {
@@ -288,23 +288,23 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		return isCompleteQtyDeliver;
 	}
 
-	public static MStorage[] getStorages(Properties ctx, int M_Product_ID, int M_Warehouse_ID, int M_ASI_ID, Timestamp minGuaranteeDate,boolean positiveOnly, String trxName) {
+	public static MStorage[] getStorages(Properties ctx, int M_Product_ID, int M_Warehouse_ID, int M_Locator_ID, int M_ASI_ID, Timestamp minGuaranteeDate,boolean positiveOnly, String trxName) {
 		MProduct product = MProduct.get(ctx, M_Product_ID);
 		if (product != null && product.isStocked()) {
 			// Validate if AttributeSet of product generated instance
 			if (product.getM_AttributeSetInstance_ID() == 0) {
 				String MMPolicy = MUMProduct.getMMPolicy(product);
 				return MUMStorage.getWarehouse(ctx, M_Warehouse_ID, M_Product_ID, M_ASI_ID, minGuaranteeDate, MClient.MMPOLICY_FiFo.equals(MMPolicy), // FiFo
-						true, // positiveOnly
-						0, // M_Locator_ID
+						positiveOnly, // positiveOnly
+						M_Locator_ID, // M_Locator_ID
 						trxName);
 			} else {
 				// TODO: vpj-cd Create logic to get storage that matched with
 				// attribure set that not create instances
 				String MMPolicy = MUMProduct.getMMPolicy(product);
 				return MUMStorage.getWarehouse(ctx, M_Warehouse_ID, M_Product_ID, 0, minGuaranteeDate, MClient.MMPOLICY_FiFo.equals(MMPolicy), // FiFo
-						true, // positiveOnly
-						0, // M_Locator_ID
+						positiveOnly, // positiveOnly
+						M_Locator_ID, // M_Locator_ID
 						trxName);
 			}
 
@@ -2129,7 +2129,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 					M_AttributeSetInstance_ID = orderBOMLine.getM_AttributeSetInstance_ID();
 				}
 
-				MStorage[] storages = MPPOrder.getStorages(getCtx(), M_Product_ID, getM_Warehouse_ID(), M_AttributeSetInstance_ID, today,true, get_TrxName());
+				MStorage[] storages = MPPOrder.getStorages(getCtx(), M_Product_ID, getM_Warehouse_ID(),0, M_AttributeSetInstance_ID, today,true, get_TrxName());
 
 				MPPOrder.createIssue(this, key.getKey(), today, qtyToDeliver, qtyScrapComponent, Env.ZERO, storages, forceIssue);
 			}

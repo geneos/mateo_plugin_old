@@ -114,7 +114,7 @@ public class MUMStorage {
 			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.getBigDecimal(11).signum() != 0)
+				if (rs.getBigDecimal(11).signum() != 0 || !positiveOnly)
 					list.add(new MStorage(ctx, rs, trxName));
 			}
 		} catch (Exception e) {

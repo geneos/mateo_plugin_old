@@ -27,6 +27,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.math.BigDecimal;
+import java.security.KeyPair;
 import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -58,6 +59,7 @@ import org.openXpertya.grid.ed.VLocator;
 import org.openXpertya.grid.ed.VLookup;
 import org.openXpertya.grid.ed.VNumber;
 import org.openXpertya.grid.ed.VPAttribute;
+import org.openXpertya.minigrid.IDColumn;
 import org.openXpertya.minigrid.MiniTable;
 import org.openXpertya.model.MField;
 import org.openXpertya.model.MFieldVO;
@@ -523,11 +525,12 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 
 	/**
 	 * Queries for and fills the table in the lower half of the screen This is
-	 * only run if isBackflush() or isOnlyIssue
+	 * only run if isBackflush() , isOnlyIssue or isReturn
 	 */
 	public void executeQuery() {
 		issue.removeAll();
 		executeQuery(issue);
+		changingChecks = false;
 
 	} // executeQuery
 
@@ -731,6 +734,8 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 
 	private MPPOrder m_PP_order = null;
 
+	private boolean changingChecks = false;
+
 	protected MPPOrder getPP_Order() {
 		int id = getPP_Order_ID();
 		if (id <= 0) {
@@ -801,6 +806,32 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	}
 
 	public void tableChanged(TableModelEvent e) {
+		
+		if (!changingChecks && e.getColumn() == 0 && e.getType() == TableModelEvent.UPDATE){
+			changingChecks = true;
+			int row = e.getFirstRow();
+			
+			IDColumn key = (IDColumn) issue.getValueAt(row, 0);
+			if (key.isSelected())
+				updateRows(isRowHeader(row),row,false);
+			changingChecks = false;
+		}
+	}
+	
+	private boolean isRowHeader(int row){
+		return issue.getValueAt(row, 5) == null;
+	}
+	
+	private void updateRows(boolean header,int row, boolean value){
+		KeyNamePair prodKey = (KeyNamePair)issue.getValueAt(row, 3);
+		for (int i = 0 ; i < issue.getRowCount(); i++){
+			KeyNamePair currProdKey = (KeyNamePair) issue.getValueAt(i,3);
+			if ( prodKey != null && currProdKey!= null && currProdKey.getKey() == prodKey.getKey() && ( (header && issue.getValueAt(i,5) != null) || (!header && issue.getValueAt(i,5) == null) ) ){
+				IDColumn key = (IDColumn) issue.getModel().getValueAt(i, 0);
+				key.setSelected(value);
+				issue.getModel().setValueAt(key,i, 0);
+			}
+		}
 	}
 
 	public boolean cmd_process(final boolean isCloseDocument, final MiniTable issue) {

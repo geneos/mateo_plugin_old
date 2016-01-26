@@ -128,13 +128,15 @@ public class OrderReceiptIssue extends GenForm {
 		issue.setColumnClass(10, BigDecimal.class, true, Msg.translate(Env.getCtx(), "QtyOnHand"));
 		issue.setColumnClass(11, BigDecimal.class, true, Msg.translate(Env.getCtx(), "QtyReserved"));
 		issue.setColumnClass(12, BigDecimal.class, true, Msg.translate(Env.getCtx(), "QtyAvailable"));
-		issue.setColumnClass(13, String.class, true, Msg.translate(Env.getCtx(), "M_Locator_ID"));
+		issue.setColumnClass(13, KeyNamePair.class, true, Msg.translate(Env.getCtx(), "M_Locator_ID"));
 		issue.setColumnClass(14, KeyNamePair.class, true, Msg.translate(Env.getCtx(), "M_Warehouse_ID"));
 		issue.setColumnClass(15, BigDecimal.class, true, Msg.translate(Env.getCtx(), "QtyBom"));
 		issue.setColumnClass(16, Boolean.class, true, Msg.translate(Env.getCtx(), "IsQtyPercentage"));
 		issue.setColumnClass(17, BigDecimal.class, true, Msg.translate(Env.getCtx(), "QtyBatch"));
 
 		issue.autoSize();
+		
+
 		// issue.getModel().addTableModelListener(this);
 
 		// CompiereColor.setBackground(this);
@@ -238,6 +240,7 @@ public class OrderReceiptIssue extends GenForm {
 			data.add(getValueBigDecimal(issue, i, 8)); // 4 - QtyToDeliver
 			data.add(getValueBigDecimal(issue, i, 9)); // 5 - QtyScrapComponent
 			data.add(getValueBigDecimal(issue, i, 7)); // 6 - QtyDelivered
+			data.add(issue.getValueAt(i, 13)); // 7 - M_Locator_ID Key
 			m_issue[row][0] = data;
 			row++;
 		}
@@ -255,17 +258,21 @@ public class OrderReceiptIssue extends GenForm {
 			String value = (String) m_issue[i][0].get(2);
 			KeyNamePair productkey = (KeyNamePair) m_issue[i][0].get(3);
 			int M_Product_ID = productkey.getKey();
+			
+			
 
 			MPPOrderBOMLine orderbomLine = null;
 			int PP_Order_BOMLine_ID = 0;
 			int M_AttributeSetInstance_ID = 0;
+			int M_Locator_ID = 0;
 
 			BigDecimal qtyToDeliver = (BigDecimal) m_issue[i][0].get(4);
 			BigDecimal qtyScrapComponent = (BigDecimal) m_issue[i][0].get(5);
 
-			if (qtyToDeliver.signum() == -1 && !isReturn()) {
-				throw new RuntimeException("La cantidad (" + qtyToDeliver + ") a entregar del producto (" + productkey.getName()
-						+ ") debe ser positiva para surtimientos y negativa para devoluciones");
+			//La cantidad debe ser positiva
+			if ( qtyToDeliver.signum() < 1 ) {
+				throw new RuntimeException("La cantidad (" + qtyToDeliver + ") a entregar/devolver del producto (" + productkey.getName()
+						+ ") debe ser positiva ");
 			}
 
 			/*
@@ -273,7 +280,7 @@ public class OrderReceiptIssue extends GenForm {
 			 * validacion tambien se hace en tiempo real al momento de hacer la
 			 * operacion (Completar el costcollector)
 			 */
-			if (isReturn() && qtyToDeliver.negate().compareTo((BigDecimal) m_issue[i][0].get(6)) == 1) {
+			if (isReturn() && qtyToDeliver.compareTo((BigDecimal) m_issue[i][0].get(6)) == 1) {
 				throw new RuntimeException("La cantidad a devolver (" + qtyToDeliver + ") del producto (" + productkey.getName()
 						+ ") supera la cantidad entregada (" + (BigDecimal) m_issue[i][0].get(6) + ") para esta orden");
 			}
@@ -283,23 +290,28 @@ public class OrderReceiptIssue extends GenForm {
 
 				if (value == null && isSelected) {
 					M_AttributeSetInstance_ID = (Integer) key.getKey();
+					KeyNamePair locatorkey = (KeyNamePair) m_issue[i][0].get(7);
+					M_Locator_ID = locatorkey.getKey();
 					orderbomLine = MPPOrderBOMLine.forM_Product_ID(Env.getCtx(), order.getID(), M_Product_ID, order.get_TrxName());
 					if (orderbomLine != null) {
 						PP_Order_BOMLine_ID = orderbomLine.getID();
 					}
 				} else if (value != null && isSelected) {
 					PP_Order_BOMLine_ID = (Integer) key.getKey();
-					if (PP_Order_BOMLine_ID > 0) {
+					//Si es una cabecera entonces tomo todos los storages y cualquier locator
+					M_AttributeSetInstance_ID = 0;
+					M_Locator_ID = 0;
+					/*if (PP_Order_BOMLine_ID > 0) {
 						orderbomLine = new MPPOrderBOMLine(order.getCtx(), PP_Order_BOMLine_ID, order.get_TrxName());
 						M_AttributeSetInstance_ID = orderbomLine.getM_AttributeSetInstance_ID();
-					}
+					}*/
 				}
 
-				MStorage[] storages = MPPOrder.getStorages(Env.getCtx(), M_Product_ID, order.getM_Warehouse_ID(), M_AttributeSetInstance_ID, minGuaranteeDate,
+				MStorage[] storages = MPPOrder.getStorages(Env.getCtx(), M_Product_ID, order.getM_Warehouse_ID(), M_Locator_ID, M_AttributeSetInstance_ID, minGuaranteeDate,
 						!isReturn(), order.get_TrxName());
 
 				if (isReturn())
-					MPPOrder.createReturn(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver, qtyScrapComponent, Env.ZERO, storages, false);
+					MPPOrder.createReturn(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver.negate(), qtyScrapComponent, Env.ZERO, storages, false);
 				else
 					MPPOrder.createIssue(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver, qtyScrapComponent, Env.ZERO, storages, false);
 
@@ -393,8 +405,8 @@ public class OrderReceiptIssue extends GenForm {
 
 				if (componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Component) || componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Packing)) {
 					// If the there is product on hand and product is required
-					// the product should be selected
-					id.setSelected(qtyOnHand.signum() > 0 && qtyRequired.signum() > 0);
+					// the product should be selected (And is not return)
+					id.setSelected(!isReturn() && qtyOnHand.signum() > 0 && qtyRequired.signum() > 0);
 					issue.setValueAt(id, row, 0); // PP_OrderBOMLine_ID
 
 					if (isQtyPercentage) {
@@ -436,7 +448,7 @@ public class OrderReceiptIssue extends GenForm {
 								componentQtyToDel = componentToDeliverQty.setScale(4, BigDecimal.ROUND_HALF_UP);
 								
 								if (isReturn()) 
-									issue.setValueAt(qtyDelivered.negate().setScale(8, BigDecimal.ROUND_HALF_UP), row, 8); // QtyToDelivery
+									issue.setValueAt(qtyDelivered.setScale(8, BigDecimal.ROUND_HALF_UP), row, 8); // QtyToDelivery
 								else
 									issue.setValueAt(componentToDeliverQty.setScale(8, BigDecimal.ROUND_HALF_UP), row, 8); // QtyToDelivery
 								
@@ -472,7 +484,7 @@ public class OrderReceiptIssue extends GenForm {
 								componentQtyToDel = componentToDeliverQty;
 								issue.setValueAt(componentQtyReq, row, 6); // QtyRequired
 								if (isReturn())
-									issue.setValueAt(qtyDelivered.negate(), row, 8); // QtyToDelivery
+									issue.setValueAt(qtyDelivered, row, 8); // QtyToDelivery
 								else
 									issue.setValueAt(componentToDeliverQty, row, 8); // QtyToDelivery
 
@@ -569,7 +581,7 @@ public class OrderReceiptIssue extends GenForm {
 						Timestamp m_movementDate = getMovementDate();
 						Timestamp minGuaranteeDate = m_movementDate;
 						BigDecimal todelivery = getValueBigDecimal(issue, i, 8); // QtyOpen
-						MStorage[] storages = MPPOrder.getStorages(Env.getCtx(), m_M_Product_ID, getPP_Order().getM_Warehouse_ID(), 0, minGuaranteeDate,
+						MStorage[] storages = MPPOrder.getStorages(Env.getCtx(), m_M_Product_ID, getPP_Order().getM_Warehouse_ID(),0, 0, minGuaranteeDate,
 								!isReturn(), null);
 						if (isReturn()) {
 							BigDecimal toReturn = todelivery;
@@ -580,8 +592,8 @@ public class OrderReceiptIssue extends GenForm {
 								BigDecimal qtyDelivered = bomline.getQtyDelivered(storage.getM_AttributeSetInstance_ID());
 								if (qtyDelivered.signum() <= 0)
 									continue;
-								if (toReturn.negate().compareTo(qtyDelivered) >= 0)
-									returnact = qtyDelivered.negate();
+								if (toReturn.compareTo(qtyDelivered) >= 0)
+									returnact = qtyDelivered;
 								toReturn = toReturn.subtract(returnact);
 
 								String desc = new MAttributeSetInstance(Env.getCtx(), storage.getM_AttributeSetInstance_ID(), null).getDescription();
@@ -592,11 +604,11 @@ public class OrderReceiptIssue extends GenForm {
 								row[2] = m_uomkey != null ? m_uomkey.toString() : "";
 								row[3] = desc != null ? desc : "";
 								row[4] = returnact.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-								row[5] = getValueBigDecimal(issue, i, 7).setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+								row[5] = qtyDelivered.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
 								row[6] = getValueBigDecimal(issue, i, 9).toString();
 								table.add(row);
 
-								if (toReturn.signum() >= 0)
+								if (toReturn.signum() <= 0)
 									break;
 							}
 						} else {
@@ -760,14 +772,18 @@ public class OrderReceiptIssue extends GenForm {
 
 		String sql = "SELECT " + "s.M_Product_ID , s.QtyOnHand, s.M_AttributeSetInstance_ID"
 				+ ", p.Name, masi.Description, l.Value, w.Value, w.M_warehouse_ID,p.Value,qtyDeliveredForBOMLine(" + id.getRecord_ID()
-				+ ",s.M_AttributeSetInstance_ID)" + "  FROM M_Storage s " + " INNER JOIN M_Product p ON (s.M_Product_ID = p.M_Product_ID) "
+				+ ",s.M_AttributeSetInstance_ID, s.M_Locator_ID), s.M_Locator_ID" + "  FROM M_Storage s " 
+				+ " INNER JOIN M_Product p ON (s.M_Product_ID = p.M_Product_ID) "
 				+ " INNER JOIN C_UOM u ON (u.C_UOM_ID = p.C_UOM_ID) "
 				+ " INNER JOIN M_AttributeSetInstance masi ON (masi.M_AttributeSetInstance_ID = s.M_AttributeSetInstance_ID) "
 				+ " INNER JOIN M_Warehouse w ON (w.M_Warehouse_ID = ?) "
 				+ " INNER JOIN M_Locator l ON(l.M_Warehouse_ID=w.M_Warehouse_ID and s.M_Locator_ID=l.M_Locator_ID) "
 				+ " WHERE s.M_Product_ID = ? and s.M_AttributeSetInstance_ID <> 0";
-		// Para devoluciones traigo todas las partidas
-		if (!isReturn())
+		// Para devoluciones traigo solo las partidas con las que surti
+		if (isReturn())
+			sql += " AND qtyDeliveredForBOMLine(" + id.getRecord_ID()
+				+ ",s.M_AttributeSetInstance_ID, s.M_Locator_ID) > 0";
+		else
 			sql += " and s.QtyOnHand > 0 ";
 		sql += " ORDER BY s.Created ";
 		// Execute
@@ -797,14 +813,14 @@ public class OrderReceiptIssue extends GenForm {
 				// ASI
 				issue.setValueAt(rs.getString(5), row, 5);
 				// Locator
-				issue.setValueAt(rs.getString(6), row, 13);
+				issue.setValueAt(new KeyNamePair(rs.getInt(11), rs.getString(6)), row, 13);
 				// Warehouse
 				KeyNamePair m_warehousekey = new KeyNamePair(rs.getInt(8), rs.getString(7));
 				issue.setValueAt(m_warehousekey, row, 14);
 				issue.setValueAt(Env.ZERO, row, 6); // QtyRequired
 				issue.setValueAt(rs.getBigDecimal(10), row, 7); // QtyDelivered
 				issue.setValueAt(Env.ZERO, row, 8); // QtyToDelivery
-				issue.setValueAt(Env.ZERO, row, 9); // Srcap
+				issue.setValueAt(Env.ZERO, row, 9); // Scrap
 				// Qty Required:
 				if (qtyRequiredActual.compareTo(qtyOnHand) < 0) {
 					issue.setValueAt(qtyRequiredActual.signum() > 0 ? qtyRequiredActual : Env.ZERO, row, 6);
