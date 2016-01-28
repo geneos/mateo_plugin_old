@@ -1666,6 +1666,34 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			throw new RuntimeException("Cantidad entregada insuficiente para devolucion, producto:"+PP_orderbomLine.getM_Product() + ". Faltan: "+ toReturn);
 		}
 	}
+	
+	/**
+	 * Create Co Product Receipt
+	 * 
+	 * @param PP_OrderBOMLine_ID
+	 * @param movementdate
+	 * @param qty
+	 */
+	public static void createCoProductReceipt(MPPOrder order, int PP_OrderBOMLine_ID, Timestamp movementdate, BigDecimal qty, int M_Locator_ID, int M_AttributeSetInstance_ID) {
+		if (qty.signum() == 0)
+			return;
+		MPPOrderBOMLine PP_orderbomLine = new MPPOrderBOMLine(order.getCtx(), PP_OrderBOMLine_ID, order.get_TrxName());
+		String CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_CoProductReceipt;
+		MPPCostCollector.createCollector(order, // MPPOrder
+				PP_orderbomLine.getM_Product_ID(), // M_Product_ID
+				M_Locator_ID, // M_Locator_ID
+				M_AttributeSetInstance_ID, // M_AttributeSetInstance_ID
+				order.getS_Resource_ID(), // S_Resource_ID
+				PP_OrderBOMLine_ID, // PP_Order_BOMLine_ID
+				0, // PP_Order_Node_ID
+				MDocType.getOfDocBaseType(Env.getCtx(), MPPCostCollector.DOCBASETYPE_ManufacturingCostCollector)[0].getID(), // C_DocType_ID,
+				CostCollectorType, // Production "-"
+				movementdate, // MovementDate
+				qty, BigDecimal.ZERO, BigDecimal.ZERO, // qty,scrap,reject
+				0, Env.ZERO // durationSetup,duration
+			);
+
+	}
 
 	public static boolean isQtyAvailable(MPPOrder order, LP_PP_Order_BOMLine line) {
 		MProduct product = MProduct.get(order.getCtx(), line.getM_Product_ID());

@@ -650,8 +650,8 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	 */
 
 	protected boolean IsCoProduct() {
-		super.setIsReturn(pickcombo.getValue().equals(5));
-		return super.isReturn();
+		super.setIsCoProduct(pickcombo.getValue().equals(5));
+		return super.isCoProduct();
 	}	
 	
 	

@@ -248,7 +248,9 @@ public class OrderReceiptIssue extends GenForm {
 			row++;
 		}
 
-		MPPOrder.isQtyAvailableEx(order, m_issue, minGuaranteeDate);
+		// Solo chequeo disponibilidad para surtimientos
+		if (isBackflush() || isOnlyIssue())
+			MPPOrder.isQtyAvailableEx(order, m_issue, minGuaranteeDate);
 
 		for (int i = 0; i < m_issue.length; i++) {
 			KeyNamePair key = (KeyNamePair) m_issue[i][0].get(0);
@@ -274,7 +276,7 @@ public class OrderReceiptIssue extends GenForm {
 
 			//La cantidad debe ser positiva
 			if ( qtyToDeliver.signum() < 1 ) {
-				throw new RuntimeException("La cantidad (" + qtyToDeliver + ") a entregar/devolver del producto (" + productkey.getName()
+				throw new RuntimeException("La cantidad (" + qtyToDeliver + ") a entregar/devolver/recibir del producto (" + productkey.getName()
 						+ ") debe ser positiva ");
 			}
 
@@ -304,10 +306,6 @@ public class OrderReceiptIssue extends GenForm {
 					//Si es una cabecera entonces tomo todos los storages y cualquier locator
 					M_AttributeSetInstance_ID = 0;
 					M_Locator_ID = 0;
-					/*if (PP_Order_BOMLine_ID > 0) {
-						orderbomLine = new MPPOrderBOMLine(order.getCtx(), PP_Order_BOMLine_ID, order.get_TrxName());
-						M_AttributeSetInstance_ID = orderbomLine.getM_AttributeSetInstance_ID();
-					}*/
 				}
 
 				MStorage[] storages = MPPOrder.getStorages(Env.getCtx(), M_Product_ID, order.getM_Warehouse_ID(), M_Locator_ID, M_AttributeSetInstance_ID, minGuaranteeDate,
@@ -315,6 +313,8 @@ public class OrderReceiptIssue extends GenForm {
 
 				if (isReturn())
 					MPPOrder.createReturn(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver.negate(), qtyScrapComponent, Env.ZERO, storages, false);
+				else if (isCoProduct())
+					MPPOrder.createCoProductReceipt(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver,  M_Locator_ID, M_AttributeSetInstance_ID);
 				else
 					MPPOrder.createIssue(order, PP_Order_BOMLine_ID, movementDate, qtyToDeliver, qtyScrapComponent, Env.ZERO, storages, false);
 
@@ -615,44 +615,21 @@ public class OrderReceiptIssue extends GenForm {
 									break;
 							}
 						} else if (isCoProduct()) {
+							// CoProducto si no tiene conjunto de atributos entonces se recibe todo en una nueva partida
+							// No la creo en esta instancia pq aun no confirme
+							//FIXME: Ver de crearla y volverla atras si no se confirma o si falla al crear los collectors
 							
-							//BigDecimal toReturn = todelivery;
-							
-							if(storages.length == 0) {
-								//Crear una partida
-								if (!MStorage.add(Env.getCtx(), getPP_Order().getM_Warehouse_ID(),
-										0, m_M_Product_ID, 0, 0, todelivery,todelivery, todelivery.negate(), null)) {
-									break;
-			                    }
-							}
-								
-							
-							for (int j = storages.length - 1; j >= 0; j--) {
-								BigDecimal returnact = todelivery;
-								MStorage storage = storages[j];
-								MPPOrderBOMLine bomline = MPPOrderBOMLine.forM_Product_ID(Env.getCtx(), getPP_Order().getID(), m_M_Product_ID, null);
-								BigDecimal qtyDelivered = bomline.getQtyDelivered(storage.getM_AttributeSetInstance_ID());
-								if (qtyDelivered.signum() <= 0)
-									continue;
-								/*if (toReturn.compareTo(qtyDelivered) >= 0)
-									returnact = qtyDelivered;
-								toReturn = toReturn.subtract(returnact);*/
+							//String desc = new MAttributeSetInstance(Env.getCtx(), storage.getM_AttributeSetInstance_ID(), null).getDescription();
 
-								String desc = new MAttributeSetInstance(Env.getCtx(), storage.getM_AttributeSetInstance_ID(), null).getDescription();
-
-								String[] row = { "", "", "", "", "0.00", "0.00", "0.00" };
-								row[0] = issue.getValueAt(i, 2) != null ? issue.getValueAt(i, 2).toString() : "";
-								row[1] = m_productkey.toString();
-								row[2] = m_uomkey != null ? m_uomkey.toString() : "";
-								row[3] = desc != null ? desc : "";
-								row[4] = returnact.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-								row[5] = qtyDelivered.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-								row[6] = getValueBigDecimal(issue, i, 9).toString();
-								table.add(row);
-
-								//if (toReturn.signum() <= 0)
-									//break;
-							}
+							String[] row = { "", "", "", "", "0.00", "0.00", "0.00" };
+							row[0] = issue.getValueAt(i, 2) != null ? issue.getValueAt(i, 2).toString() : "";
+							row[1] = m_productkey.toString();
+							row[2] = m_uomkey != null ? m_uomkey.toString() : "";
+							row[3] = Msg.translate(Env.getCtx(), "New");
+							row[4] = todelivery.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+							row[5] = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+							row[6] = getValueBigDecimal(issue, i, 9).toString();
+							table.add(row);
 						
 						} else {
 
@@ -937,6 +914,10 @@ public class OrderReceiptIssue extends GenForm {
 	protected void setIsOnlyReceipt(boolean isOnlyReceipt) {
 		m_isOnlyReceipt = isOnlyReceipt;
 	}
+	
+	protected void setIsCoProduct(boolean isCoProduct) {
+		m_IsCoProduct = isCoProduct;
+	}	
 
 	protected void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
 		m_M_AttributeSetInstance_ID = M_AttributeSetInstance_ID;
