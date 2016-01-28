@@ -85,6 +85,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	public static final int COSTCOLLECTORTYPE_AD_Reference_ID = 53287;
 	/** Material Receipt = 100 */
 	public static final String COSTCOLLECTORTYPE_MaterialReceipt = "100";
+	/** Material Receipt = 105 */
+	public static final String COSTCOLLECTORTYPE_CoProductReceipt = "105";
 	/** Component Issue = 110 */
 	public static final String COSTCOLLECTORTYPE_ComponentIssue = "110";
 	/** Usege Variance = 120 */
@@ -476,7 +478,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 			} // stock movement
 			
 			
-			if (isIssue() || isReturn()) {
+			if (isIssue() || isReturn() || isCoProduct()) {
 				MPPOrderBOMLine obomline = getPP_Order_BOMLine();
 
 				// Chequeo que la cantidad entregada no quede negativa
@@ -945,6 +947,10 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		return isCostCollectorType(COSTCOLLECTORTYPE_ComponentReturn);
 	}
 	
+	public boolean isCoProduct() {
+		return isCostCollectorType(COSTCOLLECTORTYPE_CoProductReceipt);
+	}
+	
 	public boolean isReceipt() {
 		return isCostCollectorType(COSTCOLLECTORTYPE_MaterialReceipt);
 	}
@@ -959,7 +965,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	}
 
 	public String getMovementType() {
-		if (isReceipt())
+		if (isReceipt() || isCoProduct())
 			return MTransaction.MOVEMENTTYPE_WorkOrderPlus;
 		else if (isIssue() || isReturn())
 			return MTransaction.MOVEMENTTYPE_WorkOrder_;
