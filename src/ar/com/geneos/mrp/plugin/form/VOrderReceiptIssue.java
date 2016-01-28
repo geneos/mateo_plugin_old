@@ -257,6 +257,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		pickcombo.addItem(new KeyNamePair(2, Msg.translate(Env.getCtx(), "OnlyIssue")));
 		pickcombo.addItem(new KeyNamePair(3, Msg.translate(Env.getCtx(), "OnlyReceipt")));
 		pickcombo.addItem(new KeyNamePair(4, Msg.translate(Env.getCtx(), "IsReturn")));
+		pickcombo.addItem(new KeyNamePair(5, Msg.translate(Env.getCtx(), "IsCoProduct")));
 		pickcombo.addActionListener(this);
 		Process.addActionListener(this);
 		toDeliverQty.addActionListener(this);
@@ -484,7 +485,8 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				attribute.setVisible(true);
 				attributeLabel.setVisible(true);
 				issue.setVisible(false);
-			} else if (isOnlyIssue() || isReturn()) {
+			// Agrego la opción IsCoProduct
+			} else if (isOnlyIssue() || isReturn() || IsCoProduct()) {
 				disableToDeliver();
 				locatorLabel.setVisible(false);
 				locatorField.setVisible(false);
@@ -640,6 +642,19 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 		return super.isReturn();
 	}
 
+	
+	/**
+	 * Determines whether the Delivery Rule is set to 'IsCoProduct'
+	 * Cooperativa Geneos
+	 * @return
+	 */
+
+	protected boolean IsCoProduct() {
+		super.setIsReturn(pickcombo.getValue().equals(5));
+		return super.isReturn();
+	}	
+	
+	
 	protected Timestamp getMovementDate() {
 		return (Timestamp) movementDateField.getValue();
 	}

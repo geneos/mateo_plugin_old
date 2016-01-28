@@ -34,6 +34,7 @@ import org.openXpertya.minigrid.MiniTable;
 import org.openXpertya.model.MAttributeSetInstance;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MStorage;
+import org.openXpertya.process.DocAction;
 import org.openXpertya.util.CLogger;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
@@ -64,6 +65,8 @@ public class OrderReceiptIssue extends GenForm {
 	protected boolean m_IsBackflush = false;
 
 	protected boolean m_IsReturn = false;
+	
+	protected boolean m_IsCoProduct = false;
 
 	protected Timestamp m_movementDate = null;
 
@@ -611,6 +614,46 @@ public class OrderReceiptIssue extends GenForm {
 								if (toReturn.signum() <= 0)
 									break;
 							}
+						} else if (isCoProduct()) {
+							
+							//BigDecimal toReturn = todelivery;
+							
+							if(storages.length == 0) {
+								//Crear una partida
+								if (!MStorage.add(Env.getCtx(), getPP_Order().getM_Warehouse_ID(),
+										0, m_M_Product_ID, 0, 0, todelivery,todelivery, todelivery.negate(), null)) {
+									break;
+			                    }
+							}
+								
+							
+							for (int j = storages.length - 1; j >= 0; j--) {
+								BigDecimal returnact = todelivery;
+								MStorage storage = storages[j];
+								MPPOrderBOMLine bomline = MPPOrderBOMLine.forM_Product_ID(Env.getCtx(), getPP_Order().getID(), m_M_Product_ID, null);
+								BigDecimal qtyDelivered = bomline.getQtyDelivered(storage.getM_AttributeSetInstance_ID());
+								if (qtyDelivered.signum() <= 0)
+									continue;
+								/*if (toReturn.compareTo(qtyDelivered) >= 0)
+									returnact = qtyDelivered;
+								toReturn = toReturn.subtract(returnact);*/
+
+								String desc = new MAttributeSetInstance(Env.getCtx(), storage.getM_AttributeSetInstance_ID(), null).getDescription();
+
+								String[] row = { "", "", "", "", "0.00", "0.00", "0.00" };
+								row[0] = issue.getValueAt(i, 2) != null ? issue.getValueAt(i, 2).toString() : "";
+								row[1] = m_productkey.toString();
+								row[2] = m_uomkey != null ? m_uomkey.toString() : "";
+								row[3] = desc != null ? desc : "";
+								row[4] = returnact.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+								row[5] = qtyDelivered.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+								row[6] = getValueBigDecimal(issue, i, 9).toString();
+								table.add(row);
+
+								//if (toReturn.signum() <= 0)
+									//break;
+							}
+						
 						} else {
 
 							BigDecimal scrap = getValueBigDecimal(issue, i, 9); // QtyScrap
@@ -741,6 +784,11 @@ public class OrderReceiptIssue extends GenForm {
 	protected boolean isReturn() {
 		return m_IsReturn;
 	}
+	
+	// Agregado para consultar por la regla es Co-Producto
+	protected boolean isCoProduct() {
+		return m_IsCoProduct;
+	}	
 
 	/**
 	 * Determines whether the Delivery Rule is set to 'OnlyIssue'
