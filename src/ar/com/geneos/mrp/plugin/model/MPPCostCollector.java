@@ -38,6 +38,7 @@ import org.openXpertya.model.MOrder;
 import org.openXpertya.model.MPeriod;
 import org.openXpertya.model.MProduct;
 import org.openXpertya.model.MProductPO;
+import org.openXpertya.model.MStorage;
 import org.openXpertya.model.MTransaction;
 import org.openXpertya.model.MUOM;
 import org.openXpertya.model.MWarehouse;
@@ -640,7 +641,45 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 
 	// @Override
 	public boolean voidIt() {
-		return false;
+		
+		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_VOID);
+		if (m_processMsg != null){
+			setDocStatus(DocAction.STATUS_Invalid);
+			return false;
+		}
+		
+		MProduct product = getM_Product();
+		//Chequeo que el stock no se haya usado
+		if (isReceipt() && product != null && product.isStocked() && !isVariance()){
+			MStorage storage = MStorage.get(getCtx(), getM_Locator_ID(), getM_Product_ID(), getM_AttributeSetInstance_ID(), get_TrxName());
+			BigDecimal available = storage.getQtyOnHand().subtract(storage.getQtyReserved());
+			if (getMovementQty().compareTo(available) == 1){
+				throw new IllegalStateException(this+" :No se puede anular recepcion, no existe diposnible. Entregado: "+getMovementQty()+" Disponible: "+available); 
+			}
+				
+		}
+		
+		if (isIssue() || isReceipt() || isReturn()) {
+			// Counter Stock Movement
+			if (product != null && product.isStocked() && !isVariance()) {
+				StorageEngine.createTrasaction(this, getCounterMovementType(), getMovementDate(), getMovementQty(), false, // IsReversal=false
+						getM_Warehouse_ID(), getPP_Order().getM_AttributeSetInstance_ID(), // Reservation
+																							// ASI
+						getPP_Order().getM_Warehouse_ID(), // Reservation
+															// Warehouse
+						false // IsSOTrx=false
+						);
+			} // Counter stock movement
+		}
+		
+		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_VOID);
+		if (m_processMsg != null){
+			setDocStatus(STATUS_Voided);
+			return false;
+		}
+		
+		setDocAction(ACTION_None);		
+		return true;
 	} // voidIt
 
 	// @Override
@@ -966,6 +1005,15 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		else
 			return null;
 	}
+	
+	public String getCounterMovementType() {
+		if (isIssue() || isReturn())
+			return MTransaction.MOVEMENTTYPE_WorkOrderPlus;
+		else if (isReceipt())
+			return MTransaction.MOVEMENTTYPE_WorkOrder_;
+		else
+			return null;
+	}
 
 	/**
 	 * Check if CostCollectorType is equal with any of provided types
@@ -1078,6 +1126,38 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		// Busco los registros que sena entregas de materiales
 		
 		whereClause.append(MPPCostCollector.COLUMNNAME_costcollectortype + " IN ('110') AND ");
+		
+		if (M_Product_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_M_Product_ID + "=? AND ");
+			params.add(M_Product_ID);
+		}
+
+		if (PP_Order_ID > 0) {
+			whereClause.append(MPPCostCollector.COLUMNNAME_PP_Order_ID + "=?");
+			params.add(PP_Order_ID);
+		}
+
+		return new Query(ctx, LP_PP_Cost_Collector.Table_Name, whereClause.toString(), trxName).setParameters(params).list();
+
+	}
+	
+	/**
+	 * Obtener los cost collectos para un Recurso y una OM
+	 * 
+	 * @param product
+	 * @param AD_Client_ID
+	 * @param dateAcct
+	 * @return Collection the Cost Collector
+	 */
+	
+	public static List<MPPCostCollector> getCostCollectorOM(Properties ctx, int M_Product_ID, int PP_Order_ID, String trxName, String type) {
+		List<Object> params = new ArrayList();
+		
+		final StringBuffer whereClause = new StringBuffer();
+		
+		// Busco los registros que sena entregas de materiales
+		
+		whereClause.append(MPPCostCollector.COLUMNNAME_costcollectortype + " IN ('"+type+"') AND ");
 		
 		if (M_Product_ID > 0) {
 			whereClause.append(MPPCostCollector.COLUMNNAME_M_Product_ID + "=? AND ");

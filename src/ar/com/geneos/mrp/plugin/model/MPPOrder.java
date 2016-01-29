@@ -523,46 +523,45 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			return false;
 		}
 
-		if (MPPOrder.ACTION_Close.equals(getDocAction()) || MPPOrder.ACTION_Void.equals(getDocAction())) {
-			return true;
-		}
+		if (!(MPPOrder.ACTION_Close.equals(getDocAction()) || MPPOrder.ACTION_Void.equals(getDocAction()))) {
+		
 
-		try {
-
-			if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && !isDelivered()) {
-				deleteWorkflowAndBOM();
+			try {
+	
+				if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && !isDelivered()) {
+					deleteWorkflowAndBOM();
+					explotion();
+				}
+				if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && isDelivered()) {
+					// FIXME:Create Message for Translation
+					log.saveError("Error", Msg.getMsg(getCtx(), "ChangeQuatityNotDraftOrInProcess"));
+					return false;
+				}
+	
+				if (!newRecord) {
+					return success;
+				}
+	
 				explotion();
+	
+				/**
+				 * Libero to Libertya Migration Force ModelValidator
+				 */
+				if (newRecord)
+					MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_NEW, log);
+				else
+					MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
 			}
-			if (is_ValueChanged(MPPOrder.COLUMNNAME_QtyEntered) && isDelivered()) {
-				// FIXME:Create Message for Translation
-				log.saveError("Error", Msg.getMsg(getCtx(), "ChangeQuatityNotDraftOrInProcess"));
+			catch (Exception e){
+				log.saveError("Error",
+						Msg.getMsg(getCtx(), e.getLocalizedMessage()));
+				//Vuelvo transaccion atras
+				if (isLocalTrx && get_TrxName() != null){
+					Trx.get(get_TrxName(), false).rollback();
+				}
 				return false;
 			}
-
-			if (!newRecord) {
-				return success;
-			}
-
-			explotion();
-
-			/**
-			 * Libero to Libertya Migration Force ModelValidator
-			 */
-			if (newRecord)
-				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_NEW, log);
-			else
-				MRPValidator.modelChange(this, ModelValidator.TYPE_AFTER_CHANGE, log);
 		}
-		catch (Exception e){
-			log.saveError("Error",
-					Msg.getMsg(getCtx(), e.getLocalizedMessage()));
-			//Vuelvo transaccion atras
-			if (isLocalTrx && get_TrxName() != null){
-				Trx.get(get_TrxName(), false).rollback();
-			}
-			return false;
-		}
-
 		//Commit manual si isLocalTrx esta seteado
 		if (isLocalTrx && get_TrxName() != null){
 			Trx.get(get_TrxName(), false).commit();
@@ -733,7 +732,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		BigDecimal ordered = difference;
 
 		int M_Locator_ID = getM_Locator_ID(ordered);
-		// Necessary to clear order quantities when called from closeIt -
+		// Necessary to clear order quantities when called from closeIt or voidIt -
 		// 4Layers
 		if (ACTION_Close.equals(getDocAction())) {
 			if (!MStorage.add(getCtx(), getM_Warehouse_ID(), M_Locator_ID, getM_Product_ID(), getM_AttributeSetInstance_ID(), 0, //Reserved and Ordered always on AttributeSetInstance 0
@@ -856,6 +855,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			m_processMsg = valid;
 			return DocAction.STATUS_Invalid;
 		}
+		setProcessed(true);
 		return DocAction.STATUS_Completed;
 	} // completeIt
 
@@ -880,20 +880,50 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		if (m_processMsg != null)
 			return false;
 
-		if (isDelivered()) {
-			throw new RuntimeException("Cannot void this document because exist transactions"); // TODO:
-																								// Create
-																								// Message
-																								// for
-																								// Translation
+		//Anulo recepciones
+		List<MPPCostCollector> receipts = MPPCostCollector.getCostCollectorOM(getCtx(), 0, getPP_Order_ID(), get_TrxName(),MPPCostCollector.COSTCOLLECTORTYPE_MaterialReceipt);
+		for (MPPCostCollector aReceipt : receipts) {
+			if (!aReceipt.processIt(DocAction.ACTION_Void)){
+				m_processMsg = "Error Clearing receipts";
+				return false;
+			}
 		}
-
+		
+		//Anulo surtimientos
+		List<MPPCostCollector> issues = MPPCostCollector.getCostCollectorOM(getCtx(), 0, getPP_Order_ID(), get_TrxName(),MPPCostCollector.COSTCOLLECTORTYPE_ComponentIssue);
+		for (MPPCostCollector aIssue : issues) {
+			if (!aIssue.processIt(DocAction.ACTION_Void)){
+				m_processMsg = "Error Clearing issues";
+				return false;
+			}
+		}
+		
+		//Anulo devoluciones
+		List<MPPCostCollector> returns = MPPCostCollector.getCostCollectorOM(getCtx(), 0, getPP_Order_ID(), get_TrxName(),MPPCostCollector.COSTCOLLECTORTYPE_ComponentReturn);
+		for (MPPCostCollector aReturn : returns) {
+			if (!aReturn.processIt(DocAction.ACTION_Void)){
+				m_processMsg = "Error Clearing returns";
+				return false;
+			}
+		}
+		
+		//Seteo documento en voided antes de anular lineas para traspasar la validacion de cantirar requerida menor a cantidad entregada
+		getCtx().setProperty("MPPOrder.voidIt", "true");
+		//Anulo lineas
 		for (MPPOrderBOMLine line : getLines()) {
 			BigDecimal old = line.getQtyRequired();
+			BigDecimal oldDelivered = line.getQtyDelivered();
 			if (old.signum() != 0) {
 				line.addDescription(Msg.parseTranslation(getCtx(), "@Voided@ @QtyRequired@ : (" + old + ")"));
 				line.setQtyRequired(Env.ZERO);
-				line.save();
+			}
+			if (old.signum() != 0) {
+				line.addDescription(Msg.parseTranslation(getCtx(), "@Delivered@ @QtyDelivered@ : (" + oldDelivered + ")"));
+				line.setQtyDelivered(Env.ZERO);
+			}
+			if (!line.save()){
+				m_processMsg = "Error Clearing lines:"+line;
+				return false;
 			}
 		}
 
@@ -904,7 +934,10 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			addDescription(Msg.parseTranslation(getCtx(), "@Voided@ @QtyOrdered@ : (" + old + ")"));
 			setQtyOrdered(Env.ZERO);
 			setQtyEntered(Env.ZERO);
-			save();
+			if (!save()){
+				m_processMsg = "Error Clearing header";
+				return false;
+			}
 		}
 
 		try {

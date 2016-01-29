@@ -31,6 +31,7 @@ import org.openXpertya.model.MUOM;
 import org.openXpertya.model.MUOMConversion;
 import org.openXpertya.model.MWarehouse;
 import org.openXpertya.model.Query;
+import org.openXpertya.process.DocAction;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 
@@ -191,7 +192,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		}
 
 		if (newRecord || is_ValueChanged(COLUMNNAME_C_UOM_ID) || is_ValueChanged(COLUMNNAME_QtyEntered) || is_ValueChanged(COLUMNNAME_QtyRequired)) {
-			if (getQtyRequired().compareTo(getQtyDelivered()) < 0 && !getComponentType().equals(COMPONENTTYPE_Co_Product))
+			if (getQtyRequired().compareTo(getQtyDelivered()) < 0 && !getComponentType().equals(COMPONENTTYPE_Co_Product) && getCtx().get("MPPOrder.voidIt") == null)
 				throw new IllegalStateException("@QtyRequired@ < @QtyDelivered@");
 
 			int precision = MUOM.getPrecision(getCtx(), getC_UOM_ID());

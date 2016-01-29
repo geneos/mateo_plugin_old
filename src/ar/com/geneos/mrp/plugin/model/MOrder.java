@@ -20,7 +20,7 @@ public class MOrder extends MPluginPO {
 	}
  
 	/**
-	 * Ejecución posterior al beforeSave
+	 * Ejecución posterior al afterSave
 	 * @return estado del procesamiento
 	 */
 	public MPluginStatusPO postAfterSave(PO po, boolean newRecord, boolean success) {
@@ -32,12 +32,15 @@ public class MOrder extends MPluginPO {
 	}
 	
 	/**
-	 * Ejecución posterior al afterSave
+	 * Ejecución posterior al BeforeDelete
 	 * @return estado del procesamiento
 	 */
-	public MPluginStatusPO postBeforeDelete(PO po, boolean newRecord, boolean success) {
+	@Override
+	public MPluginStatusPO postBeforeDelete(PO po) {
 		MRPValidator.modelChange(po, ModelValidator.TYPE_BEFORE_DELETE, log);
 		return status_po;
 	}
+	
+	
 	
 }

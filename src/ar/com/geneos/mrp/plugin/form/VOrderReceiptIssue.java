@@ -27,7 +27,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.math.BigDecimal;
-import java.security.KeyPair;
 import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
