@@ -900,6 +900,15 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 			}
 		}
 		
+		//Anulo recepciones de coproducto
+		List<MPPCostCollector> coProductReceipts = MPPCostCollector.getCostCollectorOM(getCtx(), 0, getPP_Order_ID(), get_TrxName(),MPPCostCollector.COSTCOLLECTORTYPE_CoProductReceipt);
+		for (MPPCostCollector acoProductReceipt : coProductReceipts) {
+			if (!acoProductReceipt.processIt(DocAction.ACTION_Void)){
+				m_processMsg = "Error Clearing CoProduct receipts";
+				return false;
+			}
+		}
+		
 		//Anulo devoluciones
 		List<MPPCostCollector> returns = MPPCostCollector.getCostCollectorOM(getCtx(), 0, getPP_Order_ID(), get_TrxName(),MPPCostCollector.COSTCOLLECTORTYPE_ComponentReturn);
 		for (MPPCostCollector aReturn : returns) {

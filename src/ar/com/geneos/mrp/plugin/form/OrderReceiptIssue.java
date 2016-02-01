@@ -824,8 +824,8 @@ public class OrderReceiptIssue extends GenForm {
 		else if (isCoProduct())
 			sql += " and s.M_AttributeSetInstance_ID in "
 					+ "(select cc.M_AttributeSetInstance_ID from pp_cost_collector cc "
-					+ "where cc.pp_order_bomline_id = "+id.getRecord_ID()+")"
-					+ " and M_AttributeSetInstance_ID <> 0";
+					+ "where cc.pp_order_bomline_id = "+id.getRecord_ID()+""
+					+ "and cc.M_AttributeSetInstance_ID <> 0)";
 		
 		else
 			sql += " and s.QtyOnHand > 0 ";

@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
 
 import org.openXpertya.model.MAcctSchema;
 import org.openXpertya.model.MBPartner;
@@ -47,6 +48,7 @@ import org.openXpertya.model.Query;
 import org.openXpertya.print.ReportEngine;
 import org.openXpertya.process.DocAction;
 import org.openXpertya.process.DocumentEngine;
+import org.openXpertya.util.CLogger;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
@@ -78,6 +80,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	 */
 	private static final long serialVersionUID = 2329378809441860241L;
 
+	protected static transient CLogger log = CLogger.getCLogger(MPPCostCollector.class);
+	
 	public static final String DOCBASETYPE_ManufacturingCostCollector = "MOR";
 
 	public static final String DOCACTION_None = null;
@@ -400,7 +404,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 			}
 		}
 		// Issue
-		else if (isIssue()) {
+		else if (isIssue() || isCoProduct()) {
 			MProduct product = getM_Product();
 			if (getM_AttributeSetInstance_ID() == 0 && MUMProduct.isASIMandatory(product, false, getAD_Org_ID())) {
 				throw new IllegalStateException("@M_AttributeSet_ID@ @IsMandatory@ @M_Product_ID@=" + product.getValue());
@@ -640,6 +644,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 
 		return DocAction.STATUS_Completed;
 	} // completeIt
+	
+	
 
 	// @Override
 	public boolean voidIt() {
@@ -652,16 +658,17 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		
 		MProduct product = getM_Product();
 		//Chequeo que el stock no se haya usado
-		if (isReceipt() && product != null && product.isStocked() && !isVariance()){
+		if ( (isReceipt() || isCoProduct()) && product != null && product.isStocked() && !isVariance()){
 			MStorage storage = MStorage.get(getCtx(), getM_Locator_ID(), getM_Product_ID(), getM_AttributeSetInstance_ID(), get_TrxName());
 			BigDecimal available = storage.getQtyOnHand().subtract(storage.getQtyReserved());
 			if (getMovementQty().compareTo(available) == 1){
-				throw new IllegalStateException(this+" :No se puede anular recepcion, no existe diposnible. Entregado: "+getMovementQty()+" Disponible: "+available); 
+				log.log(Level.SEVERE, this+" :No se puede anular recepcion, no existe disponible. Entregado: "+getMovementQty()+" Disponible: "+available);
+				return false;
 			}
 				
 		}
 		
-		if (isIssue() || isReceipt() || isReturn()) {
+		if (isIssue() || isReceipt() || isReturn() || isCoProduct()) {
 			// Counter Stock Movement
 			if (product != null && product.isStocked() && !isVariance()) {
 				StorageEngine.createTrasaction(this, getCounterMovementType(), getMovementDate(), getMovementQty(), false, // IsReversal=false
@@ -1015,7 +1022,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 	public String getCounterMovementType() {
 		if (isIssue() || isReturn())
 			return MTransaction.MOVEMENTTYPE_WorkOrderPlus;
-		else if (isReceipt())
+		else if (isReceipt() || isCoProduct())
 			return MTransaction.MOVEMENTTYPE_WorkOrder_;
 		else
 			return null;

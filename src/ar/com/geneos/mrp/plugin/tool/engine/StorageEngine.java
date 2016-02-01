@@ -62,16 +62,20 @@ public class StorageEngine {
 
 		if (product != null && product.isStocked()) {
 			// Ignore the Material Policy when is Reverse Correction
-			if (!isReversal) {
+			//FIXME: Ignoro siempre para que no cree partidas
+			/*if (!isReversal) {
 				checkMaterialPolicy(docLine, MovementType, MovementDate, M_Warehouse_ID);
-			}
+			}*/
 
 			// Reservation ASI
 			int reservationAttributeSetInstance_ID = o_M_AttributeSetInstance_ID;
 			//
+			boolean isMA = false;
 			if (docLine.getM_AttributeSetInstance_ID() == 0) {
+				
 				IInventoryAllocation mas[] = StorageEngine.getMA(docLine);
 				for (int j = 0; j < mas.length; j++) {
+					isMA = true;
 					IInventoryAllocation ma = mas[j];
 					BigDecimal QtyMA = ma.getMovementQty();
 					if (!incomingTrx) // C- Customer Shipment - V- Vendor Return
@@ -90,7 +94,7 @@ public class StorageEngine {
 			}
 			// sLine.getM_AttributeSetInstance_ID() != 0
 			// if (mtrx == null)
-			else {
+			if (!isMA) {
 
 				if (!incomingTrx) // C- Customer Shipment - V- Vendor Return
 					Qty = Qty.negate();
