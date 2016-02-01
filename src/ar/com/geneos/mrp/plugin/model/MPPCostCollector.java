@@ -464,7 +464,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 		// Material Issue (component issue, method change variance, mix
 		// variance)
 		// Material Receipt
-		if (isIssue() || isReceipt() || isReturn()) {
+		if (isIssue() || isReceipt() || isReturn() || isCoProduct()) {
 			// Stock Movement
 			MProduct product = getM_Product();
 			if (product != null && product.isStocked() && !isVariance()) {
@@ -483,7 +483,7 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 
 				// Chequeo que la cantidad entregada no quede negativa
 				if (obomline.getQtyDelivered().add(getMovementQty()).signum() == -1)
-					throw new IllegalStateException("PPCostoCollector.completeIt: Cantidad entregada no puede quedar en negativo"+this);
+					throw new IllegalStateException("PPCostCollector.completeIt: Cantidad entregada no puede quedar en negativo"+this);
 
 				// Update PP Order Line
 				obomline.setQtyDelivered(obomline.getQtyDelivered().add(getMovementQty()));

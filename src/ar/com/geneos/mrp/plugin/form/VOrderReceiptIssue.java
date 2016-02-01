@@ -487,7 +487,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 				attributeLabel.setVisible(true);
 				issue.setVisible(false);
 			// Agrego la opción IsCoProduct
-			} else if (isOnlyIssue() || isReturn() || IsCoProduct()) {
+			} else if (isOnlyIssue() || isReturn() || isCoProduct()) {
 				disableToDeliver();
 				locatorLabel.setVisible(false);
 				locatorField.setVisible(false);
@@ -596,7 +596,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	private void generateSummaryTable() {
 
 		info.setText(generateSummaryTable(issue, productField.getDisplay(), uomField.getDisplay(), attribute.getDisplay(), toDeliverQty.getDisplay(),
-				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt(), isReturn()));
+				deliveredQtyField.getDisplay(), scrapQtyField.getDisplay(), isBackflush(), isOnlyIssue(), isOnlyReceipt(), isReturn(), isCoProduct()));
 
 	} // generateInvoices_complete
 
@@ -650,7 +650,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 	 * @return
 	 */
 
-	protected boolean IsCoProduct() {
+	protected boolean isCoProduct() {
 		super.setIsCoProduct(pickcombo.getValue().equals(5));
 		return super.isCoProduct();
 	}	
@@ -867,7 +867,7 @@ public class VOrderReceiptIssue extends OrderReceiptIssue implements FormPanel, 
 			Trx.run(new TrxRunnable() {
 				public void run(String trxName) {
 					MPPOrder order = new MPPOrder(Env.getCtx(), getPP_Order_ID(), trxName);
-					if (isBackflush() || isOnlyIssue() || isReturn()) {
+					if (isBackflush() || isOnlyIssue() || isReturn() || isCoProduct()) {
 						createIssue(order, issue);
 					}
 					if (isOnlyReceipt() || isBackflush()) {

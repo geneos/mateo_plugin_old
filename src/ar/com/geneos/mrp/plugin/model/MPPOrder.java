@@ -29,6 +29,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 
 import org.openXpertya.model.MAcctSchema;
+import org.openXpertya.model.MAttributeSetInstance;
 import org.openXpertya.model.MClient;
 import org.openXpertya.model.MCost;
 import org.openXpertya.model.MCostType;
@@ -52,6 +53,7 @@ import org.openXpertya.model.Query;
 import org.openXpertya.print.ReportEngine;
 import org.openXpertya.process.DocAction;
 import org.openXpertya.process.DocumentEngine;
+import org.openXpertya.util.AssetDTO;
 import org.openXpertya.util.DB;
 import org.openXpertya.util.Env;
 import org.openXpertya.util.KeyNamePair;
@@ -1645,6 +1647,19 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		if (qty.signum() == 0)
 			return;
 		MPPOrderBOMLine PP_orderbomLine = new MPPOrderBOMLine(order.getCtx(), PP_OrderBOMLine_ID, order.get_TrxName());
+		//Si tiene conjunto de atributos y no se elijio partida entonces creo una nueva
+		if (M_AttributeSetInstance_ID != 0 && order.getM_Product().getM_AttributeSet_ID() != 0){
+			AssetDTO asset = new AssetDTO();
+			asset.setProductID(order.getM_Product_ID());
+			MAttributeSetInstance masi;
+			try {
+				masi = MAttributeSetInstance.createAssetAttributeInstance(asset);
+				M_AttributeSetInstance_ID = masi.getM_AttributeSetInstance_ID();
+			} catch (Exception e) {
+				throw new IllegalStateException(e);
+			}
+			
+		}
 		String CostCollectorType = MPPCostCollector.COSTCOLLECTORTYPE_CoProductReceipt;
 		MPPCostCollector.createCollector(order, // MPPOrder
 				PP_orderbomLine.getM_Product_ID(), // M_Product_ID
