@@ -326,7 +326,7 @@ public class OrderReceiptIssue extends GenForm {
 	 * Query Info
 	 */
 	public void executeQuery(MiniTable issue) {
-		final String sql = "SELECT "
+		String sql = "SELECT "
 				+ "obl.PP_Order_BOMLine_ID," // 1
 				+ "obl.IsCritical," // 2
 				+ "p.Value," // 3
@@ -350,13 +350,23 @@ public class OrderReceiptIssue extends GenForm {
 				+ "obl.QtyDelivered" // 20
 				+ " FROM PP_Order_BOMLine obl" + " INNER JOIN M_Product p ON (obl.M_Product_ID = p.M_Product_ID) "
 				+ " INNER JOIN C_UOM u ON (p.C_UOM_ID = u.C_UOM_ID) " + " INNER JOIN M_Warehouse w ON (w.M_Warehouse_ID = obl.M_Warehouse_ID) "
-				+ " WHERE obl.PP_Order_ID = ?" + " ORDER BY obl." + MPPOrderBOMLine.COLUMNNAME_Line;
+				+ " WHERE obl.PP_Order_ID = ?";
+		//Show only Co-Products
+		if (isCoProduct())
+			sql += " AND obl.ComponentType = 'CP'";
+		else
+			sql += " AND obl.ComponentType <> 'CP'";
+		
+		sql +=  " ORDER BY obl." + MPPOrderBOMLine.COLUMNNAME_Line;
+		
 		// reset table
 		int row = 0;
 		issue.setRowCount(row);
 		// Execute
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println(sql);
+		System.out.println(getPP_Order_ID());
 		try {
 			pstmt = DB.prepareStatement(sql, null);
 			pstmt.setInt(1, getPP_Order_ID());
@@ -406,7 +416,7 @@ public class OrderReceiptIssue extends GenForm {
 				issue.setValueAt(isQtyPercentage, row, 16); // isQtyPercentage
 				issue.setValueAt(qtyBatch, row, 17); // QtyBatch
 
-				if (componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Component) || componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Packing)) {
+				if (componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Component) || componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Packing) || componentType.equals(MPPProductBOMLine.COMPONENTTYPE_Co_Product)) {
 					// If the there is product on hand and product is required
 					// the product should be selected (And is not return)
 					id.setSelected(!isReturn() && qtyOnHand.signum() > 0 && qtyRequired.signum() > 0);
@@ -521,7 +531,7 @@ public class OrderReceiptIssue extends GenForm {
 
 				row++;
 
-				if (isOnlyIssue() || isBackflush() || isReturn()) {
+				if (isOnlyIssue() || isBackflush() || isReturn() || isCoProduct()) {
 					int warehouse_id = rs.getInt(13);
 					int product_id = rs.getInt(4);
 					row += lotes(row, id, warehouse_id, product_id, componentQtyReq, componentQtyToDel, issue);
@@ -538,7 +548,7 @@ public class OrderReceiptIssue extends GenForm {
 	} // executeQuery
 
 	public String generateSummaryTable(MiniTable issue, String productField, String uomField, String attribute, String toDeliverQty, String deliveredQtyField,
-			String scrapQtyField, boolean isBackflush, boolean isOnlyIssue, boolean isOnlyReceipt, boolean isReturn) {
+			String scrapQtyField, boolean isBackflush, boolean isOnlyIssue, boolean isOnlyReceipt, boolean isReturn, boolean isCoProduct) {
 
 		StringBuffer iText = new StringBuffer();
 
@@ -556,7 +566,7 @@ public class OrderReceiptIssue extends GenForm {
 			iText.append(createHTMLTable(table));
 		}
 
-		if (isBackflush || isOnlyIssue || isReturn) {
+		if (isBackflush || isOnlyIssue || isReturn || isCoProduct) {
 			iText.append("<br /><br />");
 
 			ArrayList<String[]> table = new ArrayList<String[]>();
@@ -804,13 +814,24 @@ public class OrderReceiptIssue extends GenForm {
 				+ " INNER JOIN M_Warehouse w ON (w.M_Warehouse_ID = ?) "
 				+ " INNER JOIN M_Locator l ON(l.M_Warehouse_ID=w.M_Warehouse_ID and s.M_Locator_ID=l.M_Locator_ID) "
 				+ " WHERE s.M_Product_ID = ? and s.M_AttributeSetInstance_ID <> 0";
+		
 		// Para devoluciones traigo solo las partidas con las que surti
 		if (isReturn())
 			sql += " AND qtyDeliveredForBOMLine(" + id.getRecord_ID()
 				+ ",s.M_AttributeSetInstance_ID, s.M_Locator_ID) > 0";
+		
+		// Para coProducto traigo solo las partidas donde recepcione para esta OM
+		else if (isCoProduct())
+			sql += " and s.M_AttributeSetInstance_ID in "
+					+ "(select cc.M_AttributeSetInstance_ID from pp_cost_collector cc "
+					+ "where cc.pp_order_bomline_id = "+id.getRecord_ID()+")"
+					+ " and M_AttributeSetInstance_ID <> 0";
+		
 		else
 			sql += " and s.QtyOnHand > 0 ";
+
 		sql += " ORDER BY s.Created ";
+		
 		// Execute
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -852,6 +873,11 @@ public class OrderReceiptIssue extends GenForm {
 				} else {
 					issue.setValueAt(qtyOnHand, row, 6);
 				}
+				// Para recepcion de coproducto solo se muestran los lotes para hacer recepciones en partidas existentes. 
+				// No tiene ningun valor la cantidad requerida de un lote en especifico.
+				if (isCoProduct())
+					issue.setValueAt(Env.ZERO, row, 6);
+				
 				qtyRequiredActual = qtyRequiredActual.subtract(qtyOnHand);
 
 				linesNo++;

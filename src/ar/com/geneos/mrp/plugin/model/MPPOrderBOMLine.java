@@ -159,15 +159,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
-		// Victor Perez: The best practice in this case you do should change the
-		// component you need
-		// adding a new line in Order BOM Line with new component so do not is
-		// right
-		// delete or change a component because this information is use to
-		// calculate
-		// the variances cost (
-		// https://sourceforge.net/tracker/?func=detail&atid=934929&aid=2724579&group_id=176962
-		// )
+
 		if (!isActive()) {
 			throw new IllegalStateException("De-Activating an BOM Line is not allowed"); // TODO:
 																							// translate
@@ -192,7 +184,7 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		}
 
 		if (newRecord || is_ValueChanged(COLUMNNAME_C_UOM_ID) || is_ValueChanged(COLUMNNAME_QtyEntered) || is_ValueChanged(COLUMNNAME_QtyRequired)) {
-			if (getQtyRequired().compareTo(getQtyDelivered()) < 0 && !getComponentType().equals(COMPONENTTYPE_Co_Product) && getCtx().get("MPPOrder.voidIt") == null)
+			if (getQtyRequired().compareTo(getQtyDelivered()) < 0 && getCtx().get("MPPOrder.voidIt") == null)
 				throw new IllegalStateException("@QtyRequired@ < @QtyDelivered@");
 
 			int precision = MUOM.getPrecision(getCtx(), getC_UOM_ID());
@@ -534,9 +526,11 @@ public class MPPOrderBOMLine extends LP_PP_Order_BOMLine {
 		
 		// Si el producto es Alternativo entonces no realiza reservas
 		MPPProductPlanning prodPlanning = MPPProductPlanning.find(getCtx(), getParent().getAD_Org_ID(), getParent().getM_Warehouse_ID(),getParent().getS_Resource_ID() , getM_Product_ID(), get_TrxName());
+		if (prodPlanning != null && prodPlanning.isAlternative())
+			return;
 		
-		// Si no existe planeamiento al no consultarse explota por null pointer
-		if (prodPlanning.isAlternative())
+		// Si el el tipo de componente es Co-Producto no realiza reservas
+		if (isCoProduct())
 			return;
 		
 		final int header_M_Warehouse_ID = getParent().getM_Warehouse_ID();

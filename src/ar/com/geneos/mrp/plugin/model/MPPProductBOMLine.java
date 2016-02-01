@@ -175,12 +175,20 @@ public class MPPProductBOMLine extends LP_PP_Product_BOMLine
 			isLocalTrx = true;
 		}
 		try {
-			//
-			// For Co/By Products, Qty should be always negative:
+			/*
+			 * Co Producto se maneja positivo, la logica del stock se delega al cost collector
+			 */
+			/*
 			if (isCoProduct() && getQty(false).signum() >= 0)
 			{
 				throw new MRPException("@Qty@ > 0");
+			}*/
+			
+			if (getQty(false).signum() < 0)
+			{
+				throw new MRPException("@Qty@ < 0");
 			}
+			
 			//
 			// Update Line#
 			if (getLine() <= 0)
