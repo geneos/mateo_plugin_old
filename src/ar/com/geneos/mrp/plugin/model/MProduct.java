@@ -22,13 +22,11 @@ public class MProduct extends MPluginPO {
 	 * 
 	 * @return estado del procesamiento
 	 */
-	public MPluginStatusPO preBeforeSave(PO po, boolean newRecord, boolean success) {
-		if (!newRecord) {
-			String ret = MRPValidator.modelChange(po, ModelValidator.TYPE_BEFORE_CHANGE, log);
-			if (ret != null) {
-				status_po.setErrorMessage(ret);
-				status_po.setContinueStatus(MPluginStatusPO.STATE_FALSE);
-			}
+	public MPluginStatusPO preBeforeSave(PO po, boolean success) {
+		String ret = MRPValidator.modelChange(po, ModelValidator.TYPE_BEFORE_CHANGE, log);
+		if (ret != null) {
+			status_po.setErrorMessage(ret);
+			status_po.setContinueStatus(MPluginStatusPO.STATE_FALSE);
 		}
 		return status_po;
 	}

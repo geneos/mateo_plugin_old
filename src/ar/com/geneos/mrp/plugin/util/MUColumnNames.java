@@ -44,6 +44,9 @@ public class MUColumnNames {
 	public static final String COLUMNNAME_DateTo = "DateTo";
 	public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
 	public static final String COLUMNNAME_QtyReserved = "QtyReserved";
+	public static final String COLUMNNAME_PP_Order_Workflow_ID = "PP_Order_Workflow_ID";
+	public static final String COLUMNNAME_SeqNo = "SeqNo";
+	public static final String COLUMNNAME_PP_Order_Node_ID = "PP_Order_Node_ID";
 	
 
 

@@ -393,8 +393,8 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 			activity.setQtyDelivered(activity.getQtyDelivered().add(getMovementQty()));
 			activity.setQtyScrap(activity.getQtyScrap().add(getScrappedQty()));
 			activity.setQtyReject(activity.getQtyReject().add(getQtyReject()));
-			activity.setDurationReal(activity.getDurationReal() + getDurationReal().intValueExact());
-			activity.setSetupTimeReal(activity.getSetupTimeReal() + getSetupTimeReal().intValueExact());
+			activity.setDurationReal(activity.getDurationReal() + getDurationReal().intValue());
+			activity.setSetupTimeReal(activity.getSetupTimeReal() + getSetupTimeReal().intValue());
 			activity.save();
 
 			// report all activity previews to milestone activity
@@ -574,23 +574,31 @@ public class MPPCostCollector extends LP_PP_Cost_Collector implements DocAction,
 				*/
 				
 				final MProduct product = MUMProduct.forS_Resource_ID(getCtx(), getS_Resource_ID(), null);
-				final MAcctSchema as = MClient.get(getCtx(), getAD_Client_ID()).getAcctSchema();
 				
-				final CostDimension d = new CostDimension(product, as, as.getM_CostType_ID(), getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
-						CostDimension.ANY);
-				final MPPOrder order = getPP_Order();
-				
-				Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
-				
-				for (MCost cost : costs) {
-					/*
-					 *  Crear dimensión de costos para la orden desde un elemento del colector de costos
-					 *  Geneos
-					 *  
-					 */
+				if (product != null) {
+					final MAcctSchema as = MClient.get(getCtx(), getAD_Client_ID()).getAcctSchema();
 					
-					MPPOrderCost.createOrderCostDimensionFromCollector(order.getID(), cost, this);
-				}			
+					final CostDimension d = new CostDimension(product, as, as.getM_CostType_ID(), getAD_Org_ID(), getM_Warehouse_ID(), getM_AttributeSetInstance_ID(),
+							CostDimension.ANY);
+					final MPPOrder order = getPP_Order();
+					
+					String sql = d.toQuery(MCost.class, get_TrxName()).getSQL();
+					System.out.println(sql);
+					
+					Collection<MCost> costs = d.toQuery(MCost.class, get_TrxName()).list();
+					
+					for (MCost cost : costs) {
+						/*
+						 *  Crear dimensión de costos para la orden desde un elemento del colector de costos
+						 *  Geneos
+						 *  
+						 */
+						
+						MPPOrderCost.createOrderCostDimensionFromCollector(order.getID(), cost, this);
+					}			
+					
+				}
+				
 				
 				if (activity.getQtyDelivered().compareTo(activity.getQtyRequired()) >= 0) {
 					activity.closeIt();

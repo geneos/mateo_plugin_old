@@ -312,7 +312,7 @@ public class MRP extends SvrProcess {
 			whereClause.append(" AND " + MUColumnNames.COLUMNNAME_S_Resource_ID + "=?");
 			parameters.add(getPlant_ID());
 		}
-		List<MResource> plants = new Query(getCtx(), MResource.Table_Name, whereClause.toString(), get_TrxName()).setParameters(parameters).list();
+		List<MResource> plants = new Query(getCtx(), MResource.Table_Name, whereClause.toString(), get_TrxName()).setParameters(parameters).setOnlyActiveRecords(true).list();
 		for (MResource plant : plants) {
 			log.info("Run MRP to Plant: " + plant.getName());
 			this.Planning_Horizon = TimeUtil.addDays(getToday(), MUMResource.getPlanningHorizon(plant));
@@ -556,7 +556,7 @@ public class MRP extends SvrProcess {
 								.append(",mrp.TypeMRP, mrp.OrderType, mrp.DateOrdered, mrp.M_Warehouse_ID")
 								.append(",mrp.PP_MRP_ID, mrp.DateStartSchedule, mrp.DateFinishSchedule")
 								.append(" FROM RV_PP_MRP mrp WHERE 1=1 ")
-								.append(getSQLWhere("mrp", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, null, null, level, MPPMRP.TYPEMRP_Demand, Planning_Horizon,
+								.append(getSQLWhere("mrp", AD_Client_ID, AD_Org_ID, M_Warehouse_ID, S_Resource_ID, null, level, MPPMRP.TYPEMRP_Demand, Planning_Horizon,
 										false)).append(" ORDER BY  mrp.M_Product_ID , mrp.DatePromised");
 
 						pstmt = DB.prepareStatement(sql.toString(), trxName);

@@ -237,7 +237,7 @@ public class MUMProduct {
 		String retValue = "";
 
 		BigDecimal tolerance = MUMProduct.getPP_Tolerance(MProduct.get(Env.getCtx(), m_Product_ID));
-		if (!tolerance.equals(Env.ZERO)) {
+		if (tolerance.signum() != 0) {
 			BigDecimal qtyUpperLimit = qtyExpected.multiply(Env.ONE.add(tolerance.divide(Env.ONEHUNDRED))).setScale(4, BigDecimal.ROUND_HALF_UP);
 			BigDecimal qtyLowerLimit = qtyExpected.multiply(Env.ONE.subtract(tolerance.divide(Env.ONEHUNDRED))).setScale(4, BigDecimal.ROUND_HALF_UP);
 			if (qtyReal.compareTo(qtyUpperLimit) == 1 || qtyReal.compareTo(qtyLowerLimit) == -1)

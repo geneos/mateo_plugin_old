@@ -1995,7 +1995,7 @@ public class MCost extends LP_M_Cost {
 
 		MCost cost = new Query(Env.getCtx(), MCost.Table_Name, finalWhereClause.toString(), null).setParameters(finalParams).firstOnly();
 
-		if (cost.equals(null)) {
+		if (cost == null) {
 			return Env.ZERO;
 		} else {
 			return cost.getCurrentCostPrice();

@@ -849,7 +849,7 @@ public class MPPOrder extends LP_PP_Order implements DocAction {
 		// Create the Activity Control
 		autoReportActivities();
 
-		// setProcessed(true);
+		setProcessed(true);
 		setDocAction(ACTION_Close);
 
 		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
