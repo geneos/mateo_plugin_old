@@ -32,6 +32,8 @@ import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
 import org.openXpertya.wf.MWFNode;
 
+import ar.com.geneos.mrp.plugin.util.MUColumnNames;
+
 /**
  * PP Order Workflow Node Model
  * 
@@ -111,7 +113,7 @@ public class MPPOrderNode extends LP_PP_Order_Node
 	 */
 	public static boolean isLastNode(Properties ctx, int PP_Order_Node_ID, String trxName)
 	{
-		String whereClause = MPPOrderNodeNext.COLUMNNAME_PP_Order_Node_ID+"=?";
+		String whereClause = MUColumnNames.COLUMNNAME_PP_Order_Node_ID+"=?";
 		return false == new Query(ctx, MPPOrderNodeNext.Table_Name, whereClause, trxName)
 									.setOnlyActiveRecords(true)
 									.setParameters(new Object[]{PP_Order_Node_ID})
@@ -256,11 +258,11 @@ public class MPPOrderNode extends LP_PP_Order_Node
 			return m_next;
 		}
 		boolean splitAnd = SPLITELEMENT_AND.equals(getSplitElement());
-		String whereClause = MPPOrderNodeNext.COLUMNNAME_PP_Order_Node_ID+"=?";
+		String whereClause = MUColumnNames.COLUMNNAME_PP_Order_Node_ID+"=?";
 		m_next = new Query(getCtx(), MPPOrderNodeNext.Table_Name, whereClause, get_TrxName())
 		.setParameters(new Object[]{getID()})
 		.setOnlyActiveRecords(true)
-		.setOrderBy(MPPOrderNodeNext.COLUMNNAME_SeqNo+","+MPPOrderNodeNext.COLUMNNAME_PP_Order_Node_ID)
+		.setOrderBy(MUColumnNames.COLUMNNAME_SeqNo+","+MUColumnNames.COLUMNNAME_PP_Order_Node_ID)
 		.list();
 		for (MPPOrderNodeNext next : m_next)
 		{

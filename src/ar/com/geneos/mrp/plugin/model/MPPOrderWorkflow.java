@@ -37,6 +37,8 @@ import org.openXpertya.util.Env;
 import org.openXpertya.util.Msg;
 import org.openXpertya.wf.MWorkflow;
 
+import ar.com.geneos.mrp.plugin.util.MUColumnNames;
+
 /**
  * PP Order WorkFlow Model
  *
@@ -197,7 +199,7 @@ public class MPPOrderWorkflow extends LP_PP_Order_Workflow {
 	 */
 	protected List<MPPOrderNode> getNodes(boolean requery) {
 		if (m_nodes == null || requery) {
-			final String whereClause = MPPOrderNode.COLUMNNAME_PP_Order_Workflow_ID + "=?";
+			final String whereClause = MUColumnNames.COLUMNNAME_PP_Order_Workflow_ID + "=?";
 			m_nodes = new Query(getCtx(), MPPOrderNode.Table_Name, whereClause, get_TrxName()).setParameters(new Object[] { getID() })
 					.setOnlyActiveRecords(true).list();
 			log.fine("#" + m_nodes.size());
