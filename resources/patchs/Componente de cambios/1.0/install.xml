@@ -1,0 +1,4855 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP-AD_Ref_List-1010837">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_Table" uid="MRP-AD_Ref_Table-1010291">
+<column name="WhereClause" type="14">
+<oldValue>C_DocType.AD_Client_ID=@#AD_Client_ID@  AND C_DocType.DocBaseType IN  ('MCC') </oldValue>
+<newValue>C_DocType.AD_Client_ID=@#AD_Client_ID@  AND C_DocType.DocBaseType IN  ('MOR') </newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010849">
+<column name="Name" type="10">
+<oldValue>Material Receipt</oldValue>
+<newValue>Recepción de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010849">
+<column name="Name" type="10">
+<oldValue>Material Receipt</oldValue>
+<newValue>Recepción de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010849">
+<column name="Name" type="10">
+<oldValue>Material Receipt</oldValue>
+<newValue>Recepción de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010849">
+<column name="Name" type="10">
+<oldValue>Material Receipt</oldValue>
+<newValue>Recepción de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010850">
+<column name="Name" type="10">
+<oldValue>Component Issue</oldValue>
+<newValue>Entrega de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010850">
+<column name="Name" type="10">
+<oldValue>Component Issue</oldValue>
+<newValue>Entrega de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010850">
+<column name="Name" type="10">
+<oldValue>Component Issue</oldValue>
+<newValue>Entrega de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010850">
+<column name="Name" type="10">
+<oldValue>Component Issue</oldValue>
+<newValue>Entrega de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010856">
+<column name="Name" type="10">
+<oldValue>Component Return</oldValue>
+<newValue>Devolución de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010856">
+<column name="Name" type="10">
+<oldValue>Component Return</oldValue>
+<newValue>Devolución de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010856">
+<column name="Name" type="10">
+<oldValue>Component Return</oldValue>
+<newValue>Devolución de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010856">
+<column name="Name" type="10">
+<oldValue>Component Return</oldValue>
+<newValue>Devolución de Materiales</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_AR-1010855">
+<column name="Name" type="10">
+<oldValue>Activity Control</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_ES-1010855">
+<column name="Name" type="10">
+<oldValue>Activity Control</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_MX-1010855">
+<column name="Name" type="10">
+<oldValue>Activity Control</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List_Trl" uid="MRP-AD_Ref_List_Trl-es_PY-1010855">
+<column name="Name" type="10">
+<oldValue>Activity Control</oldValue>
+<newValue>Control de Actividades</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List" uid="MRP2-AD_Ref_List-1010897">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Ref_List-1010897</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Reference_ID" refTable="AD_Reference" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP-AD_Reference-1010279">1010280</newValue>
+</column>
+<column name="AD_Ref_List_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1010897</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.175946</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.176708</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>105</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP2-AD_Ref_List_Trl-es_ES-1010897">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Ref_List_Trl-es_ES-1010897</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Ref_List-1010897">1010897</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.552168</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.553012</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP2-AD_Ref_List_Trl-es_AR-1010897">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Ref_List_Trl-es_AR-1010897</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Ref_List-1010897">1010897</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.852644</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:45:59.853394</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP2-AD_Ref_List_Trl-es_MX-1010897">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Ref_List_Trl-es_MX-1010897</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Ref_List-1010897">1010897</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:46:00.052705</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:46:00.053527</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Ref_List_Trl" uid="MRP2-AD_Ref_List_Trl-es_PY-1010897">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Ref_List_Trl-es_PY-1010897</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Ref_List_ID" refTable="AD_Ref_List" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Ref_List-1010897">1010897</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:46:00.252352</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:46:00.252933</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Ref_List" uid="MRP2-AD_Ref_List-1010897">
+<column name="Name" type="10">
+<oldValue>Co-Producto</oldValue>
+<newValue>Co-Product</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Message" uid="MRP2-AD_Message-1011142">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Message-1011142</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Message_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1011142</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.103275</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="EntityType" type="17">
+<oldValue>null</oldValue>
+<newValue>U</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MsgText" type="14">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="MsgType" type="17">
+<oldValue>null</oldValue>
+<newValue>I</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.10386</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Value" type="10">
+<oldValue>null</oldValue>
+<newValue>IsCoProduct</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Message_Trl" uid="MRP2-AD_Message_Trl-es_ES-1011142">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Message_Trl-es_ES-1011142</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Message_ID" refTable="AD_Message" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Message-1011142">1011142</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.484694</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="MsgText" type="14">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.485328</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Message_Trl" uid="MRP2-AD_Message_Trl-es_AR-1011142">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Message_Trl-es_AR-1011142</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Message_ID" refTable="AD_Message" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Message-1011142">1011142</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.680365</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="MsgText" type="14">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.681052</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Message_Trl" uid="MRP2-AD_Message_Trl-es_MX-1011142">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Message_Trl-es_MX-1011142</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Message_ID" refTable="AD_Message" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Message-1011142">1011142</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.880314</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="MsgText" type="14">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:00.881156</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_Message_Trl" uid="MRP2-AD_Message_Trl-es_PY-1011142">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_Message_Trl-es_PY-1011142</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Message_ID" refTable="AD_Message" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_Message-1011142">1011142</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:01.079484</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="MsgText" type="14">
+<oldValue>null</oldValue>
+<newValue>Co-Producto</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 12:51:01.079999</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Message" uid="MRP2-AD_Message-1011142">
+<column name="MsgText" type="14">
+<oldValue>Co-Producto</oldValue>
+<newValue>Co-Product</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026764">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026765">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026766">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026767">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026767">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026768">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026769">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026766">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026765">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026764">
+<column name="IsHeightOneLine" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormat" uid="CORE-AD_PrintFormat-1000832">
+<column name="AD_PrintPaper_ID" refTable="AD_PrintPaper" type="19">
+<oldValue>103</oldValue>
+<newValue refUID="CORE-AD_PrintPaper-102">102</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026764">
+<column name="MaxWidth" type="11">
+<oldValue>80</oldValue>
+<newValue>120</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026766">
+<column name="MaxWidth" type="11">
+<oldValue>80</oldValue>
+<newValue>70</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026767">
+<column name="MaxWidth" type="11">
+<oldValue>80</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="CORE-AD_PrintFormatItem-1026764">
+<column name="MaxWidth" type="11">
+<oldValue>120</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018201">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018220">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018216">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018206">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018226">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018232">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018233">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018205">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018234">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018255">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018235">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018231">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018207">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="isdisplayedingrid" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018205">
+<column name="isdisplayedingrid" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormat" uid="MRP2-AD_PrintFormat-1011006">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormat-1011006</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintColor_ID" refTable="AD_PrintColor" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_PrintColor-100">100</newValue>
+</column>
+<column name="AD_PrintFont_ID" refTable="AD_PrintFont" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_PrintFont-130">130</newValue>
+</column>
+<column name="AD_PrintFormat_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1011006</newValue>
+</column>
+<column name="AD_PrintPaper_ID" refTable="AD_PrintPaper" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_PrintPaper-102">102</newValue>
+</column>
+<column name="AD_PrintTableFormat_ID" refTable="AD_PrintTableFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_PrintTableFormat-1000006">1000006</newValue>
+</column>
+<column name="AD_Table_ID" refTable="AD_Table" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Table-363">363</newValue>
+</column>
+<column name="CreateCopy" type="28">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:04:57.975911</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Description" type="10">
+<oldValue>null</oldValue>
+<newValue>RV_M_Transaction_Sum</newValue>
+</column>
+<column name="FooterMargin" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="HeaderMargin" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsDefault" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsForm" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsStandardHeaderFooter" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsTableBased" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Resumen de Transacciones de Artículos</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:04:57.976794</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormat" uid="MRP2-AD_PrintFormat-1011006">
+<column name="AD_PrintPaper_ID" refTable="AD_PrintPaper" type="19">
+<oldValue>102</oldValue>
+<newValue refUID="CORE-AD_PrintPaper-103">103</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>Resumen de Transacciones de Artículos</oldValue>
+<newValue>rv_m_transaction_sum_2</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4401">4401</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038852</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:31.346021</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:31.346826</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038852">1038852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.325328</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.325774</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038852">1038852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.625781</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.62646</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038852">1038852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.826381</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:32.827091</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038852">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038852</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038852">1038852</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:33.01591</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Client</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:33.016751</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038852">
+<column name="PrintName" type="10">
+<oldValue>Client</oldValue>
+<newValue>Compañía</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038852">
+<column name="PrintName" type="10">
+<oldValue>Client</oldValue>
+<newValue>Compañía</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038852">
+<column name="PrintName" type="10">
+<oldValue>Client</oldValue>
+<newValue>Compañía</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038852">
+<column name="PrintName" type="10">
+<oldValue>Client</oldValue>
+<newValue>Compañía</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4405">4405</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038853</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:33.400622</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>2</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:33.401465</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038853">1038853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.08418</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.084939</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038853">1038853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.293796</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.294619</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038853">1038853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.482743</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.483573</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038853">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038853</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038853">1038853</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.682911</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Locator</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:34.683697</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038853">
+<column name="PrintName" type="10">
+<oldValue>Locator</oldValue>
+<newValue>Localizador</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038853">
+<column name="PrintName" type="10">
+<oldValue>Locator</oldValue>
+<newValue>Localizador</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038853">
+<column name="PrintName" type="10">
+<oldValue>Locator</oldValue>
+<newValue>Localizador</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038853">
+<column name="PrintName" type="10">
+<oldValue>Locator</oldValue>
+<newValue>Localizador</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4407">4407</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038854</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:35.112341</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>3</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:35.113022</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038854">1038854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:35.850791</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:35.851535</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038854">1038854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.050137</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.050841</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038854">1038854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.250172</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.25082</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038854">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038854</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038854">1038854</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.450447</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Date</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.451228</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038854">
+<column name="PrintName" type="10">
+<oldValue>Movement Date</oldValue>
+<newValue>Fecha de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038854">
+<column name="PrintName" type="10">
+<oldValue>Movement Date</oldValue>
+<newValue>Fecha de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038854">
+<column name="PrintName" type="10">
+<oldValue>Movement Date</oldValue>
+<newValue>Fecha de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038854">
+<column name="PrintName" type="10">
+<oldValue>Movement Date</oldValue>
+<newValue>Fecha de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4408">4408</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038855</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.779442</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>T</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Quantity</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Qty</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>4</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:36.780199</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038855">1038855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.473675</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Qty</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.474319</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038855">1038855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.661967</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Qty</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.662754</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038855">1038855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.850893</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Qty</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:37.851705</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038855">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038855</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038855">1038855</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:38.062518</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Qty</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:38.063303</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038855">
+<column name="PrintName" type="10">
+<oldValue>Qty</oldValue>
+<newValue>Cantidad del Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038855">
+<column name="PrintName" type="10">
+<oldValue>Qty</oldValue>
+<newValue>Cantidad del Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038855">
+<column name="PrintName" type="10">
+<oldValue>Qty</oldValue>
+<newValue>Cantidad del Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038855">
+<column name="PrintName" type="10">
+<oldValue>Qty</oldValue>
+<newValue>Cantidad del Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4403">4403</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038856</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:38.491431</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>5</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:38.492219</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038856">1038856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.208724</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.209454</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038856">1038856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.473667</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.474427</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038856">1038856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.673674</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.674385</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038856">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038856</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038856">1038856</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.877686</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Movement Type</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:39.878192</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038856">
+<column name="PrintName" type="10">
+<oldValue>Movement Type</oldValue>
+<newValue>Tipo de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038856">
+<column name="PrintName" type="10">
+<oldValue>Movement Type</oldValue>
+<newValue>Tipo de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038856">
+<column name="PrintName" type="10">
+<oldValue>Movement Type</oldValue>
+<newValue>Tipo de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038856">
+<column name="PrintName" type="10">
+<oldValue>Movement Type</oldValue>
+<newValue>Tipo de Movimiento</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038857">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4402">4402</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038857</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038857</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:40.202739</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:40.203582</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038857">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038857</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038857">1038857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:40.91613</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:40.916788</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038857">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038857</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038857">1038857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.118584</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.119251</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038857">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038857</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038857">1038857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.30717</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.307955</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038857">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038857</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038857">1038857</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.507225</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Organization</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.507833</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038857">
+<column name="PrintName" type="10">
+<oldValue>Organization</oldValue>
+<newValue>Organización</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038857">
+<column name="PrintName" type="10">
+<oldValue>Organization</oldValue>
+<newValue>Organización</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038857">
+<column name="PrintName" type="10">
+<oldValue>Organization</oldValue>
+<newValue>Organización</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038857">
+<column name="PrintName" type="10">
+<oldValue>Organization</oldValue>
+<newValue>Organización</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038858">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4406">4406</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038858</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038858</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.881249</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>7</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:41.88196</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038858">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038858</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038858">1038858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.598063</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.598876</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038858">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038858</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038858">1038858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.796776</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.797558</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038858">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038858</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038858">1038858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.983729</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:42.984152</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038858">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038858</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038858">1038858</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:43.185511</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Product</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:43.186085</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038858">
+<column name="PrintName" type="10">
+<oldValue>Product</oldValue>
+<newValue>Artículo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038858">
+<column name="PrintName" type="10">
+<oldValue>Product</oldValue>
+<newValue>Artículo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038858">
+<column name="PrintName" type="10">
+<oldValue>Product</oldValue>
+<newValue>Artículo</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038858">
+<column name="PrintName" type="10">
+<oldValue>Product</oldValue>
+<newValue>Artículo</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038859">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_Column_ID" refTable="AD_Column" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Column-4404">4404</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem-1038859</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" type="13">
+<oldValue>null</oldValue>
+<newValue>1038859</newValue>
+</column>
+<column name="ArcDiameter" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:43.526542</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="FieldAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>L</newValue>
+</column>
+<column name="ImageIsAttached" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsAveraged" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsCentrallyMaintained" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsCounted" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsDeviationCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFilledRectangle" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsFixedWidth" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsGroupBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsHeightOneLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsImageField" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMaxCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsMinCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextLine" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsNextPage" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsOrderBy" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPageBreak" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsPrinted" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRelativePosition" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsRunningTotal" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSetNLPosition" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSummarized" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsSuppressNull" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="IsVarianceCalc" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="LineAlignmentType" type="17">
+<oldValue>null</oldValue>
+<newValue>X</newValue>
+</column>
+<column name="LineWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>1</newValue>
+</column>
+<column name="MaxHeight" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="PrintAreaType" type="17">
+<oldValue>null</oldValue>
+<newValue>C</newValue>
+</column>
+<column name="PrintFormatType" type="17">
+<oldValue>null</oldValue>
+<newValue>F</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>null</oldValue>
+<newValue>8</newValue>
+</column>
+<column name="ShapeType" type="17">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:43.527333</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="XSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YPosition" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="YSpace" type="11">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038859">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_ES-1038859</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_ES-140">es_ES</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038859">1038859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.219713</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.220218</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038859">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_AR-1038859</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_AR-133">es_AR</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038859">1038859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.419576</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.420273</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038859">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_MX-1038859</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_MX-143">es_MX</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038859">1038859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.61933</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.619954</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="I" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038859">
+<column name="AD_Client_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_ComponentObjectUID" type="10">
+<oldValue>null</oldValue>
+<newValue>MRP2-AD_PrintFormatItem_Trl-es_PY-1038859</newValue>
+</column>
+<column name="AD_ComponentVersion_ID" refTable="AD_ComponentVersion" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_ComponentVersion-1010128">1010128</newValue>
+</column>
+<column name="AD_Language" refTable="AD_Language" type="18">
+<oldValue>null</oldValue>
+<newValue refUID="CORE-AD_Language-es_PY-148">es_PY</newValue>
+</column>
+<column name="AD_Org_ID" type="19">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="AD_PrintFormatItem_ID" refTable="AD_PrintFormatItem" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormatItem-1038859">1038859</newValue>
+</column>
+<column name="Created" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.819735</newValue>
+</column>
+<column name="CreatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+<column name="IsActive" type="20">
+<oldValue>null</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="IsTranslated" type="20">
+<oldValue>null</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="PrintName" type="10">
+<oldValue>null</oldValue>
+<newValue>Warehouse</newValue>
+</column>
+<column name="Updated" type="16">
+<oldValue>null</oldValue>
+<newValue>2016-02-04 14:05:44.820454</newValue>
+</column>
+<column name="UpdatedBy" type="18">
+<oldValue>null</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_AR-1038859">
+<column name="PrintName" type="10">
+<oldValue>Warehouse</oldValue>
+<newValue>Almacén</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_ES-1038859">
+<column name="PrintName" type="10">
+<oldValue>Warehouse</oldValue>
+<newValue>Almacén</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_MX-1038859">
+<column name="PrintName" type="10">
+<oldValue>Warehouse</oldValue>
+<newValue>Almacén</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem_Trl" uid="MRP2-AD_PrintFormatItem_Trl-es_PY-1038859">
+<column name="PrintName" type="10">
+<oldValue>Warehouse</oldValue>
+<newValue>Almacén</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormat" uid="MRP2-AD_PrintFormat-1011006">
+<column name="AD_PrintPaper_ID" refTable="AD_PrintPaper" type="19">
+<oldValue>103</oldValue>
+<newValue refUID="CORE-AD_PrintPaper-102">102</newValue>
+</column>
+<column name="Name" type="10">
+<oldValue>rv_m_transaction_sum_2</oldValue>
+<newValue>Resumen de Transacciones de Artículos</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038859">
+<column name="SeqNo" type="11">
+<oldValue>8</oldValue>
+<newValue>10</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038853">
+<column name="SeqNo" type="11">
+<oldValue>2</oldValue>
+<newValue>20</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038854">
+<column name="SeqNo" type="11">
+<oldValue>3</oldValue>
+<newValue>30</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038858">
+<column name="SeqNo" type="11">
+<oldValue>7</oldValue>
+<newValue>40</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038856">
+<column name="SeqNo" type="11">
+<oldValue>5</oldValue>
+<newValue>50</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038855">
+<column name="SeqNo" type="11">
+<oldValue>4</oldValue>
+<newValue>60</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038859">
+<column name="IsOrderBy" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>0</oldValue>
+<newValue>10</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038853">
+<column name="IsOrderBy" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>0</oldValue>
+<newValue>20</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038858">
+<column name="IsOrderBy" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="SortNo" type="11">
+<oldValue>0</oldValue>
+<newValue>30</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038859">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038853">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038854">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>70</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038858">
+<column name="IsFixedWidth" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="MaxWidth" type="11">
+<oldValue>0</oldValue>
+<newValue>100</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process" uid="CORE-AD_Process-124">
+<column name="AD_PrintFormat_ID" refTable="AD_PrintFormat" type="19">
+<oldValue>null</oldValue>
+<newValue refUID="MRP2-AD_PrintFormat-1011006">1011006</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038854">
+<column name="MaxWidth" type="11">
+<oldValue>70</oldValue>
+<newValue>80</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_PrintFormatItem" uid="MRP2-AD_PrintFormatItem-1038858">
+<column name="MaxWidth" type="11">
+<oldValue>100</oldValue>
+<newValue>110</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018227">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>370</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018225">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>360</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018222">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>350</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018202">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>340</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Process_Para" uid="MRP-AD_Process_Para-1011059">
+<column name="IsActive" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Column" uid="MRP-AD_Column-1016797">
+<column name="IsAlwaysUpdateable" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010386">
+<column name="Name" type="10">
+<oldValue>Salida de Componentes</oldValue>
+<newValue>Movimientos de Componentes</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab_Trl" uid="MRP-AD_Tab_Trl-es_AR-1010386">
+<column name="Name" type="10">
+<oldValue>Salida de Componentes</oldValue>
+<newValue>Movimientos de Componentes</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab_Trl" uid="MRP-AD_Tab_Trl-es_ES-1010386">
+<column name="Name" type="10">
+<oldValue>Salida de Componentes</oldValue>
+<newValue>Movimientos de Componentes</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab_Trl" uid="MRP-AD_Tab_Trl-es_MX-1010386">
+<column name="Name" type="10">
+<oldValue>Salida de Componentes</oldValue>
+<newValue>Movimientos de Componentes</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab_Trl" uid="MRP-AD_Tab_Trl-es_PY-1010386">
+<column name="Name" type="10">
+<oldValue>Salida de Componentes</oldValue>
+<newValue>Movimientos de Componentes</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Tab" uid="MRP-AD_Tab-1010385">
+<column name="IsActive" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="WhereClause" type="10">
+<oldValue>costcollectortype='100'</oldValue>
+<newValue>(costcollectortype='100' or costcollectortype='105')</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018524">
+<column name="IsDisplayed" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>0</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018573">
+<column name="IsDisplayed" type="20">
+<oldValue>N</oldValue>
+<newValue>Y</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>0</oldValue>
+<newValue>140</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018692">
+<column name="IsDisplayed" type="20">
+<oldValue>Y</oldValue>
+<newValue>N</newValue>
+</column>
+<column name="SeqNo" type="11">
+<oldValue>300</oldValue>
+<newValue>0</newValue>
+</column>
+</changegroup>
+<changegroup operation="M" tableName="AD_Field" uid="MRP-AD_Field-1018693">
+<column name="SeqNo" type="11">
+<oldValue>310</oldValue>
+<newValue>300</newValue>
+</column>
+</changegroup>
+</changelog>
